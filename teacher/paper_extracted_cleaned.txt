@@ -1,0 +1,682 @@
+
+
+======================================================================
+PAGE 1 / 9
+======================================================================
+
+Think-in-Memory: Recalling and Post-thinking Enable LLMs with
+Long-Term Memory
+LeiLiu∗ XiaoyanYang YueShen†
+liulei1497@gmail.com joyce.yxy@antgroup.com zhanying@antgroup.com
+CUHK-Shenzhen,AntGroup AntGroup AntGroup
+BinbinHu,ZhiqiangZhang JinjieGu GuannanZhang
+{bin.hbb,lingyao.zzq}@antfin.com jinjie.gjj@antfin.com zgn138592@antfin.com
+AntGroup AntGroup AntGroup
+ABSTRACT reaching up to hundreds of billions of parameters, enables the
+Memory-augmentedLargeLanguageModels(LLMs)havedemon- emergenceofsuchhuman-likeabilitieswithinLLMs[6].
+stratedremarkableperformanceinlong-termhuman-machinein- DespitetheremarkableabilitiesofLLMspre-trainedonlarge
+teractions,whichbasicallyreliesoniterativerecallingandreason- corpora,LLM-basedAIagentsstillfaceasignificantlimitationin
+ingofhistorytogeneratehigh-qualityresponses.However,such long-termscenarios,i.e.,inabilitytoprocessexceptionallylengthy
+repeatedrecall-reasonstepseasilyproducebiasedthoughts,i.e., inputs[7].Thisisparticularlyimportantinsomespecifictasks,e.g.,
+inconsistentreasoningresultswhenrecallingthesamehistoryfor medicalAIassistants[4]relyonthesymptomsofpastconversa-
+differentquestions.Onthecontrary,humanscankeepthoughtsin tionstoprovideaccurateclinicaldiagnosis.Thus,LLMswithoutthe
+thememoryandrecallthemwithoutrepeatedreasoning.Motivated capabilityofdealingwithlong-terminputsmayhinderthediagno-
+bythishumancapability,weproposeanovelmemorymechanism sisaccuracyduetoforgettingimportantdiseasesymptoms(seein
+calledTiM(Think-in-Memory)thatenablesLLMstomaintainan Section4.4).Therefore,itisnecessarytodevelopAIsystemswith
+evolvedmemoryforstoringhistoricalthoughtsalongtheconversa- long-termcapabilitiesformoreaccurateandreliableinteractions.
+tionstream.TheTiMframeworkconsistsoftwocrucialstages:(1) Therehavebeenvariousstudiesconductedtoimprovetheca-
+beforegeneratingaresponse,aLLMagentrecallsrelevantthoughts pabilitiesofLLMstohandlelong-terminputs.Overall,thesestud-
+frommemory,and(2)aftergeneratingaresponse,theLLMagent iescanberoughlydividedintotwotypes:(1)Internalmemory
+post-thinksandincorporatesbothhistoricalandnewthoughtsto based methods [8] aims to reduce the computational costs of
+updatethememory.Thus,TiMcaneliminatetheissueofrepeated self-attentionforexpandingthesequencelength.Toaccommodate
+reasoningbysavingthepost-thinkingthoughtsasthehistory.Be- longerinputtexts,specialpositionalencodingshouldbeexploited
+sides,weformulatethebasicprinciplestoorganizethethoughtsin tolearnrelativepositions.Forexample,[9]exploredablock-local
+memorybasedonthewell-establishedoperations,(i.e.,insert,forget, Transformerwithglobalencodertokens,combinedwithadditional
+andmergeoperations),allowingfordynamicupdatesandevolu- longinputpre-training.(2)Externalmemorybasedmethods
+tionofthethoughts.Furthermore,weintroduceLocality-Sensitive (alsocalledlong-termmemorymechanism[10])generallyutilize
+HashingintoTiMtoachieveefficientretrievalforthelong-term aphysicalspaceasamemorycachetostorehistoricalinforma-
+conversations.Weconductqualitativeandquantitativeexperiments tion,whererelevanthistorycanbereadfromthememorycache
+onreal-worldandsimulateddialoguescoveringawiderangeof toaugmentLLMswithoutforgetting.Inparticular,bothtokenand
+topics,demonstratingthatequippingexistingLLMswithTiMsig- rawtextcanbemaintainedashistoryinthememory.Forinstance,
+nificantlyenhancestheirperformanceingeneratingresponsesfor [11]demonstratedasignificantperformanceimprovementbyaug-
+long-terminteractions. mentingLLMswithanexternalmemorycachecontainingtrillions
+oftokensassistedbyBERTembeddings[12].Itshouldbenoticed
+KEYWORDS thattoken-basedmemorymechanismrequirestoadjusttheLLM’s
+architectureforadaption,whichishardtobecombinedwithdiffer-
+LargeLanguageModel,ResponseGeneration,Long-termMemory
+entLLMs.Byaccessinganexternalmemorycache,theaugmented
+LLMshaveachievednewstate-of-the-artrecordsinvariouslan-
+1 INTRODUCTION
+guagemodelingbenchmarks,whichgenerallyperformsbetterthan
+ImpressiveadvancementsinLargeLanguageModels(LLMs)have internalmemorybasedmethods.Therefore,thisworkfocusesonde-
+revolutionizedtheinteractionbetweenhumanbeingsandartificial signinganLLM-agnosticexternalmemorymechanismtoenhanced
+intelligence(AI)systems.Theseadvancementshaveparticularly thememorizationcapacityofLLMs.
+showcasedsuperiorperformanceinhuman-agentconversations,as Ingeneral,theutilityofmemory-augmentedLLMsprimarily
+demonstratedbyChatGPT[1]andGPT-4[2].Fromfinance[3]and hingesontheirabilityforiterativerecallingandrepeatedreasoning
+healthcare[4]tobusinessandcustomerservice[5],theseadvanced overthehistoryinanexternalmemorycache.Indetail,forcon-
+LLMs exhibit a remarkable ability to understand questions and versationsafterthe𝑛-thturn,LLMsarerequiredtore-understand
+generatecorrespondingresponses.Notably,thelargemodelscale, andre-reasonthehistoryfrom0-thto (𝑛−1)-thconversations.
+Forexample,asshowninFigure1,toanswerthequestionsof2-th
+∗WorkwasdonewhenLeiLiuwasaresearchinternatAntGroup.
+and3-thturns,LLMsrecall1-thturnandreasonoveritfortwice.
+†CorrespondingAuthor.
+3202
+voN
+51
+]LC.sc[
+1v91780.1132:viXra
+
+======================================================================
+PAGE 2 / 9
+======================================================================
+
+Previous Memory Mechanism Turn 1 Think-in-Memory (TiM)
+Question:Janet’sduckslay16eggstoday.Sheeatthreeand
+bakedmuffinsforherfriendswithfour.Shesoldtheremainder
+for$2peregg.Howmuchdidshemaketoday?
+Recall and Reason Response:She made $18 today.
+for Turn 3
+Turn 2
+Recall and Reason Post-thinking
+For Turn2 Question: Janet spent$8onclothestoday.Howmuchmoney
+remainedforJanet?
+Janethas16- 3–4=9eggsleft.She
+made$2*9=$18today.Shespent$8. Recall & Reason over raw text of turn 1 Thoughtsfromturn1:
+Thenshehas$18–8=$10now. Janet’sduckslay16eggstoday.
+Janeteatthreeandbakedmuffinswithfour.
+Response: Janet still has $10 now. ✅ Janetsoldthe9eggs.
+Repeated reasoning over turn 1! Oneeggis$2.
+Inconsistent reasoning path! Turn 3 Janetmade$18today.
+Question: Janet’sduckslayoneegginadditionandshesoldit. Thoughtsfromturn2:
+Now,howmuchmoneyremainedforJanet? Janet made $18 today.
+Janetsoldremainderfor$2*(16–4-3) Janet spent$8.
+= $26. She spent $8 and earned $2. Recall & Reason over raw text of turn 1 and 2
+Janethas$10now.
+Nowshehad$26–8+2=$20.
+Response: Janet still has $20 now. ❌ Recall from TiM
+without repeated reasoning!
+Response: Janetnowhas$12now. ✅
+Figure1:ComparisonsbetweenpreviousmemorymechanismswithourproposedTiM.(Left):Existingmemorymechanisms
+mainlysaverawtextofpreviousturns,whichrequirerepeatedreasoningoverthesamehistory.Thiseasilyleadstothe
+inconsistentreasoningpath(i.e.,redpartoftheleft)withwrongresponse.(Right):TheproposedTiMstoresthethoughtsof
+LLMsforpreviousturns,whichcanavoidsuchinconsistencywithoutrepeatedreasoning(i.e.,redpartoftheright).
+Unfortunately,thisparadigmispronetoencounteringseveralis- ahash-basedretrievalmechanism(i.e.,Locality-SensitiveHashing
+suesandpotentiallycausesaperformancebottleneckinreal-world [16])tosupportefficienthand-in(i.e.,insertthoughts)andhand-out
+applications.Themainissuesareshowninfollows: (i.e.,recallthoughts)operations.Additionally,TiMisdesignedto
+beLLM-agnostic,whichmeansitcanbecombinedwithvarious
+• Inconsistentreasoningpaths.Priorstudies[13,14]hasshown
+typesoflanguagemodels.Thisincludesclosed-sourceLLMssuch
+thatLLMseasilygeneratediversereasoningpathsforthesame
+asChatGPT[1],aswellasopen-sourceLLMslikeChatGLM[17].
+query.AsshowninFigure1(Left),LLMsgiveawrongresponse
+Thekeycontributionsofthisworkaresummarizedasfollows:
+duetoinconsistentreasoningoverthecontext.
+• Unsatisfyingretrievalcost.Toretrieverelevanthistory,previ-
+ousmemorymechanismsneedtocalculatepairwisesimilarity
+betweenthequestionandeachhistoricalconversation,whichis
+time-consumingforlong-termdialogue.
+Toaddresstheseconcerns,wewouldliketoadvanceonestep • Weproposeanovelhuman-likelong-termmemorymecha-
+furtherinmemory-augmentedLLMswiththeanalogytothetypical nismcalledTiM,enablingLLMstorememberandselectively
+process of metacognition [15], where the brain saves thoughts recallthoughts.TiMcanletLLMthinkinmemorywithout
+asmemoriesratherthanthedetailsoforiginalevents.Thus,in repeatedreasoningoverthelong-termhistory.
+thiswork,weproposeaThink-in-Memory(TiM)frameworkto • Weformulatesomebasicprinciplestoorganizethethoughts
+modelthehuman-likememorymechanism,whichenablesLLMs inmemorybasedonthewell-establishedoperations,which
+torememberandselectivelyrecallhistoricalthoughtsinlong-term mirrorshumancognitiveprocesstoempowerdynamicup-
+interactionscenarios.Specifically,asshowninFigure2,theTiM datesandevolutionforthethoughtsinmemory.Besides,a
+frameworkisdividedintotwostages:(1)Intherecallingstage,LLMs hash-basedretrievalmechanismisintroducedforefficient
+generatetheresponseforthenewquerywithrecallingrelevant utilizationofTiM.
+thoughtsinthememory;(2)Inthepost-thinkingstage,theLLM • Weconductedextensiveexperimentsonmulti-turndialogue
+engagesinreasoningandthinkingovertheresponseandsavesnew datasets.Theresultsindicatethatourmethodcansubstan-
+thoughtsintoanexternalmemory.Besides,tomirrorthecognitive tially enhance LLM’s performance across various dimen-
+processofhumans,weformulatesomebasicprinciplestoorganize sions: (1) It enables diverse topics ranging from open to
+thethoughtsinmemorybasedonthewell-establishedoperations specificdomains;(2)Itsupportsbilinguallanguagesinboth
+(e.g.,insert,forget,andmergeoperations),allowingfordynamic ChineseandEnglish;(3)Itimprovesresponsecorrectness
+updatesandevolutionofthethoughts.Specifically,TiMisbuilton andcoherence.
+
+======================================================================
+PAGE 3 / 9
+======================================================================
+
+Recalling and Post-thinking
+User: Yourecommended a movie before, how Index Inductive Thoughts
+about it?
+Recommend book is “The Little Prince”.
+0
+Recalling LSH “The Little Prince” is interesting.
+User: Do you have any book recommendations for me? 1 Recommend movie is “The Wandering Earth”.
+Agent: I recommend “The Little Prince”. Forthecurrentuser’squestion:{Query},youbegin
+to recall past conversations and the most relevant 2 Recommend song is “Listen to Mom”.
+User: Thank you. How about this book? [memory]is:{Related_memory}.
+Agent: This book is very interesting and full of emotions. According to the [memory], please answer the
+question:
+User: Do you have any movie recommendations for me? {Query}. Insert, Forget, Merge
+Agent: You can go see “The Wandering Earth”.
+Response
+User: Do you have any song recommendations for me? Index Inductive Thoughts
+Agent: I recommend “Listen to Mom”.
+Agent: It is “The Wandering Earth”. This movie is
+Recommend book is “The Little Prince”.
+User: Yourecommended a movie before, how about it? with stunning visuals. 0
+“The Little Prince” is interesting.
+Agent: It is “The Wandering Earth”. This movie is with
+stunning visuals. Post-thinking LSH Recommend movie is “The Wandering Earth”.
+1
+“The Wandering Earth” is with stunning visuals.
+(The Wandering Earth, have, stunning visuals)
+“The Wandering Earth” is with stunning visuals. 2 Recommend song is “Listen to Mom”.
+…
+…
+Long-term Memory
+Conversation History
+Figure2:TheoverviewofTiMframework.LLMsfirstlyrecallhistoryandgiveresponseforthequestion.Thennewthoughts
+canbegeneratedviathepost-thinkingstep.Thesethoughtsaresavedasthememorytoavoidrepeatedreasoningonthehistory.
+2 RELATEDWORK networks(MANNs)[28],suchasNeuralTuringMachines(NTMs)
+[29],whichisdesignedtoutilizemorecontextinformationfordia-
+2.1 LargeLanguageModels
+logue.Ingeneral,MANNsareproposedwithanexternalmemory
+Recently,LargeLanguageModels(LLMs)haveattractedsignificant
+cacheviathestorageandmanipulationofinformation,whichcan
+attentionfortheirsuperiorperformanceonawiderangeofNatural
+wellhandletasksoflong-termperiodbyinteractingwithmemory.
+LanguageProcessingtasks,suchasmachinetranslation[18],sen-
+Inaddition,manystudiesfocusedonlong-termconversations[30–
+timentanalysis[19],andquestionansweringsystems[20].These
+33].Forexample,Xuetal.[30]introducedanewEnglishdataset
+advancementsareindeedsupportedbythedevelopmentsofdeep
+consistingofmulti-sessionhuman-humancrowdworkerchatsfor
+learningtechniquesandtheavailabilityofvastamountsoftextdata.
+long-termconversations.Zhongetal.[32]proposedaMemoryBank
+Fromtheperspectiveofopensource,existingLLMscanroughly
+mechanisminspiredbyEbbinghaus’forgettingcurvetheory.How-
+dividedintotwotypes:(1)cutting-edgeclosed-sourceLLMs,e.g.,
+ever,thesemethodsstillfacesomegreatchallengestoachievea
+PaLM[21],GPT-4[2],andChatGPT[1];(2)open-sourceLLMs,
+reliableandadaptablelong-termmemorymechanismforLanguage
+e.g.,LLaMa[22],ChatGLM[17],andAlpaca[23].Researchershave
+andLearningModels(LLMs).Concretely,thesemethodsonlycon-
+studiedvariousmethodsfortheapplicationsofthesepopularLLMs.
+sideredstoringtherawdialoguetext,requiringrepeatedreasoning
+Forexample,manystrategiesareproposedtofine-tunepre-trained
+oftheLLMagentoverthesamehistory.Besides,thesemodelsneed
+LLMmodelsonspecifictasks[24],whichcanfurtherimprovetheir
+tocalculatepairwisesimilarityforrecallingrelevantinformation,
+capabilitiesinspecificdomains.Besides,someeffortshavebeen
+whichistime-consumingforthelong-terminteractions.
+madetoenhancethequalityofthegeneratedcontentofLLMs,
+e.g.,generatingmorediverseandcreativetextwhilemaintaining
+3 METHODOLOGY
+coherenceandfluency[25].Overall,recentdevelopmentsofLLMs
+coverabroadrangeoftopics,includingmodelarchitecture[17], Inthissection,wefirstintroducetheoverallworkflowofourpro-
+trainingmethods[26],fine-tuningstrategies[27],aswellasethical posedframework.Thenweprovideadetaileddescriptionforeach
+considerations[21].Allthesemethodsaimtoenhancetheunder- stageofTiM,involvingstorageformemorycache,organization
+standingcapabilitiesofLLMsforreal-worldapplications.However, principleformemoryupdating,andretrievalformemoryrecalling.
+thesepowerfulLLMmodelsstillhavesomeshortcomings.Oneno-
+tablelimitationofLLMsistheirlackofastronglong-termmemory,
+3.1 FrameworkOverview
+whichhinderstheirabilitytoprocesslengthycontextandretrieve
+relevanthistoricalinformation. Givenasequenceofconversationturns,eachturnisdenotedby
+atuple (𝑄,𝑅),representingtheuser’squery(Q)andtheagent’s
+response(R)atthatspecificturn.Themainobjectiveistogenerate
+2.2 Long-termMemory amoreaccurateresponse𝑅 𝑦 likeahumanforanewcomingquery
+Numerouseffortshavebeenconductedtoenhancethememory 𝑄 𝑥,whilerememberingthecontextualinformationofhistorical
+capabilitiesofLLMs.Oneapproachistoutilizememory-augmented conversationturns.TheproposedTiMallowstheagenttoprocess
+
+======================================================================
+PAGE 4 / 9
+======================================================================
+
+long-termconversationandretainusefulhistoricalinformation Prompt for Generating Thoughts Promptfor ForgettingThoughts Promptfor MergingThoughts
+aftermultipleconversationswiththeuser.
+Given the following question and response pairs, please Given the following thoughts, please remove the Given thefollowingthoughts, please merge thesimilar
+3.1.1 Main Components. As illustrated in Figure 2, our TiM
+extract the relation (subject, relation, object) with counterfactualthoughts orcontradictorythoughts: thoughts with thesame entity:
+comprisesthefollowingcomponents,workingtogethertoprovide
+corresponding text:
+moreaccurateandcoherentresponsesforlong-termconversation:
+Example1. Example 1.
+• AgentA:A isapre-trainedLLMmodeltofacilitatedynamic Example 1. Input: Input:
+conversations,suchasChatGPT[1]andChatGLM[17]. Input: The capital of China is Beijing. Johnworks as an actor.
+• MemoryCacheM:Macontinuallygrowinghashtableofkey- Question: Do you have any company recommendations for me? The capital of China is Shanghai. Johnworks as a director.
+valuepairs,wherekeyisthehashindexandvalueisasingle Response: I recommend Google. The capital of the United States is Washington. Johnworks as a writer.
+thought.MoredetailsofMcanrefertoSection3.2.Tobeclear, Output: The capital of the United States is New York. Mike works as a teacher.
+MsupportsvaryingoperationsasshowninTable1. (Company, Recommended, Google). Output: Output:
+• Hash-basedMappingF(·):Locality-sensitiveHashingisintro- Recommended company is Google. The capital of China is Beijing. Johnworks as an actor, a director, and a writer.
+ducedtoquicklysaveandfindtherelevantthoughtsinM. The capital of the United States is Washington. Mike works as a teacher.
+Example 2.
+3.1.2 Workflow. Overallframeworkisdividedintotwostages:
+Input: Example2. Example 2.
+• Stage-1:RecallandGeneration.Givenanewquestionfrom Question: Which City is the capital of China? Input: Input:
+theuser,LLMagentAretrievesrelevantthoughtsforgenerating
+Response: Beijing. Michaellikes to play football. Michael likes to play football.
+accurateresponses.Sincewesavetheself-generatedreasoning Output: Michaeldoesnotlike to play football. Michael likes to play basketball.
+thoughtsasexternalmemory,thisstagecandirectlyrecalland (China, Capital, Beijing). Jameslikestoswim. Jameslikes to swim.
+answerthequestionwithoutrepeatedreasoningovertheraw The capital of China is Beijing. Marylikestoreadbooks. Marylikes to read books.
+historicalconversationtext. Output: Output:
+• Stage-2:Post-thinkandUpdate.Afteransweringthequestion, Input: Jameslikestoswim. Michael likes to play football and basketball.
+welettheLLMagentpost-thinkupon𝑄-𝑅pairandinsertthe
+Question: Do you have any book recommendations for me? Marylikestoreadbooks. James likes to swim.
+newlyself-generatedreasoningthoughtsintomemorycacheM. Response: I recommend “The Little Prince”. Mary likes to read books.
+Output: Input:
+3.2 StorageforMemoryCache [Agroupofthoughts] Input:
+3.2.1 Thoughts-basedSystem. TiM’sstoragesystemM aimsto Output: [A group of thoughts]
+savetheknowledgeofAI-userinteractionsviaself-generatedin- Figure3:Anexampleofpromptsforgeneratingthoughts. Output:
+ductive thoughts (Definition 3.1) upon the conversations. Each
+pieceofthought𝑇 isstoredintheformatofthetuple (𝐻 𝑖𝑑𝑥 ,𝑇),
+where𝐻 𝑖𝑑𝑥 isthehashindexobtainedbyhashfunctionF(𝑇).This ofLSHistoassigneach𝑑-dimensionembeddingvector𝑥 ∈R 𝑑 to
+hash-basedstoragenotonlyaidsinquickmemoryretrievalbut ahashindexF(𝑥),wherenearbyvectorsgetthesamehashindex
+alsofacilitatesthememoryupdating,providingadetailedindexof withhigherprobability.Weachievethisbyexploitingarandom
+historicalthoughts. projectionasfollows:
+Definition3.1. InductiveThought.Theinductivethoughtis F(𝑥)=argmax([𝑥𝑅;−𝑥𝑅]), (1)
+definedasthetextwhichcontainstherelationbetweentwoen-
+where𝑅 isarandommatrixofsize (𝑑,𝑏/2) and𝑏 isthenumber
+tities,i.e.,satisfyingarelationtriple(𝐸 ℎ ,𝑟 𝑖 ,𝐸 𝑡).𝐸 ℎ isheadentity ofgroupsinthememory.[𝑢;𝑣]denotestheconcatenationoftwo
+connectedwithtailentity𝐸 𝑡 viatherelation𝑟 𝑖,where𝑖 ∈ [0,𝑁]
+vectors.ThisLSHmethodisawellknownLSHscheme[16]andis
+and 𝑁 is the relation number. Conceptually,𝑅 ℎ = {𝑟 1 ,···,𝑟 𝑁} easytoimplement.Figure2showsaschematicexhibitionofTiM’s
+consistsofalltheone-hoprelationsfortheentity𝐸 ℎ.
+storagesystembasedonLSH.
+ThemainchallengeofutilizinginductivethoughtsforLLMis
+obtaininghigh-qualitysentencesmatchingrelationtriples.Here 3.3 RetrievalforMemoryRecalling
+weprovidetwokindsofsolutionstoobtaininductivethoughts:(1) Built on the memory storage, the memory retrieval operates a
+pre-trainedmodelforopeninformationextraction,suchasOpenIE two-stageretrievaltaskforthemostrelevantthoughts,i.e.,LSH-
+[34];(2)In-contextlearningwithfew-shotpromptsbasedonLLM. basedretrievalfollowedbysimilarity-basedretrieval.Theparadigm
+Inthiswork,weutilizethesecondsolution,i.e.,utilizingLLMAgent involvesthefollowingdetailedpoints.
+Atogenerateinductivethoughts,asshowninFigure3.
+• Stage-1: LSH-based Retrieval. For a new query𝑄, we first
+3.2.2 Hash-basedStorage. Weaimtosaveinductivethoughtsinto obtainitsembeddingvector𝑥 basedonLLMagent.ThenLSH
+thememoryfollowingacertainrule,i.e.,similarthoughtsshouldbe function(i.e.,Eq.1)canproducethehashindexofthequery.
+storedinthesamegroupinthememoryforefficiency.Tothisend, Thishashindexalsoindicatestheitsnearestgroupforsimilar
+weadoptahashtableasthearchitectureofTiM’sstoragesystem, thoughtsinthememorycacheaccordingtothepropertyofLSH.
+wheresimilarthoughtsareassignedwiththesamehashindex. • Stage-2:Similarity-basedRetrieval.Withinthenearestgroup,
+Givenaquery,weproposetoquicklysearchitsnearestthoughts wecalculatethepairwisesimilaritybetweenthequeryandeach
+inahigh-dimensionalembeddingspace,whichcanbesolvedby pieceofthoughtinthegroup.Thentop-𝑘thoughtsarerecalled
+thelocality-sensitivehashing(LSH)method.Thehashingscheme astherelevanthistoryforaccuratelyansweringthequery.It
+
+======================================================================
+PAGE 5 / 9
+======================================================================
+
+PPrormomptp tf ofro rG Geneenreartaitnign gT Thohuoguhgthsts PrPormomptp fto fro Fr oFrogregtetitntign gT hTohuoguhgthsts PrPormomptp fto fro Mr Meregringgin Tg hTohuoguhgthsts
+GGivievnenthteh e foflolollwowinigngthtohuoguhgthst,s,plpelaesaeserermemovoev et hteh e GGiveivne nth teh feo flloolwloiwnigntghtohuoguhgths,t sp,l pealesae sme emregreg teh teh sei msiimlairla r
+GGivievnenththeefoflollolwowinigngquqeusetsitoinonanadndrersepsopnosnesepapiarisr,s,plpelaesaese
+cocuonutnetrefrafcatcutaula tlh tohuoguhgthst os rocrocnotnrtardaidcitcotroyrythtohuoguhgths:ts: thtohuoguhgths tws iwthit thh teh sea smame een etnittyit:y:
+exetxrtarcatctththeererlealtaitoinon (s(usbujbejcetc,t,rerlealtaitoino,n,obojbejcetc)t) wwithith
+cocrorrersepspononddinigngtetxetx:t:
+EExaxmamplpele1.1. ExEaxmamplpe l1e. 1.
+InIpnuptu:t: InIpnuptu:t:
+EExaxmampplel e1 .1.
+ThTeh ec acpaiptaitla ol fo Cf hCihnian ais iBs eBiejiinjign.g. JoJhonh wn owrokrsk ass a asn a anc atocrt.or.
+InInppuut:t:
+ThTeh ec acpaiptaitla ol fo Cf hCihnian ais iSs hSahnagnhgahia.i. JoJhonh wn owrokrsk ass a as dai rdeicretocrt.or.
+QQueusetsitoino:nD:Do oy oyuo uh ahvaev ea nayn yc ocmompapnayn yre rceocmommmenednadtaiotinosn sfo fro mr me?e?
+ThTeh ec acpaiptaitla ol fo tfh teh eU Uninteitde dS tSattaetse iss iWs Wasahsihnigntgotno.n. JoJhonh wn owrokrsk ass a as wa rwitreirt.er.
+RResepsopnosnes:e I: Ir erceocmommmenedn dG Gooogolgel.e.
+ThTeh ec acpaiptaitla ol fo tfh teh eU Uninteitde dS tSattaetse iss iNs Newew Y oYrokr.k. MMikeik we owrokrsk ass a as tae atecahcehr.e r.
+OOuutptpuut:t :
+OOutuptuptu:t: OOutuptuptu:t:
+(C(Comompapnayn,y R, Receocmommmenednedde,d G, Gooogolgel)e. ).
+ThTeh ec acpaiptaitla ol fo Cf hCihnian ais iBs eBiejiinjign.g. JoJhonh wn owrokrsk ass a asn a anc atocrt,o ar, dai rdeicretocrt,o ar,n adn ad wa rwitreirt.er.
+RRrerceocmommmenednedde dc ocmompapnayn yis i sG Gooogolgel.e.
+ThTeh ec acpaiptaitla ol fo tfh teh eU Uninteitde dS tSattaetse iss iWs Wasahsihnigntgotno.n. MMikeik we owrokrsk ass a as tae atecahcehr.er.
+EExaxmampplel e2 .2.
+EExaxmamplpele2.2. ExEaxmamplpe l2e. 2.
+InInppuut:t:
+InIpnuptu:t: InIpnuptu:t:
+QQueusetsitoino:nW:Whihcihc hC Cityit yis i sth teh ec acpaiptaitla ol fo Cf Chihnian?a?
+MMicihcahealellikliekse tso t op lpalya yfo footobtablal.ll. MMichicaheal elli kleikse tso tpol apyla fyo footboatblla.ll.
+RResepsopnosnes:e B: Beiejiijnign.g.
+MMicihcahealedlodeosensontoltikliek eto t op lpalya yfo footobtablal.ll. MMichicaheal elli kleikse tso tpol apyla bya bsaksektbeatblla.ll.
+OOuutptpuut:t :
+JaJmameselsiklieksetsotoswswimim. . JaJmaemselsikleikse tso tsow siwmi.m.
+(C(Chihnian,a C, Capaiptiatla, lB, Beiejiinjign)g.) .
+MMarayryliklieksetsotoreraedadbobookosk.s. MMaryarlyikleikse tso troe areda bdo bookosk.s.
+TTheh ec acpaiptiatla ol fo fC Chihnian ais i sB Beiejiinjign.g.
+OOutuptuptu:t: OOutuptuptu: t:
+JaJmameselsiklieksetsotoswswimim. . MMichicaheal elli kleikse tso tpol apyla fyo footboatblla alln adn bda bskasektbeatblla. ll.
+InInppuut:t:
+MMarayryliklieksetsotoreraedadbobookosk.s. JaJmaemse lsi kleikse tso tsow siwmi.m .
+QQueusetsitoino:nD:Do oy oyuo uh ahvaev ea nayn yb obooko kre rceocmommmenednadtaiotinosn sfo fro mr me?e?
+MMaryar lyi kleikse tso troe areda bdo bookosk.s.
+RResepsopnosnes:e I: Ir erceocmommmenedn d“ T“Theh eL Littiltetl eP rPirnicnec”e.”.
+OOuutptpuut:t :
+InIpnuptu:t: InIpnuptu:t:
+[A[Agrgoruopupofotfhtohuoguhgths]ts] [A[ Agr goruopu opf o tfh othuoguhgtsh]ts]
+OOutuptuptu:t: OOutuptuptu: t:
+Figure4:Anexampleofpromptsforforgettingthoughts. Figure5:Anexampleofpromptsformergingthoughts.
+Table1:Organizationcomparisonsbetweenpreviousmem-
+shouldbenoticedthatpairwisesimilarityiscalculatedwithina
+orymechanismsandours.KGdenotestheknowledgegraph
+groupratherthanthewholememorycache,whichcanachieve
+andQ-Rdenotesthequestionandresponsepairs.
+moreefficientretrievalthanpreviousmemorymechanisms.
+Method Content LLM-agnostic Insert Forget Merge
+3.4 OrganizationforMemoryUpdating
+SCM[33] Q-R (cid:33) (cid:33) (cid:37) (cid:37)
+Withtheabove-discussedmemorystorageandretrieval,thelong- RelationLM[7] KG (cid:37) (cid:33) (cid:37) (cid:37)
+termmemorycapabilityofLLMscanbewellenhanced.Motivated LongMem[10] Token (cid:37) (cid:33) (cid:37) (cid:37)
+bythehumanmemory,thereneedssomeorganizationprinciples MemoryBank[32] Q-R (cid:33) (cid:33) (cid:33) (cid:37)
+basedonthewell-establishedoperationsfordynamicupdatesand
+Ours(TiM) Thoughts (cid:33) (cid:33) (cid:33) (cid:33)
+evolution of the thoughts, e.g., insert new thoughts, forget less
+importantthoughts,andmergerepeatedthoughts,whichcanmake
+thememorymechanismmorenaturalandapplicable.
+Beginningwiththearchitectureofthestorageformemorycache,
+TiM adopts the hash table to store the self-generated thoughts, 3.5 Parameter-efficientTuning
+where each hash index corresponds a group containing similar
+Weadoptacomputation-efficientfine-tuningapproachcalledLow-
+thoughts.Withinsamegroup,TiMsupportsthefollowingopera-
+RankAdaptation(LoRA)[27]forthescenarioswithlimitedcompu-
+tionstoorganizethethoughtsinthememory:
+tationalresources.LoRA[27]optimizespairsofrank-decomposition
+• Insert,i.e.,storenewthoughtsintothememory.Thepromptfor matriceswhilekeepingtheoriginalweightsfrozen,whichcanef-
+generatingthoughtsisshowninFigure3. fectivelyreducethenumberoftrainableparameters.Specifically,
+• Forget, i.e., remove unnecessary thoughts from the memory, consideringalinearlayerdefinedas𝑦 =𝑊𝑥,LoRAfine-tunesit
+suchascontradictorythoughts.Thepromptofthisoperationis accordingto𝑦=𝑊𝑥+𝐵𝐴𝑥,where𝑊 ∈R 𝑑×𝑘 ,𝐵 ∈R 𝑑×𝑟 ,𝐴∈R 𝑟×𝑘 ,
+showninFigure4. and𝑟 ≪ min(𝑑;𝑘).Essentially,thisfine-tuningstagecanadapt
+• Merge, i.e., merge similar thoughts in the memory, such as LLMstomulti-turnconversations,providingappropriatelyandef-
+thoughtswiththesameheadentity.Thepromptofthisoperation fectivelyresponsetousers.Forallexperiments,wesetLoRArank
+isshowninFigure5. 𝑟 as16andtraintheLLMmodelsfor10epochs.
+
+======================================================================
+PAGE 6 / 9
+======================================================================
+
+3.6 InsightfulDiscussion classicalmemorymechanism,whichcanstoretherawtextintothe
+Herewemakeasummaryforpreviousmemorymechanismsand memoryandsupportreadingoperation.
+ourmethodinTable1,includingmemorycontent,LLM-agnostic,
+4.1.4 EvaluationProtocol. Following[32],threemetricsareadopted
+andorganizationoperations.Thereareseveralimportantobserva-
+toevaluatetheperformanceoftheproposedmethod.
+tionsfromTable1:(1)Previousmemorymechanismsonlysaveraw
+• RetrievalAccuracyevaluateswhethertherelevantmemoryis
+conversationtext(Q-Rpairs)asthememory,whichrequiresre-
+successfullyrecalled(labels:{0:no;1:yes}).
+peatedreasoningoverthehistory.Ourmethodmaintainsthoughts
+• Response Correctness evaluates if correctly answering the
+inthememorycacheandcandirectlyrecallthemwithoutrepeated
+probingquestion(labels:{0:wrong;0.5:partial;1:correct}).
+reasoning.(2)Previousmemorymechanismsonlysupportsimple
+• ContextualCoherenceevaluateswhethertheresponseisnat-
+readandwrite(insert)operations,whileourmethodprovidesmore
+urallyandcoherentlygenerated,e.g.,connectingthedialogue
+manipulatewayforthememory.(3)Somepreviousmemorymech-
+contextandretrievedmemory(labels:{0:notcoherent;0.5:par-
+anismsstorethetokensinthememory,whichrequiresadjusting
+tiallycoherent;1:coherent}).
+LLM architecture (LLM-aware) for applications. Our method is
+deignedasaLLM-agnosticmodule,whichcanbeeasilycombined Tobefair,duringevaluation,thepredictionresultsofallLLMsare
+withotherLLMs. firstlyshuffled,ensuringthehumanevaluatordoesnotknowwhich
+LLMtheresultscomefrom.Thenthefinalevaluationresultsare
+4 EXPERIMENT obtainedbythehumanevaluation.
+4.1 ExperimentalSettings 4.2 ComparisonResults
+4.1.1 Dataset. Threedatasetsareusedtodemonstratetheeffec- 4.2.1 ResultsonGVDdataset. Weevaluateourmethodonboth
+tivenessoftheproposedmethod. EnglishandChinesetestsetsofGVDdataset.Thefollowinginsights
+• KdConv:KdConvisaChinesemulti-domainknowledge-driven areobservedfromTable2:(1)ComparedwithSiliconFriend[32],
+conversationbenchmark[35]groundingthetopicstoknowledge ourmethodexhibitssuperiorperformanceforallmetric,especially
+graphs,whichinvolves4.5Kconversationsand86Kutterances forthecontextualcoherence,indicatingtheeffectivenessofTiM
+fromthreedomains(film,music,andtravel).Theaverageturn mechanism.(2)TiMdeliversbetterresultsonbothlanguages.The
+numberis19. performanceimprovementonChineseislargerthanEnglish,which
+• GeneratedVirtualDataset(GVD):GVDisalong-termcon- maybeattributedtotheabilitiesoftheLLMs.
+versationdataset[32]involving15virtualusers(ChatGPT)over
+4.2.2 ResultsonKdConvdataset. Table2illustratesthecomparison
+10days.Conversationsaresynthesizedusingpre-definedtopics,
+resultsonKdConvdataset.Weevaluate2differentLLMswithTiM
+includingbothEnglishandChineselanguages.Forthetestset,
+overdifferenttopics(film,music,andtravel).AsshowninTable
+[32]manuallyconstructed194queryquestions(97inEnglish
+2,itisobservedthatourmethodcanobtainbestresultsacrossall
+and97inChinese)toevaluatewhethertheLLMcouldaccurately
+topics.Ourmethodcanachievehighretrievalaccuracytorecallthe
+recallthememoryandproducetheappropriateanswers.
+relevantthoughts.Whenwithoutthememorymechanism,these
+• Real-world Medical Dataset (RMD): To evaluate the effec-
+LLMsusuallyexhibitlowerresponsecorrectnessduetolackof
+tivenessoftheproposedmemorymechanisminthereal-world
+long-termmemorycapability,whileTiMcanwelleliminatesuch
+scenarios,wemanuallycollectandconstructadatasetcontaining
+negative issue. Furthermore, TiM can also help to improve the
+1,800conversationsformedicalhealthcareconsumer.Forthetest
+contextualcoherenceoftheresponse.
+set,80conversationsareusedtoevaluatewhethertheLLMcould
+providetheaccuratediagnosis. 4.2.3 Results on RMD dataset. Table 2 reports the comparison
+resultsonRMDdataset,whichcontainstherealisticconversations
+4.1.2 LLM. WeintegratetwopowerfulLLMstodemonstratetheef- betweenthedoctorsandpatients.AsshowninTable2,ourmethod
+fectivenessoftheproposedTiMmechanism.TheseLLMsoriginally canimprovetheoverallresponseperformanceforthereal-world
+lacklong-termmemoryandspecificadaptabilitytothelong-term medicalconversations.Indetail,usingTiM,bothChatGLMand
+conversations.ThedetailedintroductionoftheseLLMsarefollows. Baichuan2canimprovetheircapabilityforlong-termconversations,
+i.e.,significantimprovementsontheresponsecorrectnessandthe
+• ChatGLM[17]:ChatGLMisanopen-sourcebilinguallanguage
+contextualcoherence.ThemainreasonisthatTiMismoresimilar
+modelbasedontheGeneralLanguageModel(GLM)framework
+totheworkflowofhumanmemory,whichcanenhancetheability
+[17].Thismodelcontains6.2billionparameterswithspecificop-
+ofLLMstoproducemorehuman-likeresponses.
+timization,involvessupervisedfine-tuning,feedbackbootstrap,
+andreinforcementlearningwithhumanfeedback.
+4.3 MoreAnalysis
+• Baichuan2[36]:Baichuan2isanopen-sourcelarge-scalemulti-
+linguallanguagemodelcontaining13billionparameters,which 4.3.1 RetrievalTime. Wereportthecomparisonresultsofretrieval
+istrainedfromscratchon2.6trilliontokens.Thismodelexcels time.Thebaselineistocalculatepairwisesimilaritybetweenthe
+atdialogueandcontextunderstanding. questionandthewholememory,whichisutilizedasthedefault
+retrievalwayformostpreviousmechanisms.Forbothbaselineand
+4.1.3 Baseline. Onebaselineistoanswerquestionswithoutusing ourmethod,thememorylengthisas140andthememorycontext
+anymemorymechanism.AnotherbaselineisSiliconFriend[32],a isfixed.Table2showsthetimecostformakingasingleretrieval.It
+
+======================================================================
+PAGE 7 / 9
+======================================================================
+
+Table2:ComparisonResultsonThreeDatasets.Top-5thoughtsarerecalledfromthememorycache.
+Dataset LLM Language/Topic Memory RetrievalAccuracy ResponseCorrectness ContextualCoherence
+SiliconFriend 0.809 0.438 0.680
+English/Open
+GVD ChatGLM TiM(Ours) 0.820 0.450 0.735
+SiliconFriend 0.840 0.418 0.428
+Chinese/Open
+TiM(Ours) 0.850 0.605 0.665
+(cid:37) - 0.657 0.923
+Chinese/Film
+TiM(Ours) 0.920 0.827 0.943
+ChatGLM (cid:37) - 0.666 0.910
+Chinese/Music
+TiM(Ours) 0.970 0.826 0.926
+Kdconv (cid:37) - 0.735 0.906
+Chinese/Travel
+TiM(Ours) 0.940 0.766 0.912
+(cid:37) - 0.360 0.413
+Chinese/Film
+TiM(Ours) 0.913 0.743 0.870
+Baichuan2 (cid:37) - 0.253 0.283
+Chinese/Music
+TiM(Ours) 0.900 0.710 0.780
+(cid:37) - 0.207 0.280
+Chinese/Travel
+TiM(Ours) 0.833 0.757 0.807
+(cid:37) - 0.806 0.893
+ChatGLM Chinese/Medical
+RMD TiM(Ours) 0.900 0.843 0.943
+(cid:37) - 0.506 0.538
+Baichuan2 Chinese/Medical
+TiM(Ours) 0.873 0.538 0.663
+Table3:ComparisonsofRetrievalTime.Baselinecalculates
+pairwisesimilaritybetweenthequestionandmemory.
+Method RetrievalTime(ms)
+Baseline 0.6287
+Ours(TiM) 0.5305
+isobservedthatourmethodcanreduceabout0.1msretrievaltime
+comparedwithbaselinemethod.
+4.3.2 Top-𝑘Recall. Wereporttheretrievalaccuracyusingdifferent
+valuesof𝑘onKdconvdataset(Travel).AsshowninFigure6,top-1
+Figure6:Tendencyofretrievalaccuracywithdifferent𝑘.
+retrievalaccuracyishigherthan0.7.Theoverallretrievalaccuracy
+isimprovedwithincreasingvalueof𝑘,wheretop-10canachieve
+0.973retrievalaccuracy.Besides,asshowninTable2,top-5recall
+conversations(asshowninFigure7).NotethatTiM-LLMisonly
+cansignificantlyimprovetheperformanceofexistingLLMsfor anauxiliarytoolfortheclinicaldoctorstogivetreatmentoptions
+long-termconversations. andmedicalsuggestionsforpatients’needs.
+Figure7illustratesareal-worldconversationbetweenapatient
+4.4 IndustryApplication
+andadoctor,wheretheclinicaldiagnosisresultsaregivenbythe
+In this section, based on the ChatGLM and TiM, we develop a medicalagentwithandwithoutTiM.AsshowninFigure7,without
+medicalagent(namedTiM-LLM)inthecontextofpatient-doctor TiM,themedicalagentmaystruggletorecallprevioussymptoms,
+
+======================================================================
+PAGE 8 / 9
+======================================================================
+
+Hello! I'm here to consult about my symptoms.
+I amfeelinguncomfortable.Ihaveredspotson
+my tongue and a tingling sensation. There are
+many grain-like white spots on my gums and
+throat.Whatisthisdisease?
+Based on your symptom description, there may be
+inflammation of the oral mucosa. I suggest you go to a
+specializedoralclinicforanexaminationandinformthe
+doctoraboutyoursymptomsandseveritysothatthedoctor
+canmakeacorrectdiagnosis.
+…
+Background for TiM-LLM Application User Interface
+Hello! Please describe your symptoms in detail. I will
+analyze and diagnose your condition, and provide
+reasonabletreatmentplansorsuggestionsforyou!
+Hash Index Thoughts
+1 User consults symptoms.
+1 Agent analyzes symptoms.
+1 Agent provides suggestions.
+1 Agent provides treatments.
+2 Symptom includes red spots on the tongue.
+2 Symptom includes a tingling sensation.
+Symptom includes grain-like white spots on gums and
+2
+throat.
+3 Diagnosis is inflammation of the oral mucosa.
+Suggestion is to go to a specialized oral clinic for
+4
+examination.
+Suggestion is to inform the doctor for an accurate
+4
+diagnosis.
+… …
+Insert, Forget, Merge Operations TiM-LLM Application
+User consults symptoms.
+Example:
+Mergetwothoughts Agent analyzes symptoms.
+Agent provides treatments and suggestions.
+Background Process: Post-thinking!
+Background Process: Recalling!
+Background Process: Post-thinking!
+Multiple rounds
+Background Process: Recalling!
+Isoralmucosalinflammationtheonlyreasonfor
+thesesymptoms?Ihaveusedcefuroximebefore,
+woulditaffectthecurrentsymptoms?
+Oral mucosal inflammation may be Oral mucosal inflammation is not the only cause of
+one of the causes of these symptoms. these symptoms. Other factors such as fungal
+However,Icannotbecertainifitisthe infections, bacterial infections, allergies may also
+solecause,asfurtherexaminationsare cause these symptoms. If cefuroxime was used for a
+neededtomakeanaccuratediagnosis. bacterial infection, it may provide some assistance in
+Incomplete response
+Regarding your use of cefuroxime, it treatment,butitcanalsodisruptthebeneficialbacterial
+without TiM.
+generally does not have a direct impact floraintheoralcavity.Itisbesttoseekexaminationfrom
+onoralmucosalinflammation. aprofessionaldoctortoobtainanaccuratediagnosis.
+Figure7:TheapplicationofTiM.TheleftisthebackgroundofTiM-LLMapplicationandtherightisuserinterface.
+resultinginincompleteorincorrectassessments(redpart),i.e.,the HashingintoTiMtoachieveefficientretrievalforthelong-term
+agenthasforgottenprevioussymptomssoitisuncertainwhether conversations.Thequalitativeandquantitativeexperimentscon-
+oralmucosalinflammationistheonlycause.AssistedbyTiM,the ducted on real-world and simulated dialogues demonstrate the
+medicalagentcanrecallrelevantsymptomsandmakeacomprehen- significantbenefitsofequippingLLMswithTiM.Overall,TiMis
+siveunderstandingofapatient’sdiseases.Thusitprovideaccurate designedasanapproachtoimprovethequalityandconsistencyof
+diagnosisandtreatment(boldpart). responsesforlong-termhuman-AIinteractions.
+5 CONCLUSION
+Inthiswork,weproposeanovelmemorymechanismcalledTiMto
+addresstheissueofbiasedthoughtsinMemory-augmentedLLMs.
+Bystoringhistoricalthoughtsinanevolvedmemory,TiMenables
+LLMstorecallrelevantthoughtsandincorporatethemintothe
+conversationswithoutrepeatedreasoning.TiMconsistsoftwokey
+stages:recallingthoughtsbeforegenerationandpost-thinkingafter
+generation.Besides,TiMworkswiththeseveralbasicprinciplesto
+organizethethoughtsinmemory,whichcanachievedynamicup-
+datesofthememory.Furthermore,weintroduceLocality-Sensitive
+
+======================================================================
+PAGE 9 / 9
+======================================================================
+
+REFERENCES
+2019.
+[1] OpenAI.Chatgpt.2022. [26] TomaszKorbak,KejianShi,AngelicaChen,RasikaVinayakBhalerao,Christopher
+[2] OpenAI.Gpt-4technicalreport.2023. Buckley,JasonPhang,SamuelRBowman,andEthanPerez.Pretraininglanguage
+[3] HongyangYang,Xiao-YangLiu,andChristinaDanWang.Fingpt:Open-source modelswithhumanpreferences.InInternationalConferenceonMachineLearning,
+financiallargelanguagemodels.arXivpreprintarXiv:2306.06031,2023. pages17506–17533.PMLR,2023.
+[4] HongboZhang,JunyingChen,FengJiang,FeiYu,ZhihongChen,JianquanLi, [27] EdwardJHu,YelongShen,PhillipWallis,ZeyuanAllen-Zhu,YuanzhiLi,Shean
+GuimingChen,XiangboWu,ZhiyiZhang,QingyingXiao,etal. Huatuogpt, Wang,LuWang,andWeizhuChen.Lora:Low-rankadaptationoflargelanguage
+towardstaminglanguagemodeltobeadoctor.arXivpreprintarXiv:2305.15075, models.arXivpreprintarXiv:2106.09685,2021.
+2023. [28] LianMengandMinlieHuang.Dialogueintentclassificationwithlongshort-term
+[5] TynaEloundou,SamManning,PamelaMishkin,andDanielRock.Gptsaregpts: memorynetworks.InNaturalLanguageProcessingandChineseComputing:6th
+Anearlylookatthelabormarketimpactpotentialoflargelanguagemodels. CCFInternationalConference,NLPCC2017,Dalian,China,November8–12,2017,
+arXivpreprintarXiv:2303.10130,2023. Proceedings6,pages42–50.Springer,2018.
+[6] TakeshiKojima,ShixiangShaneGu,MachelReid,YutakaMatsuo,andYusuke [29] AlexGraves,GregWayne,andIvoDanihelka.Neuralturingmachines.arXiv
+Iwasawa.Largelanguagemodelsarezero-shotreasoners.AdvancesinNeural preprintarXiv:1410.5401,2014.
+InformationProcessingSystems,35:22199–22213,2022. [30] JingXu,ArthurSzlam,andJasonWeston.Beyondgoldfishmemory:Long-term
+[7] QiLiu,DaniYogatama,andPhilBlunsom.Relationalmemory-augmentedlan- open-domainconversation.arXivpreprintarXiv:2107.07567,2021.
+guagemodels. TransactionsoftheAssociationforComputationalLinguistics, [31] XinchaoXu,ZhibinGou,WenquanWu,Zheng-YuNiu,HuaWu,HaifengWang,
+10:555–572,2022. andShihangWang.Longtimenosee!open-domainconversationwithlong-term
+[8] QuentinFournier,GaétanMarceauCaron,andDanielAloise.Apracticalsurvey personamemory.arXivpreprintarXiv:2203.05797,2022.
+onfasterandlightertransformers.ACMComputingSurveys,55(14s):1–40,2023. [32] WanjunZhong,LianghongGuo,QiqiGao,andYanlinWang. Memorybank:
+[9] JasonPhang,YaoZhao,andPeterJLiu. Investigatingefficientlyextending Enhancinglargelanguagemodelswithlong-termmemory. arXivpreprint
+transformersforlonginputsummarization. arXivpreprintarXiv:2208.04347, arXiv:2305.10250,2023.
+2022. [33] XinnianLiang,BingWang,HuiHuang,ShuangzhiWu,PeihaoWu,LuLu,Ze-
+[10] WeizhiWang,LiDong,HaoCheng,XiaodongLiu,XifengYan,JianfengGao,and junMa,andZhoujunLi. Unleashinginfinite-lengthinputcapacityforlarge-
+FuruWei.Augmentinglanguagemodelswithlong-termmemory.arXivpreprint scalelanguagemodelswithself-controlledmemorysystem. arXivpreprint
+arXiv:2306.07174,2023. arXiv:2304.13343,2023.
+[11] SebastianBorgeaud,ArthurMensch,JordanHoffmann,TrevorCai,ElizaRuther- [34] GaborAngeli,MelvinJoseJohnsonPremkumar,andChristopherDManning.
+ford,KatieMillican,GeorgeBmVanDenDriessche,Jean-BaptisteLespiau,Bog- Leveraginglinguisticstructureforopendomaininformationextraction. In
+danDamoc,AidanClark,etal.Improvinglanguagemodelsbyretrievingfrom Proceedingsofthe53rdAnnualMeetingoftheAssociationforComputationalLin-
+trillionsoftokens.InInternationalConferenceonMachineLearning,pages2206– guisticsandthe7thInternationalJointConferenceonNaturalLanguageProcessing
+2240.PMLR,2022. (Volume1:LongPapers),pages344–354,2015.
+[12] JacobDevlinMing-WeiChangKentonandLeeKristinaToutanova.Bert:Pre- [35] HaoZhou,ChujieZheng,KailiHuang,MinlieHuang,andXiaoyanZhu.KdConv:
+trainingofdeepbidirectionaltransformersforlanguageunderstanding. In AChinesemulti-domaindialoguedatasettowardsmulti-turnknowledge-driven
+ProceedingsofNAACL-HLT,volume1,page2,2019. conversation.InACL,2020.
+[13] DanielAdiwardana,Minh-ThangLuong,DavidRSo,JamieHall,NoahFiedel, [36] AiyuanYang,BinXiao,BingningWang,BorongZhang,ChaoYin,ChenxuLv,
+RomalThoppilan,ZiYang,ApoorvKulshreshtha,GauravNemade,YifengLu,etal. DaPan,DianWang,DongYan,FanYang,etal. Baichuan2:Openlarge-scale
+Towardsahuman-likeopen-domainchatbot. arXivpreprintarXiv:2001.09977, languagemodels.arXivpreprintarXiv:2309.10305,2023.
+2020.
+[14] XuezhiWang,JasonWei,DaleSchuurmans,QuocLe,EdChi,SharanNarang,
+AakankshaChowdhery,andDennyZhou.Self-consistencyimproveschainof
+thoughtreasoninginlanguagemodels.arXivpreprintarXiv:2203.11171,2022.
+[15] JohnDunloskyandJanetMetcalfe.Metacognition.SagePublications,2008.
+[16] AlexandrAndoni,PiotrIndyk,ThijsLaarhoven,IlyaRazenshteyn,andLudwig
+Schmidt. Practicalandoptimallshforangulardistance. AdvancesinNeural
+InformationProcessingSystems,28,2015.
+[17] AohanZeng,XiaoLiu,ZhengxiaoDu,ZihanWang,HanyuLai,MingDing,
+ZhuoyiYang,YifanXu,WendiZheng,XiaoXia,etal. Glm-130b:Anopen
+bilingualpre-trainedmodel.arXivpreprintarXiv:2210.02414,2022.
+[18] BiaoZhang,BarryHaddow,andAlexandraBirch. Promptinglargelanguage
+modelformachinetranslation:Acasestudy. arXivpreprintarXiv:2301.07069,
+2023.
+[19] BoyuZhang,HongyangYang,TianyuZhou,AliBabar,andXiao-YangLiu.En-
+hancingfinancialsentimentanalysisviaretrievalaugmentedlargelanguage
+models.arXivpreprintarXiv:2310.04027,2023.
+[20] JiaxianGuo,JunnanLi,DongxuLi,AnthonyMengHuatTiong,BoyangLi,
+DachengTao,andStevenHoi.Fromimagestotextualprompts:Zero-shotvisual
+questionansweringwithfrozenlargelanguagemodels. InProceedingsofthe
+IEEE/CVFConferenceonComputerVisionandPatternRecognition,pages10867–
+10877,2023.
+[21] AakankshaChowdhery,SharanNarang,JacobDevlin,MaartenBosma,Gaurav
+Mishra,AdamRoberts,PaulBarham,HyungWonChung,CharlesSutton,Sebas-
+tianGehrmann,etal.Palm:Scalinglanguagemodelingwithpathways.arXiv
+preprintarXiv:2204.02311,2022.
+[22] HugoTouvron,ThibautLavril,GautierIzacard,XavierMartinet,Marie-Anne
+Lachaux,TimothéeLacroix,BaptisteRozière,NamanGoyal,EricHambro,Faisal
+Azhar,etal. Llama:Openandefficientfoundationlanguagemodels. arXiv
+preprintarXiv:2302.13971,2023.
+[23] RohanTaori,IshaanGulrajani,TianyiZhang,YannDubois,XuechenLi,Car-
+losGuestrin,PercyLiang,andTatsunoriBHashimoto. Stanfordalpaca:An
+instruction-followingllamamodel,2023.
+[24] BonanMin,HayleyRoss,EliorSulem,AmirPouranBenVeyseh,ThienHuu
+Nguyen,OscarSainz,EnekoAgirre,IlanaHeintz,andDanRoth.Recentadvances
+innaturallanguageprocessingvialargepre-trainedlanguagemodels:Asurvey.
+ACMComputingSurveys,56(2):1–40,2023.
+[25] SumanthDathathri,AndreaMadotto,JaniceLan,JaneHung,EricFrank,Piero
+Molino,JasonYosinski,andRosanneLiu. Plugandplaylanguagemodels:A
+simpleapproachtocontrolledtextgeneration.arXivpreprintarXiv:1912.02164,
