@@ -1,0 +1,38 @@
+======================================================================
+SMART SAMPLING PROMPT ANALYSIS
+======================================================================
+
+Test case: [90, 6, 9]
+Expected: should be 'sure' (90/6=15, 15+9=24)
+Actual judgment: sure ✓
+
+Prompt size: 744 chars
+Response size: 1085 chars
+Ratio: 1.46x
+Savings vs Original: 75%
+
+FULL RESPONSE:
+----------------------------------------------------------------------
+*   Numbers: [90, 6, 9]
+    *   Target: 24
+    *   Constraints:
+        *   No enumerating all combinations.
+        *   No showing all calculations.
+        *   No repeating the same operation multiple times (though this usually means don't just do +1, +1, +1, but here it's about the process).
+        *   Use Smart Sampling (backtrack from 24).
+
+    *   Target = 24.
+    *   Numbers = [90, 6, 9].
+
+    *   Strategy 1: Addition/Subtraction
+        *   24 = 90 - X? X = 66. Can I make 66 from [6, 9]? 6 * 11? No. 9 * 7.33? No.
+        *   24 = 6 + X? X = 18. Can I make 18 from [90, 9]? 90 / 5? No. 90 - 9? No. (Wait, 90 / (9/2)? No. But 90 / 5 = 18. Can I make 5 from 9? No). Actually, 18 = 9 * 2. Can I make 2 from 90 and 6? No.
+        *   24 = 9 + X? X = 15. Can I make 15 from [90, 6]? 90 / 6 = 15. Yes!
+
+    *   Calculation: 90 / 6 = 15; 15 + 9 = 24.
+
+    *   Reasoning: 24 can be reached by adding 9 to 15, and 15 is obtainable by dividing 90 by 6.
+    *   Judgment: sure.
+Reasoning: 24 can be reached by adding 9 to 15, and 15 is obtainable by dividing 90 by 6.
+Judgment: sure
+----------------------------------------------------------------------

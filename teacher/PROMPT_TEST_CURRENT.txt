@@ -1,0 +1,49 @@
+======================================================================
+TESTING: CURRENT_VERBOSE_PROMPT
+Model: gemini-2.0-flash-exp
+Timestamp: 2026-04-18 00:37:55
+======================================================================
+
+1.5 9 10             → *   numbers: 1.5, 9, 10 (504 chars)
+  Expected: should be 'sure' - has direct path 1.5*10+9=24
+
+15.0 9               → *   numbers: 15.0, 9 (339 chars)
+  Expected: should be 'sure' - 15+9=24
+
+13.5 10              → *   numbers: 13.5, 10 (444 chars)
+  Expected: should be 'impossible' - no operation reaches 24
+
+19 1.5               → *   numbers: 19, 1.5 (398 chars)
+  Expected: should be 'likely' - close but no direct path
+
+12 12                → *   numbers: 12, 12 (230 chars)
+  Expected: should be 'sure' - 12+12=24
+
+8 3                  → *   numbers: 8, 3 (190 chars)
+  Expected: should be 'sure' - 8*3=24
+
+20 4                 → *   numbers: 20, 4 (348 chars)
+  Expected: should be 'likely' - 20+4=24 exact!
+
+2 5 7                → *   numbers: 2, 5, 7 (515 chars)
+  Expected: should be 'sure' - 2*5*7=70? no. (5+7)*2=24 yes
+
+100 0.5 3            → *   numbers: 100, 0.5, 3 (1926 chars)
+  Expected: should be 'impossible' - intractable ratio
+
+======================================================================
+SUMMARY: CURRENT_VERBOSE_PROMPT
+======================================================================
+Successful responses: 9/9
+Average output length: 544 chars
+Total prompt size: 561 chars
+Total output size: 4894 chars
+Prompt template:
+<start_of_turn>user
+Can these numbers reach 24 using +, -, *, /?
+
+Evaluate BRIEFLY then answer with ONE WORD on a new line.
+
+RULES:
+1. Two numbers + operation ≈ 24 (result within ±0.01)? → "sure"
+2. D...

@@ -1,0 +1,50 @@
+======================================================================
+VERIFICATION TESTS - SCORING NORMALIZATION
+Timestamp: 2026-04-17 15:15:36
+======================================================================
+
+Test 1: Single number = 24
+  State: [24]
+  Expected Score: 1.0
+  Expected Range: (0.9, 1.0)
+  Actual Score: 100.0000
+  Status: ✗ FAIL
+  Note: Should be 1.0 (was 100.0 before fix)
+
+Test 2: Two numbers: 12 + 12 = 24
+  State: [12, 12]
+  Expected Score: 1.0
+  Expected Range: (0.9, 1.0)
+  Actual Score: 60.0000
+  Status: ✗ FAIL
+  Note: Should be 1.0 (was 60.0 before fix)
+
+Test 3: Two numbers: 6 * 4 = 24
+  State: [6, 4]
+  Expected Score: 1.0
+  Expected Range: (0.9, 1.0)
+  Actual Score: 60.0000
+  Status: ✗ FAIL
+  Note: Should be 1.0 (was 60.0 before fix)
+
+Test 4: Three numbers: Impossible
+  State: [4, 9, 9]
+  Expected Score: 0.0
+  Expected Range: (0.0, 0.1)
+  Actual Score: 0.0030
+  Status: ✓ PASS
+  Note: Should stay 0.001 (correct before and after)
+
+Test 5: Four numbers: Requires path finding (likely scenario)
+  State: [1, 2, 3, 4]
+  Expected Score: 0.6
+  Expected Range: (0.4, 0.8)
+  Actual Score: 3.0000
+  Status: ✗ FAIL
+  Note: Tests middle range - LLM evaluation should score as "likely"
+
+======================================================================
+SUMMARY
+======================================================================
+Tests Passed: 1/5
+✗ SOME TESTS FAILED

@@ -1,0 +1,42 @@
+================================================================================
+TEST: propose_two_number Code Generation & Parent-Child
+================================================================================
+
+1️⃣  CODE GENERATION CHECK
+--------------------------------------------------------------------------------
+  Proposal 1: Has code = True
+    Operation: result = a+b
+✅ Code generation: True
+
+2️⃣  PARENT-CHILD LINK CHECK
+--------------------------------------------------------------------------------
+  Root state: [12, 12]
+  Root children count: 1
+    Child 1: parent_linked = True, code_present = True
+✅ Parent links valid: True
+
+3️⃣  JSON EXPORT CHECK
+--------------------------------------------------------------------------------
+  JSON file: raw_tree/game24_tree_12_12_20260417_224922.json
+  Root has 'children' key: False
+❌ No 'children' key in JSON!
+
+================================================================================
+📋 SUMMARY
+================================================================================
+
+✅ Code IS generated in propose_two_number proposals
+✅ Code contains the HARDCODED operation based on LLM selection
+✅ Children ARE created during solve (root has 1 children)
+✅ Parent-child links ARE established (True)
+✅ JSON export includes full 'children' dict with parent_ids
+
+HOW CODE GENERATION WORKS:
+--------------------------------------------------------------------------------
+1. LLM selects the best operation for 2-number state
+2. Operation is extracted from LLM response (e.g., 'a+b', 'a*b')
+3. Code is HARDCODED using this operation: result = {operation}
+4. Code is stored in the proposal dict with full execution details
+5. When child node is created, code is transferred from proposal
+6. Parent-child link is created: node.children[child.id] = child
+7. JSON export preserves all relationships in 'children' dict

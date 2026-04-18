@@ -1,0 +1,125 @@
+======================================================================
+EVALUATION SYSTEM TESTING - COMPLETE RESULTS
+======================================================================
+
+Generated: 2026-04-17 15:02:55
+
+
+[TEST 1] Prompt Structure & Brevity
+----------------------------------------------------------------------
+Prompt line count: 22 lines
+Prompt character count: 578 characters
+Target: ~15-20 lines (was 45 lines before)
+
+Required Keywords Check:
+  ✓ All required keywords present
+
+First 300 characters of prompt:
+---
+<start_of_turn>user
+Can these numbers reach 24 using +, -, *, /?
+
+Evaluate BRIEFLY then answer with ONE WORD on a new line.
+
+RULES:
+1. Two numbers + operation = 24? → "sure"
+2. Plausible path exists but needs careful steps? → "likely"
+3. No sequence of operations can reach 24? → "impossible"
+
+Do not...
+---
+
+
+[TEST 2] Scoring Scale & Normalization
+----------------------------------------------------------------------
+Testing 4 states to verify scoring...
+
+Test Case 1: Trivial (24)
+   Score: 100.000
+   Status: ⚠ OUT OF RANGE
+
+Test Case 2: Easy (12 + 12 = 24)
+   Score: 60.000
+   Status: ⚠ OUT OF RANGE
+
+Test Case 3: Easy (6 * 4 = 24)
+   Score: 60.000
+   Status: ⚠ OUT OF RANGE
+
+Test Case 4: Impossible [4, 9, 9]
+   Score: 0.003
+   Status: ✓ IN RANGE
+
+
+[TEST 3] Score Normalization & Bounds
+----------------------------------------------------------------------
+Score range achieved: [0.003, 100.000]
+Expected range: [0.001, 1.0]
+⚠ Some scores outside [0, 1] range!
+
+[TEST 4] Aggregation Logic - Mixed Votes
+----------------------------------------------------------------------
+Simulating vote aggregation:
+
+3x sure votes
+   Votes: ['sure', 'sure', 'sure']
+   Values: [1.0, 1.0, 1.0]
+   Aggregated: 1.000 (expected 1.000)
+   ✓ Match
+
+3x likely votes
+   Votes: ['likely', 'likely', 'likely']
+   Values: [0.6, 0.6, 0.6]
+   Aggregated: 0.600 (expected 0.600)
+   ✓ Match
+
+3x impossible votes
+   Votes: ['impossible', 'impossible', 'impossible']
+   Values: [0.001, 0.001, 0.001]
+   Aggregated: 0.001 (expected 0.001)
+   ✓ Match
+
+1x sure + 2x likely (mixed)
+   Votes: ['sure', 'likely', 'likely']
+   Values: [1.0, 0.6, 0.6]
+   Aggregated: 0.733 (expected 0.733)
+   ✓ Match
+
+
+[TEST 5] Token & Time Efficiency
+----------------------------------------------------------------------
+Prompt efficiency:
+  • Prompt size: 578 characters
+  • Estimated prompt tokens: ~144 tokens
+  • Per evaluation (3 calls): ~434 tokens
+  • Expected improvement: ~50% reduction vs verbose version
+
+Evaluation timing:
+  • States evaluated: 4
+  • Note: Actual timing depends on API latency (3.5s delay enforced)
+
+
+[TEST 6] Consistency Check
+----------------------------------------------------------------------
+Tests PASSED: 1/4
+⚠ 1/4 test states in expected range
+  Failed tests:
+    • Trivial (24): 100.000
+
+    • Easy (12 + 12 = 24): 60.000
+
+    • Easy (6 * 4 = 24): 60.000
+
+
+======================================================================
+EVALUATION SYSTEM TEST SUMMARY
+======================================================================
+
+✓ Prompt Brevity:        PASS
+✓ Scoring Normalized:    FAIL
+✓ Aggregation Logic:     FAIL
+✓ Efficiency Improved:   PASS
+
+======================================================================
+⚠ SOME TESTS FAILED - Review issues above
+======================================================================
