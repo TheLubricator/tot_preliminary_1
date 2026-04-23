@@ -1,0 +1,332 @@
+
+=== PROPOSE for [4, 6, 7, 10] depth 0 ===
+  Calling LLM (temp=0.7)...
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 2 exception: 500 Internal error encountered.
+  API attempt 3 exception: 500 Internal error encountered.
+  Response length: 0
+  Response first 600 chars:
+
+  ERROR: Empty response from LLM
+
+=== PROPOSE for [4, 6, 7, 10] depth 0 ===
+  Calling LLM (temp=0.7)...
+  API attempt 1 exception: 500 Internal error encountered.
+  Response length: 7643
+  Response first 600 chars:
+*   Input numbers: [4, 6, 7, 10]
+    *   Goal: Reach 24 using basic operations (+, -, *, /).
+    *   Task: Generate 5-8 different next steps.
+    *   Requirements:
+        *   Include various operations.
+        *   Show Thought, Math, Remaining, and Code.
+        *   Avoid "dead patterns" (huge numbers, extreme ratios).
+        *   Lookahead 2-3 steps.
+
+    *   4, 6, 7, 10
+    *   Possibilities:
+        *   6 * 4 = 24 (But we have 7 and 10 left, so we need to make 0 or 1). (10-7=3, 24*3=72 or 24+3=27 - no).
+        *   10 + 7 + 6 + 4 = 27 (Too high).
+        *   10 + 7 + (6-4) = 19 (Too low).
+  Full pattern matches: 7
+  Match 0: code snippet:
+numbers = [4, 6, 7, 10]
+res = numbers[2] - numbers[0]  # 7 - 4 = 3
+remaining = [numbers[1], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [3, 6, 10]
+  Match 1: code snippet:
+numbers = [4, 6, 7, 10]
+res = numbers[3] - numbers[1]  # 10 - 6 = 4
+remaining = [numbers[0], numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [4, 4, 7]
+  Match 2: code snippet:
+numbers = [4, 6, 7, 10]
+res = numbers[1] * numbers[2]  # 6 * 7 = 42
+remaining = [numbers[0], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [42, 4, 10]
+  Match 3: code snippet:
+numbers = [4, 6, 7, 10]
+res = numbers[3] + numbers[1]  # 10 + 6 = 16
+remaining = [numbers[0], numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [16, 4, 7]
+  Match 4: code snippet:
+numbers = [4, 6, 7, 10]
+res = numbers[3] * numbers[0]  # 10 * 4 = 40
+remaining = [numbers[1], numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [40, 6, 7]
+  Returning 5 proposals
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 2 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 2 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 1 exception: 500 Internal error encountered.
+
+=== PROPOSE for [3, 6, 10] depth 1 ===
+  Calling LLM (temp=0.7)...
+  Response length: 5731
+  Response first 600 chars:
+*   Current numbers: `[3, 6, 10]`
+    *   Goal: Reach 24.
+    *   Constraint: Provide 5-8 different next steps using different operations.
+    *   Requirement: Thought, Math, Remaining, and Python Code for each.
+    *   Avoid: Huge numbers or patterns that lead to dead-ends.
+
+    *   Current numbers: 3, 6, 10.
+    *   Target: 24.
+    *   Possibilities:
+        *   3 * 8 = 24 (Need 8 from 6 and 10? 10 - 6 = 4, not 8. 10 + 6 = 16, 16/2=8, but we only have one operation left).
+        *   4 * 6 = 24 (Need 4 from 3 and 10? 10 - 3 = 7, 10 + 3 = 13, 10/3 = 3.33).
+        *   6 * 4 = 24 (Same as abov
+  Full pattern matches: 7
+  Match 0: code snippet:
+numbers = [3, 6, 10]
+res = numbers[0] * numbers[2]  # 3 * 10 = 30
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [30, 6]
+  Match 1: code snippet:
+numbers = [3, 6, 10]
+res = numbers[0] * numbers[1]  # 3 * 6 = 18
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [18, 10]
+  Match 2: code snippet:
+numbers = [3, 6, 10]
+res = numbers[1] + numbers[2]  # 6 + 10 = 16
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [16, 3]
+  Match 3: code snippet:
+numbers = [3, 6, 10]
+res = numbers[2] - numbers[1]  # 10 - 6 = 4
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [4, 3]
+  Match 4: code snippet:
+numbers = [3, 6, 10]
+res = numbers[1] / numbers[0]  # 6 / 3 = 2
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [2.0, 10]
+  Returning 5 proposals
+
+=== PROPOSE for [4, 4, 7] depth 1 ===
+  Calling LLM (temp=0.7)...
+  Response length: 4196
+  Response first 600 chars:
+*   Input: [4, 4, 7]
+    *   Target: 24
+    *   Available Operations: +, -, *, /
+
+    *   (4 * 7) - 4 = 28 - 4 = 24 (Direct path!)
+    *   (4 + 4) * 3 = 8 * 3 (but we have 7, not 3)
+    *   7 * 4 - 4 = 24
+    *   (7 - 1) * 4 = 6 * 4 = 24 (but we don't have 1)
+    *   (7 + 4) = 11, (11 * 2? no)
+    *   4 / 4 = 1, 1 * 7 = 7 (too small)
+    *   4 + 4 + 7 = 15 (too small)
+    *   4 * 4 + 7 = 16 + 7 = 23 (very close!)
+
+    *   Step 1: 4 * 7 = 28. Remaining: [28, 4]. Then 28 - 4 = 24. (Strongest move)
+    *   Step 2: 4 * 4 = 16. Remaining: [16, 7]. Then 16 + 7 = 23. (Close, but not quite 24)
+    *  
+  Full pattern matches: 6
+  Match 0: code snippet:
+numbers = [4, 4, 7]
+res = numbers[0] * numbers[2]  # 4 * 7 = 28
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [28, 4]
+  Match 1: code snippet:
+numbers = [4, 4, 7]
+res = numbers[0] * numbers[1]  # 4 * 4 = 16
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [16, 7]
+  Match 2: code snippet:
+numbers = [4, 4, 7]
+res = numbers[0] + numbers[2]  # 4 + 7 = 11
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [11, 4]
+  Match 3: code snippet:
+numbers = [4, 4, 7]
+res = numbers[2] - numbers[0]  # 7 - 4 = 3
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [3, 4]
+  Match 4: code snippet:
+numbers = [4, 4, 7]
+res = numbers[0] / numbers[1]  # 4 / 4 = 1
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [1.0, 7]
+  Returning 5 proposals
+
+=== PROPOSE for [42, 4, 10] depth 1 ===
+  Calling LLM (temp=0.7)...
+  Response length: 10765
+  Response first 600 chars:
+*   Current numbers: `[42, 4, 10]`
+    *   Goal: Reach 24.
+    *   Constraint: Provide 5-8 different next steps using different operations.
+    *   Avoid dead-end patterns (too large numbers, too small numbers, extreme ratios).
+
+    *   42 - 10 = 32. Remaining: [32, 4]. 32 - 4 = 28, 32 + 4 = 36, 32 * 4 = 128, 32 / 4 = 8. (Not 24).
+    *   42 - 4 = 38. Remaining: [38, 10]. 38 - 10 = 28, 38 + 10 = 48, 38 * 10 = 380, 38 / 10 = 3.8. (Not 24).
+    *   42 + 10 = 52. Remaining: [52, 4]. 52 / 4 = 13. (Not 24).
+    *   42 + 4 = 46. Remaining: [46, 10]. (Not 24).
+    *   42 * 10 = 420. (Too large).
+    
+  Full pattern matches: 8
+  Match 0: code snippet:
+numbers = [42, 4, 10]
+res = numbers[0] - numbers[2]  # 42 - 10 = 32
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [32, 4]
+  Match 1: code snippet:
+numbers = [42, 4, 10]
+res = numbers[1] + numbers[2]  # 4 + 10 = 14
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [14, 42]
+  Match 2: code snippet:
+numbers = [42, 4, 10]
+res = numbers[2] - numbers[1]  # 10 - 4 = 6
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [6, 42]
+  Match 3: code snippet:
+numbers = [42, 4, 10]
+res = numbers[1] * numbers[2]  # 4 * 10 = 40
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [40, 42]
+  Match 4: code snippet:
+numbers = [42, 4, 10]
+res = numbers[0] / numbers[2]  # 42 / 10 = 4.2
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [4.2, 4]
+  Returning 5 proposals
+
+=== PROPOSE for [40, 6, 7] depth 1 ===
+  Calling LLM (temp=0.7)...
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 2 exception: 500 Internal error encountered.
+  Response length: 7474
+  Response first 600 chars:
+*   Original puzzle: [4, 6, 7, 10]
+    *   Step 1 taken: 10 * 4 = 40.
+    *   Current numbers: [40, 6, 7]
+    *   Goal: Reach 24.
+
+    *   Target: 24
+    *   Current: [40, 6, 7]
+    *   Possible combinations:
+        *   40 - (6 + 7) = 40 - 13 = 27 (Close)
+        *   40 - 6 - 7 = 27 (Close)
+        *   (40 + 6) / 7 = 46 / 7 ≈ 6.57
+        *   (40 + 7) / 6 = 47 / 6 ≈ 7.83
+        *   40 / (7 - 6) = 40 / 1 = 40
+        *   40 * 6 / 7 = 240 / 7 ≈ 34.28
+        *   40 * 7 / 6 = 280 / 6 ≈ 46.67
+        *   40 - 6 * 7 = 40 - 42 = -2 (Close)
+        *   40 - (7 * 6) = -2
+        *   (40 * 6) - 7 = 2
+  Full pattern matches: 8
+  Match 0: code snippet:
+numbers = [40, 6, 7]
+res = numbers[0] - numbers[1]  # 40 - 6 = 34
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [34, 7]
+  Match 1: code snippet:
+numbers = [40, 6, 7]
+res = numbers[0] - numbers[2]  # 40 - 7 = 33
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [33, 6]
+  Match 2: code snippet:
+numbers = [40, 6, 7]
+res = numbers[0] + numbers[1]  # 40 + 6 = 46
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [46, 7]
+  Match 3: code snippet:
+numbers = [40, 6, 7]
+res = numbers[1] * numbers[2]  # 6 * 7 = 42
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [42, 40]
+  Match 4: code snippet:
+numbers = [40, 6, 7]
+res = numbers[1] + numbers[2]  # 6 + 7 = 13
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [13, 40]
+  Returning 5 proposals
+
+=== PROPOSE for [16, 4, 7] depth 1 ===
+  Calling LLM (temp=0.7)...
+  API attempt 1 exception: 500 Internal error encountered.
+  API attempt 2 exception: 500 Internal error encountered.
+  API attempt 3 exception: 500 Internal error encountered.
+  Response length: 0
+  Response first 600 chars:
+
+  ERROR: Empty response from LLM
+
+=== PROPOSE for [30, 6] depth 2 ===
+→ Routing to propose_two_number
+  API attempt 1 exception: 500 Internal error encountered.
+
+=== PROPOSE for [28, 4] depth 2 ===
+→ Routing to propose_two_number
+
+=== PROPOSE for [18, 10] depth 2 ===
+→ Routing to propose_two_number
+  API attempt 1 exception: 500 Internal error encountered.
+
+=== PROPOSE for [16, 3] depth 2 ===
+→ Routing to propose_two_number
+
+=== PROPOSE for [4, 3] depth 2 ===
+→ Routing to propose_two_number
