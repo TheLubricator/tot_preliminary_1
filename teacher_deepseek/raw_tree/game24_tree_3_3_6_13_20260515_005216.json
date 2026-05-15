@@ -1,0 +1,3562 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-15T00:52:16.135567",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 25,
+      "api_calls": 30,
+      "cache_hits": 0,
+      "solutions_found": 0,
+      "code_executions": 50,
+      "code_errors": 0,
+      "daily_requests": 30,
+      "session_start": "2026-05-15T00:51:22.094764",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 25,
+      "total_input_tokens": 16152,
+      "total_output_tokens": 10196,
+      "deadend_memory": {
+        "patterns_stored": 14,
+        "total_checked": 49,
+        "total_skipped": 25,
+        "skip_rate": "51.0%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 14,
+      "total_checked": 49,
+      "total_skipped": 25,
+      "api_calls_saved": 25
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        3,
+        3,
+        6,
+        13
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 8,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            9,
+            6,
+            13
+          ],
+          "action": "[9, 6, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 3 and 3 to get 9.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[0] * numbers[1]   # 3 * 3 = 9\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[9, 6, 13]"
+          },
+          "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]",
+          "evaluation": {
+            "state": "[9, 6, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "[9, 6, 13]  \n- attempt 1: 13 + 9 = 22, then 22 + 6 = 28 (too high, but within 20-28).  \n- attempt 2: 13 + 6 = 19, then 19 + 9 = 28 (again 28, same range).  \n- attempt 3: 13 * 6 = 78, then 78 / 9 = 8.666... (too low).  \n- attempt 4: 13 * 9 = 117, then 117 / 6 = 19.5 (too low).  \n- attempt 5: 13 - 6 = 7, then 7 * 9 = 63 (far too high).  \n\nbest result is 28, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[9, 6, 13]  \n- attempt 1: 13 + 9 = 22, then 22 + 6 = 28 (too high, but within 20-28).  \n- attempt 2: 13 + 6 = 19, then 19 + 9 = 28 (again 28, same range).  \n- attempt 3: 13 * 6 = 78, then 78 / 9 = 8.666... (too low).  \n- attempt 4: 13 * 9 = 117, then 117 / 6 = 19.5 (too low).  \n- attempt 5: 13 - 6 = 7, then 7 * 9 = 63 (far too high).  \n\nbest result is 28, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 3,
+          "children": {
+            "18": {
+              "id": 18,
+              "parent_id": 1,
+              "state": [
+                15,
+                13
+              ],
+              "action": "[15, 13]",
+              "value": 0.6,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Add 9 and 6 to get 15, then combine with 13.",
+                "code": "numbers = [9, 6, 13]\nres = numbers[0] + numbers[1]   # 9 + 6 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[15, 13]"
+              },
+              "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nAdd 9 and 6 to get 15, then combine with 13.\nResult: [15, 13]",
+              "evaluation": {
+                "state": "[15, 13]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 15
+                },
+                "llm_judgments": [
+                  "[15, 13]  \n- attempt 1: 15 + 13 = 28 (too high, but within 20-28).  \n- attempt 2: 15 - 13 = 2 (too low).  \n- attempt 3: 15 * 13 = 195 (far too high).  \n- attempt 4: 15 / 13 ≈ 1.15 (too low).  \n- attempt 5: 13 / 15 ≈ 0.87 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['likely']",
+                  "Judgment votes: sure=0, likely=1, impossible=0",
+                  "Raw score: 0.600, Boosted score: 0.600"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[15, 13]  \n- attempt 1: 15 + 13 = 28 (too high, but within 20-28).  \n- attempt 2: 15 - 13 = 2 (too low).  \n- attempt 3: 15 * 13 = 195 (far too high).  \n- attempt 4: 15 / 13 ≈ 1.15 (too low).  \n- attempt 5: 13 / 15 ≈ 0.87 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+                  ],
+                  "mapped_values": [
+                    0.6
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 1,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.6,
+                "judgment": "likely",
+                "extracted_operation": "15 + 13",
+                "extracted_result": 28.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "19": {
+              "id": 19,
+              "parent_id": 1,
+              "state": [
+                54,
+                13
+              ],
+              "action": "[54, 13]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 9 and 6 to get 54, then combine with 13.",
+                "code": "numbers = [9, 6, 13]\nres = numbers[0] * numbers[1]   # 9 * 6 = 54\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[54, 13]"
+              },
+              "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nMultiply 9 and 6 to get 54, then combine with 13.\nResult: [54, 13]",
+              "evaluation": {
+                "state": "[54, 13]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 54
+                },
+                "llm_judgments": [
+                  "[54, 13]  \n- attempt 1: 54 - 13 = 41 (too high).  \n- attempt 2: 54 / 13 ≈ 4.154 (too low).  \n- attempt 3: 13 - 54 = -41 (too low).  \n- attempt 4: 54 + 13 = 67 (too high).  \n- attempt 5: 13 * 2 is not possible with only these numbers; no combination gives a result between 20 and 28.  \n\nall results are far from 24 and outside 20-28 range.  \n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[54, 13]  \n- attempt 1: 54 - 13 = 41 (too high).  \n- attempt 2: 54 / 13 ≈ 4.154 (too low).  \n- attempt 3: 13 - 54 = -41 (too low).  \n- attempt 4: 54 + 13 = 67 (too high).  \n- attempt 5: 13 * 2 is not possible with only these numbers; no combination gives a result between 20 and 28.  \n\nall results are far from 24 and outside 20-28 range.  \n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "54 - 13",
+                "extracted_result": 41.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "20": {
+              "id": 20,
+              "parent_id": 1,
+              "state": [
+                78,
+                9
+              ],
+              "action": "[78, 9]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 6 and 13 to get 78, then combine with 9.",
+                "code": "numbers = [9, 6, 13]\nres = numbers[1] * numbers[2]   # 6 * 13 = 78\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[78, 9]"
+              },
+              "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nMultiply 6 and 13 to get 78, then combine with 9.\nResult: [78, 9]",
+              "evaluation": {
+                "state": "[78, 9]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 78
+                },
+                "llm_judgments": [
+                  "78 and 9 are both large numbers, so getting to 24 is tricky.\n\n- attempt 1: 78 / 9 = 8.666... (too low, not close to 24).\n- attempt 2: 78 - 9 = 69 (too high, far above 28).\n- attempt 3: 78 + 9 = 87 (too high).\n- attempt 4: 78 * 9 = 702 (far too high).\n- attempt 5: 9 - 78 = -69 (too low, negative).\n\nall results are far outside 20-28.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "78 and 9 are both large numbers, so getting to 24 is tricky.\n\n- attempt 1: 78 / 9 = 8.666... (too low, not close to 24).\n- attempt 2: 78 - 9 = 69 (too high, far above 28).\n- attempt 3: 78 + 9 = 87 (too high).\n- attempt 4: 78 * 9 = 702 (far too high).\n- attempt 5: 9 - 78 = -69 (too low, negative).\n\nall results are far outside 20-28.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "78 / 9",
+                "extracted_result": 8.666
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            18,
+            3,
+            13
+          ],
+          "action": "[18, 3, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 3 and 6 to get 18.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[0] * numbers[2]   # 3 * 6 = 18\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[18, 3, 13]"
+          },
+          "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]",
+          "evaluation": {
+            "state": "[18, 3, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "[18, 3, 13]  \n- attempt 1: 18 + 13 = 31, then 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 13 = 5, then 5 * 3 = 15 (too low).  \n- attempt 3: 13 * 3 = 39, then 39 - 18 = 21 (within 20-28).  \n- attempt 4: 18 + 3 = 21, then 21 + 13 = 34 (too high).  \n- attempt 5: 18 / 3 = 6, then 6 + 13 = 19 (too low).  \n\nbest results are 28 and 21, both between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[18, 3, 13]  \n- attempt 1: 18 + 13 = 31, then 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 13 = 5, then 5 * 3 = 15 (too low).  \n- attempt 3: 13 * 3 = 39, then 39 - 18 = 21 (within 20-28).  \n- attempt 4: 18 + 3 = 21, then 21 + 13 = 34 (too high).  \n- attempt 5: 18 / 3 = 6, then 6 + 13 = 19 (too low).  \n\nbest results are 28 and 21, both between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 4,
+          "children": {
+            "21": {
+              "id": 21,
+              "parent_id": 2,
+              "state": [
+                21,
+                13
+              ],
+              "action": "[21, 13]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "** Add 18 and 3 to get 21.  \n**",
+                "code": "numbers = [18, 3, 13]\nres = numbers[0] + numbers[1]   # 18 + 3 = 21\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[21, 13]"
+              },
+              "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 18 and 3 to get 21.  \n**\nResult: [21, 13]",
+              "evaluation": {
+                "state": "[21, 13]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 21
+                },
+                "llm_judgments": [
+                  "[21, 13]  \n- attempt 1: 21 + 13 = 34 (too high, far above 28).  \n- attempt 2: 21 - 13 = 8 (too low, below 20).  \n- attempt 3: 21 * 13 = 273 (far too high).  \n- attempt 4: 21 / 13 is about 1.615 (too low).  \n- attempt 5: 13 / 21 is about 0.619 (too low).  \n\nall results are either far below 20 or far above 28. no result between 20 and 28.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[21, 13]  \n- attempt 1: 21 + 13 = 34 (too high, far above 28).  \n- attempt 2: 21 - 13 = 8 (too low, below 20).  \n- attempt 3: 21 * 13 = 273 (far too high).  \n- attempt 4: 21 / 13 is about 1.615 (too low).  \n- attempt 5: 13 / 21 is about 0.619 (too low).  \n\nall results are either far below 20 or far above 28. no result between 20 and 28.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "21 + 13",
+                "extracted_result": 34.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "22": {
+              "id": 22,
+              "parent_id": 2,
+              "state": [
+                31,
+                3
+              ],
+              "action": "[31, 3]",
+              "value": 0.72,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "** Add 18 and 13 to get 31.  \n**",
+                "code": "numbers = [18, 3, 13]\nres = numbers[0] + numbers[2]   # 18 + 13 = 31\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[31, 3]"
+              },
+              "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 18 and 13 to get 31.  \n**\nResult: [31, 3]",
+              "evaluation": {
+                "state": "[31, 3]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 31
+                },
+                "llm_judgments": [
+                  "[31, 3]  \n- attempt 1: 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 31 / 3 = about 10.33 (too low).  \n- attempt 3: 3 - 31 = -28 (too low).  \n- attempt 4: 31 + 3 = 34 (too high).  \n- attempt 5: 31 * 3 = 93 (far too high).  \n\nbest result is 28, which is between 20 and 28.  \n\nanswer: likely"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['likely']",
+                  "Judgment votes: sure=0, likely=1, impossible=0",
+                  "Raw score: 0.600, Boosted score: 0.720"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[31, 3]  \n- attempt 1: 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 31 / 3 = about 10.33 (too low).  \n- attempt 3: 3 - 31 = -28 (too low).  \n- attempt 4: 31 + 3 = 34 (too high).  \n- attempt 5: 31 * 3 = 93 (far too high).  \n\nbest result is 28, which is between 20 and 28.  \n\nanswer: likely"
+                  ],
+                  "mapped_values": [
+                    0.6
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 1,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.72,
+                "judgment": "likely",
+                "extracted_operation": "31 - 3",
+                "extracted_result": 28.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "23": {
+              "id": 23,
+              "parent_id": 2,
+              "state": [
+                16,
+                18
+              ],
+              "action": "[16, 18]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "** Add 3 and 13 to get 16.  \n**",
+                "code": "numbers = [18, 3, 13]\nres = numbers[1] + numbers[2]   # 3 + 13 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[16, 18]"
+              },
+              "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 3 and 13 to get 16.  \n**\nResult: [16, 18]",
+              "evaluation": {
+                "state": "[16, 18]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 18
+                },
+                "llm_judgments": [
+                  "[16, 18]  \n- attempt 1: 18 + 16 = 34 (too high).  \n- attempt 2: 18 - 16 = 2 (too low).  \n- attempt 3: 18 * 16 = 288 (far too high).  \n- attempt 4: 18 / 16 = 1.125 (too low).  \n- attempt 5: 16 / 18 = 0.888... (too low).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[16, 18]  \n- attempt 1: 18 + 16 = 34 (too high).  \n- attempt 2: 18 - 16 = 2 (too low).  \n- attempt 3: 18 * 16 = 288 (far too high).  \n- attempt 4: 18 / 16 = 1.125 (too low).  \n- attempt 5: 16 / 18 = 0.888... (too low).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "18 + 16",
+                "extracted_result": 34.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "24": {
+              "id": 24,
+              "parent_id": 2,
+              "state": [
+                -15,
+                13
+              ],
+              "action": "[-15, 13]",
+              "value": 0.6,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "** Subtract 18 from 3 (negative) to get -15.  \n**",
+                "code": "numbers = [18, 3, 13]\nres = numbers[1] - numbers[0]   # 3 - 18 = -15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-15, 13]"
+              },
+              "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Subtract 18 from 3 (negative) to get -15.  \n**\nResult: [-15, 13]",
+              "evaluation": {
+                "state": "[-15, 13]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 15
+                },
+                "llm_judgments": [
+                  "we have numbers -15 and 13, target 24.\n\n- attempt 1: 13 - (-15) = 13 + 15 = 28 (too high, but within 20-28 range).\n- attempt 2: 13 + (-15) = -2 (too low).\n- attempt 3: 13 * (-15) = -195 (far too low).\n- attempt 4: 13 / (-15) = about -0.867 (far too low).\n- attempt 5: (-15) / 13 = about -1.154 (far too low).\n\nthe closest result to 24 is 28 from attempt 1, which is within 20-28.\n\nanswer: likely"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['likely']",
+                  "Judgment votes: sure=0, likely=1, impossible=0",
+                  "Raw score: 0.600, Boosted score: 0.600"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have numbers -15 and 13, target 24.\n\n- attempt 1: 13 - (-15) = 13 + 15 = 28 (too high, but within 20-28 range).\n- attempt 2: 13 + (-15) = -2 (too low).\n- attempt 3: 13 * (-15) = -195 (far too low).\n- attempt 4: 13 / (-15) = about -0.867 (far too low).\n- attempt 5: (-15) / 13 = about -1.154 (far too low).\n\nthe closest result to 24 is 28 from attempt 1, which is within 20-28.\n\nanswer: likely"
+                  ],
+                  "mapped_values": [
+                    0.6
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 1,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.6,
+                "judgment": "likely",
+                "extracted_operation": "13 + 15",
+                "extracted_result": 28.0
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            39,
+            3,
+            6
+          ],
+          "action": "[39, 3, 6]",
+          "value": 0.72,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 3 and 13 to get 39.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[0] * numbers[3]   # 3 * 13 = 39\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[39, 3, 6]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]",
+          "evaluation": {
+            "state": "[39, 3, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 39
+            },
+            "llm_judgments": [
+              "[39, 3, 6]  \n- attempt 1: 39 - 6 = 33, then 33 - 3 = 30 (too high, 30).  \n- attempt 2: 39 / 3 = 13, then 13 + 6 = 19 (too low, 19).  \n- attempt 3: 39 - 3 = 36, then 36 / 6 = 6 (too low, 6).  \n- attempt 4: 6 * 3 = 18, then 39 - 18 = 21 (within 20-28, close to 24).  \n- attempt 5: 39 / 6 = 6.5, then 6.5 * 3 = 19.5 (too low).  \n\nbest result is 21, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.720"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[39, 3, 6]  \n- attempt 1: 39 - 6 = 33, then 33 - 3 = 30 (too high, 30).  \n- attempt 2: 39 / 3 = 13, then 13 + 6 = 19 (too low, 19).  \n- attempt 3: 39 - 3 = 36, then 36 / 6 = 6 (too low, 6).  \n- attempt 4: 6 * 3 = 18, then 39 - 18 = 21 (within 20-28, close to 24).  \n- attempt 5: 39 / 6 = 6.5, then 6.5 * 3 = 19.5 (too low).  \n\nbest result is 21, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.72,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "11": {
+              "id": 11,
+              "parent_id": 3,
+              "state": [
+                36,
+                6
+              ],
+              "action": "[36, 6]",
+              "value": 0.0012,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 3 from 39 to get 36.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[0] - numbers[1]   # 39 - 3 = 36\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[36, 6]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 3 from 39 to get 36.\nResult: [36, 6]",
+              "evaluation": {
+                "state": "[36, 6]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 36
+                },
+                "llm_judgments": [
+                  "[36, 6]  \n- attempt 1: 36 - 6 = 30 (too high, but within 20-28? 30 is above 28, so not within range).  \n- attempt 2: 36 / 6 = 6 (too low).  \n- attempt 3: 36 + 6 = 42 (too high).  \n- attempt 4: 6 - 36 = -30 (too low).  \n- attempt 5: 36 * 6 = 216 (far too high).  \n\nall results are 30, 6, 42, -30, or 216. none are between 20 and 28, and none are close to 24.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[36, 6]  \n- attempt 1: 36 - 6 = 30 (too high, but within 20-28? 30 is above 28, so not within range).  \n- attempt 2: 36 / 6 = 6 (too low).  \n- attempt 3: 36 + 6 = 42 (too high).  \n- attempt 4: 6 - 36 = -30 (too low).  \n- attempt 5: 36 * 6 = 216 (far too high).  \n\nall results are 30, 6, 42, -30, or 216. none are between 20 and 28, and none are close to 24.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.0012,
+                "judgment": "impossible",
+                "extracted_operation": "36 - 6",
+                "extracted_result": 30.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 3,
+              "state": [
+                -36,
+                6
+              ],
+              "action": "[-36, 6]",
+              "value": 0.0012,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 39 from 3 to get -36.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[1] - numbers[0]   # 3 - 39 = -36\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-36, 6]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 39 from 3 to get -36.\nResult: [-36, 6]",
+              "evaluation": {
+                "state": "[-36, 6]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 36
+                },
+                "llm_judgments": [
+                  "[-36, 6]  \n- attempt 1: 6 - (-36) = 6 + 36 = 42 (too high).  \n- attempt 2: 6 + (-36) = -30 (too low).  \n- attempt 3: 6 * (-36) = -216 (far too low).  \n- attempt 4: (-36) / 6 = -6 (too low).  \n- attempt 5: 6 / (-36) = -0.1667 (too low).  \n\nall results are far from 24, none between 20 and 28.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[-36, 6]  \n- attempt 1: 6 - (-36) = 6 + 36 = 42 (too high).  \n- attempt 2: 6 + (-36) = -30 (too low).  \n- attempt 3: 6 * (-36) = -216 (far too low).  \n- attempt 4: (-36) / 6 = -6 (too low).  \n- attempt 5: 6 / (-36) = -0.1667 (too low).  \n\nall results are far from 24, none between 20 and 28.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.0012,
+                "judgment": "impossible",
+                "extracted_operation": "6 + 36",
+                "extracted_result": 42.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 3,
+              "state": [
+                117,
+                6
+              ],
+              "action": "[117, 6]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 39 and 3 to get 117.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[0] * numbers[1]   # 39 * 3 = 117\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[117, 6]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nMultiply 39 and 3 to get 117.\nResult: [117, 6]",
+              "evaluation": {
+                "state": "[117, 6]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 117
+                },
+                "llm_judgments": [
+                  "[117, 6]  \n- attempt 1: 117 / 6 = 19.5 (too low, not in 20-28).  \n- attempt 2: 117 - 6 = 111 (far too high).  \n- attempt 3: 117 + 6 = 123 (far too high).  \n- attempt 4: 6 - 117 = -111 (far too low).  \n- attempt 5: 117 * 6 = 702 (far too high).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[117, 6]  \n- attempt 1: 117 / 6 = 19.5 (too low, not in 20-28).  \n- attempt 2: 117 - 6 = 111 (far too high).  \n- attempt 3: 117 + 6 = 123 (far too high).  \n- attempt 4: 6 - 117 = -111 (far too low).  \n- attempt 5: 117 * 6 = 702 (far too high).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "117 / 6",
+                "extracted_result": 19.5
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 3,
+              "state": [
+                0.07692307692307693,
+                6
+              ],
+              "action": "[0.07692307692307693, 6]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Divide 3 by 39 to get ~0.0769.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[1] / numbers[0]   # 3 / 39 = 0.0769\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.07692307692307693, 6]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nDivide 3 by 39 to get ~0.0769.\nResult: [0.07692307692307693, 6]",
+              "evaluation": {
+                "state": "[0.07692307692307693, 6]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 6
+                },
+                "llm_judgments": [
+                  "0.07692307692307693 is 1/13. so the numbers are essentially 1/13 and 6.\n\n- attempt 1: 6 divided by (1/13) = 6 * 13 = 78 (too high, far above 28).\n- attempt 2: (1/13) * 6 = 6/13 ≈ 0.4615 (too low).\n- attempt 3: 6 + (1/13) ≈ 6.0769 (too low).\n- attempt 4: 6 - (1/13) ≈ 5.9231 (too low).\n- attempt 5: 6 / (1/13) = 78 (already tried, too high). no combination gives a result between 20 and 28.\n\nall results are either near 0.46, 6.08, 5.92, or 78. none are between 20 and 28.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "0.07692307692307693 is 1/13. so the numbers are essentially 1/13 and 6.\n\n- attempt 1: 6 divided by (1/13) = 6 * 13 = 78 (too high, far above 28).\n- attempt 2: (1/13) * 6 = 6/13 ≈ 0.4615 (too low).\n- attempt 3: 6 + (1/13) ≈ 6.0769 (too low).\n- attempt 4: 6 - (1/13) ≈ 5.9231 (too low).\n- attempt 5: 6 / (1/13) = 78 (already tried, too high). no combination gives a result between 20 and 28.\n\nall results are either near 0.46, 6.08, 5.92, or 78. none are between 20 and 28.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "6 * 13",
+                "extracted_result": 78.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 3,
+              "state": [
+                33,
+                3
+              ],
+              "action": "[33, 3]",
+              "value": 0.0012,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 6 from 39 to get 33.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[0] - numbers[2]   # 39 - 6 = 33\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[33, 3]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 6 from 39 to get 33.\nResult: [33, 3]",
+              "evaluation": {
+                "state": "[33, 3]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 33
+                },
+                "llm_judgments": [
+                  "[33, 3]  \n- attempt 1: 33 - 3 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 33 / 3 = 11 (too low).  \n- attempt 3: 33 + 3 = 36 (too high).  \n- attempt 4: 33 * 3 = 99 (far too high).  \n- attempt 5: 33 - 9 = 24? but 9 is not available; only 33 and 3. no combination gives 24.  \n\nall results are 30, 11, 36, 99. none between 20 and 28.  \n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[33, 3]  \n- attempt 1: 33 - 3 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 33 / 3 = 11 (too low).  \n- attempt 3: 33 + 3 = 36 (too high).  \n- attempt 4: 33 * 3 = 99 (far too high).  \n- attempt 5: 33 - 9 = 24? but 9 is not available; only 33 and 3. no combination gives 24.  \n\nall results are 30, 11, 36, 99. none between 20 and 28.  \n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.0012,
+                "judgment": "impossible",
+                "extracted_operation": "33 - 3",
+                "extracted_result": 30.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 3,
+              "state": [
+                -33,
+                3
+              ],
+              "action": "[-33, 3]",
+              "value": 0.0012,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 39 from 6 to get -33.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[2] - numbers[0]   # 6 - 39 = -33\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-33, 3]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 39 from 6 to get -33.\nResult: [-33, 3]",
+              "evaluation": {
+                "state": "[-33, 3]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 33
+                },
+                "llm_judgments": [
+                  "we have numbers -33 and 3, target 24.\n\n- attempt 1: 3 - (-33) = 3 + 33 = 36 (too high, 36 > 28).\n- attempt 2: -33 + 3 = -30 (too low, far below 20).\n- attempt 3: 3 * (-33) = -99 (too low).\n- attempt 4: (-33) / 3 = -11 (too low).\n- attempt 5: 3 / (-33) = -0.0909... (too low).\n\nall results are far outside 20-28 range.\n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have numbers -33 and 3, target 24.\n\n- attempt 1: 3 - (-33) = 3 + 33 = 36 (too high, 36 > 28).\n- attempt 2: -33 + 3 = -30 (too low, far below 20).\n- attempt 3: 3 * (-33) = -99 (too low).\n- attempt 4: (-33) / 3 = -11 (too low).\n- attempt 5: 3 / (-33) = -0.0909... (too low).\n\nall results are far outside 20-28 range.\n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.0012,
+                "judgment": "impossible",
+                "extracted_operation": "3 + 33",
+                "extracted_result": 36.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 3,
+              "state": [
+                234,
+                3
+              ],
+              "action": "[234, 3]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 39 and 6 to get 234.",
+                "code": "numbers = [39, 3, 6]\nres = numbers[0] * numbers[2]   # 39 * 6 = 234\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[234, 3]"
+              },
+              "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nMultiply 39 and 6 to get 234.\nResult: [234, 3]",
+              "evaluation": {
+                "state": "[234, 3]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 234
+                },
+                "llm_judgments": [
+                  "[234, 3]  \ntarget: 24  \n\n- attempt 1: 234 / 3 = 78 (too high, far above 28).  \n- attempt 2: 234 - 3 = 231 (far too high).  \n- attempt 3: 3 - 234 = -231 (far too low, negative).  \n- attempt 4: 234 + 3 = 237 (far too high).  \n- attempt 5: 3 * 234 = 702 (far too high).  \n\nall results are far outside 20–28 range.  \n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[234, 3]  \ntarget: 24  \n\n- attempt 1: 234 / 3 = 78 (too high, far above 28).  \n- attempt 2: 234 - 3 = 231 (far too high).  \n- attempt 3: 3 - 234 = -231 (far too low, negative).  \n- attempt 4: 234 + 3 = 237 (far too high).  \n- attempt 5: 3 * 234 = 702 (far too high).  \n\nall results are far outside 20–28 range.  \n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "234 / 3",
+                "extracted_result": 78.0
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            19,
+            3,
+            3
+          ],
+          "action": "[19, 3, 3]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 6 and 13 to get 19.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[2] + numbers[3]   # 6 + 13 = 19\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[19, 3, 3]"
+          },
+          "path_history": "Add 6 and 13 to get 19.\nResult: [19, 3, 3]",
+          "evaluation": {
+            "state": "[19, 3, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 19
+            },
+            "llm_judgments": [
+              "[19, 3, 3]  \ntarget: 24  \n\n- attempt 1: 19 + 3 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 19 + 3 = 22, then 22 - 3 = 19 (too low).  \n- attempt 3: 19 - 3 = 16, then 16 + 3 = 19 (too low).  \n- attempt 4: 19 * 3 = 57, then 57 / 3 = 19 (too low).  \n- attempt 5: 19 + 3 = 22, then 22 * 3 = 66 (far too high).  \n\nbest result is 25, which is between 20 and 28.  \n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[19, 3, 3]  \ntarget: 24  \n\n- attempt 1: 19 + 3 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 19 + 3 = 22, then 22 - 3 = 19 (too low).  \n- attempt 3: 19 - 3 = 16, then 16 + 3 = 19 (too low).  \n- attempt 4: 19 * 3 = 57, then 57 / 3 = 19 (too low).  \n- attempt 5: 19 + 3 = 22, then 22 * 3 = 66 (far too high).  \n\nbest result is 25, which is between 20 and 28.  \n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            10,
+            3,
+            6
+          ],
+          "action": "[10, 3, 6]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 3 from 13 to get 10.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[3] - numbers[0]   # 13 - 3 = 10\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[10, 3, 6]"
+          },
+          "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]",
+          "evaluation": {
+            "state": "[10, 3, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "[10, 3, 6]  \n- attempt 1: 10 + 6 = 16, then 16 + 3 = 19 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 6 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[10, 3, 6]  \n- attempt 1: 10 + 6 = 16, then 16 + 3 = 19 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 6 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 2,
+          "children": {
+            "9": {
+              "id": 9,
+              "parent_id": 5,
+              "state": [
+                18,
+                10
+              ],
+              "action": "[18, 10]",
+              "value": 0.6,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 3 and 6 to get 18.",
+                "code": "numbers = [10, 3, 6]\nres = numbers[1] * numbers[2]   # 3 * 6 = 18\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[18, 10]"
+              },
+              "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]\nMultiply 3 and 6 to get 18.\nResult: [18, 10]",
+              "evaluation": {
+                "state": "[18, 10]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 18
+                },
+                "llm_judgments": [
+                  "[18, 10]  \n- attempt 1: 18 + 10 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 10 = 8 (too low).  \n- attempt 3: 18 * 10 = 180 (far too high).  \n- attempt 4: 18 / 10 = 1.8 (too low).  \n- attempt 5: 10 / 18 is about 0.556 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['likely']",
+                  "Judgment votes: sure=0, likely=1, impossible=0",
+                  "Raw score: 0.600, Boosted score: 0.600"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[18, 10]  \n- attempt 1: 18 + 10 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 10 = 8 (too low).  \n- attempt 3: 18 * 10 = 180 (far too high).  \n- attempt 4: 18 / 10 = 1.8 (too low).  \n- attempt 5: 10 / 18 is about 0.556 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+                  ],
+                  "mapped_values": [
+                    0.6
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 1,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.6,
+                "judgment": "likely",
+                "extracted_operation": "18 + 10",
+                "extracted_result": 28.0
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 5,
+              "state": [
+                1.6666666666666667,
+                3
+              ],
+              "action": "[1.6666666666666667, 3]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Divide 10 by 6 ≈ 1.6667.",
+                "code": "numbers = [10, 3, 6]\nres = numbers[0] / numbers[2]   # 10 / 6 ≈ 1.6667\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.6666666666666667, 3]"
+              },
+              "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]\nDivide 10 by 6 ≈ 1.6667.\nResult: [1.6666666666666667, 3]",
+              "evaluation": {
+                "state": "[1.6666666666666667, 3]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 3
+                },
+                "llm_judgments": [
+                  "[1.6666666666666667, 3]  \n- attempt 1: 1.6666666666666667 * 3 = 5 (too low).  \n- attempt 2: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15 (still too low).  \n- attempt 3: 3 / 1.6666666666666667 = 1.8, then 1.8 * 3 = 5.4 (too low).  \n- attempt 4: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15, then 15 + 3 = 18 (still low).  \n- attempt 5: 3 * 3 = 9, then 9 * 1.6666666666666667 = 15 (still low).  \n\nall results are far below 20.  \n\nanswer: impossible"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['impossible']",
+                  "Judgment votes: sure=0, likely=0, impossible=1",
+                  "Raw score: 0.001, Boosted score: 0.001"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[1.6666666666666667, 3]  \n- attempt 1: 1.6666666666666667 * 3 = 5 (too low).  \n- attempt 2: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15 (still too low).  \n- attempt 3: 3 / 1.6666666666666667 = 1.8, then 1.8 * 3 = 5.4 (too low).  \n- attempt 4: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15, then 15 + 3 = 18 (still low).  \n- attempt 5: 3 * 3 = 9, then 9 * 1.6666666666666667 = 15 (still low).  \n\nall results are far below 20.  \n\nanswer: impossible"
+                  ],
+                  "mapped_values": [
+                    0.001
+                  ],
+                  "vote_counts": {
+                    "impossible": 1,
+                    "likely": 0,
+                    "sure": 0
+                  }
+                },
+                "final_value": 0.001,
+                "judgment": "impossible",
+                "extracted_operation": "1.6666666666666667 * 3",
+                "extracted_result": 5.0
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            7,
+            3,
+            3
+          ],
+          "action": "[7, 3, 3]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 6 from 13 to get 7.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[3] - numbers[2]   # 13 - 6 = 7\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7, 3, 3]"
+          },
+          "path_history": "Subtract 6 from 13 to get 7.\nResult: [7, 3, 3]",
+          "evaluation": {
+            "state": "[7, 3, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 7
+            },
+            "llm_judgments": [
+              "[7, 3, 3]  \n- attempt 1: 7 * 3 = 21, then 21 + 3 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[7, 3, 3]  \n- attempt 1: 7 * 3 = 21, then 21 + 3 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            2.0,
+            3,
+            13
+          ],
+          "action": "[2.0, 3, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 6 by 3 to get 2.",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[2] / numbers[0]   # 6 / 3 = 2\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.0, 3, 13]"
+          },
+          "path_history": "Divide 6 by 3 to get 2.\nResult: [2.0, 3, 13]",
+          "evaluation": {
+            "state": "[2.0, 3, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "[2.0, 3, 13]  \n- attempt 1: 13 + 3 = 16, then 16 + 2.0 = 18 (too low).  \n- attempt 2: 13 * 2.0 = 26, then 26 - 3 = 23 (close, within 20-28).  \n- attempt 3: 13 * 2.0 = 26, then 26 + 3 = 29 (too high).  \n- attempt 4: 13 + 2.0 = 15, then 15 * 3 = 45 (far too high).  \n- attempt 5: 13 - 2.0 = 11, then 11 * 3 = 33 (too high).  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2.0, 3, 13]  \n- attempt 1: 13 + 3 = 16, then 16 + 2.0 = 18 (too low).  \n- attempt 2: 13 * 2.0 = 26, then 26 - 3 = 23 (close, within 20-28).  \n- attempt 3: 13 * 2.0 = 26, then 26 + 3 = 29 (too high).  \n- attempt 4: 13 + 2.0 = 15, then 15 * 3 = 45 (far too high).  \n- attempt 5: 13 - 2.0 = 11, then 11 * 3 = 33 (too high).  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            4.333333333333333,
+            3,
+            6
+          ],
+          "action": "[4.333333333333333, 3, 6]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 13 by 3 to get about 4.333 (fraction).",
+            "code": "numbers = [3, 3, 6, 13]\nres = numbers[3] / numbers[0]   # 13 / 3 = 4.333\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4.333333333333333, 3, 6]"
+          },
+          "path_history": "Divide 13 by 3 to get about 4.333 (fraction).\nResult: [4.333333333333333, 3, 6]",
+          "evaluation": {
+            "state": "[4.333333333333333, 3, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "[4.333333333333333, 3, 6]  \n- attempt 1: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (too low, but close to 24).  \n- attempt 2: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (same as above, still low).  \n- attempt 3: 4.333333333333333 * 3 = 13, then 13 + 6 = 19 (too low).  \n- attempt 4: 6 * 3 = 18, then 18 + 4.333333333333333 = 22.333 (too low).  \n- attempt 5: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (best result, 23 is between 20 and 28).  \n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[4.333333333333333, 3, 6]  \n- attempt 1: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (too low, but close to 24).  \n- attempt 2: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (same as above, still low).  \n- attempt 3: 4.333333333333333 * 3 = 13, then 13 + 6 = 19 (too low).  \n- attempt 4: 6 * 3 = 18, then 18 + 4.333333333333333 = 22.333 (too low).  \n- attempt 5: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (best result, 23 is between 20 and 28).  \n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        9,
+        6,
+        13
+      ],
+      "action": "[9, 6, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 3 and 3 to get 9.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[0] * numbers[1]   # 3 * 3 = 9\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[9, 6, 13]"
+      },
+      "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]",
+      "evaluation": {
+        "state": "[9, 6, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "[9, 6, 13]  \n- attempt 1: 13 + 9 = 22, then 22 + 6 = 28 (too high, but within 20-28).  \n- attempt 2: 13 + 6 = 19, then 19 + 9 = 28 (again 28, same range).  \n- attempt 3: 13 * 6 = 78, then 78 / 9 = 8.666... (too low).  \n- attempt 4: 13 * 9 = 117, then 117 / 6 = 19.5 (too low).  \n- attempt 5: 13 - 6 = 7, then 7 * 9 = 63 (far too high).  \n\nbest result is 28, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[9, 6, 13]  \n- attempt 1: 13 + 9 = 22, then 22 + 6 = 28 (too high, but within 20-28).  \n- attempt 2: 13 + 6 = 19, then 19 + 9 = 28 (again 28, same range).  \n- attempt 3: 13 * 6 = 78, then 78 / 9 = 8.666... (too low).  \n- attempt 4: 13 * 9 = 117, then 117 / 6 = 19.5 (too low).  \n- attempt 5: 13 - 6 = 7, then 7 * 9 = 63 (far too high).  \n\nbest result is 28, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 3,
+      "children": {
+        "18": {
+          "id": 18,
+          "parent_id": 1,
+          "state": [
+            15,
+            13
+          ],
+          "action": "[15, 13]",
+          "value": 0.6,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 9 and 6 to get 15, then combine with 13.",
+            "code": "numbers = [9, 6, 13]\nres = numbers[0] + numbers[1]   # 9 + 6 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15, 13]"
+          },
+          "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nAdd 9 and 6 to get 15, then combine with 13.\nResult: [15, 13]",
+          "evaluation": {
+            "state": "[15, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 15
+            },
+            "llm_judgments": [
+              "[15, 13]  \n- attempt 1: 15 + 13 = 28 (too high, but within 20-28).  \n- attempt 2: 15 - 13 = 2 (too low).  \n- attempt 3: 15 * 13 = 195 (far too high).  \n- attempt 4: 15 / 13 ≈ 1.15 (too low).  \n- attempt 5: 13 / 15 ≈ 0.87 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[15, 13]  \n- attempt 1: 15 + 13 = 28 (too high, but within 20-28).  \n- attempt 2: 15 - 13 = 2 (too low).  \n- attempt 3: 15 * 13 = 195 (far too high).  \n- attempt 4: 15 / 13 ≈ 1.15 (too low).  \n- attempt 5: 13 / 15 ≈ 0.87 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": "15 + 13",
+            "extracted_result": 28.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "19": {
+          "id": 19,
+          "parent_id": 1,
+          "state": [
+            54,
+            13
+          ],
+          "action": "[54, 13]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 9 and 6 to get 54, then combine with 13.",
+            "code": "numbers = [9, 6, 13]\nres = numbers[0] * numbers[1]   # 9 * 6 = 54\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[54, 13]"
+          },
+          "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nMultiply 9 and 6 to get 54, then combine with 13.\nResult: [54, 13]",
+          "evaluation": {
+            "state": "[54, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 54
+            },
+            "llm_judgments": [
+              "[54, 13]  \n- attempt 1: 54 - 13 = 41 (too high).  \n- attempt 2: 54 / 13 ≈ 4.154 (too low).  \n- attempt 3: 13 - 54 = -41 (too low).  \n- attempt 4: 54 + 13 = 67 (too high).  \n- attempt 5: 13 * 2 is not possible with only these numbers; no combination gives a result between 20 and 28.  \n\nall results are far from 24 and outside 20-28 range.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[54, 13]  \n- attempt 1: 54 - 13 = 41 (too high).  \n- attempt 2: 54 / 13 ≈ 4.154 (too low).  \n- attempt 3: 13 - 54 = -41 (too low).  \n- attempt 4: 54 + 13 = 67 (too high).  \n- attempt 5: 13 * 2 is not possible with only these numbers; no combination gives a result between 20 and 28.  \n\nall results are far from 24 and outside 20-28 range.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "54 - 13",
+            "extracted_result": 41.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "20": {
+          "id": 20,
+          "parent_id": 1,
+          "state": [
+            78,
+            9
+          ],
+          "action": "[78, 9]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 6 and 13 to get 78, then combine with 9.",
+            "code": "numbers = [9, 6, 13]\nres = numbers[1] * numbers[2]   # 6 * 13 = 78\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[78, 9]"
+          },
+          "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nMultiply 6 and 13 to get 78, then combine with 9.\nResult: [78, 9]",
+          "evaluation": {
+            "state": "[78, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 78
+            },
+            "llm_judgments": [
+              "78 and 9 are both large numbers, so getting to 24 is tricky.\n\n- attempt 1: 78 / 9 = 8.666... (too low, not close to 24).\n- attempt 2: 78 - 9 = 69 (too high, far above 28).\n- attempt 3: 78 + 9 = 87 (too high).\n- attempt 4: 78 * 9 = 702 (far too high).\n- attempt 5: 9 - 78 = -69 (too low, negative).\n\nall results are far outside 20-28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "78 and 9 are both large numbers, so getting to 24 is tricky.\n\n- attempt 1: 78 / 9 = 8.666... (too low, not close to 24).\n- attempt 2: 78 - 9 = 69 (too high, far above 28).\n- attempt 3: 78 + 9 = 87 (too high).\n- attempt 4: 78 * 9 = 702 (far too high).\n- attempt 5: 9 - 78 = -69 (too low, negative).\n\nall results are far outside 20-28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "78 / 9",
+            "extracted_result": 8.666
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        18,
+        3,
+        13
+      ],
+      "action": "[18, 3, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 3 and 6 to get 18.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[0] * numbers[2]   # 3 * 6 = 18\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[18, 3, 13]"
+      },
+      "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]",
+      "evaluation": {
+        "state": "[18, 3, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "[18, 3, 13]  \n- attempt 1: 18 + 13 = 31, then 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 13 = 5, then 5 * 3 = 15 (too low).  \n- attempt 3: 13 * 3 = 39, then 39 - 18 = 21 (within 20-28).  \n- attempt 4: 18 + 3 = 21, then 21 + 13 = 34 (too high).  \n- attempt 5: 18 / 3 = 6, then 6 + 13 = 19 (too low).  \n\nbest results are 28 and 21, both between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[18, 3, 13]  \n- attempt 1: 18 + 13 = 31, then 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 13 = 5, then 5 * 3 = 15 (too low).  \n- attempt 3: 13 * 3 = 39, then 39 - 18 = 21 (within 20-28).  \n- attempt 4: 18 + 3 = 21, then 21 + 13 = 34 (too high).  \n- attempt 5: 18 / 3 = 6, then 6 + 13 = 19 (too low).  \n\nbest results are 28 and 21, both between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 4,
+      "children": {
+        "21": {
+          "id": 21,
+          "parent_id": 2,
+          "state": [
+            21,
+            13
+          ],
+          "action": "[21, 13]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Add 18 and 3 to get 21.  \n**",
+            "code": "numbers = [18, 3, 13]\nres = numbers[0] + numbers[1]   # 18 + 3 = 21\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[21, 13]"
+          },
+          "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 18 and 3 to get 21.  \n**\nResult: [21, 13]",
+          "evaluation": {
+            "state": "[21, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 21
+            },
+            "llm_judgments": [
+              "[21, 13]  \n- attempt 1: 21 + 13 = 34 (too high, far above 28).  \n- attempt 2: 21 - 13 = 8 (too low, below 20).  \n- attempt 3: 21 * 13 = 273 (far too high).  \n- attempt 4: 21 / 13 is about 1.615 (too low).  \n- attempt 5: 13 / 21 is about 0.619 (too low).  \n\nall results are either far below 20 or far above 28. no result between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[21, 13]  \n- attempt 1: 21 + 13 = 34 (too high, far above 28).  \n- attempt 2: 21 - 13 = 8 (too low, below 20).  \n- attempt 3: 21 * 13 = 273 (far too high).  \n- attempt 4: 21 / 13 is about 1.615 (too low).  \n- attempt 5: 13 / 21 is about 0.619 (too low).  \n\nall results are either far below 20 or far above 28. no result between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "21 + 13",
+            "extracted_result": 34.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "22": {
+          "id": 22,
+          "parent_id": 2,
+          "state": [
+            31,
+            3
+          ],
+          "action": "[31, 3]",
+          "value": 0.72,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Add 18 and 13 to get 31.  \n**",
+            "code": "numbers = [18, 3, 13]\nres = numbers[0] + numbers[2]   # 18 + 13 = 31\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[31, 3]"
+          },
+          "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 18 and 13 to get 31.  \n**\nResult: [31, 3]",
+          "evaluation": {
+            "state": "[31, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 31
+            },
+            "llm_judgments": [
+              "[31, 3]  \n- attempt 1: 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 31 / 3 = about 10.33 (too low).  \n- attempt 3: 3 - 31 = -28 (too low).  \n- attempt 4: 31 + 3 = 34 (too high).  \n- attempt 5: 31 * 3 = 93 (far too high).  \n\nbest result is 28, which is between 20 and 28.  \n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.720"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[31, 3]  \n- attempt 1: 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 31 / 3 = about 10.33 (too low).  \n- attempt 3: 3 - 31 = -28 (too low).  \n- attempt 4: 31 + 3 = 34 (too high).  \n- attempt 5: 31 * 3 = 93 (far too high).  \n\nbest result is 28, which is between 20 and 28.  \n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.72,
+            "judgment": "likely",
+            "extracted_operation": "31 - 3",
+            "extracted_result": 28.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "23": {
+          "id": 23,
+          "parent_id": 2,
+          "state": [
+            16,
+            18
+          ],
+          "action": "[16, 18]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Add 3 and 13 to get 16.  \n**",
+            "code": "numbers = [18, 3, 13]\nres = numbers[1] + numbers[2]   # 3 + 13 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 18]"
+          },
+          "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 3 and 13 to get 16.  \n**\nResult: [16, 18]",
+          "evaluation": {
+            "state": "[16, 18]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "[16, 18]  \n- attempt 1: 18 + 16 = 34 (too high).  \n- attempt 2: 18 - 16 = 2 (too low).  \n- attempt 3: 18 * 16 = 288 (far too high).  \n- attempt 4: 18 / 16 = 1.125 (too low).  \n- attempt 5: 16 / 18 = 0.888... (too low).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[16, 18]  \n- attempt 1: 18 + 16 = 34 (too high).  \n- attempt 2: 18 - 16 = 2 (too low).  \n- attempt 3: 18 * 16 = 288 (far too high).  \n- attempt 4: 18 / 16 = 1.125 (too low).  \n- attempt 5: 16 / 18 = 0.888... (too low).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "18 + 16",
+            "extracted_result": 34.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "24": {
+          "id": 24,
+          "parent_id": 2,
+          "state": [
+            -15,
+            13
+          ],
+          "action": "[-15, 13]",
+          "value": 0.6,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Subtract 18 from 3 (negative) to get -15.  \n**",
+            "code": "numbers = [18, 3, 13]\nres = numbers[1] - numbers[0]   # 3 - 18 = -15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-15, 13]"
+          },
+          "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Subtract 18 from 3 (negative) to get -15.  \n**\nResult: [-15, 13]",
+          "evaluation": {
+            "state": "[-15, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 15
+            },
+            "llm_judgments": [
+              "we have numbers -15 and 13, target 24.\n\n- attempt 1: 13 - (-15) = 13 + 15 = 28 (too high, but within 20-28 range).\n- attempt 2: 13 + (-15) = -2 (too low).\n- attempt 3: 13 * (-15) = -195 (far too low).\n- attempt 4: 13 / (-15) = about -0.867 (far too low).\n- attempt 5: (-15) / 13 = about -1.154 (far too low).\n\nthe closest result to 24 is 28 from attempt 1, which is within 20-28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers -15 and 13, target 24.\n\n- attempt 1: 13 - (-15) = 13 + 15 = 28 (too high, but within 20-28 range).\n- attempt 2: 13 + (-15) = -2 (too low).\n- attempt 3: 13 * (-15) = -195 (far too low).\n- attempt 4: 13 / (-15) = about -0.867 (far too low).\n- attempt 5: (-15) / 13 = about -1.154 (far too low).\n\nthe closest result to 24 is 28 from attempt 1, which is within 20-28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": "13 + 15",
+            "extracted_result": 28.0
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        39,
+        3,
+        6
+      ],
+      "action": "[39, 3, 6]",
+      "value": 0.72,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 3 and 13 to get 39.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[0] * numbers[3]   # 3 * 13 = 39\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[39, 3, 6]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]",
+      "evaluation": {
+        "state": "[39, 3, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 39
+        },
+        "llm_judgments": [
+          "[39, 3, 6]  \n- attempt 1: 39 - 6 = 33, then 33 - 3 = 30 (too high, 30).  \n- attempt 2: 39 / 3 = 13, then 13 + 6 = 19 (too low, 19).  \n- attempt 3: 39 - 3 = 36, then 36 / 6 = 6 (too low, 6).  \n- attempt 4: 6 * 3 = 18, then 39 - 18 = 21 (within 20-28, close to 24).  \n- attempt 5: 39 / 6 = 6.5, then 6.5 * 3 = 19.5 (too low).  \n\nbest result is 21, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.720"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[39, 3, 6]  \n- attempt 1: 39 - 6 = 33, then 33 - 3 = 30 (too high, 30).  \n- attempt 2: 39 / 3 = 13, then 13 + 6 = 19 (too low, 19).  \n- attempt 3: 39 - 3 = 36, then 36 / 6 = 6 (too low, 6).  \n- attempt 4: 6 * 3 = 18, then 39 - 18 = 21 (within 20-28, close to 24).  \n- attempt 5: 39 / 6 = 6.5, then 6.5 * 3 = 19.5 (too low).  \n\nbest result is 21, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.72,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "11": {
+          "id": 11,
+          "parent_id": 3,
+          "state": [
+            36,
+            6
+          ],
+          "action": "[36, 6]",
+          "value": 0.0012,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 3 from 39 to get 36.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[0] - numbers[1]   # 39 - 3 = 36\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[36, 6]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 3 from 39 to get 36.\nResult: [36, 6]",
+          "evaluation": {
+            "state": "[36, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 36
+            },
+            "llm_judgments": [
+              "[36, 6]  \n- attempt 1: 36 - 6 = 30 (too high, but within 20-28? 30 is above 28, so not within range).  \n- attempt 2: 36 / 6 = 6 (too low).  \n- attempt 3: 36 + 6 = 42 (too high).  \n- attempt 4: 6 - 36 = -30 (too low).  \n- attempt 5: 36 * 6 = 216 (far too high).  \n\nall results are 30, 6, 42, -30, or 216. none are between 20 and 28, and none are close to 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[36, 6]  \n- attempt 1: 36 - 6 = 30 (too high, but within 20-28? 30 is above 28, so not within range).  \n- attempt 2: 36 / 6 = 6 (too low).  \n- attempt 3: 36 + 6 = 42 (too high).  \n- attempt 4: 6 - 36 = -30 (too low).  \n- attempt 5: 36 * 6 = 216 (far too high).  \n\nall results are 30, 6, 42, -30, or 216. none are between 20 and 28, and none are close to 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "judgment": "impossible",
+            "extracted_operation": "36 - 6",
+            "extracted_result": 30.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 3,
+          "state": [
+            -36,
+            6
+          ],
+          "action": "[-36, 6]",
+          "value": 0.0012,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 39 from 3 to get -36.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[1] - numbers[0]   # 3 - 39 = -36\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-36, 6]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 39 from 3 to get -36.\nResult: [-36, 6]",
+          "evaluation": {
+            "state": "[-36, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 36
+            },
+            "llm_judgments": [
+              "[-36, 6]  \n- attempt 1: 6 - (-36) = 6 + 36 = 42 (too high).  \n- attempt 2: 6 + (-36) = -30 (too low).  \n- attempt 3: 6 * (-36) = -216 (far too low).  \n- attempt 4: (-36) / 6 = -6 (too low).  \n- attempt 5: 6 / (-36) = -0.1667 (too low).  \n\nall results are far from 24, none between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[-36, 6]  \n- attempt 1: 6 - (-36) = 6 + 36 = 42 (too high).  \n- attempt 2: 6 + (-36) = -30 (too low).  \n- attempt 3: 6 * (-36) = -216 (far too low).  \n- attempt 4: (-36) / 6 = -6 (too low).  \n- attempt 5: 6 / (-36) = -0.1667 (too low).  \n\nall results are far from 24, none between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "judgment": "impossible",
+            "extracted_operation": "6 + 36",
+            "extracted_result": 42.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 3,
+          "state": [
+            117,
+            6
+          ],
+          "action": "[117, 6]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 39 and 3 to get 117.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[0] * numbers[1]   # 39 * 3 = 117\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[117, 6]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nMultiply 39 and 3 to get 117.\nResult: [117, 6]",
+          "evaluation": {
+            "state": "[117, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 117
+            },
+            "llm_judgments": [
+              "[117, 6]  \n- attempt 1: 117 / 6 = 19.5 (too low, not in 20-28).  \n- attempt 2: 117 - 6 = 111 (far too high).  \n- attempt 3: 117 + 6 = 123 (far too high).  \n- attempt 4: 6 - 117 = -111 (far too low).  \n- attempt 5: 117 * 6 = 702 (far too high).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[117, 6]  \n- attempt 1: 117 / 6 = 19.5 (too low, not in 20-28).  \n- attempt 2: 117 - 6 = 111 (far too high).  \n- attempt 3: 117 + 6 = 123 (far too high).  \n- attempt 4: 6 - 117 = -111 (far too low).  \n- attempt 5: 117 * 6 = 702 (far too high).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "117 / 6",
+            "extracted_result": 19.5
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 3,
+          "state": [
+            0.07692307692307693,
+            6
+          ],
+          "action": "[0.07692307692307693, 6]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 3 by 39 to get ~0.0769.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[1] / numbers[0]   # 3 / 39 = 0.0769\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.07692307692307693, 6]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nDivide 3 by 39 to get ~0.0769.\nResult: [0.07692307692307693, 6]",
+          "evaluation": {
+            "state": "[0.07692307692307693, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "0.07692307692307693 is 1/13. so the numbers are essentially 1/13 and 6.\n\n- attempt 1: 6 divided by (1/13) = 6 * 13 = 78 (too high, far above 28).\n- attempt 2: (1/13) * 6 = 6/13 ≈ 0.4615 (too low).\n- attempt 3: 6 + (1/13) ≈ 6.0769 (too low).\n- attempt 4: 6 - (1/13) ≈ 5.9231 (too low).\n- attempt 5: 6 / (1/13) = 78 (already tried, too high). no combination gives a result between 20 and 28.\n\nall results are either near 0.46, 6.08, 5.92, or 78. none are between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "0.07692307692307693 is 1/13. so the numbers are essentially 1/13 and 6.\n\n- attempt 1: 6 divided by (1/13) = 6 * 13 = 78 (too high, far above 28).\n- attempt 2: (1/13) * 6 = 6/13 ≈ 0.4615 (too low).\n- attempt 3: 6 + (1/13) ≈ 6.0769 (too low).\n- attempt 4: 6 - (1/13) ≈ 5.9231 (too low).\n- attempt 5: 6 / (1/13) = 78 (already tried, too high). no combination gives a result between 20 and 28.\n\nall results are either near 0.46, 6.08, 5.92, or 78. none are between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "6 * 13",
+            "extracted_result": 78.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 3,
+          "state": [
+            33,
+            3
+          ],
+          "action": "[33, 3]",
+          "value": 0.0012,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 6 from 39 to get 33.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[0] - numbers[2]   # 39 - 6 = 33\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[33, 3]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 6 from 39 to get 33.\nResult: [33, 3]",
+          "evaluation": {
+            "state": "[33, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 33
+            },
+            "llm_judgments": [
+              "[33, 3]  \n- attempt 1: 33 - 3 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 33 / 3 = 11 (too low).  \n- attempt 3: 33 + 3 = 36 (too high).  \n- attempt 4: 33 * 3 = 99 (far too high).  \n- attempt 5: 33 - 9 = 24? but 9 is not available; only 33 and 3. no combination gives 24.  \n\nall results are 30, 11, 36, 99. none between 20 and 28.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[33, 3]  \n- attempt 1: 33 - 3 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 33 / 3 = 11 (too low).  \n- attempt 3: 33 + 3 = 36 (too high).  \n- attempt 4: 33 * 3 = 99 (far too high).  \n- attempt 5: 33 - 9 = 24? but 9 is not available; only 33 and 3. no combination gives 24.  \n\nall results are 30, 11, 36, 99. none between 20 and 28.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "judgment": "impossible",
+            "extracted_operation": "33 - 3",
+            "extracted_result": 30.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 3,
+          "state": [
+            -33,
+            3
+          ],
+          "action": "[-33, 3]",
+          "value": 0.0012,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 39 from 6 to get -33.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[2] - numbers[0]   # 6 - 39 = -33\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-33, 3]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 39 from 6 to get -33.\nResult: [-33, 3]",
+          "evaluation": {
+            "state": "[-33, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 33
+            },
+            "llm_judgments": [
+              "we have numbers -33 and 3, target 24.\n\n- attempt 1: 3 - (-33) = 3 + 33 = 36 (too high, 36 > 28).\n- attempt 2: -33 + 3 = -30 (too low, far below 20).\n- attempt 3: 3 * (-33) = -99 (too low).\n- attempt 4: (-33) / 3 = -11 (too low).\n- attempt 5: 3 / (-33) = -0.0909... (too low).\n\nall results are far outside 20-28 range.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers -33 and 3, target 24.\n\n- attempt 1: 3 - (-33) = 3 + 33 = 36 (too high, 36 > 28).\n- attempt 2: -33 + 3 = -30 (too low, far below 20).\n- attempt 3: 3 * (-33) = -99 (too low).\n- attempt 4: (-33) / 3 = -11 (too low).\n- attempt 5: 3 / (-33) = -0.0909... (too low).\n\nall results are far outside 20-28 range.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "judgment": "impossible",
+            "extracted_operation": "3 + 33",
+            "extracted_result": 36.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 3,
+          "state": [
+            234,
+            3
+          ],
+          "action": "[234, 3]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 39 and 6 to get 234.",
+            "code": "numbers = [39, 3, 6]\nres = numbers[0] * numbers[2]   # 39 * 6 = 234\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[234, 3]"
+          },
+          "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nMultiply 39 and 6 to get 234.\nResult: [234, 3]",
+          "evaluation": {
+            "state": "[234, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 234
+            },
+            "llm_judgments": [
+              "[234, 3]  \ntarget: 24  \n\n- attempt 1: 234 / 3 = 78 (too high, far above 28).  \n- attempt 2: 234 - 3 = 231 (far too high).  \n- attempt 3: 3 - 234 = -231 (far too low, negative).  \n- attempt 4: 234 + 3 = 237 (far too high).  \n- attempt 5: 3 * 234 = 702 (far too high).  \n\nall results are far outside 20–28 range.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[234, 3]  \ntarget: 24  \n\n- attempt 1: 234 / 3 = 78 (too high, far above 28).  \n- attempt 2: 234 - 3 = 231 (far too high).  \n- attempt 3: 3 - 234 = -231 (far too low, negative).  \n- attempt 4: 234 + 3 = 237 (far too high).  \n- attempt 5: 3 * 234 = 702 (far too high).  \n\nall results are far outside 20–28 range.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "234 / 3",
+            "extracted_result": 78.0
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        19,
+        3,
+        3
+      ],
+      "action": "[19, 3, 3]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 6 and 13 to get 19.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[2] + numbers[3]   # 6 + 13 = 19\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[19, 3, 3]"
+      },
+      "path_history": "Add 6 and 13 to get 19.\nResult: [19, 3, 3]",
+      "evaluation": {
+        "state": "[19, 3, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 19
+        },
+        "llm_judgments": [
+          "[19, 3, 3]  \ntarget: 24  \n\n- attempt 1: 19 + 3 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 19 + 3 = 22, then 22 - 3 = 19 (too low).  \n- attempt 3: 19 - 3 = 16, then 16 + 3 = 19 (too low).  \n- attempt 4: 19 * 3 = 57, then 57 / 3 = 19 (too low).  \n- attempt 5: 19 + 3 = 22, then 22 * 3 = 66 (far too high).  \n\nbest result is 25, which is between 20 and 28.  \n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[19, 3, 3]  \ntarget: 24  \n\n- attempt 1: 19 + 3 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 19 + 3 = 22, then 22 - 3 = 19 (too low).  \n- attempt 3: 19 - 3 = 16, then 16 + 3 = 19 (too low).  \n- attempt 4: 19 * 3 = 57, then 57 / 3 = 19 (too low).  \n- attempt 5: 19 + 3 = 22, then 22 * 3 = 66 (far too high).  \n\nbest result is 25, which is between 20 and 28.  \n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        10,
+        3,
+        6
+      ],
+      "action": "[10, 3, 6]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 3 from 13 to get 10.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[3] - numbers[0]   # 13 - 3 = 10\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[10, 3, 6]"
+      },
+      "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]",
+      "evaluation": {
+        "state": "[10, 3, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "[10, 3, 6]  \n- attempt 1: 10 + 6 = 16, then 16 + 3 = 19 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 6 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[10, 3, 6]  \n- attempt 1: 10 + 6 = 16, then 16 + 3 = 19 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 6 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 2,
+      "children": {
+        "9": {
+          "id": 9,
+          "parent_id": 5,
+          "state": [
+            18,
+            10
+          ],
+          "action": "[18, 10]",
+          "value": 0.6,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 3 and 6 to get 18.",
+            "code": "numbers = [10, 3, 6]\nres = numbers[1] * numbers[2]   # 3 * 6 = 18\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[18, 10]"
+          },
+          "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]\nMultiply 3 and 6 to get 18.\nResult: [18, 10]",
+          "evaluation": {
+            "state": "[18, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "[18, 10]  \n- attempt 1: 18 + 10 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 10 = 8 (too low).  \n- attempt 3: 18 * 10 = 180 (far too high).  \n- attempt 4: 18 / 10 = 1.8 (too low).  \n- attempt 5: 10 / 18 is about 0.556 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[18, 10]  \n- attempt 1: 18 + 10 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 10 = 8 (too low).  \n- attempt 3: 18 * 10 = 180 (far too high).  \n- attempt 4: 18 / 10 = 1.8 (too low).  \n- attempt 5: 10 / 18 is about 0.556 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": "18 + 10",
+            "extracted_result": 28.0
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 5,
+          "state": [
+            1.6666666666666667,
+            3
+          ],
+          "action": "[1.6666666666666667, 3]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 10 by 6 ≈ 1.6667.",
+            "code": "numbers = [10, 3, 6]\nres = numbers[0] / numbers[2]   # 10 / 6 ≈ 1.6667\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.6666666666666667, 3]"
+          },
+          "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]\nDivide 10 by 6 ≈ 1.6667.\nResult: [1.6666666666666667, 3]",
+          "evaluation": {
+            "state": "[1.6666666666666667, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 3
+            },
+            "llm_judgments": [
+              "[1.6666666666666667, 3]  \n- attempt 1: 1.6666666666666667 * 3 = 5 (too low).  \n- attempt 2: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15 (still too low).  \n- attempt 3: 3 / 1.6666666666666667 = 1.8, then 1.8 * 3 = 5.4 (too low).  \n- attempt 4: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15, then 15 + 3 = 18 (still low).  \n- attempt 5: 3 * 3 = 9, then 9 * 1.6666666666666667 = 15 (still low).  \n\nall results are far below 20.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[1.6666666666666667, 3]  \n- attempt 1: 1.6666666666666667 * 3 = 5 (too low).  \n- attempt 2: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15 (still too low).  \n- attempt 3: 3 / 1.6666666666666667 = 1.8, then 1.8 * 3 = 5.4 (too low).  \n- attempt 4: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15, then 15 + 3 = 18 (still low).  \n- attempt 5: 3 * 3 = 9, then 9 * 1.6666666666666667 = 15 (still low).  \n\nall results are far below 20.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": "1.6666666666666667 * 3",
+            "extracted_result": 5.0
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        7,
+        3,
+        3
+      ],
+      "action": "[7, 3, 3]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 6 from 13 to get 7.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[3] - numbers[2]   # 13 - 6 = 7\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7, 3, 3]"
+      },
+      "path_history": "Subtract 6 from 13 to get 7.\nResult: [7, 3, 3]",
+      "evaluation": {
+        "state": "[7, 3, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 7
+        },
+        "llm_judgments": [
+          "[7, 3, 3]  \n- attempt 1: 7 * 3 = 21, then 21 + 3 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[7, 3, 3]  \n- attempt 1: 7 * 3 = 21, then 21 + 3 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        2.0,
+        3,
+        13
+      ],
+      "action": "[2.0, 3, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 6 by 3 to get 2.",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[2] / numbers[0]   # 6 / 3 = 2\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.0, 3, 13]"
+      },
+      "path_history": "Divide 6 by 3 to get 2.\nResult: [2.0, 3, 13]",
+      "evaluation": {
+        "state": "[2.0, 3, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "[2.0, 3, 13]  \n- attempt 1: 13 + 3 = 16, then 16 + 2.0 = 18 (too low).  \n- attempt 2: 13 * 2.0 = 26, then 26 - 3 = 23 (close, within 20-28).  \n- attempt 3: 13 * 2.0 = 26, then 26 + 3 = 29 (too high).  \n- attempt 4: 13 + 2.0 = 15, then 15 * 3 = 45 (far too high).  \n- attempt 5: 13 - 2.0 = 11, then 11 * 3 = 33 (too high).  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2.0, 3, 13]  \n- attempt 1: 13 + 3 = 16, then 16 + 2.0 = 18 (too low).  \n- attempt 2: 13 * 2.0 = 26, then 26 - 3 = 23 (close, within 20-28).  \n- attempt 3: 13 * 2.0 = 26, then 26 + 3 = 29 (too high).  \n- attempt 4: 13 + 2.0 = 15, then 15 * 3 = 45 (far too high).  \n- attempt 5: 13 - 2.0 = 11, then 11 * 3 = 33 (too high).  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        4.333333333333333,
+        3,
+        6
+      ],
+      "action": "[4.333333333333333, 3, 6]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 13 by 3 to get about 4.333 (fraction).",
+        "code": "numbers = [3, 3, 6, 13]\nres = numbers[3] / numbers[0]   # 13 / 3 = 4.333\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4.333333333333333, 3, 6]"
+      },
+      "path_history": "Divide 13 by 3 to get about 4.333 (fraction).\nResult: [4.333333333333333, 3, 6]",
+      "evaluation": {
+        "state": "[4.333333333333333, 3, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "[4.333333333333333, 3, 6]  \n- attempt 1: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (too low, but close to 24).  \n- attempt 2: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (same as above, still low).  \n- attempt 3: 4.333333333333333 * 3 = 13, then 13 + 6 = 19 (too low).  \n- attempt 4: 6 * 3 = 18, then 18 + 4.333333333333333 = 22.333 (too low).  \n- attempt 5: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (best result, 23 is between 20 and 28).  \n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[4.333333333333333, 3, 6]  \n- attempt 1: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (too low, but close to 24).  \n- attempt 2: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (same as above, still low).  \n- attempt 3: 4.333333333333333 * 3 = 13, then 13 + 6 = 19 (too low).  \n- attempt 4: 6 * 3 = 18, then 18 + 4.333333333333333 = 22.333 (too low).  \n- attempt 5: 4.333333333333333 * 6 = 26, then 26 - 3 = 23 (best result, 23 is between 20 and 28).  \n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 5,
+      "state": [
+        18,
+        10
+      ],
+      "action": "[18, 10]",
+      "value": 0.6,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 3 and 6 to get 18.",
+        "code": "numbers = [10, 3, 6]\nres = numbers[1] * numbers[2]   # 3 * 6 = 18\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[18, 10]"
+      },
+      "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]\nMultiply 3 and 6 to get 18.\nResult: [18, 10]",
+      "evaluation": {
+        "state": "[18, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "[18, 10]  \n- attempt 1: 18 + 10 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 10 = 8 (too low).  \n- attempt 3: 18 * 10 = 180 (far too high).  \n- attempt 4: 18 / 10 = 1.8 (too low).  \n- attempt 5: 10 / 18 is about 0.556 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[18, 10]  \n- attempt 1: 18 + 10 = 28 (too high, but within 20-28).  \n- attempt 2: 18 - 10 = 8 (too low).  \n- attempt 3: 18 * 10 = 180 (far too high).  \n- attempt 4: 18 / 10 = 1.8 (too low).  \n- attempt 5: 10 / 18 is about 0.556 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": "18 + 10",
+        "extracted_result": 28.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 5,
+      "state": [
+        1.6666666666666667,
+        3
+      ],
+      "action": "[1.6666666666666667, 3]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 10 by 6 ≈ 1.6667.",
+        "code": "numbers = [10, 3, 6]\nres = numbers[0] / numbers[2]   # 10 / 6 ≈ 1.6667\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.6666666666666667, 3]"
+      },
+      "path_history": "Subtract 3 from 13 to get 10.\nResult: [10, 3, 6]\nDivide 10 by 6 ≈ 1.6667.\nResult: [1.6666666666666667, 3]",
+      "evaluation": {
+        "state": "[1.6666666666666667, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 3
+        },
+        "llm_judgments": [
+          "[1.6666666666666667, 3]  \n- attempt 1: 1.6666666666666667 * 3 = 5 (too low).  \n- attempt 2: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15 (still too low).  \n- attempt 3: 3 / 1.6666666666666667 = 1.8, then 1.8 * 3 = 5.4 (too low).  \n- attempt 4: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15, then 15 + 3 = 18 (still low).  \n- attempt 5: 3 * 3 = 9, then 9 * 1.6666666666666667 = 15 (still low).  \n\nall results are far below 20.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[1.6666666666666667, 3]  \n- attempt 1: 1.6666666666666667 * 3 = 5 (too low).  \n- attempt 2: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15 (still too low).  \n- attempt 3: 3 / 1.6666666666666667 = 1.8, then 1.8 * 3 = 5.4 (too low).  \n- attempt 4: 1.6666666666666667 * 3 = 5, then 5 * 3 = 15, then 15 + 3 = 18 (still low).  \n- attempt 5: 3 * 3 = 9, then 9 * 1.6666666666666667 = 15 (still low).  \n\nall results are far below 20.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "1.6666666666666667 * 3",
+        "extracted_result": 5.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 3,
+      "state": [
+        36,
+        6
+      ],
+      "action": "[36, 6]",
+      "value": 0.0012,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 3 from 39 to get 36.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[0] - numbers[1]   # 39 - 3 = 36\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[36, 6]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 3 from 39 to get 36.\nResult: [36, 6]",
+      "evaluation": {
+        "state": "[36, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 36
+        },
+        "llm_judgments": [
+          "[36, 6]  \n- attempt 1: 36 - 6 = 30 (too high, but within 20-28? 30 is above 28, so not within range).  \n- attempt 2: 36 / 6 = 6 (too low).  \n- attempt 3: 36 + 6 = 42 (too high).  \n- attempt 4: 6 - 36 = -30 (too low).  \n- attempt 5: 36 * 6 = 216 (far too high).  \n\nall results are 30, 6, 42, -30, or 216. none are between 20 and 28, and none are close to 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[36, 6]  \n- attempt 1: 36 - 6 = 30 (too high, but within 20-28? 30 is above 28, so not within range).  \n- attempt 2: 36 / 6 = 6 (too low).  \n- attempt 3: 36 + 6 = 42 (too high).  \n- attempt 4: 6 - 36 = -30 (too low).  \n- attempt 5: 36 * 6 = 216 (far too high).  \n\nall results are 30, 6, 42, -30, or 216. none are between 20 and 28, and none are close to 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "judgment": "impossible",
+        "extracted_operation": "36 - 6",
+        "extracted_result": 30.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 3,
+      "state": [
+        -36,
+        6
+      ],
+      "action": "[-36, 6]",
+      "value": 0.0012,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 39 from 3 to get -36.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[1] - numbers[0]   # 3 - 39 = -36\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-36, 6]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 39 from 3 to get -36.\nResult: [-36, 6]",
+      "evaluation": {
+        "state": "[-36, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 36
+        },
+        "llm_judgments": [
+          "[-36, 6]  \n- attempt 1: 6 - (-36) = 6 + 36 = 42 (too high).  \n- attempt 2: 6 + (-36) = -30 (too low).  \n- attempt 3: 6 * (-36) = -216 (far too low).  \n- attempt 4: (-36) / 6 = -6 (too low).  \n- attempt 5: 6 / (-36) = -0.1667 (too low).  \n\nall results are far from 24, none between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[-36, 6]  \n- attempt 1: 6 - (-36) = 6 + 36 = 42 (too high).  \n- attempt 2: 6 + (-36) = -30 (too low).  \n- attempt 3: 6 * (-36) = -216 (far too low).  \n- attempt 4: (-36) / 6 = -6 (too low).  \n- attempt 5: 6 / (-36) = -0.1667 (too low).  \n\nall results are far from 24, none between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "judgment": "impossible",
+        "extracted_operation": "6 + 36",
+        "extracted_result": 42.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 3,
+      "state": [
+        117,
+        6
+      ],
+      "action": "[117, 6]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 39 and 3 to get 117.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[0] * numbers[1]   # 39 * 3 = 117\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[117, 6]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nMultiply 39 and 3 to get 117.\nResult: [117, 6]",
+      "evaluation": {
+        "state": "[117, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 117
+        },
+        "llm_judgments": [
+          "[117, 6]  \n- attempt 1: 117 / 6 = 19.5 (too low, not in 20-28).  \n- attempt 2: 117 - 6 = 111 (far too high).  \n- attempt 3: 117 + 6 = 123 (far too high).  \n- attempt 4: 6 - 117 = -111 (far too low).  \n- attempt 5: 117 * 6 = 702 (far too high).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[117, 6]  \n- attempt 1: 117 / 6 = 19.5 (too low, not in 20-28).  \n- attempt 2: 117 - 6 = 111 (far too high).  \n- attempt 3: 117 + 6 = 123 (far too high).  \n- attempt 4: 6 - 117 = -111 (far too low).  \n- attempt 5: 117 * 6 = 702 (far too high).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "117 / 6",
+        "extracted_result": 19.5
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 3,
+      "state": [
+        0.07692307692307693,
+        6
+      ],
+      "action": "[0.07692307692307693, 6]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 3 by 39 to get ~0.0769.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[1] / numbers[0]   # 3 / 39 = 0.0769\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.07692307692307693, 6]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nDivide 3 by 39 to get ~0.0769.\nResult: [0.07692307692307693, 6]",
+      "evaluation": {
+        "state": "[0.07692307692307693, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "0.07692307692307693 is 1/13. so the numbers are essentially 1/13 and 6.\n\n- attempt 1: 6 divided by (1/13) = 6 * 13 = 78 (too high, far above 28).\n- attempt 2: (1/13) * 6 = 6/13 ≈ 0.4615 (too low).\n- attempt 3: 6 + (1/13) ≈ 6.0769 (too low).\n- attempt 4: 6 - (1/13) ≈ 5.9231 (too low).\n- attempt 5: 6 / (1/13) = 78 (already tried, too high). no combination gives a result between 20 and 28.\n\nall results are either near 0.46, 6.08, 5.92, or 78. none are between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "0.07692307692307693 is 1/13. so the numbers are essentially 1/13 and 6.\n\n- attempt 1: 6 divided by (1/13) = 6 * 13 = 78 (too high, far above 28).\n- attempt 2: (1/13) * 6 = 6/13 ≈ 0.4615 (too low).\n- attempt 3: 6 + (1/13) ≈ 6.0769 (too low).\n- attempt 4: 6 - (1/13) ≈ 5.9231 (too low).\n- attempt 5: 6 / (1/13) = 78 (already tried, too high). no combination gives a result between 20 and 28.\n\nall results are either near 0.46, 6.08, 5.92, or 78. none are between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "6 * 13",
+        "extracted_result": 78.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 3,
+      "state": [
+        33,
+        3
+      ],
+      "action": "[33, 3]",
+      "value": 0.0012,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 6 from 39 to get 33.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[0] - numbers[2]   # 39 - 6 = 33\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[33, 3]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 6 from 39 to get 33.\nResult: [33, 3]",
+      "evaluation": {
+        "state": "[33, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 33
+        },
+        "llm_judgments": [
+          "[33, 3]  \n- attempt 1: 33 - 3 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 33 / 3 = 11 (too low).  \n- attempt 3: 33 + 3 = 36 (too high).  \n- attempt 4: 33 * 3 = 99 (far too high).  \n- attempt 5: 33 - 9 = 24? but 9 is not available; only 33 and 3. no combination gives 24.  \n\nall results are 30, 11, 36, 99. none between 20 and 28.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[33, 3]  \n- attempt 1: 33 - 3 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 33 / 3 = 11 (too low).  \n- attempt 3: 33 + 3 = 36 (too high).  \n- attempt 4: 33 * 3 = 99 (far too high).  \n- attempt 5: 33 - 9 = 24? but 9 is not available; only 33 and 3. no combination gives 24.  \n\nall results are 30, 11, 36, 99. none between 20 and 28.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "judgment": "impossible",
+        "extracted_operation": "33 - 3",
+        "extracted_result": 30.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 3,
+      "state": [
+        -33,
+        3
+      ],
+      "action": "[-33, 3]",
+      "value": 0.0012,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 39 from 6 to get -33.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[2] - numbers[0]   # 6 - 39 = -33\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-33, 3]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nSubtract 39 from 6 to get -33.\nResult: [-33, 3]",
+      "evaluation": {
+        "state": "[-33, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 33
+        },
+        "llm_judgments": [
+          "we have numbers -33 and 3, target 24.\n\n- attempt 1: 3 - (-33) = 3 + 33 = 36 (too high, 36 > 28).\n- attempt 2: -33 + 3 = -30 (too low, far below 20).\n- attempt 3: 3 * (-33) = -99 (too low).\n- attempt 4: (-33) / 3 = -11 (too low).\n- attempt 5: 3 / (-33) = -0.0909... (too low).\n\nall results are far outside 20-28 range.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers -33 and 3, target 24.\n\n- attempt 1: 3 - (-33) = 3 + 33 = 36 (too high, 36 > 28).\n- attempt 2: -33 + 3 = -30 (too low, far below 20).\n- attempt 3: 3 * (-33) = -99 (too low).\n- attempt 4: (-33) / 3 = -11 (too low).\n- attempt 5: 3 / (-33) = -0.0909... (too low).\n\nall results are far outside 20-28 range.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "judgment": "impossible",
+        "extracted_operation": "3 + 33",
+        "extracted_result": 36.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 3,
+      "state": [
+        234,
+        3
+      ],
+      "action": "[234, 3]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 39 and 6 to get 234.",
+        "code": "numbers = [39, 3, 6]\nres = numbers[0] * numbers[2]   # 39 * 6 = 234\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[234, 3]"
+      },
+      "path_history": "Multiply 3 and 13 to get 39.\nResult: [39, 3, 6]\nMultiply 39 and 6 to get 234.\nResult: [234, 3]",
+      "evaluation": {
+        "state": "[234, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 234
+        },
+        "llm_judgments": [
+          "[234, 3]  \ntarget: 24  \n\n- attempt 1: 234 / 3 = 78 (too high, far above 28).  \n- attempt 2: 234 - 3 = 231 (far too high).  \n- attempt 3: 3 - 234 = -231 (far too low, negative).  \n- attempt 4: 234 + 3 = 237 (far too high).  \n- attempt 5: 3 * 234 = 702 (far too high).  \n\nall results are far outside 20–28 range.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[234, 3]  \ntarget: 24  \n\n- attempt 1: 234 / 3 = 78 (too high, far above 28).  \n- attempt 2: 234 - 3 = 231 (far too high).  \n- attempt 3: 3 - 234 = -231 (far too low, negative).  \n- attempt 4: 234 + 3 = 237 (far too high).  \n- attempt 5: 3 * 234 = 702 (far too high).  \n\nall results are far outside 20–28 range.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "234 / 3",
+        "extracted_result": 78.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 1,
+      "state": [
+        15,
+        13
+      ],
+      "action": "[15, 13]",
+      "value": 0.6,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 9 and 6 to get 15, then combine with 13.",
+        "code": "numbers = [9, 6, 13]\nres = numbers[0] + numbers[1]   # 9 + 6 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15, 13]"
+      },
+      "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nAdd 9 and 6 to get 15, then combine with 13.\nResult: [15, 13]",
+      "evaluation": {
+        "state": "[15, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 15
+        },
+        "llm_judgments": [
+          "[15, 13]  \n- attempt 1: 15 + 13 = 28 (too high, but within 20-28).  \n- attempt 2: 15 - 13 = 2 (too low).  \n- attempt 3: 15 * 13 = 195 (far too high).  \n- attempt 4: 15 / 13 ≈ 1.15 (too low).  \n- attempt 5: 13 / 15 ≈ 0.87 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[15, 13]  \n- attempt 1: 15 + 13 = 28 (too high, but within 20-28).  \n- attempt 2: 15 - 13 = 2 (too low).  \n- attempt 3: 15 * 13 = 195 (far too high).  \n- attempt 4: 15 / 13 ≈ 1.15 (too low).  \n- attempt 5: 13 / 15 ≈ 0.87 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": "15 + 13",
+        "extracted_result": 28.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 1,
+      "state": [
+        54,
+        13
+      ],
+      "action": "[54, 13]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 9 and 6 to get 54, then combine with 13.",
+        "code": "numbers = [9, 6, 13]\nres = numbers[0] * numbers[1]   # 9 * 6 = 54\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[54, 13]"
+      },
+      "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nMultiply 9 and 6 to get 54, then combine with 13.\nResult: [54, 13]",
+      "evaluation": {
+        "state": "[54, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 54
+        },
+        "llm_judgments": [
+          "[54, 13]  \n- attempt 1: 54 - 13 = 41 (too high).  \n- attempt 2: 54 / 13 ≈ 4.154 (too low).  \n- attempt 3: 13 - 54 = -41 (too low).  \n- attempt 4: 54 + 13 = 67 (too high).  \n- attempt 5: 13 * 2 is not possible with only these numbers; no combination gives a result between 20 and 28.  \n\nall results are far from 24 and outside 20-28 range.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[54, 13]  \n- attempt 1: 54 - 13 = 41 (too high).  \n- attempt 2: 54 / 13 ≈ 4.154 (too low).  \n- attempt 3: 13 - 54 = -41 (too low).  \n- attempt 4: 54 + 13 = 67 (too high).  \n- attempt 5: 13 * 2 is not possible with only these numbers; no combination gives a result between 20 and 28.  \n\nall results are far from 24 and outside 20-28 range.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "54 - 13",
+        "extracted_result": 41.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 20,
+      "parent_id": 1,
+      "state": [
+        78,
+        9
+      ],
+      "action": "[78, 9]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 6 and 13 to get 78, then combine with 9.",
+        "code": "numbers = [9, 6, 13]\nres = numbers[1] * numbers[2]   # 6 * 13 = 78\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[78, 9]"
+      },
+      "path_history": "Multiply 3 and 3 to get 9.\nResult: [9, 6, 13]\nMultiply 6 and 13 to get 78, then combine with 9.\nResult: [78, 9]",
+      "evaluation": {
+        "state": "[78, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 78
+        },
+        "llm_judgments": [
+          "78 and 9 are both large numbers, so getting to 24 is tricky.\n\n- attempt 1: 78 / 9 = 8.666... (too low, not close to 24).\n- attempt 2: 78 - 9 = 69 (too high, far above 28).\n- attempt 3: 78 + 9 = 87 (too high).\n- attempt 4: 78 * 9 = 702 (far too high).\n- attempt 5: 9 - 78 = -69 (too low, negative).\n\nall results are far outside 20-28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "78 and 9 are both large numbers, so getting to 24 is tricky.\n\n- attempt 1: 78 / 9 = 8.666... (too low, not close to 24).\n- attempt 2: 78 - 9 = 69 (too high, far above 28).\n- attempt 3: 78 + 9 = 87 (too high).\n- attempt 4: 78 * 9 = 702 (far too high).\n- attempt 5: 9 - 78 = -69 (too low, negative).\n\nall results are far outside 20-28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "78 / 9",
+        "extracted_result": 8.666
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 21,
+      "parent_id": 2,
+      "state": [
+        21,
+        13
+      ],
+      "action": "[21, 13]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Add 18 and 3 to get 21.  \n**",
+        "code": "numbers = [18, 3, 13]\nres = numbers[0] + numbers[1]   # 18 + 3 = 21\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[21, 13]"
+      },
+      "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 18 and 3 to get 21.  \n**\nResult: [21, 13]",
+      "evaluation": {
+        "state": "[21, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 21
+        },
+        "llm_judgments": [
+          "[21, 13]  \n- attempt 1: 21 + 13 = 34 (too high, far above 28).  \n- attempt 2: 21 - 13 = 8 (too low, below 20).  \n- attempt 3: 21 * 13 = 273 (far too high).  \n- attempt 4: 21 / 13 is about 1.615 (too low).  \n- attempt 5: 13 / 21 is about 0.619 (too low).  \n\nall results are either far below 20 or far above 28. no result between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[21, 13]  \n- attempt 1: 21 + 13 = 34 (too high, far above 28).  \n- attempt 2: 21 - 13 = 8 (too low, below 20).  \n- attempt 3: 21 * 13 = 273 (far too high).  \n- attempt 4: 21 / 13 is about 1.615 (too low).  \n- attempt 5: 13 / 21 is about 0.619 (too low).  \n\nall results are either far below 20 or far above 28. no result between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "21 + 13",
+        "extracted_result": 34.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 22,
+      "parent_id": 2,
+      "state": [
+        31,
+        3
+      ],
+      "action": "[31, 3]",
+      "value": 0.72,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Add 18 and 13 to get 31.  \n**",
+        "code": "numbers = [18, 3, 13]\nres = numbers[0] + numbers[2]   # 18 + 13 = 31\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[31, 3]"
+      },
+      "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 18 and 13 to get 31.  \n**\nResult: [31, 3]",
+      "evaluation": {
+        "state": "[31, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 31
+        },
+        "llm_judgments": [
+          "[31, 3]  \n- attempt 1: 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 31 / 3 = about 10.33 (too low).  \n- attempt 3: 3 - 31 = -28 (too low).  \n- attempt 4: 31 + 3 = 34 (too high).  \n- attempt 5: 31 * 3 = 93 (far too high).  \n\nbest result is 28, which is between 20 and 28.  \n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.720"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[31, 3]  \n- attempt 1: 31 - 3 = 28 (too high, but within 20-28).  \n- attempt 2: 31 / 3 = about 10.33 (too low).  \n- attempt 3: 3 - 31 = -28 (too low).  \n- attempt 4: 31 + 3 = 34 (too high).  \n- attempt 5: 31 * 3 = 93 (far too high).  \n\nbest result is 28, which is between 20 and 28.  \n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.72,
+        "judgment": "likely",
+        "extracted_operation": "31 - 3",
+        "extracted_result": 28.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 23,
+      "parent_id": 2,
+      "state": [
+        16,
+        18
+      ],
+      "action": "[16, 18]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Add 3 and 13 to get 16.  \n**",
+        "code": "numbers = [18, 3, 13]\nres = numbers[1] + numbers[2]   # 3 + 13 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 18]"
+      },
+      "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Add 3 and 13 to get 16.  \n**\nResult: [16, 18]",
+      "evaluation": {
+        "state": "[16, 18]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "[16, 18]  \n- attempt 1: 18 + 16 = 34 (too high).  \n- attempt 2: 18 - 16 = 2 (too low).  \n- attempt 3: 18 * 16 = 288 (far too high).  \n- attempt 4: 18 / 16 = 1.125 (too low).  \n- attempt 5: 16 / 18 = 0.888... (too low).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[16, 18]  \n- attempt 1: 18 + 16 = 34 (too high).  \n- attempt 2: 18 - 16 = 2 (too low).  \n- attempt 3: 18 * 16 = 288 (far too high).  \n- attempt 4: 18 / 16 = 1.125 (too low).  \n- attempt 5: 16 / 18 = 0.888... (too low).  \n\nall results are far from 24, and none are between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": "18 + 16",
+        "extracted_result": 34.0
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 24,
+      "parent_id": 2,
+      "state": [
+        -15,
+        13
+      ],
+      "action": "[-15, 13]",
+      "value": 0.6,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Subtract 18 from 3 (negative) to get -15.  \n**",
+        "code": "numbers = [18, 3, 13]\nres = numbers[1] - numbers[0]   # 3 - 18 = -15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-15, 13]"
+      },
+      "path_history": "Multiply 3 and 6 to get 18.\nResult: [18, 3, 13]\n** Subtract 18 from 3 (negative) to get -15.  \n**\nResult: [-15, 13]",
+      "evaluation": {
+        "state": "[-15, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 15
+        },
+        "llm_judgments": [
+          "we have numbers -15 and 13, target 24.\n\n- attempt 1: 13 - (-15) = 13 + 15 = 28 (too high, but within 20-28 range).\n- attempt 2: 13 + (-15) = -2 (too low).\n- attempt 3: 13 * (-15) = -195 (far too low).\n- attempt 4: 13 / (-15) = about -0.867 (far too low).\n- attempt 5: (-15) / 13 = about -1.154 (far too low).\n\nthe closest result to 24 is 28 from attempt 1, which is within 20-28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers -15 and 13, target 24.\n\n- attempt 1: 13 - (-15) = 13 + 15 = 28 (too high, but within 20-28 range).\n- attempt 2: 13 + (-15) = -2 (too low).\n- attempt 3: 13 * (-15) = -195 (far too low).\n- attempt 4: 13 / (-15) = about -0.867 (far too low).\n- attempt 5: (-15) / 13 = about -1.154 (far too low).\n\nthe closest result to 24 is 28 from attempt 1, which is within 20-28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": "13 + 15",
+        "extracted_result": 28.0
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 24,
+      "re_evaluations": 0,
+      "unique_states": 24,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
