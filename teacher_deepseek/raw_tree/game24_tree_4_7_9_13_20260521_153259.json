@@ -1,0 +1,1355 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-21T15:32:59.568245",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 12,
+      "api_calls": 15,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 41,
+      "code_errors": 0,
+      "daily_requests": 15,
+      "session_start": "2026-05-21T15:32:06.743048",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 30,
+      "total_input_tokens": 7586,
+      "total_output_tokens": 7391,
+      "deadend_memory": {
+        "patterns_stored": 1,
+        "two_num_cache_size": 62,
+        "total_checked": 40,
+        "total_skipped": 30,
+        "skip_rate": "75.0%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 1,
+      "total_checked": 40,
+      "total_skipped": 30,
+      "api_calls_saved": 30
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        4,
+        7,
+        9,
+        13
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 8,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            17,
+            7,
+            9
+          ],
+          "action": "[17, 7, 9]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 4 and 13 to get 17, keep 7 and 9.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[0] + numbers[3]   # 4 + 13 = 17\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[17, 7, 9]"
+          },
+          "path_history": "Add 4 and 13 to get 17, keep 7 and 9.\nResult: [17, 7, 9]",
+          "evaluation": {
+            "state": "[17, 7, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 17
+            },
+            "llm_judgments": [
+              "[17, 7, 9]  \n- attempt 1: 17 + 7 = 24, then 24 + 9 = 33 (too high).  \n- attempt 2: 17 + 7 = 24, then 24 - 9 = 15 (too low).  \n- attempt 3: 17 - 7 = 10, then 10 + 9 = 19 (too low).  \n- attempt 4: 17 - 9 = 8, then 8 * 7 = 56 (too high).  \n- attempt 5: 17 + 9 = 26, then 26 - 7 = 19 (still low).  \n\nall results: 33, 15, 19, 56, 19. none between 20-28.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[17, 7, 9]  \n- attempt 1: 17 + 7 = 24, then 24 + 9 = 33 (too high).  \n- attempt 2: 17 + 7 = 24, then 24 - 9 = 15 (too low).  \n- attempt 3: 17 - 7 = 10, then 10 + 9 = 19 (too low).  \n- attempt 4: 17 - 9 = 8, then 8 * 7 = 56 (too high).  \n- attempt 5: 17 + 9 = 26, then 26 - 7 = 19 (still low).  \n\nall results: 33, 15, 19, 56, 19. none between 20-28.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            91,
+            4,
+            9
+          ],
+          "action": "[91, 4, 9]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 7 and 13 to get 91, keep 4 and 9.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[1] * numbers[3]   # 7 * 13 = 91\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[91, 4, 9]"
+          },
+          "path_history": "Multiply 7 and 13 to get 91, keep 4 and 9.\nResult: [91, 4, 9]",
+          "evaluation": {
+            "state": "[91, 4, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 91
+            },
+            "llm_judgments": [
+              "[91, 4, 9]  \n- attempt 1: 91 / 4 = 22.75, then 22.75 + 9 = 31.75 (too high).  \n- attempt 2: 91 / 9 = 10.111..., then 10.111... + 4 = 14.111... (too low).  \n- attempt 3: 91 - 9 = 82, then 82 / 4 = 20.5 (within 20-28, close to 24 but low).  \n- attempt 4: 91 - 4 = 87, then 87 / 9 = 9.666... (too low).  \n- attempt 5: 9 * 4 = 36, then 91 - 36 = 55 (too high).  \n\nbest result is 20.5, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[91, 4, 9]  \n- attempt 1: 91 / 4 = 22.75, then 22.75 + 9 = 31.75 (too high).  \n- attempt 2: 91 / 9 = 10.111..., then 10.111... + 4 = 14.111... (too low).  \n- attempt 3: 91 - 9 = 82, then 82 / 4 = 20.5 (within 20-28, close to 24 but low).  \n- attempt 4: 91 - 4 = 87, then 87 / 9 = 9.666... (too low).  \n- attempt 5: 9 * 4 = 36, then 91 - 36 = 55 (too high).  \n\nbest result is 20.5, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            9,
+            7,
+            9
+          ],
+          "action": "[9, 7, 9]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 4 from 13 to get 9, keep 7 and 9.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[3] - numbers[0]   # 13 - 4 = 9\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[9, 7, 9]"
+          },
+          "path_history": "Subtract 4 from 13 to get 9, keep 7 and 9.\nResult: [9, 7, 9]",
+          "evaluation": {
+            "state": "[9, 7, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[9, 7, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 7 = 63, then 63 - 9 = 54 (far too high).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (again too high, close).  \n- attempt 5: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[9, 7, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 7 = 63, then 63 - 9 = 54 (far too high).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (again too high, close).  \n- attempt 5: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            4,
+            4,
+            7
+          ],
+          "action": "[4, 4, 7]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 9 from 13 to get 4, keep 4 and 7.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[3] - numbers[2]   # 13 - 9 = 4\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4, 4, 7]"
+          },
+          "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]",
+          "evaluation": {
+            "state": "[4, 4, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 7
+            },
+            "llm_judgments": [
+              "[4, 4, 7]  \n- attempt 1: 7 * 4 = 28, then 28 - 4 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[4, 4, 7]  \n- attempt 1: 7 * 4 = 28, then 28 - 4 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "9": {
+              "id": 9,
+              "parent_id": 4,
+              "state": [
+                28,
+                4
+              ],
+              "action": "[28, 4]",
+              "value": 1.2,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 7 and 4 to get 28, keep the other 4.",
+                "code": "numbers = [4, 4, 7]\nres = numbers[2] * numbers[0]   # 7 * 4 = 28\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[28, 4]"
+              },
+              "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]",
+              "evaluation": {
+                "state": "[28, 4]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 28
+                },
+                "llm_judgments": [
+                  "[28, 4]  \n- attempt 1: 28 - 4 = 24 (exact!)  \n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Judgment votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Boosted score: 1.200",
+                  "✅ VERIFIER: '28 - 4=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[28, 4]  \n- attempt 1: 28 - 4 = 24 (exact!)  \n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.2,
+                "judgment": "sure",
+                "extracted_operation": "28 - 4",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "10": {
+                  "id": 10,
+                  "parent_id": 9,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "28 - 4",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [28, 4], 28 - 4 = 24",
+                    "code": "numbers = [28, 4]\na, b = 28, 4\nresult = 28 - 4\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nOperation: 28 - 4 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "11": {
+                  "id": 11,
+                  "parent_id": 9,
+                  "state": [
+                    24
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [28, 4], LLM chose: a - b",
+                    "code": "numbers = [28, 4]\na, b = 28, 4\nresult = a - b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nFor 2-number state [28, 4], LLM chose: a - b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            28,
+            9,
+            13
+          ],
+          "action": "[28, 9, 13]",
+          "value": 1.2,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 4 and 7 to get 28, keep 9 and 13.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[0] * numbers[1]   # 4 * 7 = 28\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[28, 9, 13]"
+          },
+          "path_history": "Multiply 4 and 7 to get 28, keep 9 and 13.\nResult: [28, 9, 13]",
+          "evaluation": {
+            "state": "[28, 9, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 28
+            },
+            "llm_judgments": [
+              "28, 9, 13:\n\n- attempt 1: 28 - 13 = 15, then 15 + 9 = 24 (exact!).  \nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.200"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "28, 9, 13:\n\n- attempt 1: 28 - 13 = 15, then 15 + 9 = 24 (exact!).  \nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.2,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            3.25,
+            7,
+            9
+          ],
+          "action": "[3.25, 7, 9]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 13 by 4 (≈3.25), keep 7 and 9.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[3] / numbers[0]   # 13 / 4 = 3.25\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3.25, 7, 9]"
+          },
+          "path_history": "Divide 13 by 4 (≈3.25), keep 7 and 9.\nResult: [3.25, 7, 9]",
+          "evaluation": {
+            "state": "[3.25, 7, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[3.25, 7, 9]  \n- attempt 1: 9 * 3.25 = 29.25, then 29.25 - 7 = 22.25 (too low, but within 20-28).  \n- attempt 2: 9 * 7 = 63, then 63 / 3.25 = 19.3846 (too low, below 20).  \n- attempt 3: 7 * 3.25 = 22.75, then 22.75 + 9 = 31.75 (too high, above 28).  \n- attempt 4: 9 + 7 = 16, then 16 * 3.25 = 52 (far too high).  \n- attempt 5: 9 + 3.25 = 12.25, then 12.25 * 7 = 85.75 (far too high).  \n\nbest result is 22.25 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[3.25, 7, 9]  \n- attempt 1: 9 * 3.25 = 29.25, then 29.25 - 7 = 22.25 (too low, but within 20-28).  \n- attempt 2: 9 * 7 = 63, then 63 / 3.25 = 19.3846 (too low, below 20).  \n- attempt 3: 7 * 3.25 = 22.75, then 22.75 + 9 = 31.75 (too high, above 28).  \n- attempt 4: 9 + 7 = 16, then 16 * 3.25 = 52 (far too high).  \n- attempt 5: 9 + 3.25 = 12.25, then 12.25 * 7 = 85.75 (far too high).  \n\nbest result is 22.25 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            16,
+            4,
+            13
+          ],
+          "action": "[16, 4, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 7 and 9 to get 16, keep 4 and 13.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[1] + numbers[2]   # 7 + 9 = 16\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 4, 13]"
+          },
+          "path_history": "Add 7 and 9 to get 16, keep 4 and 13.\nResult: [16, 4, 13]",
+          "evaluation": {
+            "state": "[16, 4, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 16
+            },
+            "llm_judgments": [
+              "[16, 4, 13]  \n- attempt 1: 16 + 13 = 29, then 29 - 4 = 25 (too high, but close to 24).  \n- attempt 2: 16 - 4 = 12, then 12 + 13 = 25 (still too high, same as before).  \n- attempt 3: 13 + 4 = 17, then 17 + 16 = 33 (too high).  \n- attempt 4: 16 * 4 = 64, then 64 / 13 is about 4.92, not close.  \n- attempt 5: 13 * 4 = 52, then 52 - 16 = 36 (too high).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[16, 4, 13]  \n- attempt 1: 16 + 13 = 29, then 29 - 4 = 25 (too high, but close to 24).  \n- attempt 2: 16 - 4 = 12, then 12 + 13 = 25 (still too high, same as before).  \n- attempt 3: 13 + 4 = 17, then 17 + 16 = 33 (too high).  \n- attempt 4: 16 * 4 = 64, then 64 / 13 is about 4.92, not close.  \n- attempt 5: 13 * 4 = 52, then 52 - 16 = 36 (too high).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            2,
+            4,
+            13
+          ],
+          "action": "[2, 4, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 7 from 9 to get 2, keep 4 and 13.",
+            "code": "numbers = [4, 7, 9, 13]\nres = numbers[2] - numbers[1]   # 9 - 7 = 2\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2, 4, 13]"
+          },
+          "path_history": "Subtract 7 from 9 to get 2, keep 4 and 13.\nResult: [2, 4, 13]",
+          "evaluation": {
+            "state": "[2, 4, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "[2, 4, 13]  \n- attempt 1: 13 + 4 = 17, then 17 + 2 = 19 (too low).  \n- attempt 2: 13 * 2 = 26, then 26 - 4 = 22 (too low, but within 20-28).  \n- attempt 3: 13 * 2 = 26, then 26 + 4 = 30 (too high).  \n- attempt 4: 13 + 2 = 15, then 15 * 4 = 60 (far too high).  \n- attempt 5: 13 * 4 = 52, then 52 / 2 = 26 (still within 20-28, but not 24).  \n\nbest result is 22 or 26, both between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2, 4, 13]  \n- attempt 1: 13 + 4 = 17, then 17 + 2 = 19 (too low).  \n- attempt 2: 13 * 2 = 26, then 26 - 4 = 22 (too low, but within 20-28).  \n- attempt 3: 13 * 2 = 26, then 26 + 4 = 30 (too high).  \n- attempt 4: 13 + 2 = 15, then 15 * 4 = 60 (far too high).  \n- attempt 5: 13 * 4 = 52, then 52 / 2 = 26 (still within 20-28, but not 24).  \n\nbest result is 22 or 26, both between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        17,
+        7,
+        9
+      ],
+      "action": "[17, 7, 9]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 4 and 13 to get 17, keep 7 and 9.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[0] + numbers[3]   # 4 + 13 = 17\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[17, 7, 9]"
+      },
+      "path_history": "Add 4 and 13 to get 17, keep 7 and 9.\nResult: [17, 7, 9]",
+      "evaluation": {
+        "state": "[17, 7, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 17
+        },
+        "llm_judgments": [
+          "[17, 7, 9]  \n- attempt 1: 17 + 7 = 24, then 24 + 9 = 33 (too high).  \n- attempt 2: 17 + 7 = 24, then 24 - 9 = 15 (too low).  \n- attempt 3: 17 - 7 = 10, then 10 + 9 = 19 (too low).  \n- attempt 4: 17 - 9 = 8, then 8 * 7 = 56 (too high).  \n- attempt 5: 17 + 9 = 26, then 26 - 7 = 19 (still low).  \n\nall results: 33, 15, 19, 56, 19. none between 20-28.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[17, 7, 9]  \n- attempt 1: 17 + 7 = 24, then 24 + 9 = 33 (too high).  \n- attempt 2: 17 + 7 = 24, then 24 - 9 = 15 (too low).  \n- attempt 3: 17 - 7 = 10, then 10 + 9 = 19 (too low).  \n- attempt 4: 17 - 9 = 8, then 8 * 7 = 56 (too high).  \n- attempt 5: 17 + 9 = 26, then 26 - 7 = 19 (still low).  \n\nall results: 33, 15, 19, 56, 19. none between 20-28.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        91,
+        4,
+        9
+      ],
+      "action": "[91, 4, 9]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 7 and 13 to get 91, keep 4 and 9.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[1] * numbers[3]   # 7 * 13 = 91\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[91, 4, 9]"
+      },
+      "path_history": "Multiply 7 and 13 to get 91, keep 4 and 9.\nResult: [91, 4, 9]",
+      "evaluation": {
+        "state": "[91, 4, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 91
+        },
+        "llm_judgments": [
+          "[91, 4, 9]  \n- attempt 1: 91 / 4 = 22.75, then 22.75 + 9 = 31.75 (too high).  \n- attempt 2: 91 / 9 = 10.111..., then 10.111... + 4 = 14.111... (too low).  \n- attempt 3: 91 - 9 = 82, then 82 / 4 = 20.5 (within 20-28, close to 24 but low).  \n- attempt 4: 91 - 4 = 87, then 87 / 9 = 9.666... (too low).  \n- attempt 5: 9 * 4 = 36, then 91 - 36 = 55 (too high).  \n\nbest result is 20.5, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[91, 4, 9]  \n- attempt 1: 91 / 4 = 22.75, then 22.75 + 9 = 31.75 (too high).  \n- attempt 2: 91 / 9 = 10.111..., then 10.111... + 4 = 14.111... (too low).  \n- attempt 3: 91 - 9 = 82, then 82 / 4 = 20.5 (within 20-28, close to 24 but low).  \n- attempt 4: 91 - 4 = 87, then 87 / 9 = 9.666... (too low).  \n- attempt 5: 9 * 4 = 36, then 91 - 36 = 55 (too high).  \n\nbest result is 20.5, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        9,
+        7,
+        9
+      ],
+      "action": "[9, 7, 9]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 4 from 13 to get 9, keep 7 and 9.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[3] - numbers[0]   # 13 - 4 = 9\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[9, 7, 9]"
+      },
+      "path_history": "Subtract 4 from 13 to get 9, keep 7 and 9.\nResult: [9, 7, 9]",
+      "evaluation": {
+        "state": "[9, 7, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[9, 7, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 7 = 63, then 63 - 9 = 54 (far too high).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (again too high, close).  \n- attempt 5: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[9, 7, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 7 = 63, then 63 - 9 = 54 (far too high).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (again too high, close).  \n- attempt 5: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        4,
+        4,
+        7
+      ],
+      "action": "[4, 4, 7]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 9 from 13 to get 4, keep 4 and 7.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[3] - numbers[2]   # 13 - 9 = 4\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4, 4, 7]"
+      },
+      "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]",
+      "evaluation": {
+        "state": "[4, 4, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 7
+        },
+        "llm_judgments": [
+          "[4, 4, 7]  \n- attempt 1: 7 * 4 = 28, then 28 - 4 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[4, 4, 7]  \n- attempt 1: 7 * 4 = 28, then 28 - 4 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "9": {
+          "id": 9,
+          "parent_id": 4,
+          "state": [
+            28,
+            4
+          ],
+          "action": "[28, 4]",
+          "value": 1.2,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 7 and 4 to get 28, keep the other 4.",
+            "code": "numbers = [4, 4, 7]\nres = numbers[2] * numbers[0]   # 7 * 4 = 28\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[28, 4]"
+          },
+          "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]",
+          "evaluation": {
+            "state": "[28, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 28
+            },
+            "llm_judgments": [
+              "[28, 4]  \n- attempt 1: 28 - 4 = 24 (exact!)  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.200",
+              "✅ VERIFIER: '28 - 4=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[28, 4]  \n- attempt 1: 28 - 4 = 24 (exact!)  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.2,
+            "judgment": "sure",
+            "extracted_operation": "28 - 4",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "10": {
+              "id": 10,
+              "parent_id": 9,
+              "state": [
+                24.0
+              ],
+              "action": "28 - 4",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [28, 4], 28 - 4 = 24",
+                "code": "numbers = [28, 4]\na, b = 28, 4\nresult = 28 - 4\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nOperation: 28 - 4 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 9,
+              "state": [
+                24
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [28, 4], LLM chose: a - b",
+                "code": "numbers = [28, 4]\na, b = 28, 4\nresult = a - b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nFor 2-number state [28, 4], LLM chose: a - b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        28,
+        9,
+        13
+      ],
+      "action": "[28, 9, 13]",
+      "value": 1.2,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 4 and 7 to get 28, keep 9 and 13.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[0] * numbers[1]   # 4 * 7 = 28\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[28, 9, 13]"
+      },
+      "path_history": "Multiply 4 and 7 to get 28, keep 9 and 13.\nResult: [28, 9, 13]",
+      "evaluation": {
+        "state": "[28, 9, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 28
+        },
+        "llm_judgments": [
+          "28, 9, 13:\n\n- attempt 1: 28 - 13 = 15, then 15 + 9 = 24 (exact!).  \nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.200"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "28, 9, 13:\n\n- attempt 1: 28 - 13 = 15, then 15 + 9 = 24 (exact!).  \nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.2,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        3.25,
+        7,
+        9
+      ],
+      "action": "[3.25, 7, 9]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 13 by 4 (≈3.25), keep 7 and 9.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[3] / numbers[0]   # 13 / 4 = 3.25\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3.25, 7, 9]"
+      },
+      "path_history": "Divide 13 by 4 (≈3.25), keep 7 and 9.\nResult: [3.25, 7, 9]",
+      "evaluation": {
+        "state": "[3.25, 7, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[3.25, 7, 9]  \n- attempt 1: 9 * 3.25 = 29.25, then 29.25 - 7 = 22.25 (too low, but within 20-28).  \n- attempt 2: 9 * 7 = 63, then 63 / 3.25 = 19.3846 (too low, below 20).  \n- attempt 3: 7 * 3.25 = 22.75, then 22.75 + 9 = 31.75 (too high, above 28).  \n- attempt 4: 9 + 7 = 16, then 16 * 3.25 = 52 (far too high).  \n- attempt 5: 9 + 3.25 = 12.25, then 12.25 * 7 = 85.75 (far too high).  \n\nbest result is 22.25 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[3.25, 7, 9]  \n- attempt 1: 9 * 3.25 = 29.25, then 29.25 - 7 = 22.25 (too low, but within 20-28).  \n- attempt 2: 9 * 7 = 63, then 63 / 3.25 = 19.3846 (too low, below 20).  \n- attempt 3: 7 * 3.25 = 22.75, then 22.75 + 9 = 31.75 (too high, above 28).  \n- attempt 4: 9 + 7 = 16, then 16 * 3.25 = 52 (far too high).  \n- attempt 5: 9 + 3.25 = 12.25, then 12.25 * 7 = 85.75 (far too high).  \n\nbest result is 22.25 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        16,
+        4,
+        13
+      ],
+      "action": "[16, 4, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 7 and 9 to get 16, keep 4 and 13.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[1] + numbers[2]   # 7 + 9 = 16\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 4, 13]"
+      },
+      "path_history": "Add 7 and 9 to get 16, keep 4 and 13.\nResult: [16, 4, 13]",
+      "evaluation": {
+        "state": "[16, 4, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 16
+        },
+        "llm_judgments": [
+          "[16, 4, 13]  \n- attempt 1: 16 + 13 = 29, then 29 - 4 = 25 (too high, but close to 24).  \n- attempt 2: 16 - 4 = 12, then 12 + 13 = 25 (still too high, same as before).  \n- attempt 3: 13 + 4 = 17, then 17 + 16 = 33 (too high).  \n- attempt 4: 16 * 4 = 64, then 64 / 13 is about 4.92, not close.  \n- attempt 5: 13 * 4 = 52, then 52 - 16 = 36 (too high).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[16, 4, 13]  \n- attempt 1: 16 + 13 = 29, then 29 - 4 = 25 (too high, but close to 24).  \n- attempt 2: 16 - 4 = 12, then 12 + 13 = 25 (still too high, same as before).  \n- attempt 3: 13 + 4 = 17, then 17 + 16 = 33 (too high).  \n- attempt 4: 16 * 4 = 64, then 64 / 13 is about 4.92, not close.  \n- attempt 5: 13 * 4 = 52, then 52 - 16 = 36 (too high).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        2,
+        4,
+        13
+      ],
+      "action": "[2, 4, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 7 from 9 to get 2, keep 4 and 13.",
+        "code": "numbers = [4, 7, 9, 13]\nres = numbers[2] - numbers[1]   # 9 - 7 = 2\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2, 4, 13]"
+      },
+      "path_history": "Subtract 7 from 9 to get 2, keep 4 and 13.\nResult: [2, 4, 13]",
+      "evaluation": {
+        "state": "[2, 4, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "[2, 4, 13]  \n- attempt 1: 13 + 4 = 17, then 17 + 2 = 19 (too low).  \n- attempt 2: 13 * 2 = 26, then 26 - 4 = 22 (too low, but within 20-28).  \n- attempt 3: 13 * 2 = 26, then 26 + 4 = 30 (too high).  \n- attempt 4: 13 + 2 = 15, then 15 * 4 = 60 (far too high).  \n- attempt 5: 13 * 4 = 52, then 52 / 2 = 26 (still within 20-28, but not 24).  \n\nbest result is 22 or 26, both between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2, 4, 13]  \n- attempt 1: 13 + 4 = 17, then 17 + 2 = 19 (too low).  \n- attempt 2: 13 * 2 = 26, then 26 - 4 = 22 (too low, but within 20-28).  \n- attempt 3: 13 * 2 = 26, then 26 + 4 = 30 (too high).  \n- attempt 4: 13 + 2 = 15, then 15 * 4 = 60 (far too high).  \n- attempt 5: 13 * 4 = 52, then 52 / 2 = 26 (still within 20-28, but not 24).  \n\nbest result is 22 or 26, both between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 4,
+      "state": [
+        28,
+        4
+      ],
+      "action": "[28, 4]",
+      "value": 1.2,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 7 and 4 to get 28, keep the other 4.",
+        "code": "numbers = [4, 4, 7]\nres = numbers[2] * numbers[0]   # 7 * 4 = 28\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[28, 4]"
+      },
+      "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]",
+      "evaluation": {
+        "state": "[28, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 28
+        },
+        "llm_judgments": [
+          "[28, 4]  \n- attempt 1: 28 - 4 = 24 (exact!)  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.200",
+          "✅ VERIFIER: '28 - 4=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[28, 4]  \n- attempt 1: 28 - 4 = 24 (exact!)  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.2,
+        "judgment": "sure",
+        "extracted_operation": "28 - 4",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "10": {
+          "id": 10,
+          "parent_id": 9,
+          "state": [
+            24.0
+          ],
+          "action": "28 - 4",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [28, 4], 28 - 4 = 24",
+            "code": "numbers = [28, 4]\na, b = 28, 4\nresult = 28 - 4\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nOperation: 28 - 4 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 9,
+          "state": [
+            24
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [28, 4], LLM chose: a - b",
+            "code": "numbers = [28, 4]\na, b = 28, 4\nresult = a - b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nFor 2-number state [28, 4], LLM chose: a - b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 10,
+      "parent_id": 9,
+      "state": [
+        24.0
+      ],
+      "action": "28 - 4",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [28, 4], 28 - 4 = 24",
+        "code": "numbers = [28, 4]\na, b = 28, 4\nresult = 28 - 4\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nOperation: 28 - 4 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 9,
+      "state": [
+        24
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [28, 4], LLM chose: a - b",
+        "code": "numbers = [28, 4]\na, b = 28, 4\nresult = a - b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "Subtract 9 from 13 to get 4, keep 4 and 7.\nResult: [4, 4, 7]\nMultiply 7 and 4 to get 28, keep the other 4.\nResult: [28, 4]\nFor 2-number state [28, 4], LLM chose: a - b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    10
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 9,
+      "re_evaluations": 0,
+      "unique_states": 9,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

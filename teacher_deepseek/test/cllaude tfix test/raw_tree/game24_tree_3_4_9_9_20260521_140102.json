@@ -1,0 +1,1865 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-21T14:01:02.631315",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 16,
+      "api_calls": 17,
+      "cache_hits": 0,
+      "solutions_found": 3,
+      "code_executions": 48,
+      "code_errors": 0,
+      "daily_requests": 17,
+      "session_start": "2026-05-21T14:00:01.137660",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 37,
+      "total_input_tokens": 9558,
+      "total_output_tokens": 7949,
+      "deadend_memory": {
+        "patterns_stored": 2,
+        "two_num_cache_size": 34,
+        "total_checked": 49,
+        "total_skipped": 37,
+        "skip_rate": "75.5%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 2,
+      "total_checked": 49,
+      "total_skipped": 37,
+      "api_calls_saved": 37
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        3,
+        4,
+        9,
+        9
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 8,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            7,
+            9,
+            9
+          ],
+          "action": "[7, 9, 9]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try adding 3 and 4 to get 7, then work with 9 and 9.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[0] + numbers[1]  # 3 + 4 = 7\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7, 9, 9]"
+          },
+          "path_history": "Try adding 3 and 4 to get 7, then work with 9 and 9.\nResult: [7, 9, 9]",
+          "evaluation": {
+            "state": "[7, 9, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[7, 9, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (same as attempt 1, too high).  \n- attempt 5: 9 * 7 = 63, then 63 - 9 = 54, then 54 / 9 = 6 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[7, 9, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (same as attempt 1, too high).  \n- attempt 5: 9 * 7 = 63, then 63 - 9 = 54, then 54 / 9 = 6 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            27,
+            4,
+            9
+          ],
+          "action": "[27, 4, 9]",
+          "value": 0.72,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try multiplying 3 and 9 to get 27, then work with 4 and 9.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[0] * numbers[2]  # 3 * 9 = 27\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[27, 4, 9]"
+          },
+          "path_history": "Try multiplying 3 and 9 to get 27, then work with 4 and 9.\nResult: [27, 4, 9]",
+          "evaluation": {
+            "state": "[27, 4, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 27
+            },
+            "llm_judgments": [
+              "[27, 4, 9]  \n- attempt 1: 27 - 9 = 18, then 18 + 4 = 22 (too low, but within 20-28).  \n- attempt 2: 27 / 9 = 3, then 3 * 4 = 12 (too low).  \n- attempt 3: 27 - 4 = 23, then 23 + 9 = 32 (too high).  \n- attempt 4: 27 + 4 = 31, then 31 - 9 = 22 (still low, within range).  \n- attempt 5: 27 - 9 = 18, then 18 * 4 = 72 (far too high).  \n\nbest result is 22, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.720"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[27, 4, 9]  \n- attempt 1: 27 - 9 = 18, then 18 + 4 = 22 (too low, but within 20-28).  \n- attempt 2: 27 / 9 = 3, then 3 * 4 = 12 (too low).  \n- attempt 3: 27 - 4 = 23, then 23 + 9 = 32 (too high).  \n- attempt 4: 27 + 4 = 31, then 31 - 9 = 22 (still low, within range).  \n- attempt 5: 27 - 9 = 18, then 18 * 4 = 72 (far too high).  \n\nbest result is 22, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.72,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            5,
+            3,
+            9
+          ],
+          "action": "[5, 3, 9]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] - numbers[1]  # 9 - 4 = 5\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[5, 3, 9]"
+          },
+          "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]",
+          "evaluation": {
+            "state": "[5, 3, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[5, 3, 9]:  \n- attempt 1: 9 * 3 = 27, then 27 - 5 = 22 (too low, but within 20-28).  \n- attempt 2: 9 * 5 = 45, then 45 / 3 = 15 (too low).  \n- attempt 3: 9 + 5 = 14, then 14 * 3 = 42 (too high).  \n- attempt 4: 9 + 3 = 12, then 12 * 5 = 60 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[5, 3, 9]:  \n- attempt 1: 9 * 3 = 27, then 27 - 5 = 22 (too low, but within 20-28).  \n- attempt 2: 9 * 5 = 45, then 45 / 3 = 15 (too low).  \n- attempt 3: 9 + 5 = 14, then 14 * 3 = 42 (too high).  \n- attempt 4: 9 + 3 = 12, then 12 * 5 = 60 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "10": {
+              "id": 10,
+              "parent_id": 3,
+              "state": [
+                15,
+                9
+              ],
+              "action": "[15, 9]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 5 and 3 to get 15, then work with 9.",
+                "code": "numbers = [5, 3, 9]\nres = numbers[0] * numbers[1]   # 5 * 3 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[15, 9]"
+              },
+              "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]",
+              "evaluation": {
+                "state": "[15, 9]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 15
+                },
+                "llm_judgments": [
+                  "[15, 9]  \n- attempt 1: 15 + 9 = 24 (exact!)  \n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Judgment votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Boosted score: 1.000",
+                  "✅ VERIFIER: '15 + 9=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[15, 9]  \n- attempt 1: 15 + 9 = 24 (exact!)  \n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "judgment": "sure",
+                "extracted_operation": "15 + 9",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "13": {
+                  "id": 13,
+                  "parent_id": 10,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "15 + 9",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [15, 9], 15 + 9 = 24",
+                    "code": "numbers = [15, 9]\na, b = 15, 9\nresult = 15 + 9\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]\nOperation: 15 + 9 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            3.0,
+            4,
+            9
+          ],
+          "action": "[3.0, 4, 9]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try dividing 9 by 3 to get 3, then work with 4 and 9.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] / numbers[0]  # 9 / 3 = 3\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3.0, 4, 9]"
+          },
+          "path_history": "Try dividing 9 by 3 to get 3, then work with 4 and 9.\nResult: [3.0, 4, 9]",
+          "evaluation": {
+            "state": "[3.0, 4, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[3.0, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 3.0 = 33 (too high, not close).  \n- attempt 2: 9 * 3.0 = 27, then 27 - 4 = 23 (too low, but within 20-28).  \n- attempt 3: 9 * 3.0 = 27, then 27 + 4 = 31 (too high).  \n- attempt 4: 9 + 4 = 13, then 13 * 3.0 = 39 (too high).  \n- attempt 5: 9 / 3.0 = 3, then 3 * 4 = 12, then 12 + 9 = 21 (within 20-28, but not exact).  \n\nbest result is 23 from attempt 2, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[3.0, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 3.0 = 33 (too high, not close).  \n- attempt 2: 9 * 3.0 = 27, then 27 - 4 = 23 (too low, but within 20-28).  \n- attempt 3: 9 * 3.0 = 27, then 27 + 4 = 31 (too high).  \n- attempt 4: 9 + 4 = 13, then 13 * 3.0 = 39 (too high).  \n- attempt 5: 9 / 3.0 = 3, then 3 * 4 = 12, then 12 + 9 = 21 (within 20-28, but not exact).  \n\nbest result is 23 from attempt 2, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            18,
+            3,
+            4
+          ],
+          "action": "[18, 3, 4]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try adding 9 and 9 to get 18, then work with 3 and 4.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] + numbers[3]  # 9 + 9 = 18\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[18, 3, 4]"
+          },
+          "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]",
+          "evaluation": {
+            "state": "[18, 3, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "[18, 3, 4]  \n- attempt 1: 18 + 4 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 18 + 3 = 21, then 21 + 4 = 25 (still too high, same as before).  \n- attempt 3: 18 - 4 = 14, then 14 + 3 = 17 (too low).  \n- attempt 4: 18 / 3 = 6, then 6 * 4 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[18, 3, 4]  \n- attempt 1: 18 + 4 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 18 + 3 = 21, then 21 + 4 = 25 (still too high, same as before).  \n- attempt 3: 18 - 4 = 14, then 14 + 3 = 17 (too low).  \n- attempt 4: 18 / 3 = 6, then 6 * 4 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "11": {
+              "id": 11,
+              "parent_id": 5,
+              "state": [
+                72,
+                3
+              ],
+              "action": "[72, 3]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "** Multiply 18 and 4 to get 72, then work with 3.  \n**",
+                "code": "numbers = [18, 3, 4]\nres = numbers[0] * numbers[2]  # 18 * 4 = 72\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[72, 3]"
+              },
+              "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]",
+              "evaluation": {
+                "state": "[72, 3]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 72
+                },
+                "llm_judgments": [
+                  "[72, 3]  \n- attempt 1: 72 / 3 = 24 (exact!)  \n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Judgment votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Boosted score: 1.000",
+                  "✅ VERIFIER: '72 / 3=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[72, 3]  \n- attempt 1: 72 / 3 = 24 (exact!)  \n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "judgment": "sure",
+                "extracted_operation": "72 / 3",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "12": {
+                  "id": 12,
+                  "parent_id": 11,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "72 / 3",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [72, 3], 72 / 3 = 24",
+                    "code": "numbers = [72, 3]\na, b = 72, 3\nresult = 72 / 3\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]\nOperation: 72 / 3 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            36,
+            3,
+            9
+          ],
+          "action": "[36, 3, 9]",
+          "value": 1.2,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[1] * numbers[2]  # 4 * 9 = 36\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[36, 3, 9]"
+          },
+          "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]",
+          "evaluation": {
+            "state": "[36, 3, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 36
+            },
+            "llm_judgments": [
+              "[36, 3, 9]  \n- attempt 1: 36 / 3 = 12, then 12 + 9 = 21 (too low, but within 20-28).  \n- attempt 2: 36 - 9 = 27, then 27 - 3 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.200"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[36, 3, 9]  \n- attempt 1: 36 / 3 = 12, then 12 + 9 = 21 (too low, but within 20-28).  \n- attempt 2: 36 - 9 = 27, then 27 - 3 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.2,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "9": {
+              "id": 9,
+              "parent_id": 6,
+              "state": [
+                33,
+                9
+              ],
+              "action": "[33, 9]",
+              "value": 1.2,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 3 from 36 to get 33, then work with 9.",
+                "code": "numbers = [36, 3, 9]\nres = numbers[0] - numbers[1]  # 36 - 3 = 33\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[33, 9]"
+              },
+              "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]",
+              "evaluation": {
+                "state": "[33, 9]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 33
+                },
+                "llm_judgments": [
+                  "[33, 9]  \n- attempt 1: 33 - 9 = 24 (exact!)  \n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Judgment votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Boosted score: 1.200",
+                  "✅ VERIFIER: '33 - 9=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[33, 9]  \n- attempt 1: 33 - 9 = 24 (exact!)  \n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.2,
+                "judgment": "sure",
+                "extracted_operation": "33 - 9",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "14": {
+                  "id": 14,
+                  "parent_id": 9,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "33 - 9",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [33, 9], 33 - 9 = 24",
+                    "code": "numbers = [33, 9]\na, b = 33, 9\nresult = 33 - 9\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nOperation: 33 - 9 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "15": {
+                  "id": 15,
+                  "parent_id": 9,
+                  "state": [
+                    24
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [33, 9], LLM chose: a-b",
+                    "code": "numbers = [33, 9]\na, b = 33, 9\nresult = a-b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nFor 2-number state [33, 9], LLM chose: a-b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            6,
+            4,
+            9
+          ],
+          "action": "[6, 4, 9]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try subtracting 3 from 9 to get 6, then work with 4 and 9.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] - numbers[0]  # 9 - 3 = 6\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[6, 4, 9]"
+          },
+          "path_history": "Try subtracting 3 from 9 to get 6, then work with 4 and 9.\nResult: [6, 4, 9]",
+          "evaluation": {
+            "state": "[6, 4, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[6, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 6 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 9 * 6 = 54, then 54 / 4 = 13.5 (too low).  \n- attempt 3: 9 + 6 = 15, then 15 + 4 = 19 (too low).  \n- attempt 4: 9 * 4 = 36, then 36 / 6 = 6 (too low).  \n- attempt 5: 6 * 4 = 24, then 24 + 9 = 33 (too high).  \n\nall results: 30, 13.5, 19, 6, 33. none between 20 and 28 inclusive.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[6, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 6 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 9 * 6 = 54, then 54 / 4 = 13.5 (too low).  \n- attempt 3: 9 + 6 = 15, then 15 + 4 = 19 (too low).  \n- attempt 4: 9 * 4 = 36, then 36 / 6 = 6 (too low).  \n- attempt 5: 6 * 4 = 24, then 24 + 9 = 33 (too high).  \n\nall results: 30, 13.5, 19, 6, 33. none between 20 and 28 inclusive.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            1.0,
+            3,
+            4
+          ],
+          "action": "[1.0, 3, 4]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Try dividing 9 by 9 to get 1, then work with 3 and 4.",
+            "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] / numbers[3]  # 9 / 9 = 1\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 3, 4]"
+          },
+          "path_history": "Try dividing 9 by 9 to get 1, then work with 3 and 4.\nResult: [1.0, 3, 4]",
+          "evaluation": {
+            "state": "[1.0, 3, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 4
+            },
+            "llm_judgments": [
+              "[1.0, 3, 4]  \n- attempt 1: 4 * 3 = 12, then 12 * 1.0 = 12 (too low).  \n- attempt 2: 4 * 3 = 12, then 12 + 1.0 = 13 (still low).  \n- attempt 3: 4 + 3 = 7, then 7 * 1.0 = 7 (too low).  \n- attempt 4: 4 * 1.0 = 4, then 4 * 3 = 12 (too low).  \n- attempt 5: 4 * 3 = 12, then 12 / 1.0 = 12 (too low).  \n\nall results are 12 or lower. no result between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[1.0, 3, 4]  \n- attempt 1: 4 * 3 = 12, then 12 * 1.0 = 12 (too low).  \n- attempt 2: 4 * 3 = 12, then 12 + 1.0 = 13 (still low).  \n- attempt 3: 4 + 3 = 7, then 7 * 1.0 = 7 (too low).  \n- attempt 4: 4 * 1.0 = 4, then 4 * 3 = 12 (too low).  \n- attempt 5: 4 * 3 = 12, then 12 / 1.0 = 12 (too low).  \n\nall results are 12 or lower. no result between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        7,
+        9,
+        9
+      ],
+      "action": "[7, 9, 9]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try adding 3 and 4 to get 7, then work with 9 and 9.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[0] + numbers[1]  # 3 + 4 = 7\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7, 9, 9]"
+      },
+      "path_history": "Try adding 3 and 4 to get 7, then work with 9 and 9.\nResult: [7, 9, 9]",
+      "evaluation": {
+        "state": "[7, 9, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[7, 9, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (same as attempt 1, too high).  \n- attempt 5: 9 * 7 = 63, then 63 - 9 = 54, then 54 / 9 = 6 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[7, 9, 9]  \n- attempt 1: 9 + 9 = 18, then 18 + 7 = 25 (too high, but close to 24).  \n- attempt 2: 9 * 7 = 63, then 63 / 9 = 7 (too low).  \n- attempt 3: 9 * 9 = 81, then 81 / 7 = about 11.57 (too low).  \n- attempt 4: 9 + 7 = 16, then 16 + 9 = 25 (same as attempt 1, too high).  \n- attempt 5: 9 * 7 = 63, then 63 - 9 = 54, then 54 / 9 = 6 (too low).  \n\nbest result is 25, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        27,
+        4,
+        9
+      ],
+      "action": "[27, 4, 9]",
+      "value": 0.72,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try multiplying 3 and 9 to get 27, then work with 4 and 9.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[0] * numbers[2]  # 3 * 9 = 27\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[27, 4, 9]"
+      },
+      "path_history": "Try multiplying 3 and 9 to get 27, then work with 4 and 9.\nResult: [27, 4, 9]",
+      "evaluation": {
+        "state": "[27, 4, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 27
+        },
+        "llm_judgments": [
+          "[27, 4, 9]  \n- attempt 1: 27 - 9 = 18, then 18 + 4 = 22 (too low, but within 20-28).  \n- attempt 2: 27 / 9 = 3, then 3 * 4 = 12 (too low).  \n- attempt 3: 27 - 4 = 23, then 23 + 9 = 32 (too high).  \n- attempt 4: 27 + 4 = 31, then 31 - 9 = 22 (still low, within range).  \n- attempt 5: 27 - 9 = 18, then 18 * 4 = 72 (far too high).  \n\nbest result is 22, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.720"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[27, 4, 9]  \n- attempt 1: 27 - 9 = 18, then 18 + 4 = 22 (too low, but within 20-28).  \n- attempt 2: 27 / 9 = 3, then 3 * 4 = 12 (too low).  \n- attempt 3: 27 - 4 = 23, then 23 + 9 = 32 (too high).  \n- attempt 4: 27 + 4 = 31, then 31 - 9 = 22 (still low, within range).  \n- attempt 5: 27 - 9 = 18, then 18 * 4 = 72 (far too high).  \n\nbest result is 22, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.72,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        5,
+        3,
+        9
+      ],
+      "action": "[5, 3, 9]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] - numbers[1]  # 9 - 4 = 5\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[5, 3, 9]"
+      },
+      "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]",
+      "evaluation": {
+        "state": "[5, 3, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[5, 3, 9]:  \n- attempt 1: 9 * 3 = 27, then 27 - 5 = 22 (too low, but within 20-28).  \n- attempt 2: 9 * 5 = 45, then 45 / 3 = 15 (too low).  \n- attempt 3: 9 + 5 = 14, then 14 * 3 = 42 (too high).  \n- attempt 4: 9 + 3 = 12, then 12 * 5 = 60 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[5, 3, 9]:  \n- attempt 1: 9 * 3 = 27, then 27 - 5 = 22 (too low, but within 20-28).  \n- attempt 2: 9 * 5 = 45, then 45 / 3 = 15 (too low).  \n- attempt 3: 9 + 5 = 14, then 14 * 3 = 42 (too high).  \n- attempt 4: 9 + 3 = 12, then 12 * 5 = 60 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "10": {
+          "id": 10,
+          "parent_id": 3,
+          "state": [
+            15,
+            9
+          ],
+          "action": "[15, 9]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 5 and 3 to get 15, then work with 9.",
+            "code": "numbers = [5, 3, 9]\nres = numbers[0] * numbers[1]   # 5 * 3 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15, 9]"
+          },
+          "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]",
+          "evaluation": {
+            "state": "[15, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 15
+            },
+            "llm_judgments": [
+              "[15, 9]  \n- attempt 1: 15 + 9 = 24 (exact!)  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000",
+              "✅ VERIFIER: '15 + 9=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[15, 9]  \n- attempt 1: 15 + 9 = 24 (exact!)  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": "15 + 9",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "13": {
+              "id": 13,
+              "parent_id": 10,
+              "state": [
+                24.0
+              ],
+              "action": "15 + 9",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [15, 9], 15 + 9 = 24",
+                "code": "numbers = [15, 9]\na, b = 15, 9\nresult = 15 + 9\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]\nOperation: 15 + 9 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        3.0,
+        4,
+        9
+      ],
+      "action": "[3.0, 4, 9]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try dividing 9 by 3 to get 3, then work with 4 and 9.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] / numbers[0]  # 9 / 3 = 3\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3.0, 4, 9]"
+      },
+      "path_history": "Try dividing 9 by 3 to get 3, then work with 4 and 9.\nResult: [3.0, 4, 9]",
+      "evaluation": {
+        "state": "[3.0, 4, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[3.0, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 3.0 = 33 (too high, not close).  \n- attempt 2: 9 * 3.0 = 27, then 27 - 4 = 23 (too low, but within 20-28).  \n- attempt 3: 9 * 3.0 = 27, then 27 + 4 = 31 (too high).  \n- attempt 4: 9 + 4 = 13, then 13 * 3.0 = 39 (too high).  \n- attempt 5: 9 / 3.0 = 3, then 3 * 4 = 12, then 12 + 9 = 21 (within 20-28, but not exact).  \n\nbest result is 23 from attempt 2, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[3.0, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 3.0 = 33 (too high, not close).  \n- attempt 2: 9 * 3.0 = 27, then 27 - 4 = 23 (too low, but within 20-28).  \n- attempt 3: 9 * 3.0 = 27, then 27 + 4 = 31 (too high).  \n- attempt 4: 9 + 4 = 13, then 13 * 3.0 = 39 (too high).  \n- attempt 5: 9 / 3.0 = 3, then 3 * 4 = 12, then 12 + 9 = 21 (within 20-28, but not exact).  \n\nbest result is 23 from attempt 2, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        18,
+        3,
+        4
+      ],
+      "action": "[18, 3, 4]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try adding 9 and 9 to get 18, then work with 3 and 4.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] + numbers[3]  # 9 + 9 = 18\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[18, 3, 4]"
+      },
+      "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]",
+      "evaluation": {
+        "state": "[18, 3, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "[18, 3, 4]  \n- attempt 1: 18 + 4 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 18 + 3 = 21, then 21 + 4 = 25 (still too high, same as before).  \n- attempt 3: 18 - 4 = 14, then 14 + 3 = 17 (too low).  \n- attempt 4: 18 / 3 = 6, then 6 * 4 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[18, 3, 4]  \n- attempt 1: 18 + 4 = 22, then 22 + 3 = 25 (too high, but close to 24).  \n- attempt 2: 18 + 3 = 21, then 21 + 4 = 25 (still too high, same as before).  \n- attempt 3: 18 - 4 = 14, then 14 + 3 = 17 (too low).  \n- attempt 4: 18 / 3 = 6, then 6 * 4 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "11": {
+          "id": 11,
+          "parent_id": 5,
+          "state": [
+            72,
+            3
+          ],
+          "action": "[72, 3]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Multiply 18 and 4 to get 72, then work with 3.  \n**",
+            "code": "numbers = [18, 3, 4]\nres = numbers[0] * numbers[2]  # 18 * 4 = 72\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[72, 3]"
+          },
+          "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]",
+          "evaluation": {
+            "state": "[72, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 72
+            },
+            "llm_judgments": [
+              "[72, 3]  \n- attempt 1: 72 / 3 = 24 (exact!)  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000",
+              "✅ VERIFIER: '72 / 3=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[72, 3]  \n- attempt 1: 72 / 3 = 24 (exact!)  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": "72 / 3",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "12": {
+              "id": 12,
+              "parent_id": 11,
+              "state": [
+                24.0
+              ],
+              "action": "72 / 3",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [72, 3], 72 / 3 = 24",
+                "code": "numbers = [72, 3]\na, b = 72, 3\nresult = 72 / 3\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]\nOperation: 72 / 3 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        36,
+        3,
+        9
+      ],
+      "action": "[36, 3, 9]",
+      "value": 1.2,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[1] * numbers[2]  # 4 * 9 = 36\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[36, 3, 9]"
+      },
+      "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]",
+      "evaluation": {
+        "state": "[36, 3, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 36
+        },
+        "llm_judgments": [
+          "[36, 3, 9]  \n- attempt 1: 36 / 3 = 12, then 12 + 9 = 21 (too low, but within 20-28).  \n- attempt 2: 36 - 9 = 27, then 27 - 3 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.200"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[36, 3, 9]  \n- attempt 1: 36 / 3 = 12, then 12 + 9 = 21 (too low, but within 20-28).  \n- attempt 2: 36 - 9 = 27, then 27 - 3 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.2,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "9": {
+          "id": 9,
+          "parent_id": 6,
+          "state": [
+            33,
+            9
+          ],
+          "action": "[33, 9]",
+          "value": 1.2,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 3 from 36 to get 33, then work with 9.",
+            "code": "numbers = [36, 3, 9]\nres = numbers[0] - numbers[1]  # 36 - 3 = 33\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[33, 9]"
+          },
+          "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]",
+          "evaluation": {
+            "state": "[33, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 33
+            },
+            "llm_judgments": [
+              "[33, 9]  \n- attempt 1: 33 - 9 = 24 (exact!)  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.200",
+              "✅ VERIFIER: '33 - 9=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[33, 9]  \n- attempt 1: 33 - 9 = 24 (exact!)  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.2,
+            "judgment": "sure",
+            "extracted_operation": "33 - 9",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "14": {
+              "id": 14,
+              "parent_id": 9,
+              "state": [
+                24.0
+              ],
+              "action": "33 - 9",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [33, 9], 33 - 9 = 24",
+                "code": "numbers = [33, 9]\na, b = 33, 9\nresult = 33 - 9\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nOperation: 33 - 9 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 9,
+              "state": [
+                24
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [33, 9], LLM chose: a-b",
+                "code": "numbers = [33, 9]\na, b = 33, 9\nresult = a-b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nFor 2-number state [33, 9], LLM chose: a-b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        6,
+        4,
+        9
+      ],
+      "action": "[6, 4, 9]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try subtracting 3 from 9 to get 6, then work with 4 and 9.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] - numbers[0]  # 9 - 3 = 6\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[6, 4, 9]"
+      },
+      "path_history": "Try subtracting 3 from 9 to get 6, then work with 4 and 9.\nResult: [6, 4, 9]",
+      "evaluation": {
+        "state": "[6, 4, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[6, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 6 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 9 * 6 = 54, then 54 / 4 = 13.5 (too low).  \n- attempt 3: 9 + 6 = 15, then 15 + 4 = 19 (too low).  \n- attempt 4: 9 * 4 = 36, then 36 / 6 = 6 (too low).  \n- attempt 5: 6 * 4 = 24, then 24 + 9 = 33 (too high).  \n\nall results: 30, 13.5, 19, 6, 33. none between 20 and 28 inclusive.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[6, 4, 9]  \n- attempt 1: 9 * 4 = 36, then 36 - 6 = 30 (too high, but within 20-28? no, 30 is above 28).  \n- attempt 2: 9 * 6 = 54, then 54 / 4 = 13.5 (too low).  \n- attempt 3: 9 + 6 = 15, then 15 + 4 = 19 (too low).  \n- attempt 4: 9 * 4 = 36, then 36 / 6 = 6 (too low).  \n- attempt 5: 6 * 4 = 24, then 24 + 9 = 33 (too high).  \n\nall results: 30, 13.5, 19, 6, 33. none between 20 and 28 inclusive.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        1.0,
+        3,
+        4
+      ],
+      "action": "[1.0, 3, 4]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Try dividing 9 by 9 to get 1, then work with 3 and 4.",
+        "code": "numbers = [3, 4, 9, 9]\nres = numbers[2] / numbers[3]  # 9 / 9 = 1\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 3, 4]"
+      },
+      "path_history": "Try dividing 9 by 9 to get 1, then work with 3 and 4.\nResult: [1.0, 3, 4]",
+      "evaluation": {
+        "state": "[1.0, 3, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 4
+        },
+        "llm_judgments": [
+          "[1.0, 3, 4]  \n- attempt 1: 4 * 3 = 12, then 12 * 1.0 = 12 (too low).  \n- attempt 2: 4 * 3 = 12, then 12 + 1.0 = 13 (still low).  \n- attempt 3: 4 + 3 = 7, then 7 * 1.0 = 7 (too low).  \n- attempt 4: 4 * 1.0 = 4, then 4 * 3 = 12 (too low).  \n- attempt 5: 4 * 3 = 12, then 12 / 1.0 = 12 (too low).  \n\nall results are 12 or lower. no result between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[1.0, 3, 4]  \n- attempt 1: 4 * 3 = 12, then 12 * 1.0 = 12 (too low).  \n- attempt 2: 4 * 3 = 12, then 12 + 1.0 = 13 (still low).  \n- attempt 3: 4 + 3 = 7, then 7 * 1.0 = 7 (too low).  \n- attempt 4: 4 * 1.0 = 4, then 4 * 3 = 12 (too low).  \n- attempt 5: 4 * 3 = 12, then 12 / 1.0 = 12 (too low).  \n\nall results are 12 or lower. no result between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 6,
+      "state": [
+        33,
+        9
+      ],
+      "action": "[33, 9]",
+      "value": 1.2,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 3 from 36 to get 33, then work with 9.",
+        "code": "numbers = [36, 3, 9]\nres = numbers[0] - numbers[1]  # 36 - 3 = 33\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[33, 9]"
+      },
+      "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]",
+      "evaluation": {
+        "state": "[33, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 33
+        },
+        "llm_judgments": [
+          "[33, 9]  \n- attempt 1: 33 - 9 = 24 (exact!)  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.200",
+          "✅ VERIFIER: '33 - 9=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[33, 9]  \n- attempt 1: 33 - 9 = 24 (exact!)  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.2,
+        "judgment": "sure",
+        "extracted_operation": "33 - 9",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "14": {
+          "id": 14,
+          "parent_id": 9,
+          "state": [
+            24.0
+          ],
+          "action": "33 - 9",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [33, 9], 33 - 9 = 24",
+            "code": "numbers = [33, 9]\na, b = 33, 9\nresult = 33 - 9\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nOperation: 33 - 9 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 9,
+          "state": [
+            24
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [33, 9], LLM chose: a-b",
+            "code": "numbers = [33, 9]\na, b = 33, 9\nresult = a-b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nFor 2-number state [33, 9], LLM chose: a-b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 10,
+      "parent_id": 3,
+      "state": [
+        15,
+        9
+      ],
+      "action": "[15, 9]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 5 and 3 to get 15, then work with 9.",
+        "code": "numbers = [5, 3, 9]\nres = numbers[0] * numbers[1]   # 5 * 3 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15, 9]"
+      },
+      "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]",
+      "evaluation": {
+        "state": "[15, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 15
+        },
+        "llm_judgments": [
+          "[15, 9]  \n- attempt 1: 15 + 9 = 24 (exact!)  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000",
+          "✅ VERIFIER: '15 + 9=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[15, 9]  \n- attempt 1: 15 + 9 = 24 (exact!)  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": "15 + 9",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "13": {
+          "id": 13,
+          "parent_id": 10,
+          "state": [
+            24.0
+          ],
+          "action": "15 + 9",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [15, 9], 15 + 9 = 24",
+            "code": "numbers = [15, 9]\na, b = 15, 9\nresult = 15 + 9\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]\nOperation: 15 + 9 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 11,
+      "parent_id": 5,
+      "state": [
+        72,
+        3
+      ],
+      "action": "[72, 3]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Multiply 18 and 4 to get 72, then work with 3.  \n**",
+        "code": "numbers = [18, 3, 4]\nres = numbers[0] * numbers[2]  # 18 * 4 = 72\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[72, 3]"
+      },
+      "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]",
+      "evaluation": {
+        "state": "[72, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 72
+        },
+        "llm_judgments": [
+          "[72, 3]  \n- attempt 1: 72 / 3 = 24 (exact!)  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000",
+          "✅ VERIFIER: '72 / 3=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[72, 3]  \n- attempt 1: 72 / 3 = 24 (exact!)  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": "72 / 3",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "12": {
+          "id": 12,
+          "parent_id": 11,
+          "state": [
+            24.0
+          ],
+          "action": "72 / 3",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [72, 3], 72 / 3 = 24",
+            "code": "numbers = [72, 3]\na, b = 72, 3\nresult = 72 / 3\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]\nOperation: 72 / 3 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 12,
+      "parent_id": 11,
+      "state": [
+        24.0
+      ],
+      "action": "72 / 3",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [72, 3], 72 / 3 = 24",
+        "code": "numbers = [72, 3]\na, b = 72, 3\nresult = 72 / 3\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Try adding 9 and 9 to get 18, then work with 3 and 4.\nResult: [18, 3, 4]\n** Multiply 18 and 4 to get 72, then work with 3.  \n**\nResult: [72, 3]\nOperation: 72 / 3 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 10,
+      "state": [
+        24.0
+      ],
+      "action": "15 + 9",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [15, 9], 15 + 9 = 24",
+        "code": "numbers = [15, 9]\na, b = 15, 9\nresult = 15 + 9\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Try subtracting 4 from 9 to get 5, then work with 3 and 9.\nResult: [5, 3, 9]\nMultiply 5 and 3 to get 15, then work with 9.\nResult: [15, 9]\nOperation: 15 + 9 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 9,
+      "state": [
+        24.0
+      ],
+      "action": "33 - 9",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [33, 9], 33 - 9 = 24",
+        "code": "numbers = [33, 9]\na, b = 33, 9\nresult = 33 - 9\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nOperation: 33 - 9 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 9,
+      "state": [
+        24
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [33, 9], LLM chose: a-b",
+        "code": "numbers = [33, 9]\na, b = 33, 9\nresult = a-b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "Try multiplying 4 and 9 to get 36, then work with 3 and 9.\nResult: [36, 3, 9]\nSubtract 3 from 36 to get 33, then work with 9.\nResult: [33, 9]\nFor 2-number state [33, 9], LLM chose: a-b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    12,
+    13,
+    14
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 11,
+      "re_evaluations": 0,
+      "unique_states": 11,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
