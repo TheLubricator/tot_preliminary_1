@@ -1,0 +1,1355 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-22T12:14:32.931083",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 12,
+      "api_calls": 15,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 50,
+      "code_errors": 0,
+      "daily_requests": 15,
+      "session_start": "2026-05-22T12:13:46.088202",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 39,
+      "total_input_tokens": 7909,
+      "total_output_tokens": 8184,
+      "deadend_memory": {
+        "patterns_stored": 2,
+        "two_num_cache_size": 93,
+        "total_checked": 49,
+        "total_skipped": 39,
+        "skip_rate": "79.6%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 2,
+      "total_checked": 49,
+      "total_skipped": 39,
+      "api_calls_saved": 39
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        5,
+        5,
+        8,
+        10
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 8,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            10,
+            8,
+            10
+          ],
+          "action": "[10, 8, 10]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 5 and 5 to get 10, then combine with remaining 8 and 10.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[0] + numbers[1]   # 5 + 5 = 10\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[10, 8, 10]"
+          },
+          "path_history": "Add 5 and 5 to get 10, then combine with remaining 8 and 10.\nResult: [10, 8, 10]",
+          "evaluation": {
+            "state": "[10, 8, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "[10, 8, 10]  \n- attempt 1: 10 + 10 = 20, then 20 + 8 = 28 (too high, but within 20-28).  \n- attempt 2: 10 * 8 = 80, then 80 / 10 = 8 (too low).  \n- attempt 3: 10 + 8 = 18, then 18 + 10 = 28 (same as attempt 1).  \n- attempt 4: 10 * 10 = 100, then 100 - 8 = 92 (far too high).  \n- attempt 5: 10 / 10 = 1, then 1 * 8 = 8 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[10, 8, 10]  \n- attempt 1: 10 + 10 = 20, then 20 + 8 = 28 (too high, but within 20-28).  \n- attempt 2: 10 * 8 = 80, then 80 / 10 = 8 (too low).  \n- attempt 3: 10 + 8 = 18, then 18 + 10 = 28 (same as attempt 1).  \n- attempt 4: 10 * 10 = 100, then 100 - 8 = 92 (far too high).  \n- attempt 5: 10 / 10 = 1, then 1 * 8 = 8 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            25,
+            8,
+            10
+          ],
+          "action": "[25, 8, 10]",
+          "value": 0.72,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 5 and 5 to get 25, then combine with remaining 8 and 10.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[0] * numbers[1]   # 5 * 5 = 25\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[25, 8, 10]"
+          },
+          "path_history": "Multiply 5 and 5 to get 25, then combine with remaining 8 and 10.\nResult: [25, 8, 10]",
+          "evaluation": {
+            "state": "[25, 8, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 25
+            },
+            "llm_judgments": [
+              "[25, 8, 10]  \n- attempt 1: 25 - 10 = 15, then 15 + 8 = 23 (too low, but close).  \n- attempt 2: 25 - 8 = 17, then 17 + 10 = 27 (too high, but within 20-28).  \n- attempt 3: 25 + 8 = 33, then 33 - 10 = 23 (too low).  \n- attempt 4: 25 + 10 = 35, then 35 - 8 = 27 (too high, within range).  \n- attempt 5: 8 * 10 = 80, then 80 / 25 = 3.2 (far low).  \n\nbest results are 23 and 27, both between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.720"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[25, 8, 10]  \n- attempt 1: 25 - 10 = 15, then 15 + 8 = 23 (too low, but close).  \n- attempt 2: 25 - 8 = 17, then 17 + 10 = 27 (too high, but within 20-28).  \n- attempt 3: 25 + 8 = 33, then 33 - 10 = 23 (too low).  \n- attempt 4: 25 + 10 = 35, then 35 - 8 = 27 (too high, within range).  \n- attempt 5: 8 * 10 = 80, then 80 / 25 = 3.2 (far low).  \n\nbest results are 23 and 27, both between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.72,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            5,
+            5,
+            8
+          ],
+          "action": "[5, 5, 8]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 5 from 10 to get 5, then combine with remaining 5 and 8.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[3] - numbers[0]   # 10 - 5 = 5\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[5, 5, 8]"
+          },
+          "path_history": "Subtract 5 from 10 to get 5, then combine with remaining 5 and 8.\nResult: [5, 5, 8]",
+          "evaluation": {
+            "state": "[5, 5, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "[5, 5, 8]  \n- attempt 1: 5 * 5 = 25, then 25 - 8 = 17 (too low).  \n- attempt 2: 8 * 5 = 40, then 40 / 5 = 8 (too low).  \n- attempt 3: 8 * 5 = 40, then 40 - 5 = 35 (too high, far above 28).  \n- attempt 4: 5 + 5 = 10, then 10 * 8 = 80 (far too high).  \n- attempt 5: 8 + 5 = 13, then 13 * 5 = 65 (far too high).  \n\nall results are 17, 8, 35, 80, 65. none are between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Judgment votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Boosted score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[5, 5, 8]  \n- attempt 1: 5 * 5 = 25, then 25 - 8 = 17 (too low).  \n- attempt 2: 8 * 5 = 40, then 40 / 5 = 8 (too low).  \n- attempt 3: 8 * 5 = 40, then 40 - 5 = 35 (too high, far above 28).  \n- attempt 4: 5 + 5 = 10, then 10 * 8 = 80 (far too high).  \n- attempt 5: 8 + 5 = 13, then 13 * 5 = 65 (far too high).  \n\nall results are 17, 8, 35, 80, 65. none are between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            2.0,
+            5,
+            8
+          ],
+          "action": "[2.0, 5, 8]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[3] / numbers[0]   # 10 / 5 = 2\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.0, 5, 8]"
+          },
+          "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]",
+          "evaluation": {
+            "state": "[2.0, 5, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "[2.0, 5, 8]  \n- attempt 1: 8 * 5 = 40, then 40 - 2.0 = 38 (too high).  \n- attempt 2: 8 * 2.0 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 3: 8 * 5 = 40, then 40 / 2.0 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2.0 = 10, then 10 + 8 = 18 (too low).  \n- attempt 5: 8 + 5 = 13, then 13 * 2.0 = 26 (too high, but within 20-28).  \n\nbest results are 21, 20, and 26, all between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2.0, 5, 8]  \n- attempt 1: 8 * 5 = 40, then 40 - 2.0 = 38 (too high).  \n- attempt 2: 8 * 2.0 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 3: 8 * 5 = 40, then 40 / 2.0 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2.0 = 10, then 10 + 8 = 18 (too low).  \n- attempt 5: 8 + 5 = 13, then 13 * 2.0 = 26 (too high, but within 20-28).  \n\nbest results are 21, 20, and 26, all between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "9": {
+              "id": 9,
+              "parent_id": 4,
+              "state": [
+                3.0,
+                8
+              ],
+              "action": "[3.0, 8]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 2.0 from 5 to get 3, then combine with 8",
+                "code": "numbers = [2.0, 5, 8]\nres = numbers[1] - numbers[0]   # 5 - 2.0 = 3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[3.0, 8]"
+              },
+              "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]",
+              "evaluation": {
+                "state": "[3.0, 8]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 8
+                },
+                "llm_judgments": [
+                  "[3.0, 8]  \n- attempt 1: 8 * 3.0 = 24.0 (exact!)  \nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Judgment votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Boosted score: 1.000",
+                  "✅ VERIFIER: '8 * 3.0=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "[3.0, 8]  \n- attempt 1: 8 * 3.0 = 24.0 (exact!)  \nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "judgment": "sure",
+                "extracted_operation": "8 * 3.0",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "10": {
+                  "id": 10,
+                  "parent_id": 9,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "8 * 3.0",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [3.0, 8], 8 * 3.0 = 24",
+                    "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = 8 * 3.0\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nOperation: 8 * 3.0 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "11": {
+                  "id": 11,
+                  "parent_id": 9,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [3.0, 8], LLM chose: a*b",
+                    "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nFor 2-number state [3.0, 8], LLM chose: a*b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24.0]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            80,
+            5,
+            5
+          ],
+          "action": "[80, 5, 5]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 8 and 10 to get 80, then combine with remaining two 5s.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[2] * numbers[3]   # 8 * 10 = 80\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[80, 5, 5]"
+          },
+          "path_history": "Multiply 8 and 10 to get 80, then combine with remaining two 5s.\nResult: [80, 5, 5]",
+          "evaluation": {
+            "state": "[80, 5, 5]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 80
+            },
+            "llm_judgments": [
+              "[80, 5, 5]  \n- attempt 1: 80 / 5 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 2: 5 * 5 = 25, then 80 / 25 = 3.2 (too low, far from 24).  \n- attempt 3: 80 - 5 = 75, then 75 / 5 = 15 (too low).  \n- attempt 4: 80 / 5 = 16, then 16 * 5 = 80 (too high).  \n- attempt 5: 5 * 5 = 25, then 80 - 25 = 55 (too high).  \n\nbest result is 21 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[80, 5, 5]  \n- attempt 1: 80 / 5 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 2: 5 * 5 = 25, then 80 / 25 = 3.2 (too low, far from 24).  \n- attempt 3: 80 - 5 = 75, then 75 / 5 = 15 (too low).  \n- attempt 4: 80 / 5 = 16, then 16 * 5 = 80 (too high).  \n- attempt 5: 5 * 5 = 25, then 80 - 25 = 55 (too high).  \n\nbest result is 21 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            2,
+            5,
+            5
+          ],
+          "action": "[2, 5, 5]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 8 from 10 to get 2, then combine with remaining two 5s.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[3] - numbers[2]   # 10 - 8 = 2\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2, 5, 5]"
+          },
+          "path_history": "Subtract 8 from 10 to get 2, then combine with remaining two 5s.\nResult: [2, 5, 5]",
+          "evaluation": {
+            "state": "[2, 5, 5]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 5
+            },
+            "llm_judgments": [
+              "[2, 5, 5]  \n- attempt 1: 5 * 5 = 25, then 25 - 2 = 23 (too low, but close to 24).  \n- attempt 2: 5 * 5 = 25, then 25 + 2 = 27 (too high, but within 20-28).  \n- attempt 3: 5 + 5 = 10, then 10 * 2 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2 = 10, then 10 + 5 = 15 (too low).  \n- attempt 5: 5 * 5 = 25, then 25 - 2 = 23 (already tried, still close but not exact).  \n\nbest results are 23, 27, and 20 — all between 20 and 28, but none exactly 24.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2, 5, 5]  \n- attempt 1: 5 * 5 = 25, then 25 - 2 = 23 (too low, but close to 24).  \n- attempt 2: 5 * 5 = 25, then 25 + 2 = 27 (too high, but within 20-28).  \n- attempt 3: 5 + 5 = 10, then 10 * 2 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2 = 10, then 10 + 5 = 15 (too low).  \n- attempt 5: 5 * 5 = 25, then 25 - 2 = 23 (already tried, still close but not exact).  \n\nbest results are 23, 27, and 20 — all between 20 and 28, but none exactly 24.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            3,
+            5,
+            10
+          ],
+          "action": "[3, 5, 10]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 5 from 8 to get 3, then combine with remaining 5 and 10.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[2] - numbers[0]   # 8 - 5 = 3\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3, 5, 10]"
+          },
+          "path_history": "Subtract 5 from 8 to get 3, then combine with remaining 5 and 10.\nResult: [3, 5, 10]",
+          "evaluation": {
+            "state": "[3, 5, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "[3, 5, 10]  \n- attempt 1: 10 + 5 = 15, then 15 + 3 = 18 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 5 = 25 (too high, but within 20-28).  \n- attempt 3: 10 * 5 = 50, then 50 / 3 = about 16.67 (too low).  \n- attempt 4: 10 + 3 = 13, then 13 * 5 = 65 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 10 = 25 (again within 20-28).  \n\nbest results are 25, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[3, 5, 10]  \n- attempt 1: 10 + 5 = 15, then 15 + 3 = 18 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 5 = 25 (too high, but within 20-28).  \n- attempt 3: 10 * 5 = 50, then 50 / 3 = about 16.67 (too low).  \n- attempt 4: 10 + 3 = 13, then 13 * 5 = 65 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 10 = 25 (again within 20-28).  \n\nbest results are 25, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            18,
+            5,
+            5
+          ],
+          "action": "[18, 5, 5]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 8 and 10 to get 18, then combine with remaining two 5s.",
+            "code": "numbers = [5, 5, 8, 10]\nres = numbers[2] + numbers[3]   # 8 + 10 = 18\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[18, 5, 5]"
+          },
+          "path_history": "Add 8 and 10 to get 18, then combine with remaining two 5s.\nResult: [18, 5, 5]",
+          "evaluation": {
+            "state": "[18, 5, 5]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "[18, 5, 5]  \n- attempt 1: 18 + 5 = 23, then 23 + 5 = 28 (too high, but within 20-28).  \n- attempt 2: 18 + 5 = 23, then 23 - 5 = 18 (too low).  \n- attempt 3: 18 - 5 = 13, then 13 + 5 = 18 (too low).  \n- attempt 4: 5 * 5 = 25, then 25 - 18 = 7 (too low).  \n- attempt 5: 18 * 5 = 90, then 90 / 5 = 18 (too low).  \n\nbest result is 28 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Judgment votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Boosted score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[18, 5, 5]  \n- attempt 1: 18 + 5 = 23, then 23 + 5 = 28 (too high, but within 20-28).  \n- attempt 2: 18 + 5 = 23, then 23 - 5 = 18 (too low).  \n- attempt 3: 18 - 5 = 13, then 13 + 5 = 18 (too low).  \n- attempt 4: 5 * 5 = 25, then 25 - 18 = 7 (too low).  \n- attempt 5: 18 * 5 = 90, then 90 / 5 = 18 (too low).  \n\nbest result is 28 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        10,
+        8,
+        10
+      ],
+      "action": "[10, 8, 10]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 5 and 5 to get 10, then combine with remaining 8 and 10.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[0] + numbers[1]   # 5 + 5 = 10\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[10, 8, 10]"
+      },
+      "path_history": "Add 5 and 5 to get 10, then combine with remaining 8 and 10.\nResult: [10, 8, 10]",
+      "evaluation": {
+        "state": "[10, 8, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "[10, 8, 10]  \n- attempt 1: 10 + 10 = 20, then 20 + 8 = 28 (too high, but within 20-28).  \n- attempt 2: 10 * 8 = 80, then 80 / 10 = 8 (too low).  \n- attempt 3: 10 + 8 = 18, then 18 + 10 = 28 (same as attempt 1).  \n- attempt 4: 10 * 10 = 100, then 100 - 8 = 92 (far too high).  \n- attempt 5: 10 / 10 = 1, then 1 * 8 = 8 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[10, 8, 10]  \n- attempt 1: 10 + 10 = 20, then 20 + 8 = 28 (too high, but within 20-28).  \n- attempt 2: 10 * 8 = 80, then 80 / 10 = 8 (too low).  \n- attempt 3: 10 + 8 = 18, then 18 + 10 = 28 (same as attempt 1).  \n- attempt 4: 10 * 10 = 100, then 100 - 8 = 92 (far too high).  \n- attempt 5: 10 / 10 = 1, then 1 * 8 = 8 (too low).  \n\nbest result is 28, which is within 20-28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        25,
+        8,
+        10
+      ],
+      "action": "[25, 8, 10]",
+      "value": 0.72,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 5 and 5 to get 25, then combine with remaining 8 and 10.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[0] * numbers[1]   # 5 * 5 = 25\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[25, 8, 10]"
+      },
+      "path_history": "Multiply 5 and 5 to get 25, then combine with remaining 8 and 10.\nResult: [25, 8, 10]",
+      "evaluation": {
+        "state": "[25, 8, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 25
+        },
+        "llm_judgments": [
+          "[25, 8, 10]  \n- attempt 1: 25 - 10 = 15, then 15 + 8 = 23 (too low, but close).  \n- attempt 2: 25 - 8 = 17, then 17 + 10 = 27 (too high, but within 20-28).  \n- attempt 3: 25 + 8 = 33, then 33 - 10 = 23 (too low).  \n- attempt 4: 25 + 10 = 35, then 35 - 8 = 27 (too high, within range).  \n- attempt 5: 8 * 10 = 80, then 80 / 25 = 3.2 (far low).  \n\nbest results are 23 and 27, both between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.720"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[25, 8, 10]  \n- attempt 1: 25 - 10 = 15, then 15 + 8 = 23 (too low, but close).  \n- attempt 2: 25 - 8 = 17, then 17 + 10 = 27 (too high, but within 20-28).  \n- attempt 3: 25 + 8 = 33, then 33 - 10 = 23 (too low).  \n- attempt 4: 25 + 10 = 35, then 35 - 8 = 27 (too high, within range).  \n- attempt 5: 8 * 10 = 80, then 80 / 25 = 3.2 (far low).  \n\nbest results are 23 and 27, both between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.72,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        5,
+        5,
+        8
+      ],
+      "action": "[5, 5, 8]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 5 from 10 to get 5, then combine with remaining 5 and 8.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[3] - numbers[0]   # 10 - 5 = 5\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[5, 5, 8]"
+      },
+      "path_history": "Subtract 5 from 10 to get 5, then combine with remaining 5 and 8.\nResult: [5, 5, 8]",
+      "evaluation": {
+        "state": "[5, 5, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "[5, 5, 8]  \n- attempt 1: 5 * 5 = 25, then 25 - 8 = 17 (too low).  \n- attempt 2: 8 * 5 = 40, then 40 / 5 = 8 (too low).  \n- attempt 3: 8 * 5 = 40, then 40 - 5 = 35 (too high, far above 28).  \n- attempt 4: 5 + 5 = 10, then 10 * 8 = 80 (far too high).  \n- attempt 5: 8 + 5 = 13, then 13 * 5 = 65 (far too high).  \n\nall results are 17, 8, 35, 80, 65. none are between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Judgment votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Boosted score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[5, 5, 8]  \n- attempt 1: 5 * 5 = 25, then 25 - 8 = 17 (too low).  \n- attempt 2: 8 * 5 = 40, then 40 / 5 = 8 (too low).  \n- attempt 3: 8 * 5 = 40, then 40 - 5 = 35 (too high, far above 28).  \n- attempt 4: 5 + 5 = 10, then 10 * 8 = 80 (far too high).  \n- attempt 5: 8 + 5 = 13, then 13 * 5 = 65 (far too high).  \n\nall results are 17, 8, 35, 80, 65. none are between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        2.0,
+        5,
+        8
+      ],
+      "action": "[2.0, 5, 8]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[3] / numbers[0]   # 10 / 5 = 2\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.0, 5, 8]"
+      },
+      "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]",
+      "evaluation": {
+        "state": "[2.0, 5, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "[2.0, 5, 8]  \n- attempt 1: 8 * 5 = 40, then 40 - 2.0 = 38 (too high).  \n- attempt 2: 8 * 2.0 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 3: 8 * 5 = 40, then 40 / 2.0 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2.0 = 10, then 10 + 8 = 18 (too low).  \n- attempt 5: 8 + 5 = 13, then 13 * 2.0 = 26 (too high, but within 20-28).  \n\nbest results are 21, 20, and 26, all between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2.0, 5, 8]  \n- attempt 1: 8 * 5 = 40, then 40 - 2.0 = 38 (too high).  \n- attempt 2: 8 * 2.0 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 3: 8 * 5 = 40, then 40 / 2.0 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2.0 = 10, then 10 + 8 = 18 (too low).  \n- attempt 5: 8 + 5 = 13, then 13 * 2.0 = 26 (too high, but within 20-28).  \n\nbest results are 21, 20, and 26, all between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "9": {
+          "id": 9,
+          "parent_id": 4,
+          "state": [
+            3.0,
+            8
+          ],
+          "action": "[3.0, 8]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 2.0 from 5 to get 3, then combine with 8",
+            "code": "numbers = [2.0, 5, 8]\nres = numbers[1] - numbers[0]   # 5 - 2.0 = 3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3.0, 8]"
+          },
+          "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]",
+          "evaluation": {
+            "state": "[3.0, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "[3.0, 8]  \n- attempt 1: 8 * 3.0 = 24.0 (exact!)  \nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Judgment votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Boosted score: 1.000",
+              "✅ VERIFIER: '8 * 3.0=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[3.0, 8]  \n- attempt 1: 8 * 3.0 = 24.0 (exact!)  \nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "judgment": "sure",
+            "extracted_operation": "8 * 3.0",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "10": {
+              "id": 10,
+              "parent_id": 9,
+              "state": [
+                24.0
+              ],
+              "action": "8 * 3.0",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [3.0, 8], 8 * 3.0 = 24",
+                "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = 8 * 3.0\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nOperation: 8 * 3.0 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 9,
+              "state": [
+                24.0
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [3.0, 8], LLM chose: a*b",
+                "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nFor 2-number state [3.0, 8], LLM chose: a*b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24.0]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        80,
+        5,
+        5
+      ],
+      "action": "[80, 5, 5]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 8 and 10 to get 80, then combine with remaining two 5s.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[2] * numbers[3]   # 8 * 10 = 80\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[80, 5, 5]"
+      },
+      "path_history": "Multiply 8 and 10 to get 80, then combine with remaining two 5s.\nResult: [80, 5, 5]",
+      "evaluation": {
+        "state": "[80, 5, 5]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 80
+        },
+        "llm_judgments": [
+          "[80, 5, 5]  \n- attempt 1: 80 / 5 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 2: 5 * 5 = 25, then 80 / 25 = 3.2 (too low, far from 24).  \n- attempt 3: 80 - 5 = 75, then 75 / 5 = 15 (too low).  \n- attempt 4: 80 / 5 = 16, then 16 * 5 = 80 (too high).  \n- attempt 5: 5 * 5 = 25, then 80 - 25 = 55 (too high).  \n\nbest result is 21 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[80, 5, 5]  \n- attempt 1: 80 / 5 = 16, then 16 + 5 = 21 (too low, but within 20-28).  \n- attempt 2: 5 * 5 = 25, then 80 / 25 = 3.2 (too low, far from 24).  \n- attempt 3: 80 - 5 = 75, then 75 / 5 = 15 (too low).  \n- attempt 4: 80 / 5 = 16, then 16 * 5 = 80 (too high).  \n- attempt 5: 5 * 5 = 25, then 80 - 25 = 55 (too high).  \n\nbest result is 21 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        2,
+        5,
+        5
+      ],
+      "action": "[2, 5, 5]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 8 from 10 to get 2, then combine with remaining two 5s.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[3] - numbers[2]   # 10 - 8 = 2\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2, 5, 5]"
+      },
+      "path_history": "Subtract 8 from 10 to get 2, then combine with remaining two 5s.\nResult: [2, 5, 5]",
+      "evaluation": {
+        "state": "[2, 5, 5]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 5
+        },
+        "llm_judgments": [
+          "[2, 5, 5]  \n- attempt 1: 5 * 5 = 25, then 25 - 2 = 23 (too low, but close to 24).  \n- attempt 2: 5 * 5 = 25, then 25 + 2 = 27 (too high, but within 20-28).  \n- attempt 3: 5 + 5 = 10, then 10 * 2 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2 = 10, then 10 + 5 = 15 (too low).  \n- attempt 5: 5 * 5 = 25, then 25 - 2 = 23 (already tried, still close but not exact).  \n\nbest results are 23, 27, and 20 — all between 20 and 28, but none exactly 24.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2, 5, 5]  \n- attempt 1: 5 * 5 = 25, then 25 - 2 = 23 (too low, but close to 24).  \n- attempt 2: 5 * 5 = 25, then 25 + 2 = 27 (too high, but within 20-28).  \n- attempt 3: 5 + 5 = 10, then 10 * 2 = 20 (too low, but within 20-28).  \n- attempt 4: 5 * 2 = 10, then 10 + 5 = 15 (too low).  \n- attempt 5: 5 * 5 = 25, then 25 - 2 = 23 (already tried, still close but not exact).  \n\nbest results are 23, 27, and 20 — all between 20 and 28, but none exactly 24.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        3,
+        5,
+        10
+      ],
+      "action": "[3, 5, 10]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 5 from 8 to get 3, then combine with remaining 5 and 10.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[2] - numbers[0]   # 8 - 5 = 3\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3, 5, 10]"
+      },
+      "path_history": "Subtract 5 from 8 to get 3, then combine with remaining 5 and 10.\nResult: [3, 5, 10]",
+      "evaluation": {
+        "state": "[3, 5, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "[3, 5, 10]  \n- attempt 1: 10 + 5 = 15, then 15 + 3 = 18 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 5 = 25 (too high, but within 20-28).  \n- attempt 3: 10 * 5 = 50, then 50 / 3 = about 16.67 (too low).  \n- attempt 4: 10 + 3 = 13, then 13 * 5 = 65 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 10 = 25 (again within 20-28).  \n\nbest results are 25, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[3, 5, 10]  \n- attempt 1: 10 + 5 = 15, then 15 + 3 = 18 (too low).  \n- attempt 2: 10 * 3 = 30, then 30 - 5 = 25 (too high, but within 20-28).  \n- attempt 3: 10 * 5 = 50, then 50 / 3 = about 16.67 (too low).  \n- attempt 4: 10 + 3 = 13, then 13 * 5 = 65 (far too high).  \n- attempt 5: 5 * 3 = 15, then 15 + 10 = 25 (again within 20-28).  \n\nbest results are 25, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        18,
+        5,
+        5
+      ],
+      "action": "[18, 5, 5]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 8 and 10 to get 18, then combine with remaining two 5s.",
+        "code": "numbers = [5, 5, 8, 10]\nres = numbers[2] + numbers[3]   # 8 + 10 = 18\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[18, 5, 5]"
+      },
+      "path_history": "Add 8 and 10 to get 18, then combine with remaining two 5s.\nResult: [18, 5, 5]",
+      "evaluation": {
+        "state": "[18, 5, 5]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "[18, 5, 5]  \n- attempt 1: 18 + 5 = 23, then 23 + 5 = 28 (too high, but within 20-28).  \n- attempt 2: 18 + 5 = 23, then 23 - 5 = 18 (too low).  \n- attempt 3: 18 - 5 = 13, then 13 + 5 = 18 (too low).  \n- attempt 4: 5 * 5 = 25, then 25 - 18 = 7 (too low).  \n- attempt 5: 18 * 5 = 90, then 90 / 5 = 18 (too low).  \n\nbest result is 28 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Judgment votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Boosted score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[18, 5, 5]  \n- attempt 1: 18 + 5 = 23, then 23 + 5 = 28 (too high, but within 20-28).  \n- attempt 2: 18 + 5 = 23, then 23 - 5 = 18 (too low).  \n- attempt 3: 18 - 5 = 13, then 13 + 5 = 18 (too low).  \n- attempt 4: 5 * 5 = 25, then 25 - 18 = 7 (too low).  \n- attempt 5: 18 * 5 = 90, then 90 / 5 = 18 (too low).  \n\nbest result is 28 from attempt 1, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 4,
+      "state": [
+        3.0,
+        8
+      ],
+      "action": "[3.0, 8]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 2.0 from 5 to get 3, then combine with 8",
+        "code": "numbers = [2.0, 5, 8]\nres = numbers[1] - numbers[0]   # 5 - 2.0 = 3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3.0, 8]"
+      },
+      "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]",
+      "evaluation": {
+        "state": "[3.0, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "[3.0, 8]  \n- attempt 1: 8 * 3.0 = 24.0 (exact!)  \nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Judgment votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Boosted score: 1.000",
+          "✅ VERIFIER: '8 * 3.0=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[3.0, 8]  \n- attempt 1: 8 * 3.0 = 24.0 (exact!)  \nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "judgment": "sure",
+        "extracted_operation": "8 * 3.0",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "10": {
+          "id": 10,
+          "parent_id": 9,
+          "state": [
+            24.0
+          ],
+          "action": "8 * 3.0",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [3.0, 8], 8 * 3.0 = 24",
+            "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = 8 * 3.0\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nOperation: 8 * 3.0 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 9,
+          "state": [
+            24.0
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [3.0, 8], LLM chose: a*b",
+            "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nFor 2-number state [3.0, 8], LLM chose: a*b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24.0]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 10,
+      "parent_id": 9,
+      "state": [
+        24.0
+      ],
+      "action": "8 * 3.0",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [3.0, 8], 8 * 3.0 = 24",
+        "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = 8 * 3.0\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nOperation: 8 * 3.0 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 9,
+      "state": [
+        24.0
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [3.0, 8], LLM chose: a*b",
+        "code": "numbers = [3.0, 8]\na, b = 3.0, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "Divide 10 by 5 to get 2, then combine with remaining 5 and 8.\nResult: [2.0, 5, 8]\nSubtract 2.0 from 5 to get 3, then combine with 8\nResult: [3.0, 8]\nFor 2-number state [3.0, 8], LLM chose: a*b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24.0]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: Final state equals 24 - PUZZLE SOLVED!"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    10
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 9,
+      "re_evaluations": 0,
+      "unique_states": 9,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
