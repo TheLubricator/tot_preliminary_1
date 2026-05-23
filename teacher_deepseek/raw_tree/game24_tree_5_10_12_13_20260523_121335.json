@@ -1,0 +1,2025 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-23T12:13:35.035369",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 16,
+      "api_calls": 45,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 52,
+      "code_errors": 0,
+      "daily_requests": 45,
+      "session_start": "2026-05-23T12:12:23.979071",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 37,
+      "total_input_tokens": 36508,
+      "total_output_tokens": 22717,
+      "api_saved_two_num_cache": 111,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "deadend_memory": {
+        "patterns_stored": 6,
+        "two_num_cache_size": 73,
+        "total_checked": 51,
+        "total_skipped": 37,
+        "skip_rate": "72.5%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 6,
+      "total_checked": 51,
+      "total_skipped": 37,
+      "api_calls_saved": 111,
+      "api_saved_two_num_cache": 111,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        5,
+        10,
+        12,
+        13
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 12,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            15,
+            12,
+            13
+          ],
+          "action": "[15, 12, 13]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 5 and 10 to get 15.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] + numbers[1]   # 5 + 10 = 15\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15, 12, 13]"
+          },
+          "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]",
+          "evaluation": {
+            "state": "[15, 12, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 15
+            },
+            "llm_judgments": [
+              "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+              "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, *12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, *12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, *15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, *15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+              "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+                "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, *12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, *12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, *15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, *15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+                "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "13": {
+              "id": 13,
+              "parent_id": 1,
+              "state": [
+                2,
+                12
+              ],
+              "action": "[2, 12]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.",
+                "code": "numbers = [15, 12, 13]\nres = numbers[0] - numbers[2]  # 15 - 13 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[2, 12]"
+              },
+              "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]",
+              "evaluation": {
+                "state": "[2, 12]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 12
+                },
+                "llm_judgments": [
+                  "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure",
+                  "we have numbers: 2 and 12. target: 24.\n\n- attempt 1 (division):  \n  12 / 2 = 6, then 6 * ? — no third number.  \n  2 / 12 ≈ 0.1667 — no.\n\n- attempt 2 (close subtraction):  \n  12 - 2 = 10, then 10 * ? — no third number.\n\n- attempt 3 (multiplication):  \n  2 * 12 = 24 exactly.\n\nresult is exactly 24.\n\nanswer: sure",
+                  "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '12 * 2=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure",
+                    "we have numbers: 2 and 12. target: 24.\n\n- attempt 1 (division):  \n  12 / 2 = 6, then 6 * ? — no third number.  \n  2 / 12 ≈ 0.1667 — no.\n\n- attempt 2 (close subtraction):  \n  12 - 2 = 10, then 10 * ? — no third number.\n\n- attempt 3 (multiplication):  \n  2 * 12 = 24 exactly.\n\nresult is exactly 24.\n\nanswer: sure",
+                    "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "12 * 2",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "14": {
+                  "id": 14,
+                  "parent_id": 13,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "12 * 2",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [2, 12], 12 * 2 = 24",
+                    "code": "numbers = [2, 12]\na, b = 2, 12\nresult = 12 * 2\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nOperation: 12 * 2 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "15": {
+                  "id": 15,
+                  "parent_id": 13,
+                  "state": [
+                    24
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [2, 12], LLM chose: a*b",
+                    "code": "numbers = [2, 12]\na, b = 2, 12\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nFor 2-number state [2, 12], LLM chose: a*b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: equals 24"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0,
+                    "pattern_match": null,
+                    "pattern_penalty_applied": false
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            60,
+            10,
+            13
+          ],
+          "action": "[60, 10, 13]",
+          "value": 0.20066666666666666,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 5 and 12 to get 60.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] * numbers[2]   # 5 * 12 = 60\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[60, 10, 13]"
+          },
+          "path_history": "Multiply 5 and 12 to get 60.\nResult: [60, 10, 13]",
+          "evaluation": {
+            "state": "[60, 10, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 60
+            },
+            "llm_judgments": [
+              "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).  \n  10 + 60 = 70, 70 - 13 = 57 (already).  \n  no combination gives 24.\n\nno result near 24. the closest was 20 (from 60/3), which is between 20 and 28, so \"likely\".\n\nanswer: likely",
+              "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24. combine with 60: 60 / 3 = 20 (no), 60 - 3 = 57 (no), 60 + 3 = 63 (no), 3 * 60 = 180 (no).  \n  10 - 13 = -3 (same magnitude, no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).  \n  also try combining with addition/subtraction: 600 - 13 = 587 (no), 780 - 10 = 770 (no), 130 - 60 = 70 (no), etc.\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, then 70 - 13 = 57 (no).  \n  60 + 13 = 73, then 73 - 10 = 63 (no).  \n  10 + 13 = 23, then 23 + 60 = 83 (no), 60 - 23 = 37 (no), 23 - 60 = -37 (no).  \n  60 - 10 = 50, then 50 - 13 = 37 (no).  \n  60 - 13 = 47, then 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible",
+              "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, 0.1667 * 13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, 0.2167 * 10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, 1.3 * 60 = 78 (no).  \n  10 / 13 ≈ 0.7692, 0.7692 * 60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, 780 / 10 = 78 (no).  \n  10 * 13 = 130, 130 / 60 ≈ 2.167 (no).  \n  130 - 60 = 70 (no).  \n  130 + 60 = 190 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=1, impossible=2",
+              "Raw score: 0.201, Final score: 0.201"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).  \n  10 + 60 = 70, 70 - 13 = 57 (already).  \n  no combination gives 24.\n\nno result near 24. the closest was 20 (from 60/3), which is between 20 and 28, so \"likely\".\n\nanswer: likely",
+                "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24. combine with 60: 60 / 3 = 20 (no), 60 - 3 = 57 (no), 60 + 3 = 63 (no), 3 * 60 = 180 (no).  \n  10 - 13 = -3 (same magnitude, no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).  \n  also try combining with addition/subtraction: 600 - 13 = 587 (no), 780 - 10 = 770 (no), 130 - 60 = 70 (no), etc.\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, then 70 - 13 = 57 (no).  \n  60 + 13 = 73, then 73 - 10 = 63 (no).  \n  10 + 13 = 23, then 23 + 60 = 83 (no), 60 - 23 = 37 (no), 23 - 60 = -37 (no).  \n  60 - 10 = 50, then 50 - 13 = 37 (no).  \n  60 - 13 = 47, then 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible",
+                "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, 0.1667 * 13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, 0.2167 * 10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, 1.3 * 60 = 78 (no).  \n  10 / 13 ≈ 0.7692, 0.7692 * 60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, 780 / 10 = 78 (no).  \n  10 * 13 = 130, 130 / 60 ≈ 2.167 (no).  \n  130 - 60 = 70 (no).  \n  130 + 60 = 190 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.6,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 2,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.20066666666666666,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            8,
+            10,
+            12
+          ],
+          "action": "[8, 10, 12]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 5 from 13 to get 8.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[3] - numbers[0]   # 13 - 5 = 8\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 10, 12]"
+          },
+          "path_history": "Subtract 5 from 13 to get 8.\nResult: [8, 10, 12]",
+          "evaluation": {
+            "state": "[8, 10, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+              "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+              "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+                "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+                "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            3,
+            5,
+            12
+          ],
+          "action": "[3, 5, 12]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 10 from 13 to get 3 (uses smallest number 5 as active operand).",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[3] - numbers[1]   # 13 - 10 = 3\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3, 5, 12]"
+          },
+          "path_history": "Subtract 10 from 13 to get 3 (uses smallest number 5 as active operand).\nResult: [3, 5, 12]",
+          "evaluation": {
+            "state": "[3, 5, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+              "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+              "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+                "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+                "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            2.4,
+            10,
+            13
+          ],
+          "action": "[2.4, 10, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 12 by 5 to get 2.4 (uses smallest number 5 as active operand).",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[2] / numbers[0]   # 12 / 5 = 2.4\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.4, 10, 13]"
+          },
+          "path_history": "Divide 12 by 5 to get 2.4 (uses smallest number 5 as active operand).\nResult: [2.4, 10, 13]",
+          "evaluation": {
+            "state": "[2.4, 10, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with third: 3 * 2.4 = 7.2 (no).  \nalso try 10 - 13 = -3, times 2.4 = -7.2 (no).  \nalso try 13 - 2.4 = 10.6 (not a factor), 10 - 2.4 = 7.6 (not a factor).\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no), 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no).  \nalso try 10 + 13 = 23, 23 * 2.4 = 55.2 (no).  \n10 + 2.4 = 12.4, 12.4 * 13 = 161.2 (no).  \n13 + 2.4 = 15.4, 15.4 * 10 = 154 (no).\n\nno result within 0.001 of 24.  \nclosest we got: 20.6, 21.2, 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely",
+              "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13. 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \nalso 2.4 * 3 = 7.2, 24 / 3 = 8 (not using third). no.\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).\n\nno result within 0.001 of 24.  \nclosest was 25.4 (between 20 and 28).\n\nanswer: likely",
+              "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1666..., times 13 = 54.166 (no).  \n13 / 2.4 = 5.4166..., times 10 = 54.166 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \n2.4 * 3 = 7.2 (same).  \nalso 10 - 2.4 = 7.6, not a factor. 13 - 2.4 = 10.6, not a factor.  \nno.\n\n- attempt 3 (multiplication):  \n2.4 * 10 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n2.4 * 13 = 31.2, then 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).  \n10 * 13 = 130, then 130 / 2.4 ≈ 54.166 (no). 130 - 2.4 = 127.6 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, then 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n2.4 + 10 = 12.4, then 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n2.4 + 13 = 15.4, then 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).  \nno.\n\nno result within 0.001 of 24.  \nclosest result is 20.6 or 21.2 or 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'likely', 'likely']",
+              "Votes: sure=0, likely=3, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with third: 3 * 2.4 = 7.2 (no).  \nalso try 10 - 13 = -3, times 2.4 = -7.2 (no).  \nalso try 13 - 2.4 = 10.6 (not a factor), 10 - 2.4 = 7.6 (not a factor).\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no), 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no).  \nalso try 10 + 13 = 23, 23 * 2.4 = 55.2 (no).  \n10 + 2.4 = 12.4, 12.4 * 13 = 161.2 (no).  \n13 + 2.4 = 15.4, 15.4 * 10 = 154 (no).\n\nno result within 0.001 of 24.  \nclosest we got: 20.6, 21.2, 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely",
+                "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13. 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \nalso 2.4 * 3 = 7.2, 24 / 3 = 8 (not using third). no.\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).\n\nno result within 0.001 of 24.  \nclosest was 25.4 (between 20 and 28).\n\nanswer: likely",
+                "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1666..., times 13 = 54.166 (no).  \n13 / 2.4 = 5.4166..., times 10 = 54.166 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \n2.4 * 3 = 7.2 (same).  \nalso 10 - 2.4 = 7.6, not a factor. 13 - 2.4 = 10.6, not a factor.  \nno.\n\n- attempt 3 (multiplication):  \n2.4 * 10 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n2.4 * 13 = 31.2, then 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).  \n10 * 13 = 130, then 130 / 2.4 ≈ 54.166 (no). 130 - 2.4 = 127.6 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, then 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n2.4 + 10 = 12.4, then 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n2.4 + 13 = 15.4, then 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).  \nno.\n\nno result within 0.001 of 24.  \nclosest result is 20.6 or 21.2 or 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6,
+                0.6,
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 3,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            1,
+            5,
+            10
+          ],
+          "action": "[1, 5, 10]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 12 from 13 to get 1.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[3] - numbers[2]   # 13 - 12 = 1\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1, 5, 10]"
+          },
+          "path_history": "Subtract 12 from 13 to get 1.\nResult: [1, 5, 10]",
+          "evaluation": {
+            "state": "[1, 5, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no), 15 * 1 = 15 (no).\n\n- attempt 5:  \n  10 - 5 = 5, then 5 - 1 = 4 (no).  \n  10 + 5 = 15, then 15 - 1 = 14 (no).  \n  10 + 1 = 11, then 11 - 5 = 6 (no).  \n  no combination yields 24.\n\nanswer: impossible",
+              "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no).\n\nno result near 24.\n\nanswer: impossible",
+              "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4.  \n  4 is a factor of 24, combine with 10: 4 * 10 = 40 (no).  \n  10 - 5 = 5, 5 * 1 = 5 (no).  \n  10 - 1 = 9, 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no).  \n  5 * 10 = 50, then 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no).  \n  5 + 10 = 15, then 15 - 1 = 14 (no).  \n  1 + 5 + 10 = 16 (no).\n\nno result between 20 and 28 found.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no), 15 * 1 = 15 (no).\n\n- attempt 5:  \n  10 - 5 = 5, then 5 - 1 = 4 (no).  \n  10 + 5 = 15, then 15 - 1 = 14 (no).  \n  10 + 1 = 11, then 11 - 5 = 6 (no).  \n  no combination yields 24.\n\nanswer: impossible",
+                "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no).\n\nno result near 24.\n\nanswer: impossible",
+                "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4.  \n  4 is a factor of 24, combine with 10: 4 * 10 = 40 (no).  \n  10 - 5 = 5, 5 * 1 = 5 (no).  \n  10 - 1 = 9, 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no).  \n  5 * 10 = 50, then 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no).  \n  5 + 10 = 15, then 15 - 1 = 14 (no).  \n  1 + 5 + 10 = 16 (no).\n\nno result between 20 and 28 found.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            130,
+            5,
+            12
+          ],
+          "action": "[130, 5, 12]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 10 and 13 to get 130.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[1] * numbers[3]   # 10 * 13 = 130\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[130, 5, 12]"
+          },
+          "path_history": "Multiply 10 and 13 to get 130.\nResult: [130, 5, 12]",
+          "evaluation": {
+            "state": "[130, 5, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 130
+            },
+            "llm_judgments": [
+              "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, then 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.17 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 17 + 130 = 147 (no). 130 - 5 = 125, 125 - 12 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible",
+              "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, 10.833 * 5 ≈ 54.165 (no).  \n5 / 130 ≈ 0.0385 (no).  \n12 / 130 ≈ 0.0923 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.167 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 130 - 17 = 113 (no). 130 - 12 = 118, 118 + 5 = 123 (no).  \n\nno result near 24.\n\nanswer: impossible",
+              "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n5 and 12 are closest: 12 - 5 = 7, 7 is not a factor of 24 (no).  \n\n5 * 12 = 60, 130 - 60 = 70 (no).  \n130 * 5 = 650, /12 ≈ 54.17 (no).  \n130 * 12 = 1560, /5 = 312 (no).  \n\n130 + 5 = 135, 135 - 12 = 123 (no).  \n130 + 12 = 142, 142 - 5 = 137 (no).  \n5 + 12 = 17, 130 - 17 = 113 (no).  \n130 - 5 = 125, 125 - 12 = 113 (no).  \n130 - 12 = 118, 118 - 5 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, then 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.17 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 17 + 130 = 147 (no). 130 - 5 = 125, 125 - 12 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible",
+                "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, 10.833 * 5 ≈ 54.165 (no).  \n5 / 130 ≈ 0.0385 (no).  \n12 / 130 ≈ 0.0923 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.167 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 130 - 17 = 113 (no). 130 - 12 = 118, 118 + 5 = 123 (no).  \n\nno result near 24.\n\nanswer: impossible",
+                "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n5 and 12 are closest: 12 - 5 = 7, 7 is not a factor of 24 (no).  \n\n5 * 12 = 60, 130 - 60 = 70 (no).  \n130 * 5 = 650, /12 ≈ 54.17 (no).  \n130 * 12 = 1560, /5 = 312 (no).  \n\n130 + 5 = 135, 135 - 12 = 123 (no).  \n130 + 12 = 142, 142 - 5 = 137 (no).  \n5 + 12 = 17, 130 - 17 = 113 (no).  \n130 - 5 = 125, 125 - 12 = 113 (no).  \n130 - 12 = 118, 118 - 5 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            25,
+            5,
+            10
+          ],
+          "action": "[25, 5, 10]",
+          "value": 0.4803999999999999,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 12 and 13 to get 25.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[2] + numbers[3]   # 12 + 13 = 25\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[25, 5, 10]"
+          },
+          "path_history": "Add 12 and 13 to get 25.\nResult: [25, 5, 10]",
+          "evaluation": {
+            "state": "[25, 5, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 25
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (within 20–28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (within 20–28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is a factor of 24? yes (24 / 5 = 4.8, not integer, but rule says check if result is a factor of 24: 5 is not a factor of 24). so skip.  \n25 - 10 = 15 (not a factor).  \n25 - 5 = 20 (not a factor).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (between 20 and 28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (between 20 and 28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \nnext closest: 25 and 10.  \n25 - 10 = 15, then 15 * 5 = 75 (no).  \n10 - 25 = -15 (no).  \n25 - 5 = 20, then 20 * 10 = 200 (no).  \n5 - 25 = -20 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (no).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (no).  \n10 - 5 = 5, then 5 + 25 = 30 (no).  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'likely', 'impossible']",
+              "Votes: sure=0, likely=2, impossible=1",
+              "Raw score: 0.400, Final score: 0.480"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (within 20–28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (within 20–28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is a factor of 24? yes (24 / 5 = 4.8, not integer, but rule says check if result is a factor of 24: 5 is not a factor of 24). so skip.  \n25 - 10 = 15 (not a factor).  \n25 - 5 = 20 (not a factor).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (between 20 and 28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (between 20 and 28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \nnext closest: 25 and 10.  \n25 - 10 = 15, then 15 * 5 = 75 (no).  \n10 - 25 = -15 (no).  \n25 - 5 = 20, then 20 * 10 = 200 (no).  \n5 - 25 = -20 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (no).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (no).  \n10 - 5 = 5, then 5 + 25 = 30 (no).  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.6,
+                0.6,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 2,
+                "sure": 0
+              }
+            },
+            "final_value": 0.4803999999999999,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 0,
+          "state": [
+            -5,
+            12,
+            13
+          ],
+          "action": "[-5, 12, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 10 from 5 to get -5.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] - numbers[1]   # 5 - 10 = -5\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-5, 12, 13]"
+          },
+          "path_history": "Subtract 10 from 5 to get -5.\nResult: [-5, 12, 13]",
+          "evaluation": {
+            "state": "[-5, 12, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with -5: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, then -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nalso 25 - (-5) = 30 (no).  \nwe have 20, which is between 20 and 28.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no)  \n- -5 / 12 ≈ -0.4167, times 13 ≈ -5.417 (no)  \n- 13 / -5 = -2.6, times 12 = -31.2 (no)  \n- -5 / 13 ≈ -0.3846, times 12 ≈ -4.615 (no)  \n- 12 / 13 ≈ 0.9231, times -5 ≈ -4.615 (no)  \n- 13 / 12 ≈ 1.0833, times -5 ≈ -5.4167 (no)  \n\nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, -1 * -5 = 5 (no).  \n\nno.\n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, 156 / -5 = -31.2 (no)  \n- 12 * -5 = -60, -60 + 13 = -47 (no)  \n- 13 * -5 = -65, -65 + 12 = -53 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, 25 + (-5) = 20 (within 20–28)  \n- 12 + (-5) = 7, 7 + 13 = 20 (within 20–28)  \n- 13 + (-5) = 8, 8 + 12 = 20 (within 20–28)  \n\nwe got 20, which is between 20 and 28.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \n12 - 13 = -1. -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nno exact 24, but 20 is found.\n\n- attempt 5:  \nno other operations left to try without repeating.\n\nresult found: 20 (between 20 and 28).\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'likely', 'likely']",
+              "Votes: sure=0, likely=3, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with -5: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, then -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nalso 25 - (-5) = 30 (no).  \nwe have 20, which is between 20 and 28.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no)  \n- -5 / 12 ≈ -0.4167, times 13 ≈ -5.417 (no)  \n- 13 / -5 = -2.6, times 12 = -31.2 (no)  \n- -5 / 13 ≈ -0.3846, times 12 ≈ -4.615 (no)  \n- 12 / 13 ≈ 0.9231, times -5 ≈ -4.615 (no)  \n- 13 / 12 ≈ 1.0833, times -5 ≈ -5.4167 (no)  \n\nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, -1 * -5 = 5 (no).  \n\nno.\n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, 156 / -5 = -31.2 (no)  \n- 12 * -5 = -60, -60 + 13 = -47 (no)  \n- 13 * -5 = -65, -65 + 12 = -53 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, 25 + (-5) = 20 (within 20–28)  \n- 12 + (-5) = 7, 7 + 13 = 20 (within 20–28)  \n- 13 + (-5) = 8, 8 + 12 = 20 (within 20–28)  \n\nwe got 20, which is between 20 and 28.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \n12 - 13 = -1. -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nno exact 24, but 20 is found.\n\n- attempt 5:  \nno other operations left to try without repeating.\n\nresult found: 20 (between 20 and 28).\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6,
+                0.6,
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 3,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 0,
+          "state": [
+            2.0,
+            12,
+            13
+          ],
+          "action": "[2.0, 12, 13]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 10 by 5 to get 2 (uses smallest number 5 as active operand).",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[1] / numbers[0]   # 10 / 5 = 2\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.0, 12, 13]"
+          },
+          "path_history": "Divide 10 by 5 to get 2 (uses smallest number 5 as active operand).\nResult: [2.0, 12, 13]",
+          "evaluation": {
+            "state": "[2.0, 12, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (within 20–28, but not within 0.001 of 24).\n\nresult 23 is between 20 and 28 inclusive.\n\nanswer: likely",
+              "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 = 0.1667, times 13 = 2.167 (no).  \n  2.0 / 13 = 0.1538, times 12 = 1.846 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 12 = 24, then 24 - 13 = 11 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  2.0 * 13 = 26, then 26 + 12 = 38 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  12 + 13 = 25, then 25 + 2.0 = 27 (no).  \n  12 + 13 = 25, then 25 * 2.0 = 50 (no).  \n  no.\n\nno result within 0.001 of 24.  \nclosest was 23, which is between 20 and 28.\n\nanswer: likely",
+              "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not within 0.001).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (not 24).  \n  25 + 2.0 = 27 (no).  \n\n23 is between 20 and 28, so result is \"likely\".\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'likely', 'likely']",
+              "Votes: sure=0, likely=3, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (within 20–28, but not within 0.001 of 24).\n\nresult 23 is between 20 and 28 inclusive.\n\nanswer: likely",
+                "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 = 0.1667, times 13 = 2.167 (no).  \n  2.0 / 13 = 0.1538, times 12 = 1.846 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 12 = 24, then 24 - 13 = 11 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  2.0 * 13 = 26, then 26 + 12 = 38 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  12 + 13 = 25, then 25 + 2.0 = 27 (no).  \n  12 + 13 = 25, then 25 * 2.0 = 50 (no).  \n  no.\n\nno result within 0.001 of 24.  \nclosest was 23, which is between 20 and 28.\n\nanswer: likely",
+                "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not within 0.001).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (not 24).  \n  25 + 2.0 = 27 (no).  \n\n23 is between 20 and 28, so result is \"likely\".\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6,
+                0.6,
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 3,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 0,
+          "state": [
+            65,
+            10,
+            12
+          ],
+          "action": "[65, 10, 12]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 5 and 13 to get 65.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] * numbers[3]   # 5 * 13 = 65\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[65, 10, 12]"
+          },
+          "path_history": "Multiply 5 and 13 to get 65.\nResult: [65, 10, 12]",
+          "evaluation": {
+            "state": "[65, 10, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 65
+            },
+            "llm_judgments": [
+              "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, 2 * 65 = 130 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: 65 - 10 = 55, 55 - 12 = 43 (no). 65 - 12 = 53, 53 - 10 = 43 (no). no path found.  \n\nresult is far from 24.  \n\nanswer: impossible",
+              "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, *12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, *10 ≈ 1.846 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible",
+              "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no), 650 - 12 = 638 (no), 12 - 650 = -638 (no). 65 * 12 = 780, 780 / 10 = 78 (no), 780 - 10 = 770 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no), 120 - 65 = 55 (no), 65 - 120 = -55 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no), 75 + 12 = 87 (no), 12 - 75 = -63 (no). 65 + 12 = 77, 77 - 10 = 67 (no), 77 + 10 = 87 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, 2 * 65 = 130 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: 65 - 10 = 55, 55 - 12 = 43 (no). 65 - 12 = 53, 53 - 10 = 43 (no). no path found.  \n\nresult is far from 24.  \n\nanswer: impossible",
+                "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, *12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, *10 ≈ 1.846 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible",
+                "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no), 650 - 12 = 638 (no), 12 - 650 = -638 (no). 65 * 12 = 780, 780 / 10 = 78 (no), 780 - 10 = 770 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no), 120 - 65 = 55 (no), 65 - 120 = -55 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no), 75 + 12 = 87 (no), 12 - 75 = -63 (no). 65 + 12 = 77, 77 - 10 = 67 (no), 77 + 10 = 87 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 0,
+          "state": [
+            7,
+            10,
+            13
+          ],
+          "action": "[7, 10, 13]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 5 from 12 to get 7.",
+            "code": "numbers = [5, 10, 12, 13]\nres = numbers[2] - numbers[0]   # 12 - 5 = 7\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7, 10, 13]"
+          },
+          "path_history": "Subtract 5 from 12 to get 7.\nResult: [7, 10, 13]",
+          "evaluation": {
+            "state": "[7, 10, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n  10 / 7 ≈ 1.4286, times 13 ≈ 18.57 (no)  \n  13 / 7 ≈ 1.8571, times 10 ≈ 18.57 (no)  \n  7 / 10 = 0.7, times 13 = 9.1 (no)  \n  13 / 10 = 1.3, times 7 = 9.1 (no)  \n  7 / 13 ≈ 0.5385, times 10 ≈ 5.385 (no)  \n  10 / 13 ≈ 0.7692, times 7 ≈ 5.384 (no)  \n\n- attempt 2 (close subtraction):  \n  closest two: 10 and 7 → 10 - 7 = 3.  \n  3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.333 (no).  \n  also try 13 - 10 = 3, same result.  \n  13 - 7 = 6, factor of 24: 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \n\n- attempt 3 (multiplication):  \n  7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no)  \n  7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n  10 * 13 = 130, 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n  7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no)  \n  7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no)  \n  10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no)  \n\nno result near 24.  \n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24\n\n**attempt 1 (division):**  \n- 13 / 10 = 1.3, then 1.3 * 7 = 9.1 (no)  \n- 10 / 13 ≈ 0.769, then 0.769 * 7 ≈ 5.38 (no)  \n- 13 / 7 ≈ 1.857, then 1.857 * 10 ≈ 18.57 (no)  \n- 7 / 13 ≈ 0.538, then 0.538 * 10 ≈ 5.38 (no)  \n- 10 / 7 ≈ 1.4286, then 1.4286 * 13 ≈ 18.57 (no)  \n- 7 / 10 = 0.7, then 0.7 * 13 = 9.1 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 3 / 13 ≈ 0.23 (no).  \nalso try 13 - 10 = 3, same result.  \n13 - 7 = 6, 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 7 * 10 = 70, then 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n- 7 * 13 = 91, then 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n- 10 * 13 = 130, then 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 7 + 10 = 17, then 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n- 7 + 13 = 20, then 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n- 10 + 13 = 23, then 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)\n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n13 / 10 = 1.3, 1.3 * 7 = 9.1 (no)  \n10 / 13 ≈ 0.769, 0.769 * 7 ≈ 5.38 (no)  \n13 / 7 ≈ 1.857, 1.857 * 10 ≈ 18.57 (no)  \n7 / 13 ≈ 0.538, 0.538 * 10 ≈ 5.38 (no)  \n7 / 10 = 0.7, 0.7 * 13 = 9.1 (no)  \n10 / 7 ≈ 1.4286, 1.4286 * 13 ≈ 18.57 (no)  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 13 - 3 = 10 (no), 13 + 3 = 16 (no).  \nnext closest: 13 and 10 → 13 - 10 = 3 (same as above, already tried).  \n\n- attempt 3 (multiplication):  \n7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n10 * 13 = 130, 130 / 7 ≈ 18.57 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n  10 / 7 ≈ 1.4286, times 13 ≈ 18.57 (no)  \n  13 / 7 ≈ 1.8571, times 10 ≈ 18.57 (no)  \n  7 / 10 = 0.7, times 13 = 9.1 (no)  \n  13 / 10 = 1.3, times 7 = 9.1 (no)  \n  7 / 13 ≈ 0.5385, times 10 ≈ 5.385 (no)  \n  10 / 13 ≈ 0.7692, times 7 ≈ 5.384 (no)  \n\n- attempt 2 (close subtraction):  \n  closest two: 10 and 7 → 10 - 7 = 3.  \n  3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.333 (no).  \n  also try 13 - 10 = 3, same result.  \n  13 - 7 = 6, factor of 24: 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \n\n- attempt 3 (multiplication):  \n  7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no)  \n  7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n  10 * 13 = 130, 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n  7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no)  \n  7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no)  \n  10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no)  \n\nno result near 24.  \n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24\n\n**attempt 1 (division):**  \n- 13 / 10 = 1.3, then 1.3 * 7 = 9.1 (no)  \n- 10 / 13 ≈ 0.769, then 0.769 * 7 ≈ 5.38 (no)  \n- 13 / 7 ≈ 1.857, then 1.857 * 10 ≈ 18.57 (no)  \n- 7 / 13 ≈ 0.538, then 0.538 * 10 ≈ 5.38 (no)  \n- 10 / 7 ≈ 1.4286, then 1.4286 * 13 ≈ 18.57 (no)  \n- 7 / 10 = 0.7, then 0.7 * 13 = 9.1 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 3 / 13 ≈ 0.23 (no).  \nalso try 13 - 10 = 3, same result.  \n13 - 7 = 6, 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 7 * 10 = 70, then 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n- 7 * 13 = 91, then 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n- 10 * 13 = 130, then 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 7 + 10 = 17, then 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n- 7 + 13 = 20, then 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n- 10 + 13 = 23, then 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)\n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n13 / 10 = 1.3, 1.3 * 7 = 9.1 (no)  \n10 / 13 ≈ 0.769, 0.769 * 7 ≈ 5.38 (no)  \n13 / 7 ≈ 1.857, 1.857 * 10 ≈ 18.57 (no)  \n7 / 13 ≈ 0.538, 0.538 * 10 ≈ 5.38 (no)  \n7 / 10 = 0.7, 0.7 * 13 = 9.1 (no)  \n10 / 7 ≈ 1.4286, 1.4286 * 13 ≈ 18.57 (no)  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 13 - 3 = 10 (no), 13 + 3 = 16 (no).  \nnext closest: 13 and 10 → 13 - 10 = 3 (same as above, already tried).  \n\n- attempt 3 (multiplication):  \n7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n10 * 13 = 130, 130 / 7 ≈ 18.57 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        15,
+        12,
+        13
+      ],
+      "action": "[15, 12, 13]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 5 and 10 to get 15.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] + numbers[1]   # 5 + 10 = 15\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15, 12, 13]"
+      },
+      "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]",
+      "evaluation": {
+        "state": "[15, 12, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 15
+        },
+        "llm_judgments": [
+          "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+          "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, *12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, *12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, *15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, *15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+          "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+            "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, *12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, *12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, *15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, *15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+            "[15, 12, 13]  \n- attempt 1 (division): 15 / 12 = 1.25, 1.25 * 13 = 16.25 (no). 12 / 15 = 0.8, 0.8 * 13 = 10.4 (no). 15 / 13 ≈ 1.1538, * 12 ≈ 13.846 (no). 13 / 15 ≈ 0.8667, * 12 ≈ 10.4 (no). 12 / 13 ≈ 0.9231, * 15 ≈ 13.846 (no). 13 / 12 ≈ 1.0833, * 15 ≈ 16.25 (no).  \n- attempt 2 (close subtraction): 15 - 13 = 2, 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "13": {
+          "id": 13,
+          "parent_id": 1,
+          "state": [
+            2,
+            12
+          ],
+          "action": "[2, 12]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.",
+            "code": "numbers = [15, 12, 13]\nres = numbers[0] - numbers[2]  # 15 - 13 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2, 12]"
+          },
+          "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]",
+          "evaluation": {
+            "state": "[2, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure",
+              "we have numbers: 2 and 12. target: 24.\n\n- attempt 1 (division):  \n  12 / 2 = 6, then 6 * ? — no third number.  \n  2 / 12 ≈ 0.1667 — no.\n\n- attempt 2 (close subtraction):  \n  12 - 2 = 10, then 10 * ? — no third number.\n\n- attempt 3 (multiplication):  \n  2 * 12 = 24 exactly.\n\nresult is exactly 24.\n\nanswer: sure",
+              "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '12 * 2=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure",
+                "we have numbers: 2 and 12. target: 24.\n\n- attempt 1 (division):  \n  12 / 2 = 6, then 6 * ? — no third number.  \n  2 / 12 ≈ 0.1667 — no.\n\n- attempt 2 (close subtraction):  \n  12 - 2 = 10, then 10 * ? — no third number.\n\n- attempt 3 (multiplication):  \n  2 * 12 = 24 exactly.\n\nresult is exactly 24.\n\nanswer: sure",
+                "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "12 * 2",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "14": {
+              "id": 14,
+              "parent_id": 13,
+              "state": [
+                24.0
+              ],
+              "action": "12 * 2",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [2, 12], 12 * 2 = 24",
+                "code": "numbers = [2, 12]\na, b = 2, 12\nresult = 12 * 2\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nOperation: 12 * 2 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 13,
+              "state": [
+                24
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [2, 12], LLM chose: a*b",
+                "code": "numbers = [2, 12]\na, b = 2, 12\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nFor 2-number state [2, 12], LLM chose: a*b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: equals 24"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        60,
+        10,
+        13
+      ],
+      "action": "[60, 10, 13]",
+      "value": 0.20066666666666666,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 5 and 12 to get 60.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] * numbers[2]   # 5 * 12 = 60\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[60, 10, 13]"
+      },
+      "path_history": "Multiply 5 and 12 to get 60.\nResult: [60, 10, 13]",
+      "evaluation": {
+        "state": "[60, 10, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 60
+        },
+        "llm_judgments": [
+          "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).  \n  10 + 60 = 70, 70 - 13 = 57 (already).  \n  no combination gives 24.\n\nno result near 24. the closest was 20 (from 60/3), which is between 20 and 28, so \"likely\".\n\nanswer: likely",
+          "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24. combine with 60: 60 / 3 = 20 (no), 60 - 3 = 57 (no), 60 + 3 = 63 (no), 3 * 60 = 180 (no).  \n  10 - 13 = -3 (same magnitude, no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).  \n  also try combining with addition/subtraction: 600 - 13 = 587 (no), 780 - 10 = 770 (no), 130 - 60 = 70 (no), etc.\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, then 70 - 13 = 57 (no).  \n  60 + 13 = 73, then 73 - 10 = 63 (no).  \n  10 + 13 = 23, then 23 + 60 = 83 (no), 60 - 23 = 37 (no), 23 - 60 = -37 (no).  \n  60 - 10 = 50, then 50 - 13 = 37 (no).  \n  60 - 13 = 47, then 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible",
+          "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, 0.1667 * 13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, 0.2167 * 10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, 1.3 * 60 = 78 (no).  \n  10 / 13 ≈ 0.7692, 0.7692 * 60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, 780 / 10 = 78 (no).  \n  10 * 13 = 130, 130 / 60 ≈ 2.167 (no).  \n  130 - 60 = 70 (no).  \n  130 + 60 = 190 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=1, impossible=2",
+          "Raw score: 0.201, Final score: 0.201"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).  \n  10 + 60 = 70, 70 - 13 = 57 (already).  \n  no combination gives 24.\n\nno result near 24. the closest was 20 (from 60/3), which is between 20 and 28, so \"likely\".\n\nanswer: likely",
+            "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, then 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, then *13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, then *10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, then *60 = 78 (no).  \n  10 / 13 ≈ 0.769, then *60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24. combine with 60: 60 / 3 = 20 (no), 60 - 3 = 57 (no), 60 + 3 = 63 (no), 3 * 60 = 180 (no).  \n  10 - 13 = -3 (same magnitude, no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, then 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, then 780 / 10 = 78 (no).  \n  10 * 13 = 130, then 130 / 60 ≈ 2.167 (no).  \n  also try combining with addition/subtraction: 600 - 13 = 587 (no), 780 - 10 = 770 (no), 130 - 60 = 70 (no), etc.\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, then 70 - 13 = 57 (no).  \n  60 + 13 = 73, then 73 - 10 = 63 (no).  \n  10 + 13 = 23, then 23 + 60 = 83 (no), 60 - 23 = 37 (no), 23 - 60 = -37 (no).  \n  60 - 10 = 50, then 50 - 13 = 37 (no).  \n  60 - 13 = 47, then 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible",
+            "we have numbers: 60, 10, 13. target: 24.\n\n- attempt 1 (division):  \n  60 / 10 = 6, then 6 * 13 = 78 (no).  \n  60 / 13 ≈ 4.615, 4.615 * 10 ≈ 46.15 (no).  \n  10 / 60 ≈ 0.1667, 0.1667 * 13 ≈ 2.167 (no).  \n  13 / 60 ≈ 0.2167, 0.2167 * 10 ≈ 2.167 (no).  \n  13 / 10 = 1.3, 1.3 * 60 = 78 (no).  \n  10 / 13 ≈ 0.7692, 0.7692 * 60 ≈ 46.15 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 13 and 10.  \n  13 - 10 = 3. 3 is a factor of 24.  \n  3 * 60 = 180 (no).  \n  60 / 3 = 20 (no, 20 is not 24).  \n  60 - 3 = 57 (no).  \n  60 + 3 = 63 (no).\n\n- attempt 3 (multiplication):  \n  60 * 10 = 600, 600 / 13 ≈ 46.15 (no).  \n  60 * 13 = 780, 780 / 10 = 78 (no).  \n  10 * 13 = 130, 130 / 60 ≈ 2.167 (no).  \n  130 - 60 = 70 (no).  \n  130 + 60 = 190 (no).\n\n- attempt 4 (addition and adjusting):  \n  60 + 10 = 70, 70 - 13 = 57 (no).  \n  60 + 13 = 73, 73 - 10 = 63 (no).  \n  10 + 13 = 23, 23 + 60 = 83 (no).  \n  23 - 60 = -37 (no).  \n  60 - 23 = 37 (no).  \n  60 - 10 = 50, 50 - 13 = 37 (no).  \n  60 - 13 = 47, 47 - 10 = 37 (no).\n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.6,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 2,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.20066666666666666,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        8,
+        10,
+        12
+      ],
+      "action": "[8, 10, 12]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 5 from 13 to get 8.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[3] - numbers[0]   # 13 - 5 = 8\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 10, 12]"
+      },
+      "path_history": "Subtract 5 from 13 to get 8.\nResult: [8, 10, 12]",
+      "evaluation": {
+        "state": "[8, 10, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+          "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+          "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+            "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+            "[8, 10, 12]  \n- attempt 1 (division): 10 / 8 = 1.25, 1.25 * 12 = 15 (no). 12 / 8 = 1.5, 1.5 * 10 = 15 (no). 8 / 10 = 0.8, 0.8 * 12 = 9.6 (no). 12 / 10 = 1.2, 1.2 * 8 = 9.6 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        3,
+        5,
+        12
+      ],
+      "action": "[3, 5, 12]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 10 from 13 to get 3 (uses smallest number 5 as active operand).",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[3] - numbers[1]   # 13 - 10 = 3\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3, 5, 12]"
+      },
+      "path_history": "Subtract 10 from 13 to get 3 (uses smallest number 5 as active operand).\nResult: [3, 5, 12]",
+      "evaluation": {
+        "state": "[3, 5, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+          "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+          "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+            "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, then 2 * 12 = 24 (exact!).  \n\nanswer: sure",
+            "[3, 5, 12]  \n- attempt 1 (division): 12 / 3 = 4, then 4 * 5 = 20 (no). 12 / 5 = 2.4, 2.4 * 3 = 7.2 (no). 5 / 3 ≈ 1.6667, 1.6667 * 12 = 20 (no). 3 / 5 = 0.6, 0.6 * 12 = 7.2 (no).  \n- attempt 2 (close subtraction): 5 - 3 = 2, 2 is a factor of 24, then 2 * 12 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        2.4,
+        10,
+        13
+      ],
+      "action": "[2.4, 10, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 12 by 5 to get 2.4 (uses smallest number 5 as active operand).",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[2] / numbers[0]   # 12 / 5 = 2.4\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.4, 10, 13]"
+      },
+      "path_history": "Divide 12 by 5 to get 2.4 (uses smallest number 5 as active operand).\nResult: [2.4, 10, 13]",
+      "evaluation": {
+        "state": "[2.4, 10, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with third: 3 * 2.4 = 7.2 (no).  \nalso try 10 - 13 = -3, times 2.4 = -7.2 (no).  \nalso try 13 - 2.4 = 10.6 (not a factor), 10 - 2.4 = 7.6 (not a factor).\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no), 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no).  \nalso try 10 + 13 = 23, 23 * 2.4 = 55.2 (no).  \n10 + 2.4 = 12.4, 12.4 * 13 = 161.2 (no).  \n13 + 2.4 = 15.4, 15.4 * 10 = 154 (no).\n\nno result within 0.001 of 24.  \nclosest we got: 20.6, 21.2, 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely",
+          "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13. 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \nalso 2.4 * 3 = 7.2, 24 / 3 = 8 (not using third). no.\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).\n\nno result within 0.001 of 24.  \nclosest was 25.4 (between 20 and 28).\n\nanswer: likely",
+          "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1666..., times 13 = 54.166 (no).  \n13 / 2.4 = 5.4166..., times 10 = 54.166 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \n2.4 * 3 = 7.2 (same).  \nalso 10 - 2.4 = 7.6, not a factor. 13 - 2.4 = 10.6, not a factor.  \nno.\n\n- attempt 3 (multiplication):  \n2.4 * 10 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n2.4 * 13 = 31.2, then 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).  \n10 * 13 = 130, then 130 / 2.4 ≈ 54.166 (no). 130 - 2.4 = 127.6 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, then 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n2.4 + 10 = 12.4, then 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n2.4 + 13 = 15.4, then 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).  \nno.\n\nno result within 0.001 of 24.  \nclosest result is 20.6 or 21.2 or 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'likely', 'likely']",
+          "Votes: sure=0, likely=3, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with third: 3 * 2.4 = 7.2 (no).  \nalso try 10 - 13 = -3, times 2.4 = -7.2 (no).  \nalso try 13 - 2.4 = 10.6 (not a factor), 10 - 2.4 = 7.6 (not a factor).\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no), 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no).  \nalso try 10 + 13 = 23, 23 * 2.4 = 55.2 (no).  \n10 + 2.4 = 12.4, 12.4 * 13 = 161.2 (no).  \n13 + 2.4 = 15.4, 15.4 * 10 = 154 (no).\n\nno result within 0.001 of 24.  \nclosest we got: 20.6, 21.2, 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely",
+            "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1667, times 13 = 54.167 (no).  \n13 / 2.4 = 5.4167, times 10 = 54.167 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13. 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \nalso 2.4 * 3 = 7.2, 24 / 3 = 8 (not using third). no.\n\n- attempt 3 (multiplication):  \n10 * 2.4 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n10 * 13 = 130, 130 / 2.4 ≈ 54.167 (no).  \n2.4 * 13 = 31.2, 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n10 + 2.4 = 12.4, 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n13 + 2.4 = 15.4, 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).\n\nno result within 0.001 of 24.  \nclosest was 25.4 (between 20 and 28).\n\nanswer: likely",
+            "we have numbers: 2.4, 10, 13. target: 24.\n\n- attempt 1 (division):  \n10 / 2.4 = 4.1666..., times 13 = 54.166 (no).  \n13 / 2.4 = 5.4166..., times 10 = 54.166 (no).  \n2.4 / 10 = 0.24, times 13 = 3.12 (no).  \n2.4 / 13 ≈ 0.1846, times 10 = 1.846 (no).  \n13 / 10 = 1.3, times 2.4 = 3.12 (no).  \n10 / 13 ≈ 0.7692, times 2.4 = 1.846 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest numbers: 10 and 13 → 13 - 10 = 3.  \n3 is a factor of 24. combine with 2.4: 3 * 2.4 = 7.2 (no).  \n2.4 * 3 = 7.2 (same).  \nalso 10 - 2.4 = 7.6, not a factor. 13 - 2.4 = 10.6, not a factor.  \nno.\n\n- attempt 3 (multiplication):  \n2.4 * 10 = 24, then 24 + 13 = 37 (no). 24 - 13 = 11 (no).  \n2.4 * 13 = 31.2, then 31.2 - 10 = 21.2 (no). 31.2 + 10 = 41.2 (no).  \n10 * 13 = 130, then 130 / 2.4 ≈ 54.166 (no). 130 - 2.4 = 127.6 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n10 + 13 = 23, then 23 + 2.4 = 25.4 (no). 23 - 2.4 = 20.6 (no).  \n2.4 + 10 = 12.4, then 12.4 + 13 = 25.4 (no). 13 - 12.4 = 0.6 (no).  \n2.4 + 13 = 15.4, then 15.4 + 10 = 25.4 (no). 15.4 - 10 = 5.4 (no).  \nno.\n\nno result within 0.001 of 24.  \nclosest result is 20.6 or 21.2 or 25.4 — all between 20 and 28, so \"likely\".\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6,
+            0.6,
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 3,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        1,
+        5,
+        10
+      ],
+      "action": "[1, 5, 10]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 12 from 13 to get 1.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[3] - numbers[2]   # 13 - 12 = 1\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1, 5, 10]"
+      },
+      "path_history": "Subtract 12 from 13 to get 1.\nResult: [1, 5, 10]",
+      "evaluation": {
+        "state": "[1, 5, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no), 15 * 1 = 15 (no).\n\n- attempt 5:  \n  10 - 5 = 5, then 5 - 1 = 4 (no).  \n  10 + 5 = 15, then 15 - 1 = 14 (no).  \n  10 + 1 = 11, then 11 - 5 = 6 (no).  \n  no combination yields 24.\n\nanswer: impossible",
+          "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no).\n\nno result near 24.\n\nanswer: impossible",
+          "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4.  \n  4 is a factor of 24, combine with 10: 4 * 10 = 40 (no).  \n  10 - 5 = 5, 5 * 1 = 5 (no).  \n  10 - 1 = 9, 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no).  \n  5 * 10 = 50, then 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no).  \n  5 + 10 = 15, then 15 - 1 = 14 (no).  \n  1 + 5 + 10 = 16 (no).\n\nno result between 20 and 28 found.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no), 15 * 1 = 15 (no).\n\n- attempt 5:  \n  10 - 5 = 5, then 5 - 1 = 4 (no).  \n  10 + 5 = 15, then 15 - 1 = 14 (no).  \n  10 + 1 = 11, then 11 - 5 = 6 (no).  \n  no combination yields 24.\n\nanswer: impossible",
+            "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4, then 4 * 10 = 40 (no).  \n  10 - 5 = 5, then 5 * 1 = 5 (no).  \n  10 - 1 = 9, then 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no), 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no), 15 - 1 = 14 (no).\n\nno result near 24.\n\nanswer: impossible",
+            "[1, 5, 10] target 24\n\n- attempt 1 (division):  \n  10 / 5 = 2, then 2 * 1 = 2 (no).  \n  10 / 1 = 10, then 10 * 5 = 50 (no).  \n  5 / 1 = 5, then 5 * 10 = 50 (no).  \n  5 / 10 = 0.5, then 0.5 * 1 = 0.5 (no).  \n  1 / 5 = 0.2, then 0.2 * 10 = 2 (no).  \n  1 / 10 = 0.1, then 0.1 * 5 = 0.5 (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 1 → 5 - 1 = 4.  \n  4 is a factor of 24, combine with 10: 4 * 10 = 40 (no).  \n  10 - 5 = 5, 5 * 1 = 5 (no).  \n  10 - 1 = 9, 9 * 5 = 45 (no).\n\n- attempt 3 (multiplication):  \n  1 * 5 = 5, then 5 + 10 = 15 (no).  \n  1 * 10 = 10, then 10 + 5 = 15 (no).  \n  5 * 10 = 50, then 50 - 1 = 49 (no).  \n  5 * 10 = 50, then 50 / 1 = 50 (no).\n\n- attempt 4 (addition):  \n  1 + 5 = 6, then 6 * 10 = 60 (no).  \n  1 + 10 = 11, then 11 * 5 = 55 (no).  \n  5 + 10 = 15, then 15 + 1 = 16 (no).  \n  5 + 10 = 15, then 15 - 1 = 14 (no).  \n  1 + 5 + 10 = 16 (no).\n\nno result between 20 and 28 found.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        130,
+        5,
+        12
+      ],
+      "action": "[130, 5, 12]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 10 and 13 to get 130.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[1] * numbers[3]   # 10 * 13 = 130\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[130, 5, 12]"
+      },
+      "path_history": "Multiply 10 and 13 to get 130.\nResult: [130, 5, 12]",
+      "evaluation": {
+        "state": "[130, 5, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 130
+        },
+        "llm_judgments": [
+          "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, then 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.17 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 17 + 130 = 147 (no). 130 - 5 = 125, 125 - 12 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible",
+          "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, 10.833 * 5 ≈ 54.165 (no).  \n5 / 130 ≈ 0.0385 (no).  \n12 / 130 ≈ 0.0923 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.167 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 130 - 17 = 113 (no). 130 - 12 = 118, 118 + 5 = 123 (no).  \n\nno result near 24.\n\nanswer: impossible",
+          "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n5 and 12 are closest: 12 - 5 = 7, 7 is not a factor of 24 (no).  \n\n5 * 12 = 60, 130 - 60 = 70 (no).  \n130 * 5 = 650, /12 ≈ 54.17 (no).  \n130 * 12 = 1560, /5 = 312 (no).  \n\n130 + 5 = 135, 135 - 12 = 123 (no).  \n130 + 12 = 142, 142 - 5 = 137 (no).  \n5 + 12 = 17, 130 - 17 = 113 (no).  \n130 - 5 = 125, 125 - 12 = 113 (no).  \n130 - 12 = 118, 118 - 5 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, then 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.17 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 17 + 130 = 147 (no). 130 - 5 = 125, 125 - 12 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible",
+            "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, 10.833 * 5 ≈ 54.165 (no).  \n5 / 130 ≈ 0.0385 (no).  \n12 / 130 ≈ 0.0923 (no).  \n\n- attempt 2 (close subtraction): 130 - 12 = 118 (no). 130 - 5 = 125 (no). 12 - 5 = 7, 7 * 130 = 910 (no).  \n\n- attempt 3 (multiplication): 130 * 5 = 650, 650 / 12 ≈ 54.167 (no). 130 * 12 = 1560, 1560 / 5 = 312 (no). 5 * 12 = 60, 60 - 130 = -70 (no).  \n\n- attempt 4 (addition): 130 + 5 = 135, 135 - 12 = 123 (no). 130 + 12 = 142, 142 - 5 = 137 (no). 5 + 12 = 17, 130 - 17 = 113 (no). 130 - 12 = 118, 118 + 5 = 123 (no).  \n\nno result near 24.\n\nanswer: impossible",
+            "130 / 5 = 26, then 26 - 12 = 14 (no).  \n130 / 12 ≈ 10.833, times 5 ≈ 54.17 (no).  \n5 / 130 ≈ 0.0385, times 12 ≈ 0.462 (no).  \n12 / 130 ≈ 0.0923, times 5 ≈ 0.462 (no).  \n\n5 and 12 are closest: 12 - 5 = 7, 7 is not a factor of 24 (no).  \n\n5 * 12 = 60, 130 - 60 = 70 (no).  \n130 * 5 = 650, /12 ≈ 54.17 (no).  \n130 * 12 = 1560, /5 = 312 (no).  \n\n130 + 5 = 135, 135 - 12 = 123 (no).  \n130 + 12 = 142, 142 - 5 = 137 (no).  \n5 + 12 = 17, 130 - 17 = 113 (no).  \n130 - 5 = 125, 125 - 12 = 113 (no).  \n130 - 12 = 118, 118 - 5 = 113 (no).  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        25,
+        5,
+        10
+      ],
+      "action": "[25, 5, 10]",
+      "value": 0.4803999999999999,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 12 and 13 to get 25.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[2] + numbers[3]   # 12 + 13 = 25\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[25, 5, 10]"
+      },
+      "path_history": "Add 12 and 13 to get 25.\nResult: [25, 5, 10]",
+      "evaluation": {
+        "state": "[25, 5, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 25
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (within 20–28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (within 20–28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is a factor of 24? yes (24 / 5 = 4.8, not integer, but rule says check if result is a factor of 24: 5 is not a factor of 24). so skip.  \n25 - 10 = 15 (not a factor).  \n25 - 5 = 20 (not a factor).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (between 20 and 28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (between 20 and 28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \nnext closest: 25 and 10.  \n25 - 10 = 15, then 15 * 5 = 75 (no).  \n10 - 25 = -15 (no).  \n25 - 5 = 20, then 20 * 10 = 200 (no).  \n5 - 25 = -20 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (no).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (no).  \n10 - 5 = 5, then 5 + 25 = 30 (no).  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'likely', 'impossible']",
+          "Votes: sure=0, likely=2, impossible=1",
+          "Raw score: 0.400, Final score: 0.480"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (within 20–28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (within 20–28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is a factor of 24? yes (24 / 5 = 4.8, not integer, but rule says check if result is a factor of 24: 5 is not a factor of 24). so skip.  \n25 - 10 = 15 (not a factor).  \n25 - 5 = 20 (not a factor).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (between 20 and 28).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (between 20 and 28).  \n\nwe found 20, which is between 20 and 28.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [25, 5, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n25 / 5 = 5, then 5 * 10 = 50 (no).  \n25 / 10 = 2.5, then 2.5 * 5 = 12.5 (no).  \n5 / 25 = 0.2, then 0.2 * 10 = 2 (no).  \n10 / 25 = 0.4, then 0.4 * 5 = 2 (no).  \n10 / 5 = 2, then 2 * 25 = 50 (no).  \n5 / 10 = 0.5, then 0.5 * 25 = 12.5 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 5.  \n10 - 5 = 5, then 5 * 25 = 125 (no).  \n5 - 10 = -5 (no).  \nnext closest: 25 and 10.  \n25 - 10 = 15, then 15 * 5 = 75 (no).  \n10 - 25 = -15 (no).  \n25 - 5 = 20, then 20 * 10 = 200 (no).  \n5 - 25 = -20 (no).  \n\n- attempt 3 (multiplication):  \n25 * 5 = 125, then 125 / 10 = 12.5 (no).  \n25 * 10 = 250, then 250 / 5 = 50 (no).  \n5 * 10 = 50, then 50 - 25 = 25 (no).  \n\n- attempt 4 (addition and adjusting):  \n25 + 5 = 30, then 30 - 10 = 20 (no).  \n25 + 10 = 35, then 35 - 5 = 30 (no).  \n5 + 10 = 15, then 15 + 25 = 40 (no).  \n25 - 5 = 20, then 20 + 10 = 30 (no).  \n25 - 10 = 15, then 15 + 5 = 20 (no).  \n10 - 5 = 5, then 5 + 25 = 30 (no).  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.6,
+            0.6,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 2,
+            "sure": 0
+          }
+        },
+        "final_value": 0.4803999999999999,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 0,
+      "state": [
+        -5,
+        12,
+        13
+      ],
+      "action": "[-5, 12, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 10 from 5 to get -5.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] - numbers[1]   # 5 - 10 = -5\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-5, 12, 13]"
+      },
+      "path_history": "Subtract 10 from 5 to get -5.\nResult: [-5, 12, 13]",
+      "evaluation": {
+        "state": "[-5, 12, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with -5: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, then -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nalso 25 - (-5) = 30 (no).  \nwe have 20, which is between 20 and 28.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no)  \n- -5 / 12 ≈ -0.4167, times 13 ≈ -5.417 (no)  \n- 13 / -5 = -2.6, times 12 = -31.2 (no)  \n- -5 / 13 ≈ -0.3846, times 12 ≈ -4.615 (no)  \n- 12 / 13 ≈ 0.9231, times -5 ≈ -4.615 (no)  \n- 13 / 12 ≈ 1.0833, times -5 ≈ -5.4167 (no)  \n\nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, -1 * -5 = 5 (no).  \n\nno.\n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, 156 / -5 = -31.2 (no)  \n- 12 * -5 = -60, -60 + 13 = -47 (no)  \n- 13 * -5 = -65, -65 + 12 = -53 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, 25 + (-5) = 20 (within 20–28)  \n- 12 + (-5) = 7, 7 + 13 = 20 (within 20–28)  \n- 13 + (-5) = 8, 8 + 12 = 20 (within 20–28)  \n\nwe got 20, which is between 20 and 28.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \n12 - 13 = -1. -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nno exact 24, but 20 is found.\n\n- attempt 5:  \nno other operations left to try without repeating.\n\nresult found: 20 (between 20 and 28).\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'likely', 'likely']",
+          "Votes: sure=0, likely=3, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with -5: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, then -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nalso 25 - (-5) = 30 (no).  \nwe have 20, which is between 20 and 28.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no)  \n- -5 / 12 ≈ -0.4167, times 13 ≈ -5.417 (no)  \n- 13 / -5 = -2.6, times 12 = -31.2 (no)  \n- -5 / 13 ≈ -0.3846, times 12 ≈ -4.615 (no)  \n- 12 / 13 ≈ 0.9231, times -5 ≈ -4.615 (no)  \n- 13 / 12 ≈ 1.0833, times -5 ≈ -5.4167 (no)  \n\nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \nalso try 12 - 13 = -1, -1 * -5 = 5 (no).  \n\nno.\n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, 156 / -5 = -31.2 (no)  \n- 12 * -5 = -60, -60 + 13 = -47 (no)  \n- 13 * -5 = -65, -65 + 12 = -53 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, 25 + (-5) = 20 (within 20–28)  \n- 12 + (-5) = 7, 7 + 13 = 20 (within 20–28)  \n- 13 + (-5) = 8, 8 + 12 = 20 (within 20–28)  \n\nwe got 20, which is between 20 and 28.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: -5, 12, 13  \ntarget: 24\n\n- attempt 1 (division):  \ntry 12 / -5 = -2.4, then -2.4 * 13 = -31.2 (no).  \n13 / -5 = -2.6, then -2.6 * 12 = -31.2 (no).  \n-5 / 12 = -0.4167, times 13 = -5.417 (no).  \n-5 / 13 = -0.3846, times 12 = -4.615 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 12 and 13.  \n13 - 12 = 1. 1 is a factor of 24. combine with third: 1 * -5 = -5 (no).  \n12 - 13 = -1. -1 * -5 = 5 (no).  \nno.\n\n- attempt 3 (multiplication):  \n12 * 13 = 156, 156 / -5 = -31.2 (no).  \n12 * -5 = -60, -60 + 13 = -47 (no).  \n13 * -5 = -65, -65 + 12 = -53 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n12 + 13 = 25, 25 + (-5) = 20 (within 20–28).  \n12 + (-5) = 7, 7 + 13 = 20 (within 20–28).  \n13 + (-5) = 8, 8 + 12 = 20 (within 20–28).  \nno exact 24, but 20 is found.\n\n- attempt 5:  \nno other operations left to try without repeating.\n\nresult found: 20 (between 20 and 28).\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6,
+            0.6,
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 3,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 0,
+      "state": [
+        2.0,
+        12,
+        13
+      ],
+      "action": "[2.0, 12, 13]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 10 by 5 to get 2 (uses smallest number 5 as active operand).",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[1] / numbers[0]   # 10 / 5 = 2\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.0, 12, 13]"
+      },
+      "path_history": "Divide 10 by 5 to get 2 (uses smallest number 5 as active operand).\nResult: [2.0, 12, 13]",
+      "evaluation": {
+        "state": "[2.0, 12, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (within 20–28, but not within 0.001 of 24).\n\nresult 23 is between 20 and 28 inclusive.\n\nanswer: likely",
+          "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 = 0.1667, times 13 = 2.167 (no).  \n  2.0 / 13 = 0.1538, times 12 = 1.846 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 12 = 24, then 24 - 13 = 11 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  2.0 * 13 = 26, then 26 + 12 = 38 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  12 + 13 = 25, then 25 + 2.0 = 27 (no).  \n  12 + 13 = 25, then 25 * 2.0 = 50 (no).  \n  no.\n\nno result within 0.001 of 24.  \nclosest was 23, which is between 20 and 28.\n\nanswer: likely",
+          "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not within 0.001).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (not 24).  \n  25 + 2.0 = 27 (no).  \n\n23 is between 20 and 28, so result is \"likely\".\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'likely', 'likely']",
+          "Votes: sure=0, likely=3, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (within 20–28, but not within 0.001 of 24).\n\nresult 23 is between 20 and 28 inclusive.\n\nanswer: likely",
+            "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 = 0.1667, times 13 = 2.167 (no).  \n  2.0 / 13 = 0.1538, times 12 = 1.846 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 12 = 24, then 24 - 13 = 11 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  2.0 * 13 = 26, then 26 + 12 = 38 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not 24).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  12 + 13 = 25, then 25 + 2.0 = 27 (no).  \n  12 + 13 = 25, then 25 * 2.0 = 50 (no).  \n  no.\n\nno result within 0.001 of 24.  \nclosest was 23, which is between 20 and 28.\n\nanswer: likely",
+            "we have numbers: 2.0, 12, 13. target: 24.\n\n- attempt 1 (division):  \n  12 / 2.0 = 6, then 6 * 13 = 78 (no).  \n  13 / 2.0 = 6.5, then 6.5 * 12 = 78 (no).  \n  2.0 / 12 ≈ 0.1667 (no).  \n  2.0 / 13 ≈ 0.1538 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 12 and 13.  \n  13 - 12 = 1, then 1 * 2.0 = 2 (no).  \n  12 - 13 = -1 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  2.0 * 12 = 24, then 24 + 13 = 37 (no).  \n  2.0 * 13 = 26, then 26 - 12 = 14 (no).  \n  12 * 13 = 156, then 156 / 2.0 = 78 (no).  \n  no.\n\n- attempt 4 (addition):  \n  12 + 13 = 25, then 25 - 2.0 = 23 (close but not within 0.001).  \n  12 + 2.0 = 14, then 14 + 13 = 27 (no).  \n  13 + 2.0 = 15, then 15 + 12 = 27 (no).  \n  25 - 2.0 = 23 (not 24).  \n  25 + 2.0 = 27 (no).  \n\n23 is between 20 and 28, so result is \"likely\".\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6,
+            0.6,
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 3,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 0,
+      "state": [
+        65,
+        10,
+        12
+      ],
+      "action": "[65, 10, 12]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 5 and 13 to get 65.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[0] * numbers[3]   # 5 * 13 = 65\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[65, 10, 12]"
+      },
+      "path_history": "Multiply 5 and 13 to get 65.\nResult: [65, 10, 12]",
+      "evaluation": {
+        "state": "[65, 10, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 65
+        },
+        "llm_judgments": [
+          "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, 2 * 65 = 130 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: 65 - 10 = 55, 55 - 12 = 43 (no). 65 - 12 = 53, 53 - 10 = 43 (no). no path found.  \n\nresult is far from 24.  \n\nanswer: impossible",
+          "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, *12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, *10 ≈ 1.846 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible",
+          "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no), 650 - 12 = 638 (no), 12 - 650 = -638 (no). 65 * 12 = 780, 780 / 10 = 78 (no), 780 - 10 = 770 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no), 120 - 65 = 55 (no), 65 - 120 = -55 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no), 75 + 12 = 87 (no), 12 - 75 = -63 (no). 65 + 12 = 77, 77 - 10 = 67 (no), 77 + 10 = 87 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, 2 * 65 = 130 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: 65 - 10 = 55, 55 - 12 = 43 (no). 65 - 12 = 53, 53 - 10 = 43 (no). no path found.  \n\nresult is far from 24.  \n\nanswer: impossible",
+            "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, *12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, *10 ≈ 1.846 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no). 65 * 12 = 780, 780 / 10 = 78 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no). 65 + 12 = 77, 77 - 10 = 67 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible",
+            "[65, 10, 12]  \n- attempt 1 (division): 65 / 10 = 6.5, 6.5 * 12 = 78 (no). 65 / 12 ≈ 5.4167, 5.4167 * 10 ≈ 54.167 (no). 10 / 65 ≈ 0.1538, 0.1538 * 12 ≈ 1.846 (no). 12 / 65 ≈ 0.1846, 0.1846 * 10 ≈ 1.846 (no). 10 / 12 ≈ 0.8333, 0.8333 * 65 ≈ 54.167 (no). 12 / 10 = 1.2, 1.2 * 65 = 78 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 is a factor of 24, combine with 65: 65 * 2 = 130 (no), 65 / 2 = 32.5 (no), 2 - 65 = -63 (no). 65 - 12 = 53 (not a factor). 65 - 10 = 55 (not a factor).  \n- attempt 3 (multiplication): 65 * 10 = 650, 650 / 12 ≈ 54.167 (no), 650 - 12 = 638 (no), 12 - 650 = -638 (no). 65 * 12 = 780, 780 / 10 = 78 (no), 780 - 10 = 770 (no). 10 * 12 = 120, 120 / 65 ≈ 1.846 (no), 120 - 65 = 55 (no), 65 - 120 = -55 (no).  \n- attempt 4 (addition): 65 + 10 = 75, 75 - 12 = 63 (no), 75 + 12 = 87 (no), 12 - 75 = -63 (no). 65 + 12 = 77, 77 - 10 = 67 (no), 77 + 10 = 87 (no). 10 + 12 = 22, 22 + 65 = 87 (no), 65 - 22 = 43 (no), 22 - 65 = -43 (no).  \n- attempt 5: no other operations left to try without repeating.  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 0,
+      "state": [
+        7,
+        10,
+        13
+      ],
+      "action": "[7, 10, 13]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 5 from 12 to get 7.",
+        "code": "numbers = [5, 10, 12, 13]\nres = numbers[2] - numbers[0]   # 12 - 5 = 7\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7, 10, 13]"
+      },
+      "path_history": "Subtract 5 from 12 to get 7.\nResult: [7, 10, 13]",
+      "evaluation": {
+        "state": "[7, 10, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n  10 / 7 ≈ 1.4286, times 13 ≈ 18.57 (no)  \n  13 / 7 ≈ 1.8571, times 10 ≈ 18.57 (no)  \n  7 / 10 = 0.7, times 13 = 9.1 (no)  \n  13 / 10 = 1.3, times 7 = 9.1 (no)  \n  7 / 13 ≈ 0.5385, times 10 ≈ 5.385 (no)  \n  10 / 13 ≈ 0.7692, times 7 ≈ 5.384 (no)  \n\n- attempt 2 (close subtraction):  \n  closest two: 10 and 7 → 10 - 7 = 3.  \n  3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.333 (no).  \n  also try 13 - 10 = 3, same result.  \n  13 - 7 = 6, factor of 24: 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \n\n- attempt 3 (multiplication):  \n  7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no)  \n  7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n  10 * 13 = 130, 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n  7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no)  \n  7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no)  \n  10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no)  \n\nno result near 24.  \n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24\n\n**attempt 1 (division):**  \n- 13 / 10 = 1.3, then 1.3 * 7 = 9.1 (no)  \n- 10 / 13 ≈ 0.769, then 0.769 * 7 ≈ 5.38 (no)  \n- 13 / 7 ≈ 1.857, then 1.857 * 10 ≈ 18.57 (no)  \n- 7 / 13 ≈ 0.538, then 0.538 * 10 ≈ 5.38 (no)  \n- 10 / 7 ≈ 1.4286, then 1.4286 * 13 ≈ 18.57 (no)  \n- 7 / 10 = 0.7, then 0.7 * 13 = 9.1 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 3 / 13 ≈ 0.23 (no).  \nalso try 13 - 10 = 3, same result.  \n13 - 7 = 6, 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 7 * 10 = 70, then 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n- 7 * 13 = 91, then 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n- 10 * 13 = 130, then 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 7 + 10 = 17, then 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n- 7 + 13 = 20, then 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n- 10 + 13 = 23, then 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)\n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n13 / 10 = 1.3, 1.3 * 7 = 9.1 (no)  \n10 / 13 ≈ 0.769, 0.769 * 7 ≈ 5.38 (no)  \n13 / 7 ≈ 1.857, 1.857 * 10 ≈ 18.57 (no)  \n7 / 13 ≈ 0.538, 0.538 * 10 ≈ 5.38 (no)  \n7 / 10 = 0.7, 0.7 * 13 = 9.1 (no)  \n10 / 7 ≈ 1.4286, 1.4286 * 13 ≈ 18.57 (no)  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 13 - 3 = 10 (no), 13 + 3 = 16 (no).  \nnext closest: 13 and 10 → 13 - 10 = 3 (same as above, already tried).  \n\n- attempt 3 (multiplication):  \n7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n10 * 13 = 130, 130 / 7 ≈ 18.57 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n  10 / 7 ≈ 1.4286, times 13 ≈ 18.57 (no)  \n  13 / 7 ≈ 1.8571, times 10 ≈ 18.57 (no)  \n  7 / 10 = 0.7, times 13 = 9.1 (no)  \n  13 / 10 = 1.3, times 7 = 9.1 (no)  \n  7 / 13 ≈ 0.5385, times 10 ≈ 5.385 (no)  \n  10 / 13 ≈ 0.7692, times 7 ≈ 5.384 (no)  \n\n- attempt 2 (close subtraction):  \n  closest two: 10 and 7 → 10 - 7 = 3.  \n  3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.333 (no).  \n  also try 13 - 10 = 3, same result.  \n  13 - 7 = 6, factor of 24: 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \n\n- attempt 3 (multiplication):  \n  7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no)  \n  7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n  10 * 13 = 130, 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n  7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no)  \n  7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no)  \n  10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no)  \n\nno result near 24.  \n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24\n\n**attempt 1 (division):**  \n- 13 / 10 = 1.3, then 1.3 * 7 = 9.1 (no)  \n- 10 / 13 ≈ 0.769, then 0.769 * 7 ≈ 5.38 (no)  \n- 13 / 7 ≈ 1.857, then 1.857 * 10 ≈ 18.57 (no)  \n- 7 / 13 ≈ 0.538, then 0.538 * 10 ≈ 5.38 (no)  \n- 10 / 7 ≈ 1.4286, then 1.4286 * 13 ≈ 18.57 (no)  \n- 7 / 10 = 0.7, then 0.7 * 13 = 9.1 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 3 / 13 ≈ 0.23 (no).  \nalso try 13 - 10 = 3, same result.  \n13 - 7 = 6, 6 * 10 = 60 (no), 10 / 6 ≈ 1.667 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 7 * 10 = 70, then 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n- 7 * 13 = 91, then 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n- 10 * 13 = 130, then 130 / 7 ≈ 18.571 (no), 130 - 7 = 123 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 7 + 10 = 17, then 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n- 7 + 13 = 20, then 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n- 10 + 13 = 23, then 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)\n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: 7, 10, 13  \ntarget: 24  \n\n- attempt 1 (division):  \n13 / 10 = 1.3, 1.3 * 7 = 9.1 (no)  \n10 / 13 ≈ 0.769, 0.769 * 7 ≈ 5.38 (no)  \n13 / 7 ≈ 1.857, 1.857 * 10 ≈ 18.57 (no)  \n7 / 13 ≈ 0.538, 0.538 * 10 ≈ 5.38 (no)  \n7 / 10 = 0.7, 0.7 * 13 = 9.1 (no)  \n10 / 7 ≈ 1.4286, 1.4286 * 13 ≈ 18.57 (no)  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 10 and 7 → 10 - 7 = 3  \n3 is a factor of 24. combine with 13: 3 * 13 = 39 (no), 13 / 3 ≈ 4.33 (no), 13 - 3 = 10 (no), 13 + 3 = 16 (no).  \nnext closest: 13 and 10 → 13 - 10 = 3 (same as above, already tried).  \n\n- attempt 3 (multiplication):  \n7 * 10 = 70, 70 - 13 = 57 (no), 70 / 13 ≈ 5.38 (no), 13 - 70 = -57 (no)  \n7 * 13 = 91, 91 - 10 = 81 (no), 91 / 10 = 9.1 (no)  \n10 * 13 = 130, 130 / 7 ≈ 18.57 (no), 130 - 7 = 123 (no)  \n\n- attempt 4 (addition and adjusting):  \n7 + 10 = 17, 17 + 13 = 30 (no), 17 - 13 = 4 (no), 13 - 17 = -4 (no)  \n7 + 13 = 20, 20 + 10 = 30 (no), 20 - 10 = 10 (no), 10 - 20 = -10 (no)  \n10 + 13 = 23, 23 + 7 = 30 (no), 23 - 7 = 16 (no), 7 - 23 = -16 (no)  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 1,
+      "state": [
+        2,
+        12
+      ],
+      "action": "[2, 12]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.",
+        "code": "numbers = [15, 12, 13]\nres = numbers[0] - numbers[2]  # 15 - 13 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2, 12]"
+      },
+      "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]",
+      "evaluation": {
+        "state": "[2, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure",
+          "we have numbers: 2 and 12. target: 24.\n\n- attempt 1 (division):  \n  12 / 2 = 6, then 6 * ? — no third number.  \n  2 / 12 ≈ 0.1667 — no.\n\n- attempt 2 (close subtraction):  \n  12 - 2 = 10, then 10 * ? — no third number.\n\n- attempt 3 (multiplication):  \n  2 * 12 = 24 exactly.\n\nresult is exactly 24.\n\nanswer: sure",
+          "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '12 * 2=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure",
+            "we have numbers: 2 and 12. target: 24.\n\n- attempt 1 (division):  \n  12 / 2 = 6, then 6 * ? — no third number.  \n  2 / 12 ≈ 0.1667 — no.\n\n- attempt 2 (close subtraction):  \n  12 - 2 = 10, then 10 * ? — no third number.\n\n- attempt 3 (multiplication):  \n  2 * 12 = 24 exactly.\n\nresult is exactly 24.\n\nanswer: sure",
+            "we have only two numbers: 2 and 12.  \nwe can combine them with one operation.\n\n- attempt 1 (division): 12 / 2 = 6 (not 24). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 2 = 10 (not 24).  \n- attempt 3 (multiplication): 12 * 2 = 24 (exact!).  \n\nresult is exactly 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "12 * 2",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "14": {
+          "id": 14,
+          "parent_id": 13,
+          "state": [
+            24.0
+          ],
+          "action": "12 * 2",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [2, 12], 12 * 2 = 24",
+            "code": "numbers = [2, 12]\na, b = 2, 12\nresult = 12 * 2\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nOperation: 12 * 2 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 13,
+          "state": [
+            24
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [2, 12], LLM chose: a*b",
+            "code": "numbers = [2, 12]\na, b = 2, 12\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nFor 2-number state [2, 12], LLM chose: a*b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: equals 24"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 14,
+      "parent_id": 13,
+      "state": [
+        24.0
+      ],
+      "action": "12 * 2",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [2, 12], 12 * 2 = 24",
+        "code": "numbers = [2, 12]\na, b = 2, 12\nresult = 12 * 2\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nOperation: 12 * 2 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 13,
+      "state": [
+        24
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [2, 12], LLM chose: a*b",
+        "code": "numbers = [2, 12]\na, b = 2, 12\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "Add 5 and 10 to get 15.\nResult: [15, 12, 13]\nSubtract 13 from 15 to get 2, then we have [2, 12] - 2*12=24! This is promising.\nResult: [2, 12]\nFor 2-number state [2, 12], LLM chose: a*b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: equals 24"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    14
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 13,
+      "re_evaluations": 0,
+      "unique_states": 13,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
