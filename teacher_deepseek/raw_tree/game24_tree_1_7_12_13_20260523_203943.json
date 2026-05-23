@@ -1,0 +1,887 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-23T20:39:43.884616",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 8,
+      "api_calls": 13,
+      "cache_hits": 0,
+      "solutions_found": 0,
+      "code_executions": 24,
+      "code_errors": 0,
+      "daily_requests": 13,
+      "session_start": "2026-05-23T20:39:06.461590",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 16,
+      "total_input_tokens": 4946,
+      "total_output_tokens": 6825,
+      "api_saved_two_num_cache": 16,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "deadend_memory": {
+        "patterns_stored": 20,
+        "two_num_cache_size": 221,
+        "total_checked": 23,
+        "total_skipped": 16,
+        "skip_rate": "69.6%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 20,
+      "total_checked": 23,
+      "total_skipped": 16,
+      "api_calls_saved": 16,
+      "api_saved_two_num_cache": 16,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        1,
+        7,
+        12,
+        13
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 7,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            8,
+            12,
+            13
+          ],
+          "action": "[8, 12, 13]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 1 and 7",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[0] + numbers[1]\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 12, 13]"
+          },
+          "path_history": "Add 1 and 7\nResult: [8, 12, 13]",
+          "evaluation": {
+            "state": "[8, 12, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "let’s check each set:\n\n**8, 12, 13**  \n- 13 + 12 = 25, 25 − 8 = 17  \n- 13 − 8 = 5, 5 × 12 = 60  \n- 13 + 8 = 21, 21 + 12 = 33  \n- 12 ÷ (13 − 8) = 12 ÷ 5 = 2.4  \n- (13 − 12) × 8 = 1 × 8 = 8  \n- 13 × 12 = 156, 156 ÷ 8 = 19.5  \n- 8 × 12 = 96, 96 − 13 = 83  \n- 13 × 8 = 104, 104 − 12 = 92  \n\nnone of these give 24.  \nthe numbers are not extremely far apart, but no combination works.  \n\n**answer:** impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s check each set:\n\n**8, 12, 13**  \n- 13 + 12 = 25, 25 − 8 = 17  \n- 13 − 8 = 5, 5 × 12 = 60  \n- 13 + 8 = 21, 21 + 12 = 33  \n- 12 ÷ (13 − 8) = 12 ÷ 5 = 2.4  \n- (13 − 12) × 8 = 1 × 8 = 8  \n- 13 × 12 = 156, 156 ÷ 8 = 19.5  \n- 8 × 12 = 96, 96 − 13 = 83  \n- 13 × 8 = 104, 104 − 12 = 92  \n\nnone of these give 24.  \nthe numbers are not extremely far apart, but no combination works.  \n\n**answer:** impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            6,
+            12,
+            13
+          ],
+          "action": "[6, 12, 13]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 1 from 7",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[1] - numbers[0]\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[6, 12, 13]"
+          },
+          "path_history": "Subtract 1 from 7\nResult: [6, 12, 13]",
+          "evaluation": {
+            "state": "[6, 12, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "let’s check each set:\n\n**6, 12, 13**  \n- 13 + 12 = 25, 25 − 6 = 19  \n- 13 − 6 = 7, 7 × 12 = 84  \n- 12 − 6 = 6, 6 × 13 = 78  \n- 13 + 6 = 19, 19 + 12 = 31  \n- 13 × 12 = 156, 156 / 6 = 26  \n- (13 − 6) × 12 = 84  \n- (12 − 6) × 13 = 78  \n- 13 + 12 + 6 = 31  \n- 13 × 6 = 78, 78 / 12 = 6.5  \n- 12 × 6 = 72, 72 / 13 ≈ 5.538  \n\nno combination gives 24.  \nnumbers are moderate, but no clear path.\n\n**answer:** impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s check each set:\n\n**6, 12, 13**  \n- 13 + 12 = 25, 25 − 6 = 19  \n- 13 − 6 = 7, 7 × 12 = 84  \n- 12 − 6 = 6, 6 × 13 = 78  \n- 13 + 6 = 19, 19 + 12 = 31  \n- 13 × 12 = 156, 156 / 6 = 26  \n- (13 − 6) × 12 = 84  \n- (12 − 6) × 13 = 78  \n- 13 + 12 + 6 = 31  \n- 13 × 6 = 78, 78 / 12 = 6.5  \n- 12 × 6 = 72, 72 / 13 ≈ 5.538  \n\nno combination gives 24.  \nnumbers are moderate, but no clear path.\n\n**answer:** impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            7,
+            12,
+            13
+          ],
+          "action": "[7, 12, 13]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 1 and 7",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[0] * numbers[1]\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7, 12, 13]"
+          },
+          "path_history": "Multiply 1 and 7\nResult: [7, 12, 13]",
+          "evaluation": {
+            "state": "[7, 12, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.92  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 21, not 24.  \nbut 5 × 7 − 8 = 27, 8 × 5 − 7 = 33, (7 − 5) × 8 = 16.  \nno 24, but numbers are small and combinable → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6, 5 × 6 − 6 = 24 → wait, that’s 30 − 6 = 24.  \nyes: 5 × 6 − 6 = 24 → **sure**\n\n**10 10 11**  \n10 + 10 + 11 = 31, (11 − 10) × 10 = 10, 11 × 10 − 10 = 100.  \nno 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9, (1 + 3) × 3 = 12, 3 × 3 − 1 = 8.  \nno 24 → **impossible**\n\n**[7, 12, 13]**  \n12 + 13 − 7 = 18, 13 − 7 = 6, 6 × ? no.  \n(13 − 7) × 12 = 72, too big.  \n7 × 12 − 13 = 71, 13 × 7 − 12 = 79.  \nno 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [7, 12, 13] → impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.92  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 21, not 24.  \nbut 5 × 7 − 8 = 27, 8 × 5 − 7 = 33, (7 − 5) × 8 = 16.  \nno 24, but numbers are small and combinable → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6, 5 × 6 − 6 = 24 → wait, that’s 30 − 6 = 24.  \nyes: 5 × 6 − 6 = 24 → **sure**\n\n**10 10 11**  \n10 + 10 + 11 = 31, (11 − 10) × 10 = 10, 11 × 10 − 10 = 100.  \nno 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9, (1 + 3) × 3 = 12, 3 × 3 − 1 = 8.  \nno 24 → **impossible**\n\n**[7, 12, 13]**  \n12 + 13 − 7 = 18, 13 − 7 = 6, 6 × ? no.  \n(13 − 7) × 12 = 72, too big.  \n7 × 12 − 13 = 71, 13 × 7 − 12 = 79.  \nno 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [7, 12, 13] → impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            25,
+            1,
+            7
+          ],
+          "action": "[25, 1, 7]",
+          "value": 0.72,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 12 and 13",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[2] + numbers[3]\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[25, 1, 7]"
+          },
+          "path_history": "Add 12 and 13\nResult: [25, 1, 7]",
+          "evaluation": {
+            "state": "[25, 1, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 25
+            },
+            "llm_judgments": [
+              "25, 1, 7  \n25 - 1 = 24  \n24 * 1 = 24  \nor  \n25 - (7 - 6?) no, just 25 - 1 = 24, and 7 is unused, but we must use all numbers.  \nwe can do:  \n(25 - 1) * (7 / 7) — but we don’t have another 7.  \nactually with 25, 1, 7:  \n25 - 1 = 24, but 7 remains unused.  \nwe can do:  \n(25 - 1) * (7 / 7) — no second 7.  \nor:  \n(25 - 7) * 1 = 18, no.  \n7 * 1 + 25? = 32.  \n(7 - 1) * ? = 6 * 4? no 4.  \nseems impossible to use all three exactly once to get 24.  \n\n**impossible**"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.720"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "25, 1, 7  \n25 - 1 = 24  \n24 * 1 = 24  \nor  \n25 - (7 - 6?) no, just 25 - 1 = 24, and 7 is unused, but we must use all numbers.  \nwe can do:  \n(25 - 1) * (7 / 7) — but we don’t have another 7.  \nactually with 25, 1, 7:  \n25 - 1 = 24, but 7 remains unused.  \nwe can do:  \n(25 - 1) * (7 / 7) — no second 7.  \nor:  \n(25 - 7) * 1 = 18, no.  \n7 * 1 + 25? = 32.  \n(7 - 1) * ? = 6 * 4? no 4.  \nseems impossible to use all three exactly once to get 24.  \n\n**impossible**"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.72,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            1,
+            1,
+            7
+          ],
+          "action": "[1, 1, 7]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 12 from 13",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[3] - numbers[2]\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1, 1, 7]"
+          },
+          "path_history": "Subtract 12 from 13\nResult: [1, 1, 7]",
+          "evaluation": {
+            "state": "[1, 1, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 7
+            },
+            "llm_judgments": [
+              "let’s check each set carefully.\n\n**1 1 7**  \npossible combinations:  \n- 7 × (1 + 1) = 14  \n- (7 + 1) × 1 = 8  \n- 7 + 1 + 1 = 9  \n- (7 - 1) × 1 = 6  \nno way to get 24.  \n\n**answer:** impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s check each set carefully.\n\n**1 1 7**  \npossible combinations:  \n- 7 × (1 + 1) = 14  \n- (7 + 1) × 1 = 8  \n- 7 + 1 + 1 = 9  \n- (7 - 1) × 1 = 6  \nno way to get 24.  \n\n**answer:** impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            156,
+            1,
+            7
+          ],
+          "action": "[156, 1, 7]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 12 and 13",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[2] * numbers[3]\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[156, 1, 7]"
+          },
+          "path_history": "Multiply 12 and 13\nResult: [156, 1, 7]",
+          "evaluation": {
+            "state": "[156, 1, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 156
+            },
+            "llm_judgments": [
+              "156, 1, 7  \n156 / 7 ≈ 22.2857, not 24  \n156 / 1 = 156, then 156 / 7 ≈ 22.2857  \n7 * 1 = 7, 156 / 7 ≈ 22.2857  \n156 - 7 = 149, 149 / 1 = 149  \n156 - 1 = 155, 155 / 7 ≈ 22.14  \n7 - 1 = 6, 156 / 6 = 26  \n156 / 6 = 26, not 24  \nno combination gives 24.  \n\nimpossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "156, 1, 7  \n156 / 7 ≈ 22.2857, not 24  \n156 / 1 = 156, then 156 / 7 ≈ 22.2857  \n7 * 1 = 7, 156 / 7 ≈ 22.2857  \n156 - 7 = 149, 149 / 1 = 149  \n156 - 1 = 155, 155 / 7 ≈ 22.14  \n7 - 1 = 6, 156 / 6 = 26  \n156 / 6 = 26, not 24  \nno combination gives 24.  \n\nimpossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            19,
+            1,
+            13
+          ],
+          "action": "[19, 1, 13]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 7 and 12",
+            "code": "numbers = [1, 7, 12, 13]\nres = numbers[1] + numbers[2]\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[19, 1, 13]"
+          },
+          "path_history": "Add 7 and 12\nResult: [19, 1, 13]",
+          "evaluation": {
+            "state": "[19, 1, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 19
+            },
+            "llm_judgments": [
+              "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.917  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 6 × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 3 × 7 = 21 (not 24)  \n5 × 7 − 8 = 35 − 8 = 27  \n8 × (7 − 5) = 8 × 2 = 16  \nno exact 24, but numbers are small and plausible → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6  \n5 × 6 − 6 = 30 − 6 = 24 → **sure** (i missed this earlier — it works)\n\n**10 10 11**  \n10 + 10 + 11 = 31  \n(11 − 10) × 10 = 10  \nno way to get 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9  \n(1 + 3) × 3 = 12  \nno 24 possible → **impossible**\n\n**[19, 1, 13]**  \n19 + 1 + 13 = 33  \n19 + 13 − 1 = 31  \n19 − 13 + 1 = 7  \nno combination gives 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [19, 1, 13] → impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.917  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 6 × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 3 × 7 = 21 (not 24)  \n5 × 7 − 8 = 35 − 8 = 27  \n8 × (7 − 5) = 8 × 2 = 16  \nno exact 24, but numbers are small and plausible → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6  \n5 × 6 − 6 = 30 − 6 = 24 → **sure** (i missed this earlier — it works)\n\n**10 10 11**  \n10 + 10 + 11 = 31  \n(11 − 10) × 10 = 10  \nno way to get 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9  \n(1 + 3) × 3 = 12  \nno 24 possible → **impossible**\n\n**[19, 1, 13]**  \n19 + 1 + 13 = 33  \n19 + 13 − 1 = 31  \n19 − 13 + 1 = 7  \nno combination gives 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [19, 1, 13] → impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        8,
+        12,
+        13
+      ],
+      "action": "[8, 12, 13]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 1 and 7",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[0] + numbers[1]\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 12, 13]"
+      },
+      "path_history": "Add 1 and 7\nResult: [8, 12, 13]",
+      "evaluation": {
+        "state": "[8, 12, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "let’s check each set:\n\n**8, 12, 13**  \n- 13 + 12 = 25, 25 − 8 = 17  \n- 13 − 8 = 5, 5 × 12 = 60  \n- 13 + 8 = 21, 21 + 12 = 33  \n- 12 ÷ (13 − 8) = 12 ÷ 5 = 2.4  \n- (13 − 12) × 8 = 1 × 8 = 8  \n- 13 × 12 = 156, 156 ÷ 8 = 19.5  \n- 8 × 12 = 96, 96 − 13 = 83  \n- 13 × 8 = 104, 104 − 12 = 92  \n\nnone of these give 24.  \nthe numbers are not extremely far apart, but no combination works.  \n\n**answer:** impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s check each set:\n\n**8, 12, 13**  \n- 13 + 12 = 25, 25 − 8 = 17  \n- 13 − 8 = 5, 5 × 12 = 60  \n- 13 + 8 = 21, 21 + 12 = 33  \n- 12 ÷ (13 − 8) = 12 ÷ 5 = 2.4  \n- (13 − 12) × 8 = 1 × 8 = 8  \n- 13 × 12 = 156, 156 ÷ 8 = 19.5  \n- 8 × 12 = 96, 96 − 13 = 83  \n- 13 × 8 = 104, 104 − 12 = 92  \n\nnone of these give 24.  \nthe numbers are not extremely far apart, but no combination works.  \n\n**answer:** impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        6,
+        12,
+        13
+      ],
+      "action": "[6, 12, 13]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 1 from 7",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[1] - numbers[0]\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[6, 12, 13]"
+      },
+      "path_history": "Subtract 1 from 7\nResult: [6, 12, 13]",
+      "evaluation": {
+        "state": "[6, 12, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "let’s check each set:\n\n**6, 12, 13**  \n- 13 + 12 = 25, 25 − 6 = 19  \n- 13 − 6 = 7, 7 × 12 = 84  \n- 12 − 6 = 6, 6 × 13 = 78  \n- 13 + 6 = 19, 19 + 12 = 31  \n- 13 × 12 = 156, 156 / 6 = 26  \n- (13 − 6) × 12 = 84  \n- (12 − 6) × 13 = 78  \n- 13 + 12 + 6 = 31  \n- 13 × 6 = 78, 78 / 12 = 6.5  \n- 12 × 6 = 72, 72 / 13 ≈ 5.538  \n\nno combination gives 24.  \nnumbers are moderate, but no clear path.\n\n**answer:** impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s check each set:\n\n**6, 12, 13**  \n- 13 + 12 = 25, 25 − 6 = 19  \n- 13 − 6 = 7, 7 × 12 = 84  \n- 12 − 6 = 6, 6 × 13 = 78  \n- 13 + 6 = 19, 19 + 12 = 31  \n- 13 × 12 = 156, 156 / 6 = 26  \n- (13 − 6) × 12 = 84  \n- (12 − 6) × 13 = 78  \n- 13 + 12 + 6 = 31  \n- 13 × 6 = 78, 78 / 12 = 6.5  \n- 12 × 6 = 72, 72 / 13 ≈ 5.538  \n\nno combination gives 24.  \nnumbers are moderate, but no clear path.\n\n**answer:** impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        7,
+        12,
+        13
+      ],
+      "action": "[7, 12, 13]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 1 and 7",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[0] * numbers[1]\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7, 12, 13]"
+      },
+      "path_history": "Multiply 1 and 7\nResult: [7, 12, 13]",
+      "evaluation": {
+        "state": "[7, 12, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.92  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 21, not 24.  \nbut 5 × 7 − 8 = 27, 8 × 5 − 7 = 33, (7 − 5) × 8 = 16.  \nno 24, but numbers are small and combinable → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6, 5 × 6 − 6 = 24 → wait, that’s 30 − 6 = 24.  \nyes: 5 × 6 − 6 = 24 → **sure**\n\n**10 10 11**  \n10 + 10 + 11 = 31, (11 − 10) × 10 = 10, 11 × 10 − 10 = 100.  \nno 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9, (1 + 3) × 3 = 12, 3 × 3 − 1 = 8.  \nno 24 → **impossible**\n\n**[7, 12, 13]**  \n12 + 13 − 7 = 18, 13 − 7 = 6, 6 × ? no.  \n(13 − 7) × 12 = 72, too big.  \n7 × 12 − 13 = 71, 13 × 7 − 12 = 79.  \nno 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [7, 12, 13] → impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.92  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 21, not 24.  \nbut 5 × 7 − 8 = 27, 8 × 5 − 7 = 33, (7 − 5) × 8 = 16.  \nno 24, but numbers are small and combinable → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6, 5 × 6 − 6 = 24 → wait, that’s 30 − 6 = 24.  \nyes: 5 × 6 − 6 = 24 → **sure**\n\n**10 10 11**  \n10 + 10 + 11 = 31, (11 − 10) × 10 = 10, 11 × 10 − 10 = 100.  \nno 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9, (1 + 3) × 3 = 12, 3 × 3 − 1 = 8.  \nno 24 → **impossible**\n\n**[7, 12, 13]**  \n12 + 13 − 7 = 18, 13 − 7 = 6, 6 × ? no.  \n(13 − 7) × 12 = 72, too big.  \n7 × 12 − 13 = 71, 13 × 7 − 12 = 79.  \nno 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [7, 12, 13] → impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        25,
+        1,
+        7
+      ],
+      "action": "[25, 1, 7]",
+      "value": 0.72,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 12 and 13",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[2] + numbers[3]\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[25, 1, 7]"
+      },
+      "path_history": "Add 12 and 13\nResult: [25, 1, 7]",
+      "evaluation": {
+        "state": "[25, 1, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 25
+        },
+        "llm_judgments": [
+          "25, 1, 7  \n25 - 1 = 24  \n24 * 1 = 24  \nor  \n25 - (7 - 6?) no, just 25 - 1 = 24, and 7 is unused, but we must use all numbers.  \nwe can do:  \n(25 - 1) * (7 / 7) — but we don’t have another 7.  \nactually with 25, 1, 7:  \n25 - 1 = 24, but 7 remains unused.  \nwe can do:  \n(25 - 1) * (7 / 7) — no second 7.  \nor:  \n(25 - 7) * 1 = 18, no.  \n7 * 1 + 25? = 32.  \n(7 - 1) * ? = 6 * 4? no 4.  \nseems impossible to use all three exactly once to get 24.  \n\n**impossible**"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.720"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "25, 1, 7  \n25 - 1 = 24  \n24 * 1 = 24  \nor  \n25 - (7 - 6?) no, just 25 - 1 = 24, and 7 is unused, but we must use all numbers.  \nwe can do:  \n(25 - 1) * (7 / 7) — but we don’t have another 7.  \nactually with 25, 1, 7:  \n25 - 1 = 24, but 7 remains unused.  \nwe can do:  \n(25 - 1) * (7 / 7) — no second 7.  \nor:  \n(25 - 7) * 1 = 18, no.  \n7 * 1 + 25? = 32.  \n(7 - 1) * ? = 6 * 4? no 4.  \nseems impossible to use all three exactly once to get 24.  \n\n**impossible**"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.72,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        1,
+        1,
+        7
+      ],
+      "action": "[1, 1, 7]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 12 from 13",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[3] - numbers[2]\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1, 1, 7]"
+      },
+      "path_history": "Subtract 12 from 13\nResult: [1, 1, 7]",
+      "evaluation": {
+        "state": "[1, 1, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 7
+        },
+        "llm_judgments": [
+          "let’s check each set carefully.\n\n**1 1 7**  \npossible combinations:  \n- 7 × (1 + 1) = 14  \n- (7 + 1) × 1 = 8  \n- 7 + 1 + 1 = 9  \n- (7 - 1) × 1 = 6  \nno way to get 24.  \n\n**answer:** impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s check each set carefully.\n\n**1 1 7**  \npossible combinations:  \n- 7 × (1 + 1) = 14  \n- (7 + 1) × 1 = 8  \n- 7 + 1 + 1 = 9  \n- (7 - 1) × 1 = 6  \nno way to get 24.  \n\n**answer:** impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        156,
+        1,
+        7
+      ],
+      "action": "[156, 1, 7]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 12 and 13",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[2] * numbers[3]\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[156, 1, 7]"
+      },
+      "path_history": "Multiply 12 and 13\nResult: [156, 1, 7]",
+      "evaluation": {
+        "state": "[156, 1, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 156
+        },
+        "llm_judgments": [
+          "156, 1, 7  \n156 / 7 ≈ 22.2857, not 24  \n156 / 1 = 156, then 156 / 7 ≈ 22.2857  \n7 * 1 = 7, 156 / 7 ≈ 22.2857  \n156 - 7 = 149, 149 / 1 = 149  \n156 - 1 = 155, 155 / 7 ≈ 22.14  \n7 - 1 = 6, 156 / 6 = 26  \n156 / 6 = 26, not 24  \nno combination gives 24.  \n\nimpossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "156, 1, 7  \n156 / 7 ≈ 22.2857, not 24  \n156 / 1 = 156, then 156 / 7 ≈ 22.2857  \n7 * 1 = 7, 156 / 7 ≈ 22.2857  \n156 - 7 = 149, 149 / 1 = 149  \n156 - 1 = 155, 155 / 7 ≈ 22.14  \n7 - 1 = 6, 156 / 6 = 26  \n156 / 6 = 26, not 24  \nno combination gives 24.  \n\nimpossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        19,
+        1,
+        13
+      ],
+      "action": "[19, 1, 13]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 7 and 12",
+        "code": "numbers = [1, 7, 12, 13]\nres = numbers[1] + numbers[2]\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[19, 1, 13]"
+      },
+      "path_history": "Add 7 and 12\nResult: [19, 1, 13]",
+      "evaluation": {
+        "state": "[19, 1, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 19
+        },
+        "llm_judgments": [
+          "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.917  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 6 × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 3 × 7 = 21 (not 24)  \n5 × 7 − 8 = 35 − 8 = 27  \n8 × (7 − 5) = 8 × 2 = 16  \nno exact 24, but numbers are small and plausible → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6  \n5 × 6 − 6 = 30 − 6 = 24 → **sure** (i missed this earlier — it works)\n\n**10 10 11**  \n10 + 10 + 11 = 31  \n(11 − 10) × 10 = 10  \nno way to get 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9  \n(1 + 3) × 3 = 12  \nno 24 possible → **impossible**\n\n**[19, 1, 13]**  \n19 + 1 + 13 = 33  \n19 + 13 − 1 = 31  \n19 − 13 + 1 = 7  \nno combination gives 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [19, 1, 13] → impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s check each set:\n\n**10 14**  \n10 + 14 = 24 → **sure**\n\n**11 12**  \nno combination gives 24 exactly.  \n11 + 12 = 23, 12 − 11 = 1, 11 × 12 = 132, 11 ÷ 12 ≈ 0.917  \n→ **impossible**\n\n**4 4 10**  \n(10 − 4) × 4 = 6 × 4 = 24 → **sure**\n\n**4 9 11**  \n9 + 11 + 4 = 24 → **sure**\n\n**5 7 8**  \n(8 − 5) × 7 = 3 × 7 = 21 (not 24)  \n5 × 7 − 8 = 35 − 8 = 27  \n8 × (7 − 5) = 8 × 2 = 16  \nno exact 24, but numbers are small and plausible → **likely**\n\n**5 6 6**  \n(6 − 5) × 6 = 6  \n5 × 6 − 6 = 30 − 6 = 24 → **sure** (i missed this earlier — it works)\n\n**10 10 11**  \n10 + 10 + 11 = 31  \n(11 − 10) × 10 = 10  \nno way to get 24 → **impossible**\n\n**1 3 3**  \n1 × 3 × 3 = 9  \n(1 + 3) × 3 = 12  \nno 24 possible → **impossible**\n\n**[19, 1, 13]**  \n19 + 1 + 13 = 33  \n19 + 13 − 1 = 31  \n19 − 13 + 1 = 7  \nno combination gives 24 → **impossible**\n\nfinal answers:  \n- 10 14 → sure  \n- 11 12 → impossible  \n- 4 4 10 → sure  \n- 4 9 11 → sure  \n- 5 7 8 → likely  \n- 5 6 6 → sure  \n- 10 10 11 → impossible  \n- 1 3 3 → impossible  \n- [19, 1, 13] → impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 7,
+      "re_evaluations": 0,
+      "unique_states": 7,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
