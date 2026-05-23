@@ -1730,3 +1730,608 @@ print(new_numbers)
 
 === PROPOSE for [15.0, 9] depth 2 ===
 → Routing to propose_two_number
+
+=== PROPOSE for [4, 9, 11, 11] depth 0 ===
+  Calling LLM (temp=0.7)...
+  Response length: 3524
+  Response first 600 chars:
+Let’s start with the initial 4-number state.
+
+Current numbers: [4, 9, 11, 11]
+
+**Step 1**  
+Thought: Add the two 11s.  
+Math: 11 + 11 = 22  
+Remaining: [4, 9, 22]  
+Code:
+```python
+numbers = [4, 9, 11, 11]
+res = numbers[2] + numbers[3]   # 11 + 11 = 22
+remaining = [numbers[0], numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+**Step 2**  
+Thought: Multiply 11 and 11.  
+Math: 11 * 11 = 121  
+Remaining: [4, 9, 121]  
+Code:
+```python
+numbers = [4, 9, 11, 11]
+res = numbers[2] * numbers[3]   # 11 * 11 = 121
+remaining = [numbers[0], numbers[1]]
+new_numbers = [res] + remaining
+print
+  Full pattern matches: 12
+  Match 0: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[2] + numbers[3]   # 11 + 11 = 22
+remaining = [numbers[0], numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [22, 4, 9]
+  Match 1: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[2] * numbers[3]   # 11 * 11 = 121
+remaining = [numbers[0], numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [121, 4, 9]
+  Match 2: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[2] - numbers[1]   # 11 - 9 = 2
+remaining = [numbers[0], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [2, 4, 11]
+  Match 3: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[2] - numbers[0]   # 11 - 4 = 7
+remaining = [numbers[1], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [7, 9, 11]
+  Match 4: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[0] * numbers[1]   # 4 * 9 = 36
+remaining = [numbers[2], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [36, 11, 11]
+  Match 5: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[1] + numbers[2]   # 9 + 11 = 20
+remaining = [numbers[0], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [20, 4, 11]
+  Match 6: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[2] / numbers[0]   # 11 / 4 = 2.75
+remaining = [numbers[1], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [2.75, 9, 11]
+  Match 7: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[1] / numbers[0]   # 9 / 4 = 2.25
+remaining = [numbers[2], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [2.25, 11, 11]
+  Match 8: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[3] - numbers[0]   # 11 - 4 = 7
+remaining = [numbers[1], numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✗ Duplicate state: [7, 9, 11]
+  Match 9: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[0] * numbers[2]   # 4 * 11 = 44
+remaining = [numbers[1], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [44, 9, 11]
+  Match 10: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[1] - numbers[2]   # 9 - 11 = -2
+remaining = [numbers[0], numbers[3]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-2, 4, 11]
+  Match 11: code snippet:
+numbers = [4, 9, 11, 11]
+res = numbers[2] / numbers[3]   # 11 / 11 = 1
+remaining = [numbers[0], numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [1.0, 4, 9]
+  Returning 11 proposals
+  Returning 11 proposals
+
+=== PROPOSE for [20, 4, 11] depth 1 ===
+  Added dead-end patterns to prompt
+  Calling LLM (temp=0.7)...
+  Response length: 3511
+  Response first 600 chars:
+[20, 4, 11] - 3-number state, 3 possible pairs: (0,1), (0,2), (1,2)
+
+**Step 1**
+Thought: Multiply 20 and 4 (indices 0 and 1) to get 80, keep 11.
+Math: 20 * 4 = 80
+Remaining: [80, 11]
+Code:
+```python
+numbers = [20, 4, 11]
+res = numbers[0] * numbers[1]  # 20 * 4 = 80
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+**Step 2**
+Thought: Add 20 and 11 (indices 0 and 2) to get 31, keep 4.
+Math: 20 + 11 = 31
+Remaining: [31, 4]
+Code:
+```python
+numbers = [20, 4, 11]
+res = numbers[0] + numbers[2]  # 20 + 11 = 31
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+pri
+  Full pattern matches: 12
+  Match 0: code snippet:
+numbers = [20, 4, 11]
+res = numbers[0] * numbers[1]  # 20 * 4 = 80
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [80, 11]
+  Match 1: code snippet:
+numbers = [20, 4, 11]
+res = numbers[0] + numbers[2]  # 20 + 11 = 31
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [31, 4]
+  Match 2: code snippet:
+numbers = [20, 4, 11]
+res = numbers[0] - numbers[1]  # 20 - 4 = 16
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [16, 11]
+  Match 3: code snippet:
+numbers = [20, 4, 11]
+res = numbers[1] - numbers[0]  # 4 - 20 = -16
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-16, 11]
+  Match 4: code snippet:
+numbers = [20, 4, 11]
+res = numbers[0] / numbers[1]  # 20 / 4 = 5
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [5.0, 11]
+  Match 5: code snippet:
+numbers = [20, 4, 11]
+res = numbers[1] / numbers[0]  # 4 / 20 = 0.2
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [0.2, 11]
+  Match 6: code snippet:
+numbers = [20, 4, 11]
+res = numbers[0] * numbers[2]  # 20 * 11 = 220
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [220, 4]
+  Match 7: code snippet:
+numbers = [20, 4, 11]
+res = numbers[0] - numbers[2]  # 20 - 11 = 9
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [9, 4]
+  Returning 8 proposals
+  Returning 8 proposals
+
+=== PROPOSE for [44, 9, 11] depth 1 ===
+  Added dead-end patterns to prompt
+  Calling LLM (temp=0.7)...
+  Response length: 3871
+  Response first 600 chars:
+[44, 9, 11] is a 3-number state. Pairs: (0,1), (0,2), (1,2)
+
+**Step 1:**
+Thought: Add 44 and 9 to get 53
+Math: 44 + 9 = 53
+Remaining: [53, 11]
+Code:
+```python
+numbers = [44, 9, 11]
+res = numbers[0] + numbers[1]   # 44 + 9 = 53
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+**Step 2:**
+Thought: Subtract 9 from 44 to get 35
+Math: 44 - 9 = 35
+Remaining: [35, 11]
+Code:
+```python
+numbers = [44, 9, 11]
+res = numbers[0] - numbers[1]   # 44 - 9 = 35
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+**Step 3:**
+Thought: Subtract 44 from 9
+  Full pattern matches: 13
+  Match 0: code snippet:
+numbers = [44, 9, 11]
+res = numbers[0] + numbers[1]   # 44 + 9 = 53
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [53, 11]
+  Match 1: code snippet:
+numbers = [44, 9, 11]
+res = numbers[0] - numbers[1]   # 44 - 9 = 35
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [35, 11]
+  Match 2: code snippet:
+numbers = [44, 9, 11]
+res = numbers[1] - numbers[0]   # 9 - 44 = -35
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-35, 11]
+  Match 3: code snippet:
+numbers = [44, 9, 11]
+res = numbers[0] * numbers[1]   # 44 * 9 = 396
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [396, 11]
+  Match 4: code snippet:
+numbers = [44, 9, 11]
+res = numbers[0] / numbers[1]   # 44 / 9 ≈ 4.889
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [4.888888888888889, 11]
+  Match 5: code snippet:
+numbers = [44, 9, 11]
+res = numbers[1] / numbers[0]   # 9 / 44 ≈ 0.205
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [0.20454545454545456, 11]
+  Match 6: code snippet:
+numbers = [44, 9, 11]
+res = numbers[0] + numbers[2]   # 44 + 11 = 55
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [55, 9]
+  Match 7: code snippet:
+numbers = [44, 9, 11]
+res = numbers[0] - numbers[2]   # 44 - 11 = 33
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [33, 9]
+  Returning 8 proposals
+  Returning 8 proposals
+
+=== PROPOSE for [2.75, 9, 11] depth 1 ===
+  Added dead-end patterns to prompt
+  Calling LLM (temp=0.7)...
+  Response length: 3329
+  Response first 600 chars:
+Current numbers: [2.75, 9, 11]
+
+Let me enumerate all possible pairs for 3-number state:
+Pairs: (0,1), (0,2), (1,2)
+
+**Step 1:**
+Thought: Multiply 2.75 by 9 to get 24.75
+Math: 2.75 * 9 = 24.75
+Remaining: [24.75, 11]
+Code:
+```python
+numbers = [2.75, 9, 11]
+res = numbers[0] * numbers[1]   # 2.75 * 9 = 24.75
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+**Step 2:**
+Thought: Multiply 2.75 by 11 to get 30.25
+Math: 2.75 * 11 = 30.25
+Remaining: [30.25, 9]
+Code:
+```python
+numbers = [2.75, 9, 11]
+res = numbers[0] * numbers[2]   # 2.75 * 11 = 30.25
+remaining = [numbers[
+  Full pattern matches: 12
+  Match 0: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[0] * numbers[1]   # 2.75 * 9 = 24.75
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [24.75, 11]
+  Match 1: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[0] * numbers[2]   # 2.75 * 11 = 30.25
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [30.25, 9]
+  Match 2: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[1] * numbers[2]   # 9 * 11 = 99
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [99, 2.75]
+  Match 3: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[0] + numbers[1]   # 2.75 + 9 = 11.75
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [11.75, 11]
+  Match 4: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[0] + numbers[2]   # 2.75 + 11 = 13.75
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [13.75, 9]
+  Match 5: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[1] + numbers[2]   # 9 + 11 = 20
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [20, 2.75]
+  Match 6: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[1] - numbers[0]   # 9 - 2.75 = 6.25
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [6.25, 11]
+  Match 7: code snippet:
+numbers = [2.75, 9, 11]
+res = numbers[0] - numbers[1]   # 2.75 - 9 = -6.25
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-6.25, 11]
+  Returning 8 proposals
+  Returning 8 proposals
+
+=== PROPOSE for [2.25, 11, 11] depth 1 ===
+  Added dead-end patterns to prompt
+  Calling LLM (temp=0.7)...
+  Response length: 3825
+  Response first 600 chars:
+We have 3 numbers: `[2.25, 11, 11]`.  
+Possible pairs: (0,1), (0,2), (1,2).  
+We must list all operations for each pair, including both orders for subtraction and division.
+
+---
+
+### Step 1
+**Thought:** Add 2.25 and 11 → 13.25, keep the other 11.  
+**Math:** 2.25 + 11 = 13.25  
+**Remaining:** [13.25, 11]  
+**Code:**
+```python
+numbers = [2.25, 11, 11]
+res = numbers[0] + numbers[1]   # 2.25 + 11 = 13.25
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+---
+
+### Step 2
+**Thought:** Add 2.25 and the other 11 → same result as step 1, but valid distinct pair.  
+**Math:
+  Full pattern matches: 11
+  Match 0: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[0] + numbers[1]   # 2.25 + 11 = 13.25
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [13.25, 11]
+  Match 1: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[0] + numbers[2]   # 2.25 + 11 = 13.25
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✗ Duplicate state: [13.25, 11]
+  Match 2: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[1] - numbers[0]   # 11 - 2.25 = 8.75
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [8.75, 11]
+  Match 3: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[2] - numbers[0]   # 11 - 2.25 = 8.75
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✗ Duplicate state: [8.75, 11]
+  Match 4: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[0] - numbers[1]   # 2.25 - 11 = -8.75
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-8.75, 11]
+  Match 5: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[0] * numbers[1]   # 2.25 * 11 = 24.75
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [24.75, 11]
+  Match 6: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[0] * numbers[2]   # 2.25 * 11 = 24.75
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✗ Duplicate state: [24.75, 11]
+  Match 7: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[1] / numbers[0]   # 11 / 2.25 ≈ 4.8889
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [4.888888888888889, 11]
+  Match 8: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[2] / numbers[0]   # 11 / 2.25 ≈ 4.8889
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✗ Duplicate state: [4.888888888888889, 11]
+  Match 9: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[0] / numbers[1]   # 2.25 / 11 ≈ 0.2045
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [0.20454545454545456, 11]
+  Match 10: code snippet:
+numbers = [2.25, 11, 11]
+res = numbers[1] + numbers[2]   # 11 + 11 = 22
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [22, 2.25]
+  Returning 7 proposals
+  Returning 7 proposals
+
+=== PROPOSE for [-2, 4, 11] depth 1 ===
+  Added dead-end patterns to prompt
+  Calling LLM (temp=0.7)...
+  Response length: 3213
+  Response first 600 chars:
+Now we have 3 numbers: `[-2, 4, 11]`.  
+Possible pairs: (0,1), (0,2), (1,2).  
+We need at least 8 steps, using smallest number (-2) in at least 2 proposals, and avoiding dead ends like [11,11,9], [10,5,1], [14,11,6].
+
+---
+
+**Step 1**  
+Thought: Add -2 and 11 to get 9.  
+Math: -2 + 11 = 9  
+Remaining: [4, 9]  
+Code:
+```python
+numbers = [-2, 4, 11]
+res = numbers[0] + numbers[2]   # -2 + 11 = 9
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+```
+
+---
+
+**Step 2**  
+Thought: Multiply -2 by 4 to get -8, then combine with 11.  
+Math: -2 * 4 = -8  
+Remaining: [11, -8]  
+Cod
+  Full pattern matches: 10
+  Match 0: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[0] + numbers[2]   # -2 + 11 = 9
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [9, 4]
+  Match 1: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[0] * numbers[1]   # -2 * 4 = -8
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-8, 11]
+  Match 2: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[0] - numbers[1]   # -2 - 4 = -6
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-6, 11]
+  Match 3: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[1] - numbers[0]   # 4 - (-2) = 6
+remaining = [numbers[2]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [6, 11]
+  Match 4: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[1] + numbers[2]   # 4 + 11 = 15
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [15, -2]
+  Match 5: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[1] - numbers[2]   # 4 - 11 = -7
+remaining = [numbers[0]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-7, -2]
+  Match 6: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[2] - numbers[0]   # 11 - (-2) = 13
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [13, 4]
+  Match 7: code snippet:
+numbers = [-2, 4, 11]
+res = numbers[0] * numbers[2]   # -2 * 11 = -22
+remaining = [numbers[1]]
+new_numbers = [res] + remaining
+print(new_numbers)
+    ✓ Valid proposal: [-22, 4]
+  Returning 8 proposals
+  Returning 8 proposals
+
+=== PROPOSE for [33, 9] depth 2 ===
+→ Routing to propose_two_number
+
+=== PROPOSE for [35, 11] depth 2 ===
+→ Routing to propose_two_number
