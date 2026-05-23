@@ -1,0 +1,2150 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-23T16:40:01.991137",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 18,
+      "api_calls": 20,
+      "cache_hits": 0,
+      "solutions_found": 2,
+      "code_executions": 52,
+      "code_errors": 0,
+      "daily_requests": 20,
+      "session_start": "2026-05-23T16:39:03.790431",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 37,
+      "total_input_tokens": 16372,
+      "total_output_tokens": 13062,
+      "api_saved_two_num_cache": 37,
+      "api_saved_3num_pattern": 1,
+      "api_saved_value_cache": 0,
+      "deadend_memory": {
+        "patterns_stored": 16,
+        "two_num_cache_size": 175,
+        "total_checked": 52,
+        "total_skipped": 37,
+        "skip_rate": "71.2%"
+      }
+    },
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 16,
+      "total_checked": 52,
+      "total_skipped": 37,
+      "api_calls_saved": 37,
+      "api_saved_two_num_cache": 37,
+      "api_saved_3num_pattern": 1,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        8,
+        9,
+        10,
+        12
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 12,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            20,
+            9,
+            10
+          ],
+          "action": "[20, 9, 10]",
+          "value": 0.0012,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 12 and 8 to get 20.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] + numbers[0]   # 12 + 8 = 20\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[20, 9, 10]"
+          },
+          "path_history": "Add 12 and 8 to get 20.\nResult: [20, 9, 10]",
+          "evaluation": {
+            "state": "[20, 9, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 20
+            },
+            "llm_judgments": [
+              "[20, 9, 10]  \n- attempt 1 (division): 20 / 10 = 2, then 2 * 9 = 18 (no). 10 / 20 = 0.5, 0.5 * 9 = 4.5 (no). 20 / 9 ≈ 2.222, 2.222 * 10 ≈ 22.22 (no). 9 / 20 = 0.45, 0.45 * 10 = 4.5 (no). 9 / 10 = 0.9, 0.9 * 20 = 18 (no). 10 / 9 ≈ 1.111, 1.111 * 20 ≈ 22.22 (no).  \n- attempt 2 (close subtraction): 10 - 9 = 1, then 1 * 20 = 20 (no). 20 - 10 = 10, 10 * 9 = 90 (no). 20 - 9 = 11, 11 * 10 = 110 (no).  \n- attempt 3 (multiplication): 20 * 9 = 180, 180 / 10 = 18 (no). 20 * 10 = 200, 200 / 9 ≈ 22.222 (no). 9 * 10 = 90, 90 / 20 = 4.5 (no).  \n- attempt 4 (addition): 20 + 9 = 29, 29 - 10 = 19 (no). 20 + 10 = 30, 30 - 9 = 21 (no). 9 + 10 = 19, 19 + 20 = 39 (no). 20 - 9 = 11, 11 + 10 = 21 (no). 20 - 10 = 10, 10 + 9 = 19 (no). 9 - 10 = -1, -1 + 20 = 19 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[20, 9, 10]  \n- attempt 1 (division): 20 / 10 = 2, then 2 * 9 = 18 (no). 10 / 20 = 0.5, 0.5 * 9 = 4.5 (no). 20 / 9 ≈ 2.222, 2.222 * 10 ≈ 22.22 (no). 9 / 20 = 0.45, 0.45 * 10 = 4.5 (no). 9 / 10 = 0.9, 0.9 * 20 = 18 (no). 10 / 9 ≈ 1.111, 1.111 * 20 ≈ 22.22 (no).  \n- attempt 2 (close subtraction): 10 - 9 = 1, then 1 * 20 = 20 (no). 20 - 10 = 10, 10 * 9 = 90 (no). 20 - 9 = 11, 11 * 10 = 110 (no).  \n- attempt 3 (multiplication): 20 * 9 = 180, 180 / 10 = 18 (no). 20 * 10 = 200, 200 / 9 ≈ 22.222 (no). 9 * 10 = 90, 90 / 20 = 4.5 (no).  \n- attempt 4 (addition): 20 + 9 = 29, 29 - 10 = 19 (no). 20 + 10 = 30, 30 - 9 = 21 (no). 9 + 10 = 19, 19 + 20 = 39 (no). 20 - 9 = 11, 11 + 10 = 21 (no). 20 - 10 = 10, 10 + 9 = 19 (no). 9 - 10 = -1, -1 + 20 = 19 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            90,
+            8,
+            12
+          ],
+          "action": "[90, 8, 12]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 10 and 9 to get 90.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[2] * numbers[1]   # 10 * 9 = 90\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[90, 8, 12]"
+          },
+          "path_history": "Multiply 10 and 9 to get 90.\nResult: [90, 8, 12]",
+          "evaluation": {
+            "state": "[90, 8, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 90
+            },
+            "llm_judgments": [
+              "[90, 8, 12]  \n- attempt 1 (division): 90 / 8 = 11.25, 11.25 * 12 = 135 (no). 90 / 12 = 7.5, 7.5 * 8 = 60 (no). 8 / 90 ≈ 0.0889 (no). 12 / 90 ≈ 0.1333 (no).  \n- attempt 2 (close subtraction): 12 - 8 = 4, 4 * 90 = 360 (no). 90 - 12 = 78 (no). 90 - 8 = 82 (no).  \n- attempt 3 (multiplication): 90 * 8 = 720, 720 / 12 = 60 (no). 90 * 12 = 1080, 1080 / 8 = 135 (no). 8 * 12 = 96, 96 / 90 ≈ 1.0667 (no).  \n- attempt 4 (addition): 90 + 8 = 98, 98 - 12 = 86 (no). 90 + 12 = 102, 102 - 8 = 94 (no). 8 + 12 = 20, 20 + 90 = 110 (no). 20 - 90 = -70 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[90, 8, 12]  \n- attempt 1 (division): 90 / 8 = 11.25, 11.25 * 12 = 135 (no). 90 / 12 = 7.5, 7.5 * 8 = 60 (no). 8 / 90 ≈ 0.0889 (no). 12 / 90 ≈ 0.1333 (no).  \n- attempt 2 (close subtraction): 12 - 8 = 4, 4 * 90 = 360 (no). 90 - 12 = 78 (no). 90 - 8 = 82 (no).  \n- attempt 3 (multiplication): 90 * 8 = 720, 720 / 12 = 60 (no). 90 * 12 = 1080, 1080 / 8 = 135 (no). 8 * 12 = 96, 96 / 90 ≈ 1.0667 (no).  \n- attempt 4 (addition): 90 + 8 = 98, 98 - 12 = 86 (no). 90 + 12 = 102, 102 - 8 = 94 (no). 8 + 12 = 20, 20 + 90 = 110 (no). 20 - 90 = -70 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            4,
+            9,
+            10
+          ],
+          "action": "[4, 9, 10]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 8 from 12 to get 4.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] - numbers[0]   # 12 - 8 = 4\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4, 9, 10]"
+          },
+          "path_history": "Subtract 8 from 12 to get 4.\nResult: [4, 9, 10]",
+          "evaluation": {
+            "state": "[4, 9, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [4, 9, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n10 / 4 = 2.5, 2.5 * 9 = 22.5 (no)  \n4 / 10 = 0.4, 0.4 * 9 = 3.6 (no)  \n9 / 4 = 2.25, 2.25 * 10 = 22.5 (no)  \n4 / 9 ≈ 0.444, 0.444 * 10 = 4.44 (no)  \n9 / 10 = 0.9, 0.9 * 4 = 3.6 (no)  \n10 / 9 ≈ 1.111, 1.111 * 4 ≈ 4.444 (no)\n\n- attempt 2 (close subtraction):  \nclosest two: 9 and 10 → 10 - 9 = 1, then 1 * 4 = 4 (no)  \n9 - 4 = 5, 5 * 10 = 50 (no)  \n10 - 4 = 6, 6 * 9 = 54 (no)  \nnone are factors of 24 that combine to 24.\n\n- attempt 3 (multiplication):  \n4 * 9 = 36, 36 - 10 = 26 (no)  \n4 * 10 = 40, 40 - 9 = 31 (no)  \n9 * 10 = 90, 90 / 4 = 22.5 (no)  \n90 - 4 = 86 (no)  \nno exact 24.\n\n- attempt 4 (addition and adjusting):  \n4 + 9 = 13, 13 + 10 = 23 (close but not 24)  \n4 + 10 = 14, 14 + 9 = 23  \n9 + 10 = 19, 19 + 4 = 23  \n23 is within 20–28 but not within 0.001 of 24.\n\nno other operations to try without repeating.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [4, 9, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n10 / 4 = 2.5, 2.5 * 9 = 22.5 (no)  \n4 / 10 = 0.4, 0.4 * 9 = 3.6 (no)  \n9 / 4 = 2.25, 2.25 * 10 = 22.5 (no)  \n4 / 9 ≈ 0.444, 0.444 * 10 = 4.44 (no)  \n9 / 10 = 0.9, 0.9 * 4 = 3.6 (no)  \n10 / 9 ≈ 1.111, 1.111 * 4 ≈ 4.444 (no)\n\n- attempt 2 (close subtraction):  \nclosest two: 9 and 10 → 10 - 9 = 1, then 1 * 4 = 4 (no)  \n9 - 4 = 5, 5 * 10 = 50 (no)  \n10 - 4 = 6, 6 * 9 = 54 (no)  \nnone are factors of 24 that combine to 24.\n\n- attempt 3 (multiplication):  \n4 * 9 = 36, 36 - 10 = 26 (no)  \n4 * 10 = 40, 40 - 9 = 31 (no)  \n9 * 10 = 90, 90 / 4 = 22.5 (no)  \n90 - 4 = 86 (no)  \nno exact 24.\n\n- attempt 4 (addition and adjusting):  \n4 + 9 = 13, 13 + 10 = 23 (close but not 24)  \n4 + 10 = 14, 14 + 9 = 23  \n9 + 10 = 19, 19 + 4 = 23  \n23 is within 20–28 but not within 0.001 of 24.\n\nno other operations to try without repeating.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            1.5,
+            9,
+            10
+          ],
+          "action": "[1.5, 9, 10]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 12 by 8 to get 1.5.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] / numbers[0]   # 12 / 8 = 1.5\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.5, 9, 10]"
+          },
+          "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]",
+          "evaluation": {
+            "state": "[1.5, 9, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [1.5, 9, 10]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 9 / 1.5 = 6, then 6 * 10 = 60 (no)  \n- 10 / 1.5 ≈ 6.6667, then 6.6667 * 9 ≈ 60 (no)  \n- 1.5 / 9 ≈ 0.1667 (no)  \n- 1.5 / 10 = 0.15 (no)  \n- 9 / 10 = 0.9 (no)  \n- 10 / 9 ≈ 1.1111 (no)\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 9 and 10  \n10 - 9 = 1, then 1 * 1.5 = 1.5 (no)  \n1.5 is not a factor of 24 anyway.\n\n**attempt 3 (multiplication):**  \n- 1.5 * 9 = 13.5, then 13.5 + 10 = 23.5 (no)  \n- 1.5 * 10 = 15, then 15 + 9 = 24 (exact!)\n\n24 is exactly reached.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [1.5, 9, 10]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 9 / 1.5 = 6, then 6 * 10 = 60 (no)  \n- 10 / 1.5 ≈ 6.6667, then 6.6667 * 9 ≈ 60 (no)  \n- 1.5 / 9 ≈ 0.1667 (no)  \n- 1.5 / 10 = 0.15 (no)  \n- 9 / 10 = 0.9 (no)  \n- 10 / 9 ≈ 1.1111 (no)\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 9 and 10  \n10 - 9 = 1, then 1 * 1.5 = 1.5 (no)  \n1.5 is not a factor of 24 anyway.\n\n**attempt 3 (multiplication):**  \n- 1.5 * 9 = 13.5, then 13.5 + 10 = 23.5 (no)  \n- 1.5 * 10 = 15, then 15 + 9 = 24 (exact!)\n\n24 is exactly reached.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "13": {
+              "id": 13,
+              "parent_id": 4,
+              "state": [
+                15.0,
+                9
+              ],
+              "action": "[15.0, 9]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Multiply 1.5 and 10 to get 15, then combine with 9.",
+                "code": "numbers = [1.5, 9, 10]\nres = numbers[0] * numbers[2]   # 1.5 * 10 = 15\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[15.0, 9]"
+              },
+              "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]",
+              "evaluation": {
+                "state": "[15.0, 9]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 15.0
+                },
+                "llm_judgments": [
+                  "we have two numbers: 15.0 and 9. target 24.\n\n- attempt 1 (division):  \n  15.0 / 9 = 1.666... (not 24).  \n  9 / 15.0 = 0.6 (not 24).  \n  no third number to combine with, so no result.\n\n- attempt 2 (close subtraction):  \n  15.0 - 9 = 6.  \n  6 is a factor of 24, but no third number to combine with.\n\n- attempt 3 (multiplication):  \n  15.0 * 9 = 135 (not 24).  \n  no third number.\n\n- attempt 4 (addition):  \n  15.0 + 9 = 24.0 exactly.\n\n24.0 is within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '15.0 + 9=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 15.0 and 9. target 24.\n\n- attempt 1 (division):  \n  15.0 / 9 = 1.666... (not 24).  \n  9 / 15.0 = 0.6 (not 24).  \n  no third number to combine with, so no result.\n\n- attempt 2 (close subtraction):  \n  15.0 - 9 = 6.  \n  6 is a factor of 24, but no third number to combine with.\n\n- attempt 3 (multiplication):  \n  15.0 * 9 = 135 (not 24).  \n  no third number.\n\n- attempt 4 (addition):  \n  15.0 + 9 = 24.0 exactly.\n\n24.0 is within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "15.0 + 9",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "16": {
+                  "id": 16,
+                  "parent_id": 13,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "15.0 + 9",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [15.0, 9], 15.0 + 9 = 24",
+                    "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = 15.0 + 9\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nOperation: 15.0 + 9 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "17": {
+                  "id": 17,
+                  "parent_id": 13,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [15.0, 9], LLM chose: a+b",
+                    "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nFor 2-number state [15.0, 9], LLM chose: a+b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24.0]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: equals 24"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0,
+                    "pattern_match": null,
+                    "pattern_penalty_applied": false
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            3,
+            8,
+            10
+          ],
+          "action": "[3, 8, 10]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 9 from 12 to get 3.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] - numbers[1]   # 12 - 9 = 3\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3, 8, 10]"
+          },
+          "path_history": "Subtract 9 from 12 to get 3.\nResult: [3, 8, 10]",
+          "evaluation": {
+            "state": "[3, 8, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "[3, 8, 10]  \n- attempt 1 (division): 8 / 3 ≈ 2.667, 2.667 * 10 ≈ 26.67 (no). 10 / 3 ≈ 3.333, 3.333 * 8 ≈ 26.67 (no). 3 / 8 = 0.375, 0.375 * 10 = 3.75 (no). 10 / 8 = 1.25, 1.25 * 3 = 3.75 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, 2 * 3 = 6 (no). 8 - 3 = 5, 5 * 10 = 50 (no). 10 - 3 = 7, 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 3 * 8 = 24, 24 + 10 = 34 (no). 3 * 10 = 30, 30 - 8 = 22 (no). 8 * 10 = 80, 80 / 3 ≈ 26.67 (no).  \n- attempt 4 (addition): 3 + 8 = 11, 11 + 10 = 21 (no). 3 + 10 = 13, 13 + 8 = 21 (no). 8 + 10 = 18, 18 + 3 = 21 (no). also 18 - 3 = 15 (no).  \n\nno path found. result 22 from 30 - 8 is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[3, 8, 10]  \n- attempt 1 (division): 8 / 3 ≈ 2.667, 2.667 * 10 ≈ 26.67 (no). 10 / 3 ≈ 3.333, 3.333 * 8 ≈ 26.67 (no). 3 / 8 = 0.375, 0.375 * 10 = 3.75 (no). 10 / 8 = 1.25, 1.25 * 3 = 3.75 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, 2 * 3 = 6 (no). 8 - 3 = 5, 5 * 10 = 50 (no). 10 - 3 = 7, 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 3 * 8 = 24, 24 + 10 = 34 (no). 3 * 10 = 30, 30 - 8 = 22 (no). 8 * 10 = 80, 80 / 3 ≈ 26.67 (no).  \n- attempt 4 (addition): 3 + 8 = 11, 11 + 10 = 21 (no). 3 + 10 = 13, 13 + 8 = 21 (no). 8 + 10 = 18, 18 + 3 = 21 (no). also 18 - 3 = 15 (no).  \n\nno path found. result 22 from 30 - 8 is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            120,
+            8,
+            9
+          ],
+          "action": "[120, 8, 9]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 12 and 10 to get 120.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] * numbers[2]   # 12 * 10 = 120\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[120, 8, 9]"
+          },
+          "path_history": "Multiply 12 and 10 to get 120.\nResult: [120, 8, 9]",
+          "evaluation": {
+            "state": "[120, 8, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 120
+            },
+            "llm_judgments": [
+              "[120, 8, 9]  \n- attempt 1 (division): 120 / 8 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[120, 8, 9]  \n- attempt 1 (division): 120 / 8 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            2,
+            8,
+            9
+          ],
+          "action": "[2, 8, 9]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 10 from 12 to get 2.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] - numbers[2]   # 12 - 10 = 2\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2, 8, 9]"
+          },
+          "path_history": "Subtract 10 from 12 to get 2.\nResult: [2, 8, 9]",
+          "evaluation": {
+            "state": "[2, 8, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "[2, 8, 9]  \n- attempt 1 (division): 8 / 2 = 4, then 4 * 9 = 36 (no). 9 / 2 = 4.5, 4.5 * 8 = 36 (no). 2 / 8 = 0.25, 0.25 * 9 = 2.25 (no). 9 / 8 = 1.125, 1.125 * 2 = 2.25 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, then 1 * 2 = 2 (no). 8 - 2 = 6, then 6 * 9 = 54 (no). 9 - 2 = 7, then 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 2 * 8 = 16, 16 + 9 = 25 (no). 2 * 9 = 18, 18 + 8 = 26 (no). 8 * 9 = 72, 72 / 2 = 36 (no).  \n- attempt 4 (addition): 2 + 8 = 10, 10 + 9 = 19 (no). 2 + 9 = 11, 11 + 8 = 19 (no). 8 + 9 = 17, 17 + 2 = 19 (no). also try adjusting: 8 + 9 = 17, 17 * 2 = 34 (no). 2 + 8 = 10, 10 * 9 = 90 (no). 2 + 9 = 11, 11 * 8 = 88 (no).  \n- attempt 5: 8 * 9 = 72, 72 - 2 = 70 (no). 9 * 2 = 18, 18 - 8 = 10 (no). 8 * 2 = 16, 16 - 9 = 7 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2, 8, 9]  \n- attempt 1 (division): 8 / 2 = 4, then 4 * 9 = 36 (no). 9 / 2 = 4.5, 4.5 * 8 = 36 (no). 2 / 8 = 0.25, 0.25 * 9 = 2.25 (no). 9 / 8 = 1.125, 1.125 * 2 = 2.25 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, then 1 * 2 = 2 (no). 8 - 2 = 6, then 6 * 9 = 54 (no). 9 - 2 = 7, then 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 2 * 8 = 16, 16 + 9 = 25 (no). 2 * 9 = 18, 18 + 8 = 26 (no). 8 * 9 = 72, 72 / 2 = 36 (no).  \n- attempt 4 (addition): 2 + 8 = 10, 10 + 9 = 19 (no). 2 + 9 = 11, 11 + 8 = 19 (no). 8 + 9 = 17, 17 + 2 = 19 (no). also try adjusting: 8 + 9 = 17, 17 * 2 = 34 (no). 2 + 8 = 10, 10 * 9 = 90 (no). 2 + 9 = 11, 11 * 8 = 88 (no).  \n- attempt 5: 8 * 9 = 72, 72 - 2 = 70 (no). 9 * 2 = 18, 18 - 8 = 10 (no). 8 * 2 = 16, 16 - 9 = 7 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            17,
+            10,
+            12
+          ],
+          "action": "[17, 10, 12]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 9 and 8 (smallest number used) to get 17.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[1] + numbers[0]   # 9 + 8 = 17\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[17, 10, 12]"
+          },
+          "path_history": "Add 9 and 8 (smallest number used) to get 17.\nResult: [17, 10, 12]",
+          "evaluation": {
+            "state": "[17, 10, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 17
+            },
+            "llm_judgments": [
+              "[17, 10, 12]  \n- attempt 1 (division): 17 / 10 = 1.7, 1.7 * 12 = 20.4 (no). 10 / 17 ≈ 0.588, 0.588 * 12 ≈ 7.06 (no). 17 / 12 ≈ 1.4167, 1.4167 * 10 ≈ 14.167 (no). 12 / 17 ≈ 0.7059, 0.7059 * 10 ≈ 7.059 (no). 10 / 12 ≈ 0.8333, 0.8333 * 17 ≈ 14.166 (no). 12 / 10 = 1.2, 1.2 * 17 = 20.4 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 * 17 = 34 (no). 17 - 12 = 5, 5 * 10 = 50 (no). 17 - 10 = 7, 7 * 12 = 84 (no).  \n- attempt 3 (multiplication): 17 * 10 = 170, 170 / 12 ≈ 14.167 (no). 17 * 12 = 204, 204 / 10 = 20.4 (no). 10 * 12 = 120, 120 / 17 ≈ 7.059 (no).  \n- attempt 4 (addition): 17 + 10 = 27, 27 - 12 = 15 (no). 17 + 12 = 29, 29 - 10 = 19 (no). 10 + 12 = 22, 22 + 17 = 39 (no). 22 - 17 = 5 (no). 17 + 10 + 12 = 39 (no).  \n- attempt 5: 17 - 10 = 7, 7 + 12 = 19 (no). 17 - 12 = 5, 5 + 10 = 15 (no). 10 - 12 = -2, -2 + 17 = 15 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[17, 10, 12]  \n- attempt 1 (division): 17 / 10 = 1.7, 1.7 * 12 = 20.4 (no). 10 / 17 ≈ 0.588, 0.588 * 12 ≈ 7.06 (no). 17 / 12 ≈ 1.4167, 1.4167 * 10 ≈ 14.167 (no). 12 / 17 ≈ 0.7059, 0.7059 * 10 ≈ 7.059 (no). 10 / 12 ≈ 0.8333, 0.8333 * 17 ≈ 14.166 (no). 12 / 10 = 1.2, 1.2 * 17 = 20.4 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 * 17 = 34 (no). 17 - 12 = 5, 5 * 10 = 50 (no). 17 - 10 = 7, 7 * 12 = 84 (no).  \n- attempt 3 (multiplication): 17 * 10 = 170, 170 / 12 ≈ 14.167 (no). 17 * 12 = 204, 204 / 10 = 20.4 (no). 10 * 12 = 120, 120 / 17 ≈ 7.059 (no).  \n- attempt 4 (addition): 17 + 10 = 27, 27 - 12 = 15 (no). 17 + 12 = 29, 29 - 10 = 19 (no). 10 + 12 = 22, 22 + 17 = 39 (no). 22 - 17 = 5 (no). 17 + 10 + 12 = 39 (no).  \n- attempt 5: 17 - 10 = 7, 7 + 12 = 19 (no). 17 - 12 = 5, 5 + 10 = 15 (no). 10 - 12 = -2, -2 + 17 = 15 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 0,
+          "state": [
+            72,
+            10,
+            12
+          ],
+          "action": "[72, 10, 12]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 8 and 9 (smallest number used) to get 72.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[0] * numbers[1]   # 8 * 9 = 72\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[72, 10, 12]"
+          },
+          "path_history": "Multiply 8 and 9 (smallest number used) to get 72.\nResult: [72, 10, 12]",
+          "evaluation": {
+            "state": "[72, 10, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 72
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\n**attempt 1 (division):**  \n- 72 / 10 = 7.2, then 7.2 * 12 = 86.4 (no)  \n- 72 / 12 = 6, then 6 * 10 = 60 (no)  \n- 10 / 72 ≈ 0.1389, then * 12 ≈ 1.667 (no)  \n- 12 / 72 ≈ 0.1667, then * 10 ≈ 1.667 (no)  \n- 10 / 12 ≈ 0.8333, then * 72 = 60 (no)  \n- 12 / 10 = 1.2, then * 72 = 86.4 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 12 → 12 - 10 = 2.  \n2 is a factor of 24. combine with 72: 72 / 2 = 36 (no), 2 * 72 = 144 (no), 72 - 2 = 70 (no), 2 - 72 = -70 (no).  \nalso try 10 - 12 = -2, same issue.\n\n**attempt 3 (multiplication):**  \n- 72 * 10 = 720, then 720 / 12 = 60 (no)  \n- 72 * 12 = 864, then 864 / 10 = 86.4 (no)  \n- 10 * 12 = 120, then 120 / 72 ≈ 1.667 (no), 120 - 72 = 48 (no), 72 - 120 = -48 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 72 + 10 = 82, 82 - 12 = 70 (no)  \n- 72 + 12 = 84, 84 - 10 = 74 (no)  \n- 10 + 12 = 22, 22 + 72 = 94 (no), 72 - 22 = 50 (no), 22 - 72 = -50 (no)\n\nno combination yields 24 or anything close (closest was 48, 36, 60 — all outside 20–28).\n\n**memory critic check:** the pattern [72, 10, 12] indeed leads to no valid path; prior dead-end matches.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "⚡ PATTERN HINT: matches failure pattern (hit=2, ops=['unknown'])",
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\n**attempt 1 (division):**  \n- 72 / 10 = 7.2, then 7.2 * 12 = 86.4 (no)  \n- 72 / 12 = 6, then 6 * 10 = 60 (no)  \n- 10 / 72 ≈ 0.1389, then * 12 ≈ 1.667 (no)  \n- 12 / 72 ≈ 0.1667, then * 10 ≈ 1.667 (no)  \n- 10 / 12 ≈ 0.8333, then * 72 = 60 (no)  \n- 12 / 10 = 1.2, then * 72 = 86.4 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 12 → 12 - 10 = 2.  \n2 is a factor of 24. combine with 72: 72 / 2 = 36 (no), 2 * 72 = 144 (no), 72 - 2 = 70 (no), 2 - 72 = -70 (no).  \nalso try 10 - 12 = -2, same issue.\n\n**attempt 3 (multiplication):**  \n- 72 * 10 = 720, then 720 / 12 = 60 (no)  \n- 72 * 12 = 864, then 864 / 10 = 86.4 (no)  \n- 10 * 12 = 120, then 120 / 72 ≈ 1.667 (no), 120 - 72 = 48 (no), 72 - 120 = -48 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 72 + 10 = 82, 82 - 12 = 70 (no)  \n- 72 + 12 = 84, 84 - 10 = 74 (no)  \n- 10 + 12 = 22, 22 + 72 = 94 (no), 72 - 22 = 50 (no), 22 - 72 = -50 (no)\n\nno combination yields 24 or anything close (closest was 48, 36, 60 — all outside 20–28).\n\n**memory critic check:** the pattern [72, 10, 12] indeed leads to no valid path; prior dead-end matches.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": {
+              "sorted_vals": [
+                65,
+                12,
+                10
+              ],
+              "op_sequence": [
+                "unknown"
+              ],
+              "thought": "Raw score: 0.001, Final score: 0.001",
+              "hit_count": 2
+            },
+            "pattern_penalty_applied": true,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 0,
+          "state": [
+            2,
+            9,
+            12
+          ],
+          "action": "[2, 9, 12]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 8 from 10 (smallest number used) to get 2.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[2] - numbers[0]   # 10 - 8 = 2\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2, 9, 12]"
+          },
+          "path_history": "Subtract 8 from 10 (smallest number used) to get 2.\nResult: [2, 9, 12]",
+          "evaluation": {
+            "state": "[2, 9, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "[2, 9, 12]  \n- attempt 1 (division): 12 / 2 = 6, then 6 * 9 = 54 (no). 12 / 9 ≈ 1.333, 1.333 * 2 ≈ 2.666 (no). 9 / 2 = 4.5, 4.5 * 12 = 54 (no). 9 / 12 = 0.75, 0.75 * 2 = 1.5 (no). 2 / 9 ≈ 0.222 (no). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 9 = 3, 3 is a factor of 24, then 3 * 2 = 6 (no). 9 - 2 = 7 (not a factor). 12 - 2 = 10 (not a factor).  \n- attempt 3 (multiplication): 2 * 9 = 18, 18 + 12 = 30 (no). 2 * 12 = 24, 24 + 9 = 33 (no), 24 - 9 = 15 (no). 9 * 12 = 108, 108 / 2 = 54 (no), 108 - 2 = 106 (no).  \n- attempt 4 (addition): 2 + 9 = 11, 11 + 12 = 23 (no). 2 + 12 = 14, 14 + 9 = 23 (no). 9 + 12 = 21, 21 + 2 = 23 (no). 21 - 2 = 19 (no). 21 * 2 = 42 (no). 21 / 2 = 10.5 (no).  \n- attempt 5: 12 - 2 = 10, 10 + 9 = 19 (no). 12 + 2 = 14, 14 * 9 = 126 (no). 9 - 2 = 7, 7 * 12 = 84 (no). no path found.  \n\nresult is 23 (from addition), which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2, 9, 12]  \n- attempt 1 (division): 12 / 2 = 6, then 6 * 9 = 54 (no). 12 / 9 ≈ 1.333, 1.333 * 2 ≈ 2.666 (no). 9 / 2 = 4.5, 4.5 * 12 = 54 (no). 9 / 12 = 0.75, 0.75 * 2 = 1.5 (no). 2 / 9 ≈ 0.222 (no). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 9 = 3, 3 is a factor of 24, then 3 * 2 = 6 (no). 9 - 2 = 7 (not a factor). 12 - 2 = 10 (not a factor).  \n- attempt 3 (multiplication): 2 * 9 = 18, 18 + 12 = 30 (no). 2 * 12 = 24, 24 + 9 = 33 (no), 24 - 9 = 15 (no). 9 * 12 = 108, 108 / 2 = 54 (no), 108 - 2 = 106 (no).  \n- attempt 4 (addition): 2 + 9 = 11, 11 + 12 = 23 (no). 2 + 12 = 14, 14 + 9 = 23 (no). 9 + 12 = 21, 21 + 2 = 23 (no). 21 - 2 = 19 (no). 21 * 2 = 42 (no). 21 / 2 = 10.5 (no).  \n- attempt 5: 12 - 2 = 10, 10 + 9 = 19 (no). 12 + 2 = 14, 14 * 9 = 126 (no). 9 - 2 = 7, 7 * 12 = 84 (no). no path found.  \n\nresult is 23 (from addition), which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 0,
+          "state": [
+            1.3333333333333333,
+            8,
+            10
+          ],
+          "action": "[1.3333333333333333, 8, 10]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 12 by 9 to get approximately 1.333.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] / numbers[1]   # 12 / 9 = 1.333...\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.3333333333333333, 8, 10]"
+          },
+          "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]",
+          "evaluation": {
+            "state": "[1.3333333333333333, 8, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: 1.3333333333333333, 8, 10  \ntarget: 24\n\n**attempt 1 (division):**  \n- 8 / 1.3333333333333333 = 6.0, then 6.0 * 10 = 60 (no)  \n- 10 / 1.3333333333333333 = 7.5, then 7.5 * 8 = 60 (no)  \n- 1.3333333333333333 / 8 = 0.16666666666666666 (no)  \n- 1.3333333333333333 / 10 = 0.13333333333333333 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 8 and 10 → 10 - 8 = 2  \n2 is a factor of 24.  \n2 * 1.3333333333333333 = 2.6666666666666665 (no)  \n2 * 8 = 16 (no)  \n2 * 10 = 20 (no)  \nalso try 8 - 10 = -2 (no)\n\n**attempt 3 (multiplication):**  \n- 1.3333333333333333 * 8 = 10.666666666666666, then 10.666666666666666 + 10 = 20.666666666666668 (no)  \n- 1.3333333333333333 * 10 = 13.333333333333334, then 13.333333333333334 + 8 = 21.333333333333336 (no)  \n- 8 * 10 = 80, then 80 / 1.3333333333333333 = 60 (no)\n\n**attempt 4 (addition and adjust):**  \n- 8 + 10 = 18, then 18 + 1.3333333333333333 = 19.333333333333336 (no)  \n- 8 + 1.3333333333333333 = 9.333333333333334, then 9.333333333333334 + 10 = 19.333333333333336 (no)  \n- 10 + 1.3333333333333333 = 11.333333333333334, then 11.333333333333334 + 8 = 19.333333333333336 (no)  \n- 18 * 1.3333333333333333 = 24.0 exactly?  \n  18 * 1.3333333333333333 = 24.0 (yes, exactly 24).\n\nfound: 8 + 10 = 18, then 18 * 1.3333333333333333 = 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: 1.3333333333333333, 8, 10  \ntarget: 24\n\n**attempt 1 (division):**  \n- 8 / 1.3333333333333333 = 6.0, then 6.0 * 10 = 60 (no)  \n- 10 / 1.3333333333333333 = 7.5, then 7.5 * 8 = 60 (no)  \n- 1.3333333333333333 / 8 = 0.16666666666666666 (no)  \n- 1.3333333333333333 / 10 = 0.13333333333333333 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 8 and 10 → 10 - 8 = 2  \n2 is a factor of 24.  \n2 * 1.3333333333333333 = 2.6666666666666665 (no)  \n2 * 8 = 16 (no)  \n2 * 10 = 20 (no)  \nalso try 8 - 10 = -2 (no)\n\n**attempt 3 (multiplication):**  \n- 1.3333333333333333 * 8 = 10.666666666666666, then 10.666666666666666 + 10 = 20.666666666666668 (no)  \n- 1.3333333333333333 * 10 = 13.333333333333334, then 13.333333333333334 + 8 = 21.333333333333336 (no)  \n- 8 * 10 = 80, then 80 / 1.3333333333333333 = 60 (no)\n\n**attempt 4 (addition and adjust):**  \n- 8 + 10 = 18, then 18 + 1.3333333333333333 = 19.333333333333336 (no)  \n- 8 + 1.3333333333333333 = 9.333333333333334, then 9.333333333333334 + 10 = 19.333333333333336 (no)  \n- 10 + 1.3333333333333333 = 11.333333333333334, then 11.333333333333334 + 8 = 19.333333333333336 (no)  \n- 18 * 1.3333333333333333 = 24.0 exactly?  \n  18 * 1.3333333333333333 = 24.0 (yes, exactly 24).\n\nfound: 8 + 10 = 18, then 18 * 1.3333333333333333 = 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 1,
+          "children": {
+            "14": {
+              "id": 14,
+              "parent_id": 11,
+              "state": [
+                18,
+                1.3333333333333333
+              ],
+              "action": "[18, 1.3333333333333333]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Add 8 and 10 to get 18, then subtract 1.3333.",
+                "code": "numbers = [1.3333333333333333, 8, 10]\nres = numbers[1] + numbers[2]   # 8 + 10 = 18\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[18, 1.3333333333333333]"
+              },
+              "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]",
+              "evaluation": {
+                "state": "[18, 1.3333333333333333]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 18
+                },
+                "llm_judgments": [
+                  "we have two numbers: 18 and 1.3333333333333333 (which is 4/3). target 24.\n\n- attempt 1 (division):  \n  18 / 1.3333333 = 13.5, then no third number to combine with.  \n  1.3333333 / 18 ≈ 0.07407, no.  \n  no third number, so cannot combine to 24.\n\n- attempt 2 (close subtraction):  \n  only two numbers, so subtract: 18 - 1.3333333 = 16.6666667, not a factor of 24.  \n  reverse: 1.3333333 - 18 = -16.6666667, no.\n\n- attempt 3 (multiplication):  \n  18 * 1.3333333 = 24.0 exactly (since 18 * 4/3 = 24).  \n  that directly gives 24.\n\nresult is exactly 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '18 * 1.3333333=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 18 and 1.3333333333333333 (which is 4/3). target 24.\n\n- attempt 1 (division):  \n  18 / 1.3333333 = 13.5, then no third number to combine with.  \n  1.3333333 / 18 ≈ 0.07407, no.  \n  no third number, so cannot combine to 24.\n\n- attempt 2 (close subtraction):  \n  only two numbers, so subtract: 18 - 1.3333333 = 16.6666667, not a factor of 24.  \n  reverse: 1.3333333 - 18 = -16.6666667, no.\n\n- attempt 3 (multiplication):  \n  18 * 1.3333333 = 24.0 exactly (since 18 * 4/3 = 24).  \n  that directly gives 24.\n\nresult is exactly 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "18 * 1.3333333",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "15": {
+                  "id": 15,
+                  "parent_id": 14,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "18 * 1.3333333",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [18, 1.3333333333333333], 18 * 1.3333333 = 24",
+                    "code": "numbers = [18, 1.3333333333333333]\na, b = 18, 1.3333333333333333\nresult = 18 * 1.3333333\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]\nOperation: 18 * 1.3333333 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 0,
+          "state": [
+            22,
+            8,
+            9
+          ],
+          "action": "[22, 8, 9]",
+          "value": 0.72,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 10 and 12 to get 22.",
+            "code": "numbers = [8, 9, 10, 12]\nres = numbers[2] + numbers[3]   # 10 + 12 = 22\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[22, 8, 9]"
+          },
+          "path_history": "Add 10 and 12 to get 22.\nResult: [22, 8, 9]",
+          "evaluation": {
+            "state": "[22, 8, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 22
+            },
+            "llm_judgments": [
+              "[22, 8, 9]  \n- attempt 1 (division): 22 / 8 = 2.75, 2.75 * 9 = 24.75 (no). 8 / 22 ≈ 0.3636, * 9 = 3.27 (no). 22 / 9 ≈ 2.444, * 8 ≈ 19.55 (no). 9 / 22 ≈ 0.409, * 8 ≈ 3.27 (no). 9 / 8 = 1.125, * 22 = 24.75 (no). 8 / 9 ≈ 0.8889, * 22 ≈ 19.56 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, 1 * 22 = 22 (no). 22 - 9 = 13, 13 is not a factor of 24. 22 - 8 = 14, not a factor.  \n- attempt 3 (multiplication): 22 * 8 = 176, 176 / 9 ≈ 19.56 (no). 22 * 9 = 198, 198 / 8 = 24.75 (no). 8 * 9 = 72, 72 / 22 ≈ 3.27 (no).  \n- attempt 4 (addition): 22 + 8 = 30, 30 - 9 = 21 (no). 22 + 9 = 31, 31 - 8 = 23 (no). 8 + 9 = 17, 22 - 17 = 5 (no). 22 + 8 + 9 = 39 (no).  \n\nno result within 0.001 of 24, and no result between 20 and 28 (closest is 21, 23, 24.75 — 24.75 is outside 28? actually 24.75 is between 20 and 28, but that was from multiplication, not a final combination? wait, 24.75 is between 20 and 28, but the rule says \"if you found any result between 20 and 28\" — but 24.75 came from 22 * 9 = 198, then 198 / 8 = 24.75, which is a valid intermediate? the instruction says \"if result combines with third to make 24\" — here 24.75 is not 24, but it is between 20 and 28. however, the decision rule says \"if you found any result between 20 and 28\" — likely meaning the final combined result? the examples show only final 24 counts as \"sure\", and if no exact but close they say \"likely\". here 24.75 is not within 0.001 of 24, but is between 20 and 28. so \"likely\".  \n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.720"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[22, 8, 9]  \n- attempt 1 (division): 22 / 8 = 2.75, 2.75 * 9 = 24.75 (no). 8 / 22 ≈ 0.3636, * 9 = 3.27 (no). 22 / 9 ≈ 2.444, * 8 ≈ 19.55 (no). 9 / 22 ≈ 0.409, * 8 ≈ 3.27 (no). 9 / 8 = 1.125, * 22 = 24.75 (no). 8 / 9 ≈ 0.8889, * 22 ≈ 19.56 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, 1 * 22 = 22 (no). 22 - 9 = 13, 13 is not a factor of 24. 22 - 8 = 14, not a factor.  \n- attempt 3 (multiplication): 22 * 8 = 176, 176 / 9 ≈ 19.56 (no). 22 * 9 = 198, 198 / 8 = 24.75 (no). 8 * 9 = 72, 72 / 22 ≈ 3.27 (no).  \n- attempt 4 (addition): 22 + 8 = 30, 30 - 9 = 21 (no). 22 + 9 = 31, 31 - 8 = 23 (no). 8 + 9 = 17, 22 - 17 = 5 (no). 22 + 8 + 9 = 39 (no).  \n\nno result within 0.001 of 24, and no result between 20 and 28 (closest is 21, 23, 24.75 — 24.75 is outside 28? actually 24.75 is between 20 and 28, but that was from multiplication, not a final combination? wait, 24.75 is between 20 and 28, but the rule says \"if you found any result between 20 and 28\" — but 24.75 came from 22 * 9 = 198, then 198 / 8 = 24.75, which is a valid intermediate? the instruction says \"if result combines with third to make 24\" — here 24.75 is not 24, but it is between 20 and 28. however, the decision rule says \"if you found any result between 20 and 28\" — likely meaning the final combined result? the examples show only final 24 counts as \"sure\", and if no exact but close they say \"likely\". here 24.75 is not within 0.001 of 24, but is between 20 and 28. so \"likely\".  \n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.72,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        20,
+        9,
+        10
+      ],
+      "action": "[20, 9, 10]",
+      "value": 0.0012,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 12 and 8 to get 20.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] + numbers[0]   # 12 + 8 = 20\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[20, 9, 10]"
+      },
+      "path_history": "Add 12 and 8 to get 20.\nResult: [20, 9, 10]",
+      "evaluation": {
+        "state": "[20, 9, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 20
+        },
+        "llm_judgments": [
+          "[20, 9, 10]  \n- attempt 1 (division): 20 / 10 = 2, then 2 * 9 = 18 (no). 10 / 20 = 0.5, 0.5 * 9 = 4.5 (no). 20 / 9 ≈ 2.222, 2.222 * 10 ≈ 22.22 (no). 9 / 20 = 0.45, 0.45 * 10 = 4.5 (no). 9 / 10 = 0.9, 0.9 * 20 = 18 (no). 10 / 9 ≈ 1.111, 1.111 * 20 ≈ 22.22 (no).  \n- attempt 2 (close subtraction): 10 - 9 = 1, then 1 * 20 = 20 (no). 20 - 10 = 10, 10 * 9 = 90 (no). 20 - 9 = 11, 11 * 10 = 110 (no).  \n- attempt 3 (multiplication): 20 * 9 = 180, 180 / 10 = 18 (no). 20 * 10 = 200, 200 / 9 ≈ 22.222 (no). 9 * 10 = 90, 90 / 20 = 4.5 (no).  \n- attempt 4 (addition): 20 + 9 = 29, 29 - 10 = 19 (no). 20 + 10 = 30, 30 - 9 = 21 (no). 9 + 10 = 19, 19 + 20 = 39 (no). 20 - 9 = 11, 11 + 10 = 21 (no). 20 - 10 = 10, 10 + 9 = 19 (no). 9 - 10 = -1, -1 + 20 = 19 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[20, 9, 10]  \n- attempt 1 (division): 20 / 10 = 2, then 2 * 9 = 18 (no). 10 / 20 = 0.5, 0.5 * 9 = 4.5 (no). 20 / 9 ≈ 2.222, 2.222 * 10 ≈ 22.22 (no). 9 / 20 = 0.45, 0.45 * 10 = 4.5 (no). 9 / 10 = 0.9, 0.9 * 20 = 18 (no). 10 / 9 ≈ 1.111, 1.111 * 20 ≈ 22.22 (no).  \n- attempt 2 (close subtraction): 10 - 9 = 1, then 1 * 20 = 20 (no). 20 - 10 = 10, 10 * 9 = 90 (no). 20 - 9 = 11, 11 * 10 = 110 (no).  \n- attempt 3 (multiplication): 20 * 9 = 180, 180 / 10 = 18 (no). 20 * 10 = 200, 200 / 9 ≈ 22.222 (no). 9 * 10 = 90, 90 / 20 = 4.5 (no).  \n- attempt 4 (addition): 20 + 9 = 29, 29 - 10 = 19 (no). 20 + 10 = 30, 30 - 9 = 21 (no). 9 + 10 = 19, 19 + 20 = 39 (no). 20 - 9 = 11, 11 + 10 = 21 (no). 20 - 10 = 10, 10 + 9 = 19 (no). 9 - 10 = -1, -1 + 20 = 19 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        90,
+        8,
+        12
+      ],
+      "action": "[90, 8, 12]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 10 and 9 to get 90.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[2] * numbers[1]   # 10 * 9 = 90\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[90, 8, 12]"
+      },
+      "path_history": "Multiply 10 and 9 to get 90.\nResult: [90, 8, 12]",
+      "evaluation": {
+        "state": "[90, 8, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 90
+        },
+        "llm_judgments": [
+          "[90, 8, 12]  \n- attempt 1 (division): 90 / 8 = 11.25, 11.25 * 12 = 135 (no). 90 / 12 = 7.5, 7.5 * 8 = 60 (no). 8 / 90 ≈ 0.0889 (no). 12 / 90 ≈ 0.1333 (no).  \n- attempt 2 (close subtraction): 12 - 8 = 4, 4 * 90 = 360 (no). 90 - 12 = 78 (no). 90 - 8 = 82 (no).  \n- attempt 3 (multiplication): 90 * 8 = 720, 720 / 12 = 60 (no). 90 * 12 = 1080, 1080 / 8 = 135 (no). 8 * 12 = 96, 96 / 90 ≈ 1.0667 (no).  \n- attempt 4 (addition): 90 + 8 = 98, 98 - 12 = 86 (no). 90 + 12 = 102, 102 - 8 = 94 (no). 8 + 12 = 20, 20 + 90 = 110 (no). 20 - 90 = -70 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[90, 8, 12]  \n- attempt 1 (division): 90 / 8 = 11.25, 11.25 * 12 = 135 (no). 90 / 12 = 7.5, 7.5 * 8 = 60 (no). 8 / 90 ≈ 0.0889 (no). 12 / 90 ≈ 0.1333 (no).  \n- attempt 2 (close subtraction): 12 - 8 = 4, 4 * 90 = 360 (no). 90 - 12 = 78 (no). 90 - 8 = 82 (no).  \n- attempt 3 (multiplication): 90 * 8 = 720, 720 / 12 = 60 (no). 90 * 12 = 1080, 1080 / 8 = 135 (no). 8 * 12 = 96, 96 / 90 ≈ 1.0667 (no).  \n- attempt 4 (addition): 90 + 8 = 98, 98 - 12 = 86 (no). 90 + 12 = 102, 102 - 8 = 94 (no). 8 + 12 = 20, 20 + 90 = 110 (no). 20 - 90 = -70 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        4,
+        9,
+        10
+      ],
+      "action": "[4, 9, 10]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 8 from 12 to get 4.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] - numbers[0]   # 12 - 8 = 4\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4, 9, 10]"
+      },
+      "path_history": "Subtract 8 from 12 to get 4.\nResult: [4, 9, 10]",
+      "evaluation": {
+        "state": "[4, 9, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [4, 9, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n10 / 4 = 2.5, 2.5 * 9 = 22.5 (no)  \n4 / 10 = 0.4, 0.4 * 9 = 3.6 (no)  \n9 / 4 = 2.25, 2.25 * 10 = 22.5 (no)  \n4 / 9 ≈ 0.444, 0.444 * 10 = 4.44 (no)  \n9 / 10 = 0.9, 0.9 * 4 = 3.6 (no)  \n10 / 9 ≈ 1.111, 1.111 * 4 ≈ 4.444 (no)\n\n- attempt 2 (close subtraction):  \nclosest two: 9 and 10 → 10 - 9 = 1, then 1 * 4 = 4 (no)  \n9 - 4 = 5, 5 * 10 = 50 (no)  \n10 - 4 = 6, 6 * 9 = 54 (no)  \nnone are factors of 24 that combine to 24.\n\n- attempt 3 (multiplication):  \n4 * 9 = 36, 36 - 10 = 26 (no)  \n4 * 10 = 40, 40 - 9 = 31 (no)  \n9 * 10 = 90, 90 / 4 = 22.5 (no)  \n90 - 4 = 86 (no)  \nno exact 24.\n\n- attempt 4 (addition and adjusting):  \n4 + 9 = 13, 13 + 10 = 23 (close but not 24)  \n4 + 10 = 14, 14 + 9 = 23  \n9 + 10 = 19, 19 + 4 = 23  \n23 is within 20–28 but not within 0.001 of 24.\n\nno other operations to try without repeating.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [4, 9, 10]  \ntarget: 24  \n\n- attempt 1 (division):  \n10 / 4 = 2.5, 2.5 * 9 = 22.5 (no)  \n4 / 10 = 0.4, 0.4 * 9 = 3.6 (no)  \n9 / 4 = 2.25, 2.25 * 10 = 22.5 (no)  \n4 / 9 ≈ 0.444, 0.444 * 10 = 4.44 (no)  \n9 / 10 = 0.9, 0.9 * 4 = 3.6 (no)  \n10 / 9 ≈ 1.111, 1.111 * 4 ≈ 4.444 (no)\n\n- attempt 2 (close subtraction):  \nclosest two: 9 and 10 → 10 - 9 = 1, then 1 * 4 = 4 (no)  \n9 - 4 = 5, 5 * 10 = 50 (no)  \n10 - 4 = 6, 6 * 9 = 54 (no)  \nnone are factors of 24 that combine to 24.\n\n- attempt 3 (multiplication):  \n4 * 9 = 36, 36 - 10 = 26 (no)  \n4 * 10 = 40, 40 - 9 = 31 (no)  \n9 * 10 = 90, 90 / 4 = 22.5 (no)  \n90 - 4 = 86 (no)  \nno exact 24.\n\n- attempt 4 (addition and adjusting):  \n4 + 9 = 13, 13 + 10 = 23 (close but not 24)  \n4 + 10 = 14, 14 + 9 = 23  \n9 + 10 = 19, 19 + 4 = 23  \n23 is within 20–28 but not within 0.001 of 24.\n\nno other operations to try without repeating.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        1.5,
+        9,
+        10
+      ],
+      "action": "[1.5, 9, 10]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 12 by 8 to get 1.5.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] / numbers[0]   # 12 / 8 = 1.5\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.5, 9, 10]"
+      },
+      "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]",
+      "evaluation": {
+        "state": "[1.5, 9, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [1.5, 9, 10]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 9 / 1.5 = 6, then 6 * 10 = 60 (no)  \n- 10 / 1.5 ≈ 6.6667, then 6.6667 * 9 ≈ 60 (no)  \n- 1.5 / 9 ≈ 0.1667 (no)  \n- 1.5 / 10 = 0.15 (no)  \n- 9 / 10 = 0.9 (no)  \n- 10 / 9 ≈ 1.1111 (no)\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 9 and 10  \n10 - 9 = 1, then 1 * 1.5 = 1.5 (no)  \n1.5 is not a factor of 24 anyway.\n\n**attempt 3 (multiplication):**  \n- 1.5 * 9 = 13.5, then 13.5 + 10 = 23.5 (no)  \n- 1.5 * 10 = 15, then 15 + 9 = 24 (exact!)\n\n24 is exactly reached.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [1.5, 9, 10]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 9 / 1.5 = 6, then 6 * 10 = 60 (no)  \n- 10 / 1.5 ≈ 6.6667, then 6.6667 * 9 ≈ 60 (no)  \n- 1.5 / 9 ≈ 0.1667 (no)  \n- 1.5 / 10 = 0.15 (no)  \n- 9 / 10 = 0.9 (no)  \n- 10 / 9 ≈ 1.1111 (no)\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 9 and 10  \n10 - 9 = 1, then 1 * 1.5 = 1.5 (no)  \n1.5 is not a factor of 24 anyway.\n\n**attempt 3 (multiplication):**  \n- 1.5 * 9 = 13.5, then 13.5 + 10 = 23.5 (no)  \n- 1.5 * 10 = 15, then 15 + 9 = 24 (exact!)\n\n24 is exactly reached.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "13": {
+          "id": 13,
+          "parent_id": 4,
+          "state": [
+            15.0,
+            9
+          ],
+          "action": "[15.0, 9]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 1.5 and 10 to get 15, then combine with 9.",
+            "code": "numbers = [1.5, 9, 10]\nres = numbers[0] * numbers[2]   # 1.5 * 10 = 15\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15.0, 9]"
+          },
+          "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]",
+          "evaluation": {
+            "state": "[15.0, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 15.0
+            },
+            "llm_judgments": [
+              "we have two numbers: 15.0 and 9. target 24.\n\n- attempt 1 (division):  \n  15.0 / 9 = 1.666... (not 24).  \n  9 / 15.0 = 0.6 (not 24).  \n  no third number to combine with, so no result.\n\n- attempt 2 (close subtraction):  \n  15.0 - 9 = 6.  \n  6 is a factor of 24, but no third number to combine with.\n\n- attempt 3 (multiplication):  \n  15.0 * 9 = 135 (not 24).  \n  no third number.\n\n- attempt 4 (addition):  \n  15.0 + 9 = 24.0 exactly.\n\n24.0 is within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '15.0 + 9=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 15.0 and 9. target 24.\n\n- attempt 1 (division):  \n  15.0 / 9 = 1.666... (not 24).  \n  9 / 15.0 = 0.6 (not 24).  \n  no third number to combine with, so no result.\n\n- attempt 2 (close subtraction):  \n  15.0 - 9 = 6.  \n  6 is a factor of 24, but no third number to combine with.\n\n- attempt 3 (multiplication):  \n  15.0 * 9 = 135 (not 24).  \n  no third number.\n\n- attempt 4 (addition):  \n  15.0 + 9 = 24.0 exactly.\n\n24.0 is within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "15.0 + 9",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "16": {
+              "id": 16,
+              "parent_id": 13,
+              "state": [
+                24.0
+              ],
+              "action": "15.0 + 9",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [15.0, 9], 15.0 + 9 = 24",
+                "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = 15.0 + 9\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nOperation: 15.0 + 9 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 13,
+              "state": [
+                24.0
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [15.0, 9], LLM chose: a+b",
+                "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nFor 2-number state [15.0, 9], LLM chose: a+b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24.0]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: equals 24"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        3,
+        8,
+        10
+      ],
+      "action": "[3, 8, 10]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 9 from 12 to get 3.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] - numbers[1]   # 12 - 9 = 3\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3, 8, 10]"
+      },
+      "path_history": "Subtract 9 from 12 to get 3.\nResult: [3, 8, 10]",
+      "evaluation": {
+        "state": "[3, 8, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "[3, 8, 10]  \n- attempt 1 (division): 8 / 3 ≈ 2.667, 2.667 * 10 ≈ 26.67 (no). 10 / 3 ≈ 3.333, 3.333 * 8 ≈ 26.67 (no). 3 / 8 = 0.375, 0.375 * 10 = 3.75 (no). 10 / 8 = 1.25, 1.25 * 3 = 3.75 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, 2 * 3 = 6 (no). 8 - 3 = 5, 5 * 10 = 50 (no). 10 - 3 = 7, 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 3 * 8 = 24, 24 + 10 = 34 (no). 3 * 10 = 30, 30 - 8 = 22 (no). 8 * 10 = 80, 80 / 3 ≈ 26.67 (no).  \n- attempt 4 (addition): 3 + 8 = 11, 11 + 10 = 21 (no). 3 + 10 = 13, 13 + 8 = 21 (no). 8 + 10 = 18, 18 + 3 = 21 (no). also 18 - 3 = 15 (no).  \n\nno path found. result 22 from 30 - 8 is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[3, 8, 10]  \n- attempt 1 (division): 8 / 3 ≈ 2.667, 2.667 * 10 ≈ 26.67 (no). 10 / 3 ≈ 3.333, 3.333 * 8 ≈ 26.67 (no). 3 / 8 = 0.375, 0.375 * 10 = 3.75 (no). 10 / 8 = 1.25, 1.25 * 3 = 3.75 (no).  \n- attempt 2 (close subtraction): 10 - 8 = 2, 2 * 3 = 6 (no). 8 - 3 = 5, 5 * 10 = 50 (no). 10 - 3 = 7, 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 3 * 8 = 24, 24 + 10 = 34 (no). 3 * 10 = 30, 30 - 8 = 22 (no). 8 * 10 = 80, 80 / 3 ≈ 26.67 (no).  \n- attempt 4 (addition): 3 + 8 = 11, 11 + 10 = 21 (no). 3 + 10 = 13, 13 + 8 = 21 (no). 8 + 10 = 18, 18 + 3 = 21 (no). also 18 - 3 = 15 (no).  \n\nno path found. result 22 from 30 - 8 is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        120,
+        8,
+        9
+      ],
+      "action": "[120, 8, 9]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 12 and 10 to get 120.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] * numbers[2]   # 12 * 10 = 120\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[120, 8, 9]"
+      },
+      "path_history": "Multiply 12 and 10 to get 120.\nResult: [120, 8, 9]",
+      "evaluation": {
+        "state": "[120, 8, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 120
+        },
+        "llm_judgments": [
+          "[120, 8, 9]  \n- attempt 1 (division): 120 / 8 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[120, 8, 9]  \n- attempt 1 (division): 120 / 8 = 15, then 15 + 9 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        2,
+        8,
+        9
+      ],
+      "action": "[2, 8, 9]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 10 from 12 to get 2.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] - numbers[2]   # 12 - 10 = 2\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2, 8, 9]"
+      },
+      "path_history": "Subtract 10 from 12 to get 2.\nResult: [2, 8, 9]",
+      "evaluation": {
+        "state": "[2, 8, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "[2, 8, 9]  \n- attempt 1 (division): 8 / 2 = 4, then 4 * 9 = 36 (no). 9 / 2 = 4.5, 4.5 * 8 = 36 (no). 2 / 8 = 0.25, 0.25 * 9 = 2.25 (no). 9 / 8 = 1.125, 1.125 * 2 = 2.25 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, then 1 * 2 = 2 (no). 8 - 2 = 6, then 6 * 9 = 54 (no). 9 - 2 = 7, then 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 2 * 8 = 16, 16 + 9 = 25 (no). 2 * 9 = 18, 18 + 8 = 26 (no). 8 * 9 = 72, 72 / 2 = 36 (no).  \n- attempt 4 (addition): 2 + 8 = 10, 10 + 9 = 19 (no). 2 + 9 = 11, 11 + 8 = 19 (no). 8 + 9 = 17, 17 + 2 = 19 (no). also try adjusting: 8 + 9 = 17, 17 * 2 = 34 (no). 2 + 8 = 10, 10 * 9 = 90 (no). 2 + 9 = 11, 11 * 8 = 88 (no).  \n- attempt 5: 8 * 9 = 72, 72 - 2 = 70 (no). 9 * 2 = 18, 18 - 8 = 10 (no). 8 * 2 = 16, 16 - 9 = 7 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2, 8, 9]  \n- attempt 1 (division): 8 / 2 = 4, then 4 * 9 = 36 (no). 9 / 2 = 4.5, 4.5 * 8 = 36 (no). 2 / 8 = 0.25, 0.25 * 9 = 2.25 (no). 9 / 8 = 1.125, 1.125 * 2 = 2.25 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, then 1 * 2 = 2 (no). 8 - 2 = 6, then 6 * 9 = 54 (no). 9 - 2 = 7, then 7 * 8 = 56 (no).  \n- attempt 3 (multiplication): 2 * 8 = 16, 16 + 9 = 25 (no). 2 * 9 = 18, 18 + 8 = 26 (no). 8 * 9 = 72, 72 / 2 = 36 (no).  \n- attempt 4 (addition): 2 + 8 = 10, 10 + 9 = 19 (no). 2 + 9 = 11, 11 + 8 = 19 (no). 8 + 9 = 17, 17 + 2 = 19 (no). also try adjusting: 8 + 9 = 17, 17 * 2 = 34 (no). 2 + 8 = 10, 10 * 9 = 90 (no). 2 + 9 = 11, 11 * 8 = 88 (no).  \n- attempt 5: 8 * 9 = 72, 72 - 2 = 70 (no). 9 * 2 = 18, 18 - 8 = 10 (no). 8 * 2 = 16, 16 - 9 = 7 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        17,
+        10,
+        12
+      ],
+      "action": "[17, 10, 12]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 9 and 8 (smallest number used) to get 17.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[1] + numbers[0]   # 9 + 8 = 17\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[17, 10, 12]"
+      },
+      "path_history": "Add 9 and 8 (smallest number used) to get 17.\nResult: [17, 10, 12]",
+      "evaluation": {
+        "state": "[17, 10, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 17
+        },
+        "llm_judgments": [
+          "[17, 10, 12]  \n- attempt 1 (division): 17 / 10 = 1.7, 1.7 * 12 = 20.4 (no). 10 / 17 ≈ 0.588, 0.588 * 12 ≈ 7.06 (no). 17 / 12 ≈ 1.4167, 1.4167 * 10 ≈ 14.167 (no). 12 / 17 ≈ 0.7059, 0.7059 * 10 ≈ 7.059 (no). 10 / 12 ≈ 0.8333, 0.8333 * 17 ≈ 14.166 (no). 12 / 10 = 1.2, 1.2 * 17 = 20.4 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 * 17 = 34 (no). 17 - 12 = 5, 5 * 10 = 50 (no). 17 - 10 = 7, 7 * 12 = 84 (no).  \n- attempt 3 (multiplication): 17 * 10 = 170, 170 / 12 ≈ 14.167 (no). 17 * 12 = 204, 204 / 10 = 20.4 (no). 10 * 12 = 120, 120 / 17 ≈ 7.059 (no).  \n- attempt 4 (addition): 17 + 10 = 27, 27 - 12 = 15 (no). 17 + 12 = 29, 29 - 10 = 19 (no). 10 + 12 = 22, 22 + 17 = 39 (no). 22 - 17 = 5 (no). 17 + 10 + 12 = 39 (no).  \n- attempt 5: 17 - 10 = 7, 7 + 12 = 19 (no). 17 - 12 = 5, 5 + 10 = 15 (no). 10 - 12 = -2, -2 + 17 = 15 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[17, 10, 12]  \n- attempt 1 (division): 17 / 10 = 1.7, 1.7 * 12 = 20.4 (no). 10 / 17 ≈ 0.588, 0.588 * 12 ≈ 7.06 (no). 17 / 12 ≈ 1.4167, 1.4167 * 10 ≈ 14.167 (no). 12 / 17 ≈ 0.7059, 0.7059 * 10 ≈ 7.059 (no). 10 / 12 ≈ 0.8333, 0.8333 * 17 ≈ 14.166 (no). 12 / 10 = 1.2, 1.2 * 17 = 20.4 (no).  \n- attempt 2 (close subtraction): 12 - 10 = 2, 2 * 17 = 34 (no). 17 - 12 = 5, 5 * 10 = 50 (no). 17 - 10 = 7, 7 * 12 = 84 (no).  \n- attempt 3 (multiplication): 17 * 10 = 170, 170 / 12 ≈ 14.167 (no). 17 * 12 = 204, 204 / 10 = 20.4 (no). 10 * 12 = 120, 120 / 17 ≈ 7.059 (no).  \n- attempt 4 (addition): 17 + 10 = 27, 27 - 12 = 15 (no). 17 + 12 = 29, 29 - 10 = 19 (no). 10 + 12 = 22, 22 + 17 = 39 (no). 22 - 17 = 5 (no). 17 + 10 + 12 = 39 (no).  \n- attempt 5: 17 - 10 = 7, 7 + 12 = 19 (no). 17 - 12 = 5, 5 + 10 = 15 (no). 10 - 12 = -2, -2 + 17 = 15 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 0,
+      "state": [
+        72,
+        10,
+        12
+      ],
+      "action": "[72, 10, 12]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 8 and 9 (smallest number used) to get 72.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[0] * numbers[1]   # 8 * 9 = 72\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[72, 10, 12]"
+      },
+      "path_history": "Multiply 8 and 9 (smallest number used) to get 72.\nResult: [72, 10, 12]",
+      "evaluation": {
+        "state": "[72, 10, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 72
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\n**attempt 1 (division):**  \n- 72 / 10 = 7.2, then 7.2 * 12 = 86.4 (no)  \n- 72 / 12 = 6, then 6 * 10 = 60 (no)  \n- 10 / 72 ≈ 0.1389, then * 12 ≈ 1.667 (no)  \n- 12 / 72 ≈ 0.1667, then * 10 ≈ 1.667 (no)  \n- 10 / 12 ≈ 0.8333, then * 72 = 60 (no)  \n- 12 / 10 = 1.2, then * 72 = 86.4 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 12 → 12 - 10 = 2.  \n2 is a factor of 24. combine with 72: 72 / 2 = 36 (no), 2 * 72 = 144 (no), 72 - 2 = 70 (no), 2 - 72 = -70 (no).  \nalso try 10 - 12 = -2, same issue.\n\n**attempt 3 (multiplication):**  \n- 72 * 10 = 720, then 720 / 12 = 60 (no)  \n- 72 * 12 = 864, then 864 / 10 = 86.4 (no)  \n- 10 * 12 = 120, then 120 / 72 ≈ 1.667 (no), 120 - 72 = 48 (no), 72 - 120 = -48 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 72 + 10 = 82, 82 - 12 = 70 (no)  \n- 72 + 12 = 84, 84 - 10 = 74 (no)  \n- 10 + 12 = 22, 22 + 72 = 94 (no), 72 - 22 = 50 (no), 22 - 72 = -50 (no)\n\nno combination yields 24 or anything close (closest was 48, 36, 60 — all outside 20–28).\n\n**memory critic check:** the pattern [72, 10, 12] indeed leads to no valid path; prior dead-end matches.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "⚡ PATTERN HINT: matches failure pattern (hit=2, ops=['unknown'])",
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\n**attempt 1 (division):**  \n- 72 / 10 = 7.2, then 7.2 * 12 = 86.4 (no)  \n- 72 / 12 = 6, then 6 * 10 = 60 (no)  \n- 10 / 72 ≈ 0.1389, then * 12 ≈ 1.667 (no)  \n- 12 / 72 ≈ 0.1667, then * 10 ≈ 1.667 (no)  \n- 10 / 12 ≈ 0.8333, then * 72 = 60 (no)  \n- 12 / 10 = 1.2, then * 72 = 86.4 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 12 → 12 - 10 = 2.  \n2 is a factor of 24. combine with 72: 72 / 2 = 36 (no), 2 * 72 = 144 (no), 72 - 2 = 70 (no), 2 - 72 = -70 (no).  \nalso try 10 - 12 = -2, same issue.\n\n**attempt 3 (multiplication):**  \n- 72 * 10 = 720, then 720 / 12 = 60 (no)  \n- 72 * 12 = 864, then 864 / 10 = 86.4 (no)  \n- 10 * 12 = 120, then 120 / 72 ≈ 1.667 (no), 120 - 72 = 48 (no), 72 - 120 = -48 (no)\n\n**attempt 4 (addition and adjusting):**  \n- 72 + 10 = 82, 82 - 12 = 70 (no)  \n- 72 + 12 = 84, 84 - 10 = 74 (no)  \n- 10 + 12 = 22, 22 + 72 = 94 (no), 72 - 22 = 50 (no), 22 - 72 = -50 (no)\n\nno combination yields 24 or anything close (closest was 48, 36, 60 — all outside 20–28).\n\n**memory critic check:** the pattern [72, 10, 12] indeed leads to no valid path; prior dead-end matches.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": {
+          "sorted_vals": [
+            65,
+            12,
+            10
+          ],
+          "op_sequence": [
+            "unknown"
+          ],
+          "thought": "Raw score: 0.001, Final score: 0.001",
+          "hit_count": 2
+        },
+        "pattern_penalty_applied": true,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 0,
+      "state": [
+        2,
+        9,
+        12
+      ],
+      "action": "[2, 9, 12]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 8 from 10 (smallest number used) to get 2.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[2] - numbers[0]   # 10 - 8 = 2\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2, 9, 12]"
+      },
+      "path_history": "Subtract 8 from 10 (smallest number used) to get 2.\nResult: [2, 9, 12]",
+      "evaluation": {
+        "state": "[2, 9, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "[2, 9, 12]  \n- attempt 1 (division): 12 / 2 = 6, then 6 * 9 = 54 (no). 12 / 9 ≈ 1.333, 1.333 * 2 ≈ 2.666 (no). 9 / 2 = 4.5, 4.5 * 12 = 54 (no). 9 / 12 = 0.75, 0.75 * 2 = 1.5 (no). 2 / 9 ≈ 0.222 (no). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 9 = 3, 3 is a factor of 24, then 3 * 2 = 6 (no). 9 - 2 = 7 (not a factor). 12 - 2 = 10 (not a factor).  \n- attempt 3 (multiplication): 2 * 9 = 18, 18 + 12 = 30 (no). 2 * 12 = 24, 24 + 9 = 33 (no), 24 - 9 = 15 (no). 9 * 12 = 108, 108 / 2 = 54 (no), 108 - 2 = 106 (no).  \n- attempt 4 (addition): 2 + 9 = 11, 11 + 12 = 23 (no). 2 + 12 = 14, 14 + 9 = 23 (no). 9 + 12 = 21, 21 + 2 = 23 (no). 21 - 2 = 19 (no). 21 * 2 = 42 (no). 21 / 2 = 10.5 (no).  \n- attempt 5: 12 - 2 = 10, 10 + 9 = 19 (no). 12 + 2 = 14, 14 * 9 = 126 (no). 9 - 2 = 7, 7 * 12 = 84 (no). no path found.  \n\nresult is 23 (from addition), which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2, 9, 12]  \n- attempt 1 (division): 12 / 2 = 6, then 6 * 9 = 54 (no). 12 / 9 ≈ 1.333, 1.333 * 2 ≈ 2.666 (no). 9 / 2 = 4.5, 4.5 * 12 = 54 (no). 9 / 12 = 0.75, 0.75 * 2 = 1.5 (no). 2 / 9 ≈ 0.222 (no). 2 / 12 ≈ 0.1667 (no).  \n- attempt 2 (close subtraction): 12 - 9 = 3, 3 is a factor of 24, then 3 * 2 = 6 (no). 9 - 2 = 7 (not a factor). 12 - 2 = 10 (not a factor).  \n- attempt 3 (multiplication): 2 * 9 = 18, 18 + 12 = 30 (no). 2 * 12 = 24, 24 + 9 = 33 (no), 24 - 9 = 15 (no). 9 * 12 = 108, 108 / 2 = 54 (no), 108 - 2 = 106 (no).  \n- attempt 4 (addition): 2 + 9 = 11, 11 + 12 = 23 (no). 2 + 12 = 14, 14 + 9 = 23 (no). 9 + 12 = 21, 21 + 2 = 23 (no). 21 - 2 = 19 (no). 21 * 2 = 42 (no). 21 / 2 = 10.5 (no).  \n- attempt 5: 12 - 2 = 10, 10 + 9 = 19 (no). 12 + 2 = 14, 14 * 9 = 126 (no). 9 - 2 = 7, 7 * 12 = 84 (no). no path found.  \n\nresult is 23 (from addition), which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 0,
+      "state": [
+        1.3333333333333333,
+        8,
+        10
+      ],
+      "action": "[1.3333333333333333, 8, 10]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 12 by 9 to get approximately 1.333.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[3] / numbers[1]   # 12 / 9 = 1.333...\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.3333333333333333, 8, 10]"
+      },
+      "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]",
+      "evaluation": {
+        "state": "[1.3333333333333333, 8, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: 1.3333333333333333, 8, 10  \ntarget: 24\n\n**attempt 1 (division):**  \n- 8 / 1.3333333333333333 = 6.0, then 6.0 * 10 = 60 (no)  \n- 10 / 1.3333333333333333 = 7.5, then 7.5 * 8 = 60 (no)  \n- 1.3333333333333333 / 8 = 0.16666666666666666 (no)  \n- 1.3333333333333333 / 10 = 0.13333333333333333 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 8 and 10 → 10 - 8 = 2  \n2 is a factor of 24.  \n2 * 1.3333333333333333 = 2.6666666666666665 (no)  \n2 * 8 = 16 (no)  \n2 * 10 = 20 (no)  \nalso try 8 - 10 = -2 (no)\n\n**attempt 3 (multiplication):**  \n- 1.3333333333333333 * 8 = 10.666666666666666, then 10.666666666666666 + 10 = 20.666666666666668 (no)  \n- 1.3333333333333333 * 10 = 13.333333333333334, then 13.333333333333334 + 8 = 21.333333333333336 (no)  \n- 8 * 10 = 80, then 80 / 1.3333333333333333 = 60 (no)\n\n**attempt 4 (addition and adjust):**  \n- 8 + 10 = 18, then 18 + 1.3333333333333333 = 19.333333333333336 (no)  \n- 8 + 1.3333333333333333 = 9.333333333333334, then 9.333333333333334 + 10 = 19.333333333333336 (no)  \n- 10 + 1.3333333333333333 = 11.333333333333334, then 11.333333333333334 + 8 = 19.333333333333336 (no)  \n- 18 * 1.3333333333333333 = 24.0 exactly?  \n  18 * 1.3333333333333333 = 24.0 (yes, exactly 24).\n\nfound: 8 + 10 = 18, then 18 * 1.3333333333333333 = 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: 1.3333333333333333, 8, 10  \ntarget: 24\n\n**attempt 1 (division):**  \n- 8 / 1.3333333333333333 = 6.0, then 6.0 * 10 = 60 (no)  \n- 10 / 1.3333333333333333 = 7.5, then 7.5 * 8 = 60 (no)  \n- 1.3333333333333333 / 8 = 0.16666666666666666 (no)  \n- 1.3333333333333333 / 10 = 0.13333333333333333 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 8 and 10 → 10 - 8 = 2  \n2 is a factor of 24.  \n2 * 1.3333333333333333 = 2.6666666666666665 (no)  \n2 * 8 = 16 (no)  \n2 * 10 = 20 (no)  \nalso try 8 - 10 = -2 (no)\n\n**attempt 3 (multiplication):**  \n- 1.3333333333333333 * 8 = 10.666666666666666, then 10.666666666666666 + 10 = 20.666666666666668 (no)  \n- 1.3333333333333333 * 10 = 13.333333333333334, then 13.333333333333334 + 8 = 21.333333333333336 (no)  \n- 8 * 10 = 80, then 80 / 1.3333333333333333 = 60 (no)\n\n**attempt 4 (addition and adjust):**  \n- 8 + 10 = 18, then 18 + 1.3333333333333333 = 19.333333333333336 (no)  \n- 8 + 1.3333333333333333 = 9.333333333333334, then 9.333333333333334 + 10 = 19.333333333333336 (no)  \n- 10 + 1.3333333333333333 = 11.333333333333334, then 11.333333333333334 + 8 = 19.333333333333336 (no)  \n- 18 * 1.3333333333333333 = 24.0 exactly?  \n  18 * 1.3333333333333333 = 24.0 (yes, exactly 24).\n\nfound: 8 + 10 = 18, then 18 * 1.3333333333333333 = 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 1,
+      "children": {
+        "14": {
+          "id": 14,
+          "parent_id": 11,
+          "state": [
+            18,
+            1.3333333333333333
+          ],
+          "action": "[18, 1.3333333333333333]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 8 and 10 to get 18, then subtract 1.3333.",
+            "code": "numbers = [1.3333333333333333, 8, 10]\nres = numbers[1] + numbers[2]   # 8 + 10 = 18\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[18, 1.3333333333333333]"
+          },
+          "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]",
+          "evaluation": {
+            "state": "[18, 1.3333333333333333]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "we have two numbers: 18 and 1.3333333333333333 (which is 4/3). target 24.\n\n- attempt 1 (division):  \n  18 / 1.3333333 = 13.5, then no third number to combine with.  \n  1.3333333 / 18 ≈ 0.07407, no.  \n  no third number, so cannot combine to 24.\n\n- attempt 2 (close subtraction):  \n  only two numbers, so subtract: 18 - 1.3333333 = 16.6666667, not a factor of 24.  \n  reverse: 1.3333333 - 18 = -16.6666667, no.\n\n- attempt 3 (multiplication):  \n  18 * 1.3333333 = 24.0 exactly (since 18 * 4/3 = 24).  \n  that directly gives 24.\n\nresult is exactly 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '18 * 1.3333333=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 18 and 1.3333333333333333 (which is 4/3). target 24.\n\n- attempt 1 (division):  \n  18 / 1.3333333 = 13.5, then no third number to combine with.  \n  1.3333333 / 18 ≈ 0.07407, no.  \n  no third number, so cannot combine to 24.\n\n- attempt 2 (close subtraction):  \n  only two numbers, so subtract: 18 - 1.3333333 = 16.6666667, not a factor of 24.  \n  reverse: 1.3333333 - 18 = -16.6666667, no.\n\n- attempt 3 (multiplication):  \n  18 * 1.3333333 = 24.0 exactly (since 18 * 4/3 = 24).  \n  that directly gives 24.\n\nresult is exactly 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "18 * 1.3333333",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "15": {
+              "id": 15,
+              "parent_id": 14,
+              "state": [
+                24.0
+              ],
+              "action": "18 * 1.3333333",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [18, 1.3333333333333333], 18 * 1.3333333 = 24",
+                "code": "numbers = [18, 1.3333333333333333]\na, b = 18, 1.3333333333333333\nresult = 18 * 1.3333333\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]\nOperation: 18 * 1.3333333 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 12,
+      "parent_id": 0,
+      "state": [
+        22,
+        8,
+        9
+      ],
+      "action": "[22, 8, 9]",
+      "value": 0.72,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 10 and 12 to get 22.",
+        "code": "numbers = [8, 9, 10, 12]\nres = numbers[2] + numbers[3]   # 10 + 12 = 22\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[22, 8, 9]"
+      },
+      "path_history": "Add 10 and 12 to get 22.\nResult: [22, 8, 9]",
+      "evaluation": {
+        "state": "[22, 8, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 22
+        },
+        "llm_judgments": [
+          "[22, 8, 9]  \n- attempt 1 (division): 22 / 8 = 2.75, 2.75 * 9 = 24.75 (no). 8 / 22 ≈ 0.3636, * 9 = 3.27 (no). 22 / 9 ≈ 2.444, * 8 ≈ 19.55 (no). 9 / 22 ≈ 0.409, * 8 ≈ 3.27 (no). 9 / 8 = 1.125, * 22 = 24.75 (no). 8 / 9 ≈ 0.8889, * 22 ≈ 19.56 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, 1 * 22 = 22 (no). 22 - 9 = 13, 13 is not a factor of 24. 22 - 8 = 14, not a factor.  \n- attempt 3 (multiplication): 22 * 8 = 176, 176 / 9 ≈ 19.56 (no). 22 * 9 = 198, 198 / 8 = 24.75 (no). 8 * 9 = 72, 72 / 22 ≈ 3.27 (no).  \n- attempt 4 (addition): 22 + 8 = 30, 30 - 9 = 21 (no). 22 + 9 = 31, 31 - 8 = 23 (no). 8 + 9 = 17, 22 - 17 = 5 (no). 22 + 8 + 9 = 39 (no).  \n\nno result within 0.001 of 24, and no result between 20 and 28 (closest is 21, 23, 24.75 — 24.75 is outside 28? actually 24.75 is between 20 and 28, but that was from multiplication, not a final combination? wait, 24.75 is between 20 and 28, but the rule says \"if you found any result between 20 and 28\" — but 24.75 came from 22 * 9 = 198, then 198 / 8 = 24.75, which is a valid intermediate? the instruction says \"if result combines with third to make 24\" — here 24.75 is not 24, but it is between 20 and 28. however, the decision rule says \"if you found any result between 20 and 28\" — likely meaning the final combined result? the examples show only final 24 counts as \"sure\", and if no exact but close they say \"likely\". here 24.75 is not within 0.001 of 24, but is between 20 and 28. so \"likely\".  \n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.720"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[22, 8, 9]  \n- attempt 1 (division): 22 / 8 = 2.75, 2.75 * 9 = 24.75 (no). 8 / 22 ≈ 0.3636, * 9 = 3.27 (no). 22 / 9 ≈ 2.444, * 8 ≈ 19.55 (no). 9 / 22 ≈ 0.409, * 8 ≈ 3.27 (no). 9 / 8 = 1.125, * 22 = 24.75 (no). 8 / 9 ≈ 0.8889, * 22 ≈ 19.56 (no).  \n- attempt 2 (close subtraction): 9 - 8 = 1, 1 * 22 = 22 (no). 22 - 9 = 13, 13 is not a factor of 24. 22 - 8 = 14, not a factor.  \n- attempt 3 (multiplication): 22 * 8 = 176, 176 / 9 ≈ 19.56 (no). 22 * 9 = 198, 198 / 8 = 24.75 (no). 8 * 9 = 72, 72 / 22 ≈ 3.27 (no).  \n- attempt 4 (addition): 22 + 8 = 30, 30 - 9 = 21 (no). 22 + 9 = 31, 31 - 8 = 23 (no). 8 + 9 = 17, 22 - 17 = 5 (no). 22 + 8 + 9 = 39 (no).  \n\nno result within 0.001 of 24, and no result between 20 and 28 (closest is 21, 23, 24.75 — 24.75 is outside 28? actually 24.75 is between 20 and 28, but that was from multiplication, not a final combination? wait, 24.75 is between 20 and 28, but the rule says \"if you found any result between 20 and 28\" — but 24.75 came from 22 * 9 = 198, then 198 / 8 = 24.75, which is a valid intermediate? the instruction says \"if result combines with third to make 24\" — here 24.75 is not 24, but it is between 20 and 28. however, the decision rule says \"if you found any result between 20 and 28\" — likely meaning the final combined result? the examples show only final 24 counts as \"sure\", and if no exact but close they say \"likely\". here 24.75 is not within 0.001 of 24, but is between 20 and 28. so \"likely\".  \n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.72,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 4,
+      "state": [
+        15.0,
+        9
+      ],
+      "action": "[15.0, 9]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 1.5 and 10 to get 15, then combine with 9.",
+        "code": "numbers = [1.5, 9, 10]\nres = numbers[0] * numbers[2]   # 1.5 * 10 = 15\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15.0, 9]"
+      },
+      "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]",
+      "evaluation": {
+        "state": "[15.0, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 15.0
+        },
+        "llm_judgments": [
+          "we have two numbers: 15.0 and 9. target 24.\n\n- attempt 1 (division):  \n  15.0 / 9 = 1.666... (not 24).  \n  9 / 15.0 = 0.6 (not 24).  \n  no third number to combine with, so no result.\n\n- attempt 2 (close subtraction):  \n  15.0 - 9 = 6.  \n  6 is a factor of 24, but no third number to combine with.\n\n- attempt 3 (multiplication):  \n  15.0 * 9 = 135 (not 24).  \n  no third number.\n\n- attempt 4 (addition):  \n  15.0 + 9 = 24.0 exactly.\n\n24.0 is within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '15.0 + 9=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 15.0 and 9. target 24.\n\n- attempt 1 (division):  \n  15.0 / 9 = 1.666... (not 24).  \n  9 / 15.0 = 0.6 (not 24).  \n  no third number to combine with, so no result.\n\n- attempt 2 (close subtraction):  \n  15.0 - 9 = 6.  \n  6 is a factor of 24, but no third number to combine with.\n\n- attempt 3 (multiplication):  \n  15.0 * 9 = 135 (not 24).  \n  no third number.\n\n- attempt 4 (addition):  \n  15.0 + 9 = 24.0 exactly.\n\n24.0 is within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "15.0 + 9",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "16": {
+          "id": 16,
+          "parent_id": 13,
+          "state": [
+            24.0
+          ],
+          "action": "15.0 + 9",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [15.0, 9], 15.0 + 9 = 24",
+            "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = 15.0 + 9\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nOperation: 15.0 + 9 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 13,
+          "state": [
+            24.0
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [15.0, 9], LLM chose: a+b",
+            "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nFor 2-number state [15.0, 9], LLM chose: a+b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24.0]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: equals 24"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 14,
+      "parent_id": 11,
+      "state": [
+        18,
+        1.3333333333333333
+      ],
+      "action": "[18, 1.3333333333333333]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 8 and 10 to get 18, then subtract 1.3333.",
+        "code": "numbers = [1.3333333333333333, 8, 10]\nres = numbers[1] + numbers[2]   # 8 + 10 = 18\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[18, 1.3333333333333333]"
+      },
+      "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]",
+      "evaluation": {
+        "state": "[18, 1.3333333333333333]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "we have two numbers: 18 and 1.3333333333333333 (which is 4/3). target 24.\n\n- attempt 1 (division):  \n  18 / 1.3333333 = 13.5, then no third number to combine with.  \n  1.3333333 / 18 ≈ 0.07407, no.  \n  no third number, so cannot combine to 24.\n\n- attempt 2 (close subtraction):  \n  only two numbers, so subtract: 18 - 1.3333333 = 16.6666667, not a factor of 24.  \n  reverse: 1.3333333 - 18 = -16.6666667, no.\n\n- attempt 3 (multiplication):  \n  18 * 1.3333333 = 24.0 exactly (since 18 * 4/3 = 24).  \n  that directly gives 24.\n\nresult is exactly 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '18 * 1.3333333=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 18 and 1.3333333333333333 (which is 4/3). target 24.\n\n- attempt 1 (division):  \n  18 / 1.3333333 = 13.5, then no third number to combine with.  \n  1.3333333 / 18 ≈ 0.07407, no.  \n  no third number, so cannot combine to 24.\n\n- attempt 2 (close subtraction):  \n  only two numbers, so subtract: 18 - 1.3333333 = 16.6666667, not a factor of 24.  \n  reverse: 1.3333333 - 18 = -16.6666667, no.\n\n- attempt 3 (multiplication):  \n  18 * 1.3333333 = 24.0 exactly (since 18 * 4/3 = 24).  \n  that directly gives 24.\n\nresult is exactly 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "18 * 1.3333333",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "15": {
+          "id": 15,
+          "parent_id": 14,
+          "state": [
+            24.0
+          ],
+          "action": "18 * 1.3333333",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [18, 1.3333333333333333], 18 * 1.3333333 = 24",
+            "code": "numbers = [18, 1.3333333333333333]\na, b = 18, 1.3333333333333333\nresult = 18 * 1.3333333\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]\nOperation: 18 * 1.3333333 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 15,
+      "parent_id": 14,
+      "state": [
+        24.0
+      ],
+      "action": "18 * 1.3333333",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [18, 1.3333333333333333], 18 * 1.3333333 = 24",
+        "code": "numbers = [18, 1.3333333333333333]\na, b = 18, 1.3333333333333333\nresult = 18 * 1.3333333\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Divide 12 by 9 to get approximately 1.333.\nResult: [1.3333333333333333, 8, 10]\nAdd 8 and 10 to get 18, then subtract 1.3333.\nResult: [18, 1.3333333333333333]\nOperation: 18 * 1.3333333 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 13,
+      "state": [
+        24.0
+      ],
+      "action": "15.0 + 9",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [15.0, 9], 15.0 + 9 = 24",
+        "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = 15.0 + 9\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nOperation: 15.0 + 9 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 13,
+      "state": [
+        24.0
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [15.0, 9], LLM chose: a+b",
+        "code": "numbers = [15.0, 9]\na, b = 15.0, 9\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "Divide 12 by 8 to get 1.5.\nResult: [1.5, 9, 10]\nMultiply 1.5 and 10 to get 15, then combine with 9.\nResult: [15.0, 9]\nFor 2-number state [15.0, 9], LLM chose: a+b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24.0]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: equals 24"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    15,
+    16
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 14,
+      "re_evaluations": 0,
+      "unique_states": 14,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
