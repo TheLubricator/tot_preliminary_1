@@ -1,0 +1,3537 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-26T02:24:21.713541",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 30,
+      "api_calls": 42,
+      "cache_hits": 0,
+      "solutions_found": 3,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 42,
+      "session_start": "2026-05-26T02:23:14.014172",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 15,
+      "total_input_tokens": 37516,
+      "total_output_tokens": 13615,
+      "api_saved_two_num_cache": 45,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": true,
+      "winning_depth1_count": 11,
+      "winning_depth1_proposed": 6,
+      "deadend_memory": {
+        "patterns_stored": 62,
+        "two_num_cache_size": 821,
+        "total_checked": 26,
+        "total_skipped": 15,
+        "skip_rate": "57.7%"
+      },
+      "time_seconds": 67.7
+    },
+    "correct_path_in_proposals": true,
+    "winning_depth1_count": 11,
+    "winning_depth1_proposed": 6,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 62,
+      "total_checked": 26,
+      "total_skipped": 15,
+      "api_calls_saved": 45,
+      "api_saved_two_num_cache": 45,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        2,
+        3,
+        6,
+        6
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 7,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            36,
+            2,
+            3
+          ],
+          "action": "6 * 6 = 36",
+          "value": 1.2,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.",
+            "code": "",
+            "observation": "[36, 2, 3]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]",
+          "evaluation": {
+            "state": "[36, 2, 3]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 36
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n36 / 2 = 18, then 18 * 3 = 54 (no).  \n36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.200"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n36 / 2 = 18, then 18 * 3 = 54 (no).  \n36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.2,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "8": {
+              "id": 8,
+              "parent_id": 1,
+              "state": [
+                12.0,
+                2
+              ],
+              "action": "36 / 3 = 12.0",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "36 / 3 = 12, factor of 24 (12 * 2 = 24)",
+                "code": "",
+                "observation": "[12.0, 2]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]",
+              "evaluation": {
+                "state": "[12.0, 2]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 12.0
+                },
+                "llm_judgments": [
+                  "we have two numbers: 12.0 and 2.  \nsince there are only two numbers, we can freely try operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure",
+                  "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '12.0 * 2=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 12.0 and 2.  \nsince there are only two numbers, we can freely try operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure",
+                    "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "12.0 * 2",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "29": {
+                  "id": 29,
+                  "parent_id": 8,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "12.0 * 2",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [12.0, 2], 12.0 * 2 = 24",
+                    "code": "numbers = [12.0, 2]\na, b = 12.0, 2\nresult = 12.0 * 2\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]\nOperation: 12.0 * 2 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 1,
+              "state": [
+                18.0,
+                3
+              ],
+              "action": "36 / 2 = 18.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "36 / 2 = 18, 18 + 3 = 21 (close to 24, 3 difference), could use 24 - 3 = 21 but not direct",
+                "code": "",
+                "observation": "[18.0, 3]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 2 = 18, 18 + 3 = 21 (close to 24, 3 difference), could use 24 - 3 = 21 but not direct\nResult: [18.0, 3]",
+              "evaluation": {
+                "state": "[18.0, 3]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 18.0,3.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 1,
+              "state": [
+                33,
+                2
+              ],
+              "action": "36 - 3 = 33",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "36 - 3 = 33, 33 - 2 = 31 (too far from 24)",
+                "code": "",
+                "observation": "[33, 2]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 - 3 = 33, 33 - 2 = 31 (too far from 24)\nResult: [33, 2]",
+              "evaluation": {
+                "state": "[33, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 33.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 1,
+              "state": [
+                34,
+                3
+              ],
+              "action": "36 - 2 = 34",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "36 - 2 = 34, 34 - 3 = 31 (too far)",
+                "code": "",
+                "observation": "[34, 3]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 - 2 = 34, 34 - 3 = 31 (too far)\nResult: [34, 3]",
+              "evaluation": {
+                "state": "[34, 3]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 34.0,3.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 1,
+              "state": [
+                6,
+                36
+              ],
+              "action": "2 * 3 = 6",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "2 * 3 = 6, factor of 24 (36 - 6 = 30, not 24; 36 / 6 = 6, not 24; 36 - 12 = 24 requires 12, not 6)",
+                "code": "",
+                "observation": "[6, 36]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n2 * 3 = 6, factor of 24 (36 - 6 = 30, not 24; 36 / 6 = 6, not 24; 36 - 12 = 24 requires 12, not 6)\nResult: [6, 36]",
+              "evaluation": {
+                "state": "[6, 36]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 6.0,36.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 1,
+              "state": [
+                38,
+                3
+              ],
+              "action": "36 + 2 = 38",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "36 + 2 = 38, 38 - 3 = 35 (far from 24)",
+                "code": "",
+                "observation": "[38, 3]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 + 2 = 38, 38 - 3 = 35 (far from 24)\nResult: [38, 3]",
+              "evaluation": {
+                "state": "[38, 3]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 38.0,3.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 1,
+              "state": [
+                39,
+                2
+              ],
+              "action": "36 + 3 = 39",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "36 + 3 = 39, 39 - 2 = 37 (far from 24)",
+                "code": "",
+                "observation": "[39, 2]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 + 3 = 39, 39 - 2 = 37 (far from 24)\nResult: [39, 2]",
+              "evaluation": {
+                "state": "[39, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 39.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 1,
+              "state": [
+                1,
+                36
+              ],
+              "action": "3 - 2 = 1",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "3 - 2 = 1, factor of 24 (36 / 1 = 36, not 24; 36 - 1 = 35; 36 + 1 = 37)",
+                "code": "",
+                "observation": "[1, 36]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n3 - 2 = 1, factor of 24 (36 / 1 = 36, not 24; 36 - 1 = 35; 36 + 1 = 37)\nResult: [1, 36]",
+              "evaluation": {
+                "state": "[1, 36]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,36.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            18,
+            2,
+            6
+          ],
+          "action": "3 * 6 = 18",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 * 3 = 18, then 18 + 6 = 24, and 2 unused? Actually 18 + 6 = 24 exactly, leaving 2 unused. But if we keep 2 for later, maybe 18 + 6 = 24, then 2 * 1? Not helpful. Still, 18 is close to 24, difference 6, and we have another 6.",
+            "code": "",
+            "observation": "[18, 2, 6]"
+          },
+          "path_history": "6 * 3 = 18, then 18 + 6 = 24, and 2 unused? Actually 18 + 6 = 24 exactly, leaving 2 unused. But if we keep 2 for later, maybe 18 + 6 = 24, then 2 * 1? Not helpful. Still, 18 is close to 24, difference 6, and we have another 6.\nResult: [18, 2, 6]",
+          "evaluation": {
+            "state": "[18, 2, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 18
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 ≈ 0.111 (no)  \n- 6 / 18 ≈ 0.333 (no)  \n- 2 / 6 ≈ 0.333 (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 6 and 2 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nother order: 2 - 6 = -4 (no).  \n\n**attempt 3 (multiplication):**  \n- 18 * 2 = 36, then 36 - 6 = 30 (no)  \n- 18 * 6 = 108, then 108 / 2 = 54 (no)  \n- 2 * 6 = 12, then 12 + 18 = 30 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 18 + 2 = 20, then 20 + 6 = 26 (no)  \n- 18 + 6 = 24, then 24 + 2 = 26 (no)  \n- 2 + 6 = 8, then 8 * 3? no third number left to multiply.  \n- 18 + 2 = 20, then 20 + 6 = 26 (already tried)  \n- 18 + 6 = 24, then 24 * 2 = 48 (no)  \n\n**attempt 5 (other combos):**  \n- 18 - 6 = 12, then 12 * 2 = 24 (exact!)  \n\nwe found 24 exactly.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 ≈ 0.111 (no)  \n- 6 / 18 ≈ 0.333 (no)  \n- 2 / 6 ≈ 0.333 (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 6 and 2 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nother order: 2 - 6 = -4 (no).  \n\n**attempt 3 (multiplication):**  \n- 18 * 2 = 36, then 36 - 6 = 30 (no)  \n- 18 * 6 = 108, then 108 / 2 = 54 (no)  \n- 2 * 6 = 12, then 12 + 18 = 30 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 18 + 2 = 20, then 20 + 6 = 26 (no)  \n- 18 + 6 = 24, then 24 + 2 = 26 (no)  \n- 2 + 6 = 8, then 8 * 3? no third number left to multiply.  \n- 18 + 2 = 20, then 20 + 6 = 26 (already tried)  \n- 18 + 6 = 24, then 24 * 2 = 48 (no)  \n\n**attempt 5 (other combos):**  \n- 18 - 6 = 12, then 12 * 2 = 24 (exact!)  \n\nwe found 24 exactly.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            12,
+            3,
+            6
+          ],
+          "action": "2 * 6 = 12",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.",
+            "code": "",
+            "observation": "[12, 3, 6]"
+          },
+          "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]",
+          "evaluation": {
+            "state": "[12, 3, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+              "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [12, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+                "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [12, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 2,
+          "children": {
+            "16": {
+              "id": 16,
+              "parent_id": 3,
+              "state": [
+                36,
+                6
+              ],
+              "action": "12 * 3 = 36",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "12 * 3 = 36, then 36 - 6 = 30 (not 24), but 36 / 6 = 6, then 6 * ? no. However 12 * 3 = 36 is a large number that could be reduced by subtracting or dividing by 6 to get 24? 36 - 12 = 24 but 12 is already used. 36 - 6 = 30, no. 36 / 1.5 = 24 but no 1.5. Not promising.",
+                "code": "",
+                "observation": "[36, 6]"
+              },
+              "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 * 3 = 36, then 36 - 6 = 30 (not 24), but 36 / 6 = 6, then 6 * ? no. However 12 * 3 = 36 is a large number that could be reduced by subtracting or dividing by 6 to get 24? 36 - 12 = 24 but 12 is already used. 36 - 6 = 30, no. 36 / 1.5 = 24 but no 1.5. Not promising.\nResult: [36, 6]",
+              "evaluation": {
+                "state": "[36, 6]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 36.0,6.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 3,
+              "state": [
+                4.0,
+                6
+              ],
+              "action": "12 / 3 = 4.0",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).",
+                "code": "",
+                "observation": "[4.0, 6]"
+              },
+              "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]",
+              "evaluation": {
+                "state": "[4.0, 6]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 6
+                },
+                "llm_judgments": [
+                  "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we can freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '4.0 * 6=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we can freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "4.0 * 6",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "28": {
+                  "id": 28,
+                  "parent_id": 17,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "4.0 * 6",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [4.0, 6], 4.0 * 6 = 24",
+                    "code": "numbers = [4.0, 6]\na, b = 4.0, 6\nresult = 4.0 * 6\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]\nOperation: 4.0 * 6 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            2.0,
+            2,
+            6
+          ],
+          "action": "6 / 3 = 2.0",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.",
+            "code": "",
+            "observation": "[2.0, 2, 6]"
+          },
+          "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]",
+          "evaluation": {
+            "state": "[2.0, 2, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., times 2.0 = 0.666... (no).  \n  2.0 / 6 = 0.333..., times 2 = 0.666... (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  also 2 - 6 = -4 (not a positive factor).\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+              "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+              "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., times 2.0 = 0.666... (no).  \n  2.0 / 6 = 0.333..., times 2 = 0.666... (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  also 2 - 6 = -4 (not a positive factor).\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+                "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+                "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 2,
+          "children": {
+            "18": {
+              "id": 18,
+              "parent_id": 4,
+              "state": [
+                3.0,
+                2
+              ],
+              "action": "6 / 2.0 = 3.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "6 / 2 = 3, factor of 24 (3 * 8 = 24, but 8 not present; 3 * 2 * 4 = 24, but 2 and 6 remain: 3 * 2 = 6, 6 * 4? no; still factor)",
+                "code": "",
+                "observation": "[3.0, 2]"
+              },
+              "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]\n6 / 2 = 3, factor of 24 (3 * 8 = 24, but 8 not present; 3 * 2 * 4 = 24, but 2 and 6 remain: 3 * 2 = 6, 6 * 4? no; still factor)\nResult: [3.0, 2]",
+              "evaluation": {
+                "state": "[3.0, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "19": {
+              "id": 19,
+              "parent_id": 4,
+              "state": [
+                0.3333333333333333,
+                2
+              ],
+              "action": "2.0 / 6 = 0.3333333333333333",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "2 / 6 = 0.333..., useful fraction: 0.333 * 72 = 24, but 72 not available; could combine with remaining 2: 2 / 0.333 = 6, then 6*4? no; less promising but included per division strategy",
+                "code": "",
+                "observation": "[0.3333333333333333, 2]"
+              },
+              "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]\n2 / 6 = 0.333..., useful fraction: 0.333 * 72 = 24, but 72 not available; could combine with remaining 2: 2 / 0.333 = 6, then 6*4? no; less promising but included per division strategy\nResult: [0.3333333333333333, 2]",
+              "evaluation": {
+                "state": "[0.3333333333333333, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.3333333333333333,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            0.5,
+            2,
+            6
+          ],
+          "action": "3 / 6 = 0.5",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.",
+            "code": "",
+            "observation": "[0.5, 2, 6]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]",
+          "evaluation": {
+            "state": "[0.5, 2, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair both orders.  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s within 0.001 of 24.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair both orders.  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s within 0.001 of 24.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "20": {
+              "id": 20,
+              "parent_id": 5,
+              "state": [
+                3.0,
+                2
+              ],
+              "action": "0.5 * 6 = 3.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "0.5 * 6 = 3, factor of 24 (24/3=8, and 8-2=6 or 2*? not directly, but 3*8=24 requires 8 which we don't have; however 3*2=6, 6*4=24 — not helpful. But 3 is a factor of 24 so worth noting.",
+                "code": "",
+                "observation": "[3.0, 2]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n0.5 * 6 = 3, factor of 24 (24/3=8, and 8-2=6 or 2*? not directly, but 3*8=24 requires 8 which we don't have; however 3*2=6, 6*4=24 — not helpful. But 3 is a factor of 24 so worth noting.\nResult: [3.0, 2]",
+              "evaluation": {
+                "state": "[3.0, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "21": {
+              "id": 21,
+              "parent_id": 5,
+              "state": [
+                0.08333333333333333,
+                2
+              ],
+              "action": "0.5 / 6 = 0.08333333333333333",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "0.5 / 6 ≈ 0.0833, not directly useful but could be used in division: 2 / 0.0833 = 24 — wait, 2 / (0.5/6) = 2 * 12 = 24 indeed! So this fraction is useful.",
+                "code": "",
+                "observation": "[0.08333333333333333, 2]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n0.5 / 6 ≈ 0.0833, not directly useful but could be used in division: 2 / 0.0833 = 24 — wait, 2 / (0.5/6) = 2 * 12 = 24 indeed! So this fraction is useful.\nResult: [0.08333333333333333, 2]",
+              "evaluation": {
+                "state": "[0.08333333333333333, 2]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 2
+                },
+                "llm_judgments": [
+                  "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try all operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works.\n\nanswer: sure",
+                  "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works immediately.\n\nanswer: sure",
+                  "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations.\n\n- multiply: 2 * 0.08333333333333333 = 0.16666666666666666 (no).  \n- divide: 2 / 0.08333333333333333 = 24.0 exactly (since 2 ÷ (1/12) = 24).  \n\nthat is exactly 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "❌ VERIFIER: claimed '2 * 12=24' but actual=24.0000 — closing"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try all operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works.\n\nanswer: sure",
+                    "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works immediately.\n\nanswer: sure",
+                    "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations.\n\n- multiply: 2 * 0.08333333333333333 = 0.16666666666666666 (no).  \n- divide: 2 / 0.08333333333333333 = 24.0 exactly (since 2 ÷ (1/12) = 24).  \n\nthat is exactly 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_result": null,
+                "extracted_operation": null
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "22": {
+              "id": 22,
+              "parent_id": 5,
+              "state": [
+                12,
+                0.5
+              ],
+              "action": "2 * 6 = 12",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).",
+                "code": "",
+                "observation": "[12, 0.5]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]",
+              "evaluation": {
+                "state": "[12, 0.5]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 12
+                },
+                "llm_judgments": [
+                  "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '12 / 0.5=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "12 / 0.5",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "27": {
+                  "id": 27,
+                  "parent_id": 22,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "12 / 0.5",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [12, 0.5], 12 / 0.5 = 24",
+                    "code": "numbers = [12, 0.5]\na, b = 12, 0.5\nresult = 12 / 0.5\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]\nOperation: 12 / 0.5 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            },
+            "23": {
+              "id": 23,
+              "parent_id": 5,
+              "state": [
+                1.0,
+                6
+              ],
+              "action": "0.5 * 2 = 1.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "2 * 0.5 = 1, factor of 24 (1*24=24, but we'd need 24 from remaining 6 — 6*4=24, no 4; or 6/0.25=24 — not here). Could multiply 1*6=6, then 6*4 — no.",
+                "code": "",
+                "observation": "[1.0, 6]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n2 * 0.5 = 1, factor of 24 (1*24=24, but we'd need 24 from remaining 6 — 6*4=24, no 4; or 6/0.25=24 — not here). Could multiply 1*6=6, then 6*4 — no.\nResult: [1.0, 6]",
+              "evaluation": {
+                "state": "[1.0, 6]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,6.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "24": {
+              "id": 24,
+              "parent_id": 5,
+              "state": [
+                4,
+                0.5
+              ],
+              "action": "6 - 2 = 4",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "6 - 2 = 4, factor of 24 (4*6=24, but 6 used; or 4*0.5=2, 2*12 — no. However 24/4=6, and we have 0.5 and 2: 6/0.5=12, 12*2=24).",
+                "code": "",
+                "observation": "[4, 0.5]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 - 2 = 4, factor of 24 (4*6=24, but 6 used; or 4*0.5=2, 2*12 — no. However 24/4=6, and we have 0.5 and 2: 6/0.5=12, 12*2=24).\nResult: [4, 0.5]",
+              "evaluation": {
+                "state": "[4, 0.5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,0.5",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "25": {
+              "id": 25,
+              "parent_id": 5,
+              "state": [
+                -4,
+                0.5
+              ],
+              "action": "2 - 6 = -4",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "2 - 6 = -4, negative factor — could be used: -4 * -6 = 24, but -6 not present; or -4 * 0.5 = -2, then -2 * -12 — not helpful.",
+                "code": "",
+                "observation": "[-4, 0.5]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n2 - 6 = -4, negative factor — could be used: -4 * -6 = 24, but -6 not present; or -4 * 0.5 = -2, then -2 * -12 — not helpful.\nResult: [-4, 0.5]",
+              "evaluation": {
+                "state": "[-4, 0.5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -4.0,0.5",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "26": {
+              "id": 26,
+              "parent_id": 5,
+              "state": [
+                5.5,
+                2
+              ],
+              "action": "6 - 0.5 = 5.5",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "6 - 0.5 = 5.5, not a factor of 24, but 24 - 5.5 = 18.5 not present; or 24/5.5 not integer. Less promising.",
+                "code": "",
+                "observation": "[5.5, 2]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 - 0.5 = 5.5, not a factor of 24, but 24 - 5.5 = 18.5 not present; or 24/5.5 not integer. Less promising.\nResult: [5.5, 2]",
+              "evaluation": {
+                "state": "[5.5, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 5.5,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            4,
+            3,
+            6
+          ],
+          "action": "6 - 2 = 4",
+          "value": 0.334,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 - 2 = 4, factor of 24 (24 = 4 * 6). Then remaining [3, 6] could multiply to 18? No, but 4 * 6 = 24, leaving 3 unused. So not perfect unless 3 combines to 1. But 4 is a useful factor.",
+            "code": "",
+            "observation": "[4, 3, 6]"
+          },
+          "path_history": "6 - 2 = 4, factor of 24 (24 = 4 * 6). Then remaining [3, 6] could multiply to 18? No, but 4 * 6 = 24, leaving 3 unused. So not perfect unless 3 combines to 1. But 4 is a useful factor.\nResult: [4, 3, 6]",
+          "evaluation": {
+            "state": "[4, 3, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24).  \ncombine with third: 1 * 6 = 6 (no).  \nalso 3 - 4 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no), 4 / 18 ≈ 0.222 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no), 6 / 7 ≈ 0.857 (no).  \n- 4 + 6 = 10, then 10 + 3 = 13 (no), 10 - 3 = 7 (no), 10 * 3 = 30 (no), 10 / 3 ≈ 3.333 (no).  \n- 3 + 6 = 9, then 9 + 4 = 13 (no), 9 - 4 = 5 (no), 9 * 4 = 36 (no), 9 / 4 = 2.25 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3.  \n4 - 3 = 1. 1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n3 - 4 = -1 (ignore).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 * 3 = 72 (no), 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \nbut wait — 4 * 6 = 24 exactly. that’s the target already, no need to combine with third.  \n\n24 is exactly the target.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24), then 1 * 6 = 6 (no)  \n3 - 4 = -1 (no)  \nnext closest: 6 and 4 → 6 - 4 = 2 (factor), then 2 * 3 = 6 (no)  \n4 - 6 = -2 (no)  \n6 and 3 → 6 - 3 = 3 (factor), then 3 * 4 = 12 (no)  \n3 - 6 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 - 6 = 6 (no), 12 * 6 = 72 (no), 12 / 6 = 2 (no)  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no)  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no)  \n- 4 + 6 = 10, then 10 * 3 = 30 (no), 10 + 3 = 13 (no), 10 - 3 = 7 (no), 3 - 10 = -7 (no)  \n- 3 + 6 = 9, then 9 * 4 = 36 (no), 9 + 4 = 13 (no), 9 - 4 = 5 (no), 4 - 9 = -5 (no)  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'sure', 'impossible']",
+              "Votes: sure=1, likely=0, impossible=2",
+              "Raw score: 0.334, Final score: 0.334"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24).  \ncombine with third: 1 * 6 = 6 (no).  \nalso 3 - 4 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no), 4 / 18 ≈ 0.222 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no), 6 / 7 ≈ 0.857 (no).  \n- 4 + 6 = 10, then 10 + 3 = 13 (no), 10 - 3 = 7 (no), 10 * 3 = 30 (no), 10 / 3 ≈ 3.333 (no).  \n- 3 + 6 = 9, then 9 + 4 = 13 (no), 9 - 4 = 5 (no), 9 * 4 = 36 (no), 9 / 4 = 2.25 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3.  \n4 - 3 = 1. 1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n3 - 4 = -1 (ignore).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 * 3 = 72 (no), 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \nbut wait — 4 * 6 = 24 exactly. that’s the target already, no need to combine with third.  \n\n24 is exactly the target.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24), then 1 * 6 = 6 (no)  \n3 - 4 = -1 (no)  \nnext closest: 6 and 4 → 6 - 4 = 2 (factor), then 2 * 3 = 6 (no)  \n4 - 6 = -2 (no)  \n6 and 3 → 6 - 3 = 3 (factor), then 3 * 4 = 12 (no)  \n3 - 6 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 - 6 = 6 (no), 12 * 6 = 72 (no), 12 / 6 = 2 (no)  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no)  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no)  \n- 4 + 6 = 10, then 10 * 3 = 30 (no), 10 + 3 = 13 (no), 10 - 3 = 7 (no), 3 - 10 = -7 (no)  \n- 3 + 6 = 9, then 9 * 4 = 36 (no), 9 + 4 = 13 (no), 9 - 4 = 5 (no), 4 - 9 = -5 (no)  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                1.0,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 2,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 0.334,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            3,
+            2,
+            6
+          ],
+          "action": "6 - 3 = 3",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 - 3 = 3, then 3 * 6 = 18, 18 + 6 = 24? Actually 18 + 6 = 24, but we'd have used both 6s and the 3, leaving 2. Or 3 * 8 = 24, but no 8. Still, 3 is a factor.",
+            "code": "",
+            "observation": "[3, 2, 6]"
+          },
+          "path_history": "6 - 3 = 3, then 3 * 6 = 18, 18 + 6 = 24? Actually 18 + 6 = 24, but we'd have used both 6s and the 3, leaving 2. Or 3 * 8 = 24, but no 8. Still, 3 is a factor.\nResult: [3, 2, 6]",
+          "evaluation": {
+            "state": "[3, 2, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 3 / 2 = 1.5, then 1.5 * 6 = 9 (no)  \n- 2 / 3 ≈ 0.6667, then * 6 = 4 (no)  \n- 3 / 6 = 0.5, then * 2 = 1 (no)  \n- 6 / 3 = 2, then 2 * 2 = 4 (no)  \n- 6 / 2 = 3, then 3 * 3 = 9 (no)  \n- 2 / 6 ≈ 0.3333, then * 3 = 1 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 2 → 3 - 2 = 1.  \n1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \nalso try 2 - 3 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 3 * 2 = 6, then 6 * 6 = 36 (no)  \n- 3 * 6 = 18, then 18 + 2 = 20 (no)  \n- 2 * 6 = 12, then 12 * 3 = 36 (no)  \n- 3 * 6 = 18, then 18 * 2 = 36 (no)  \n- 2 * 6 = 12, then 12 + 3 = 15 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 3 + 2 = 5, then 5 * 6 = 30 (no)  \n- 3 + 6 = 9, then 9 * 2 = 18 (no)  \n- 2 + 6 = 8, then 8 * 3 = 24 (exact!)  \n\nwe found 8 * 3 = 24.\n\nresult is exactly 24.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1.  \n  1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n  6 - 1 = 5 (no). 6 / 1 = 6 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no). 18 - 2 = 16 (no). 18 / 2 = 9 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no). 12 + 3 = 15 (no). 12 - 3 = 9 (no). 12 / 3 = 4 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no). 5 + 6 = 11 (no). 6 - 5 = 1 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no). 9 + 2 = 11 (no). 9 - 2 = 7 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1 (factor of 24).  \n  then 1 * 6 = 6 (no).  \n  6 - 3 = 3, then 3 * 2 = 6 (no).  \n  6 - 2 = 4, then 4 * 3 = 12 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 3 / 2 = 1.5, then 1.5 * 6 = 9 (no)  \n- 2 / 3 ≈ 0.6667, then * 6 = 4 (no)  \n- 3 / 6 = 0.5, then * 2 = 1 (no)  \n- 6 / 3 = 2, then 2 * 2 = 4 (no)  \n- 6 / 2 = 3, then 3 * 3 = 9 (no)  \n- 2 / 6 ≈ 0.3333, then * 3 = 1 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 2 → 3 - 2 = 1.  \n1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \nalso try 2 - 3 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 3 * 2 = 6, then 6 * 6 = 36 (no)  \n- 3 * 6 = 18, then 18 + 2 = 20 (no)  \n- 2 * 6 = 12, then 12 * 3 = 36 (no)  \n- 3 * 6 = 18, then 18 * 2 = 36 (no)  \n- 2 * 6 = 12, then 12 + 3 = 15 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 3 + 2 = 5, then 5 * 6 = 30 (no)  \n- 3 + 6 = 9, then 9 * 2 = 18 (no)  \n- 2 + 6 = 8, then 8 * 3 = 24 (exact!)  \n\nwe found 8 * 3 = 24.\n\nresult is exactly 24.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1.  \n  1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n  6 - 1 = 5 (no). 6 / 1 = 6 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no). 18 - 2 = 16 (no). 18 / 2 = 9 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no). 12 + 3 = 15 (no). 12 - 3 = 9 (no). 12 / 3 = 4 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no). 5 + 6 = 11 (no). 6 - 5 = 1 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no). 9 + 2 = 11 (no). 9 - 2 = 7 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1 (factor of 24).  \n  then 1 * 6 = 6 (no).  \n  6 - 3 = 3, then 3 * 2 = 6 (no).  \n  6 - 2 = 4, then 4 * 3 = 12 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        36,
+        2,
+        3
+      ],
+      "action": "6 * 6 = 36",
+      "value": 1.2,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.",
+        "code": "",
+        "observation": "[36, 2, 3]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]",
+      "evaluation": {
+        "state": "[36, 2, 3]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 36
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n36 / 2 = 18, then 18 * 3 = 54 (no).  \n36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.200"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n36 / 2 = 18, then 18 * 3 = 54 (no).  \n36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [36, 2, 3]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 36 / 2 = 18, then 18 + 3 = 21 (no).  \n- 36 / 3 = 12, then 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.2,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "8": {
+          "id": 8,
+          "parent_id": 1,
+          "state": [
+            12.0,
+            2
+          ],
+          "action": "36 / 3 = 12.0",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "36 / 3 = 12, factor of 24 (12 * 2 = 24)",
+            "code": "",
+            "observation": "[12.0, 2]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]",
+          "evaluation": {
+            "state": "[12.0, 2]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12.0
+            },
+            "llm_judgments": [
+              "we have two numbers: 12.0 and 2.  \nsince there are only two numbers, we can freely try operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure",
+              "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '12.0 * 2=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 12.0 and 2.  \nsince there are only two numbers, we can freely try operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure",
+                "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "12.0 * 2",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "29": {
+              "id": 29,
+              "parent_id": 8,
+              "state": [
+                24.0
+              ],
+              "action": "12.0 * 2",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [12.0, 2], 12.0 * 2 = 24",
+                "code": "numbers = [12.0, 2]\na, b = 12.0, 2\nresult = 12.0 * 2\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]\nOperation: 12.0 * 2 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 1,
+          "state": [
+            18.0,
+            3
+          ],
+          "action": "36 / 2 = 18.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "36 / 2 = 18, 18 + 3 = 21 (close to 24, 3 difference), could use 24 - 3 = 21 but not direct",
+            "code": "",
+            "observation": "[18.0, 3]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 2 = 18, 18 + 3 = 21 (close to 24, 3 difference), could use 24 - 3 = 21 but not direct\nResult: [18.0, 3]",
+          "evaluation": {
+            "state": "[18.0, 3]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 18.0,3.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 1,
+          "state": [
+            33,
+            2
+          ],
+          "action": "36 - 3 = 33",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "36 - 3 = 33, 33 - 2 = 31 (too far from 24)",
+            "code": "",
+            "observation": "[33, 2]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 - 3 = 33, 33 - 2 = 31 (too far from 24)\nResult: [33, 2]",
+          "evaluation": {
+            "state": "[33, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 33.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 1,
+          "state": [
+            34,
+            3
+          ],
+          "action": "36 - 2 = 34",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "36 - 2 = 34, 34 - 3 = 31 (too far)",
+            "code": "",
+            "observation": "[34, 3]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 - 2 = 34, 34 - 3 = 31 (too far)\nResult: [34, 3]",
+          "evaluation": {
+            "state": "[34, 3]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 34.0,3.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 1,
+          "state": [
+            6,
+            36
+          ],
+          "action": "2 * 3 = 6",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "2 * 3 = 6, factor of 24 (36 - 6 = 30, not 24; 36 / 6 = 6, not 24; 36 - 12 = 24 requires 12, not 6)",
+            "code": "",
+            "observation": "[6, 36]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n2 * 3 = 6, factor of 24 (36 - 6 = 30, not 24; 36 / 6 = 6, not 24; 36 - 12 = 24 requires 12, not 6)\nResult: [6, 36]",
+          "evaluation": {
+            "state": "[6, 36]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 6.0,36.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 1,
+          "state": [
+            38,
+            3
+          ],
+          "action": "36 + 2 = 38",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "36 + 2 = 38, 38 - 3 = 35 (far from 24)",
+            "code": "",
+            "observation": "[38, 3]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 + 2 = 38, 38 - 3 = 35 (far from 24)\nResult: [38, 3]",
+          "evaluation": {
+            "state": "[38, 3]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 38.0,3.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 1,
+          "state": [
+            39,
+            2
+          ],
+          "action": "36 + 3 = 39",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "36 + 3 = 39, 39 - 2 = 37 (far from 24)",
+            "code": "",
+            "observation": "[39, 2]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 + 3 = 39, 39 - 2 = 37 (far from 24)\nResult: [39, 2]",
+          "evaluation": {
+            "state": "[39, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 39.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 1,
+          "state": [
+            1,
+            36
+          ],
+          "action": "3 - 2 = 1",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "3 - 2 = 1, factor of 24 (36 / 1 = 36, not 24; 36 - 1 = 35; 36 + 1 = 37)",
+            "code": "",
+            "observation": "[1, 36]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n3 - 2 = 1, factor of 24 (36 / 1 = 36, not 24; 36 - 1 = 35; 36 + 1 = 37)\nResult: [1, 36]",
+          "evaluation": {
+            "state": "[1, 36]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,36.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        18,
+        2,
+        6
+      ],
+      "action": "3 * 6 = 18",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 * 3 = 18, then 18 + 6 = 24, and 2 unused? Actually 18 + 6 = 24 exactly, leaving 2 unused. But if we keep 2 for later, maybe 18 + 6 = 24, then 2 * 1? Not helpful. Still, 18 is close to 24, difference 6, and we have another 6.",
+        "code": "",
+        "observation": "[18, 2, 6]"
+      },
+      "path_history": "6 * 3 = 18, then 18 + 6 = 24, and 2 unused? Actually 18 + 6 = 24 exactly, leaving 2 unused. But if we keep 2 for later, maybe 18 + 6 = 24, then 2 * 1? Not helpful. Still, 18 is close to 24, difference 6, and we have another 6.\nResult: [18, 2, 6]",
+      "evaluation": {
+        "state": "[18, 2, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 18
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 ≈ 0.111 (no)  \n- 6 / 18 ≈ 0.333 (no)  \n- 2 / 6 ≈ 0.333 (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 6 and 2 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nother order: 2 - 6 = -4 (no).  \n\n**attempt 3 (multiplication):**  \n- 18 * 2 = 36, then 36 - 6 = 30 (no)  \n- 18 * 6 = 108, then 108 / 2 = 54 (no)  \n- 2 * 6 = 12, then 12 + 18 = 30 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 18 + 2 = 20, then 20 + 6 = 26 (no)  \n- 18 + 6 = 24, then 24 + 2 = 26 (no)  \n- 2 + 6 = 8, then 8 * 3? no third number left to multiply.  \n- 18 + 2 = 20, then 20 + 6 = 26 (already tried)  \n- 18 + 6 = 24, then 24 * 2 = 48 (no)  \n\n**attempt 5 (other combos):**  \n- 18 - 6 = 12, then 12 * 2 = 24 (exact!)  \n\nwe found 24 exactly.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 ≈ 0.111 (no)  \n- 6 / 18 ≈ 0.333 (no)  \n- 2 / 6 ≈ 0.333 (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 6 and 2 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nother order: 2 - 6 = -4 (no).  \n\n**attempt 3 (multiplication):**  \n- 18 * 2 = 36, then 36 - 6 = 30 (no)  \n- 18 * 6 = 108, then 108 / 2 = 54 (no)  \n- 2 * 6 = 12, then 12 + 18 = 30 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 18 + 2 = 20, then 20 + 6 = 26 (no)  \n- 18 + 6 = 24, then 24 + 2 = 26 (no)  \n- 2 + 6 = 8, then 8 * 3? no third number left to multiply.  \n- 18 + 2 = 20, then 20 + 6 = 26 (already tried)  \n- 18 + 6 = 24, then 24 * 2 = 48 (no)  \n\n**attempt 5 (other combos):**  \n- 18 - 6 = 12, then 12 * 2 = 24 (exact!)  \n\nwe found 24 exactly.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [18, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 18 / 2 = 9, then 9 * 6 = 54 (no)  \n- 18 / 6 = 3, then 3 * 2 = 6 (no)  \n- 2 / 18 = 0.111… (no)  \n- 6 / 18 = 0.333… (no)  \n- 2 / 6 = 0.333… (no)  \n- 6 / 2 = 3, then 3 * 18 = 54 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 6 → 6 - 2 = 4 (factor of 24).  \nthen 4 * 18 = 72 (no).  \nalso 18 - 6 = 12 (factor), 12 * 2 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        12,
+        3,
+        6
+      ],
+      "action": "2 * 6 = 12",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.",
+        "code": "",
+        "observation": "[12, 3, 6]"
+      },
+      "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]",
+      "evaluation": {
+        "state": "[12, 3, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+          "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [12, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+            "let’s go step by step.\n\n**attempt 1 (division):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [12, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 12 / 3 = 4, then 4 * 6 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 2,
+      "children": {
+        "16": {
+          "id": 16,
+          "parent_id": 3,
+          "state": [
+            36,
+            6
+          ],
+          "action": "12 * 3 = 36",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "12 * 3 = 36, then 36 - 6 = 30 (not 24), but 36 / 6 = 6, then 6 * ? no. However 12 * 3 = 36 is a large number that could be reduced by subtracting or dividing by 6 to get 24? 36 - 12 = 24 but 12 is already used. 36 - 6 = 30, no. 36 / 1.5 = 24 but no 1.5. Not promising.",
+            "code": "",
+            "observation": "[36, 6]"
+          },
+          "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 * 3 = 36, then 36 - 6 = 30 (not 24), but 36 / 6 = 6, then 6 * ? no. However 12 * 3 = 36 is a large number that could be reduced by subtracting or dividing by 6 to get 24? 36 - 12 = 24 but 12 is already used. 36 - 6 = 30, no. 36 / 1.5 = 24 but no 1.5. Not promising.\nResult: [36, 6]",
+          "evaluation": {
+            "state": "[36, 6]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 36.0,6.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 3,
+          "state": [
+            4.0,
+            6
+          ],
+          "action": "12 / 3 = 4.0",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).",
+            "code": "",
+            "observation": "[4.0, 6]"
+          },
+          "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]",
+          "evaluation": {
+            "state": "[4.0, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we can freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '4.0 * 6=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we can freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "4.0 * 6",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "28": {
+              "id": 28,
+              "parent_id": 17,
+              "state": [
+                24.0
+              ],
+              "action": "4.0 * 6",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [4.0, 6], 4.0 * 6 = 24",
+                "code": "numbers = [4.0, 6]\na, b = 4.0, 6\nresult = 4.0 * 6\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]\nOperation: 4.0 * 6 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        2.0,
+        2,
+        6
+      ],
+      "action": "6 / 3 = 2.0",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.",
+        "code": "",
+        "observation": "[2.0, 2, 6]"
+      },
+      "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]",
+      "evaluation": {
+        "state": "[2.0, 2, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., times 2.0 = 0.666... (no).  \n  2.0 / 6 = 0.333..., times 2 = 0.666... (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  also 2 - 6 = -4 (not a positive factor).\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+          "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+          "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., times 2.0 = 0.666... (no).  \n  2.0 / 6 = 0.333..., times 2 = 0.666... (no).\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  also 2 - 6 = -4 (not a positive factor).\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+            "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  next: 6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure",
+            "we have numbers: 2.0, 2, 6. target 24.\n\n- attempt 1 (division):  \n  6 / 2 = 3, then 3 * 2.0 = 6 (no).  \n  6 / 2.0 = 3, then 3 * 2 = 6 (no).  \n  2 / 2.0 = 1, then 1 * 6 = 6 (no).  \n  2.0 / 2 = 1, then 1 * 6 = 6 (no).  \n  2 / 6 = 0.333..., 0.333 * 2.0 = 0.666 (no).  \n  2.0 / 6 = 0.333..., 0.333 * 2 = 0.666 (no).  \n  no 24.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 2.0 and 2 → 2.0 - 2 = 0 (not a factor of 24).  \n  2 - 2.0 = 0 (no).  \n  6 - 2 = 4 (factor of 24!), then 4 * 2.0 = 8 (no).  \n  6 - 2.0 = 4, then 4 * 2 = 8 (no).  \n  no 24.\n\n- attempt 3 (multiplication):  \n  2 * 2.0 = 4, then 4 * 6 = 24 (exact!).\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 2,
+      "children": {
+        "18": {
+          "id": 18,
+          "parent_id": 4,
+          "state": [
+            3.0,
+            2
+          ],
+          "action": "6 / 2.0 = 3.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "6 / 2 = 3, factor of 24 (3 * 8 = 24, but 8 not present; 3 * 2 * 4 = 24, but 2 and 6 remain: 3 * 2 = 6, 6 * 4? no; still factor)",
+            "code": "",
+            "observation": "[3.0, 2]"
+          },
+          "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]\n6 / 2 = 3, factor of 24 (3 * 8 = 24, but 8 not present; 3 * 2 * 4 = 24, but 2 and 6 remain: 3 * 2 = 6, 6 * 4? no; still factor)\nResult: [3.0, 2]",
+          "evaluation": {
+            "state": "[3.0, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "19": {
+          "id": 19,
+          "parent_id": 4,
+          "state": [
+            0.3333333333333333,
+            2
+          ],
+          "action": "2.0 / 6 = 0.3333333333333333",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "2 / 6 = 0.333..., useful fraction: 0.333 * 72 = 24, but 72 not available; could combine with remaining 2: 2 / 0.333 = 6, then 6*4? no; less promising but included per division strategy",
+            "code": "",
+            "observation": "[0.3333333333333333, 2]"
+          },
+          "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]\n2 / 6 = 0.333..., useful fraction: 0.333 * 72 = 24, but 72 not available; could combine with remaining 2: 2 / 0.333 = 6, then 6*4? no; less promising but included per division strategy\nResult: [0.3333333333333333, 2]",
+          "evaluation": {
+            "state": "[0.3333333333333333, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.3333333333333333,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        0.5,
+        2,
+        6
+      ],
+      "action": "3 / 6 = 0.5",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.",
+        "code": "",
+        "observation": "[0.5, 2, 6]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]",
+      "evaluation": {
+        "state": "[0.5, 2, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair both orders.  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s within 0.001 of 24.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry each pair both orders.  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s within 0.001 of 24.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [0.5, 2, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \n- 6 / 0.5 = 12, then 12 * 2 = 24 (exact!).  \n\nthat’s a direct hit.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "20": {
+          "id": 20,
+          "parent_id": 5,
+          "state": [
+            3.0,
+            2
+          ],
+          "action": "0.5 * 6 = 3.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "0.5 * 6 = 3, factor of 24 (24/3=8, and 8-2=6 or 2*? not directly, but 3*8=24 requires 8 which we don't have; however 3*2=6, 6*4=24 — not helpful. But 3 is a factor of 24 so worth noting.",
+            "code": "",
+            "observation": "[3.0, 2]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n0.5 * 6 = 3, factor of 24 (24/3=8, and 8-2=6 or 2*? not directly, but 3*8=24 requires 8 which we don't have; however 3*2=6, 6*4=24 — not helpful. But 3 is a factor of 24 so worth noting.\nResult: [3.0, 2]",
+          "evaluation": {
+            "state": "[3.0, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "21": {
+          "id": 21,
+          "parent_id": 5,
+          "state": [
+            0.08333333333333333,
+            2
+          ],
+          "action": "0.5 / 6 = 0.08333333333333333",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "0.5 / 6 ≈ 0.0833, not directly useful but could be used in division: 2 / 0.0833 = 24 — wait, 2 / (0.5/6) = 2 * 12 = 24 indeed! So this fraction is useful.",
+            "code": "",
+            "observation": "[0.08333333333333333, 2]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n0.5 / 6 ≈ 0.0833, not directly useful but could be used in division: 2 / 0.0833 = 24 — wait, 2 / (0.5/6) = 2 * 12 = 24 indeed! So this fraction is useful.\nResult: [0.08333333333333333, 2]",
+          "evaluation": {
+            "state": "[0.08333333333333333, 2]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 2
+            },
+            "llm_judgments": [
+              "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try all operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works.\n\nanswer: sure",
+              "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works immediately.\n\nanswer: sure",
+              "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations.\n\n- multiply: 2 * 0.08333333333333333 = 0.16666666666666666 (no).  \n- divide: 2 / 0.08333333333333333 = 24.0 exactly (since 2 ÷ (1/12) = 24).  \n\nthat is exactly 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "❌ VERIFIER: claimed '2 * 12=24' but actual=24.0000 — closing"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try all operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works.\n\nanswer: sure",
+                "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works immediately.\n\nanswer: sure",
+                "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations.\n\n- multiply: 2 * 0.08333333333333333 = 0.16666666666666666 (no).  \n- divide: 2 / 0.08333333333333333 = 24.0 exactly (since 2 ÷ (1/12) = 24).  \n\nthat is exactly 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_result": null,
+            "extracted_operation": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "22": {
+          "id": 22,
+          "parent_id": 5,
+          "state": [
+            12,
+            0.5
+          ],
+          "action": "2 * 6 = 12",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).",
+            "code": "",
+            "observation": "[12, 0.5]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]",
+          "evaluation": {
+            "state": "[12, 0.5]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '12 / 0.5=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "12 / 0.5",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "27": {
+              "id": 27,
+              "parent_id": 22,
+              "state": [
+                24.0
+              ],
+              "action": "12 / 0.5",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [12, 0.5], 12 / 0.5 = 24",
+                "code": "numbers = [12, 0.5]\na, b = 12, 0.5\nresult = 12 / 0.5\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]\nOperation: 12 / 0.5 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "23": {
+          "id": 23,
+          "parent_id": 5,
+          "state": [
+            1.0,
+            6
+          ],
+          "action": "0.5 * 2 = 1.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "2 * 0.5 = 1, factor of 24 (1*24=24, but we'd need 24 from remaining 6 — 6*4=24, no 4; or 6/0.25=24 — not here). Could multiply 1*6=6, then 6*4 — no.",
+            "code": "",
+            "observation": "[1.0, 6]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n2 * 0.5 = 1, factor of 24 (1*24=24, but we'd need 24 from remaining 6 — 6*4=24, no 4; or 6/0.25=24 — not here). Could multiply 1*6=6, then 6*4 — no.\nResult: [1.0, 6]",
+          "evaluation": {
+            "state": "[1.0, 6]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,6.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "24": {
+          "id": 24,
+          "parent_id": 5,
+          "state": [
+            4,
+            0.5
+          ],
+          "action": "6 - 2 = 4",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "6 - 2 = 4, factor of 24 (4*6=24, but 6 used; or 4*0.5=2, 2*12 — no. However 24/4=6, and we have 0.5 and 2: 6/0.5=12, 12*2=24).",
+            "code": "",
+            "observation": "[4, 0.5]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 - 2 = 4, factor of 24 (4*6=24, but 6 used; or 4*0.5=2, 2*12 — no. However 24/4=6, and we have 0.5 and 2: 6/0.5=12, 12*2=24).\nResult: [4, 0.5]",
+          "evaluation": {
+            "state": "[4, 0.5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,0.5",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "25": {
+          "id": 25,
+          "parent_id": 5,
+          "state": [
+            -4,
+            0.5
+          ],
+          "action": "2 - 6 = -4",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "2 - 6 = -4, negative factor — could be used: -4 * -6 = 24, but -6 not present; or -4 * 0.5 = -2, then -2 * -12 — not helpful.",
+            "code": "",
+            "observation": "[-4, 0.5]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n2 - 6 = -4, negative factor — could be used: -4 * -6 = 24, but -6 not present; or -4 * 0.5 = -2, then -2 * -12 — not helpful.\nResult: [-4, 0.5]",
+          "evaluation": {
+            "state": "[-4, 0.5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -4.0,0.5",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "26": {
+          "id": 26,
+          "parent_id": 5,
+          "state": [
+            5.5,
+            2
+          ],
+          "action": "6 - 0.5 = 5.5",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "6 - 0.5 = 5.5, not a factor of 24, but 24 - 5.5 = 18.5 not present; or 24/5.5 not integer. Less promising.",
+            "code": "",
+            "observation": "[5.5, 2]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 - 0.5 = 5.5, not a factor of 24, but 24 - 5.5 = 18.5 not present; or 24/5.5 not integer. Less promising.\nResult: [5.5, 2]",
+          "evaluation": {
+            "state": "[5.5, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 5.5,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        4,
+        3,
+        6
+      ],
+      "action": "6 - 2 = 4",
+      "value": 0.334,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 - 2 = 4, factor of 24 (24 = 4 * 6). Then remaining [3, 6] could multiply to 18? No, but 4 * 6 = 24, leaving 3 unused. So not perfect unless 3 combines to 1. But 4 is a useful factor.",
+        "code": "",
+        "observation": "[4, 3, 6]"
+      },
+      "path_history": "6 - 2 = 4, factor of 24 (24 = 4 * 6). Then remaining [3, 6] could multiply to 18? No, but 4 * 6 = 24, leaving 3 unused. So not perfect unless 3 combines to 1. But 4 is a useful factor.\nResult: [4, 3, 6]",
+      "evaluation": {
+        "state": "[4, 3, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24).  \ncombine with third: 1 * 6 = 6 (no).  \nalso 3 - 4 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no), 4 / 18 ≈ 0.222 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no), 6 / 7 ≈ 0.857 (no).  \n- 4 + 6 = 10, then 10 + 3 = 13 (no), 10 - 3 = 7 (no), 10 * 3 = 30 (no), 10 / 3 ≈ 3.333 (no).  \n- 3 + 6 = 9, then 9 + 4 = 13 (no), 9 - 4 = 5 (no), 9 * 4 = 36 (no), 9 / 4 = 2.25 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3.  \n4 - 3 = 1. 1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n3 - 4 = -1 (ignore).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 * 3 = 72 (no), 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \nbut wait — 4 * 6 = 24 exactly. that’s the target already, no need to combine with third.  \n\n24 is exactly the target.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24), then 1 * 6 = 6 (no)  \n3 - 4 = -1 (no)  \nnext closest: 6 and 4 → 6 - 4 = 2 (factor), then 2 * 3 = 6 (no)  \n4 - 6 = -2 (no)  \n6 and 3 → 6 - 3 = 3 (factor), then 3 * 4 = 12 (no)  \n3 - 6 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 - 6 = 6 (no), 12 * 6 = 72 (no), 12 / 6 = 2 (no)  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no)  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no)  \n- 4 + 6 = 10, then 10 * 3 = 30 (no), 10 + 3 = 13 (no), 10 - 3 = 7 (no), 3 - 10 = -7 (no)  \n- 3 + 6 = 9, then 9 * 4 = 36 (no), 9 + 4 = 13 (no), 9 - 4 = 5 (no), 4 - 9 = -5 (no)  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'sure', 'impossible']",
+          "Votes: sure=1, likely=0, impossible=2",
+          "Raw score: 0.334, Final score: 0.334"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24).  \ncombine with third: 1 * 6 = 6 (no).  \nalso 3 - 4 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no), 4 / 18 ≈ 0.222 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no), 6 / 7 ≈ 0.857 (no).  \n- 4 + 6 = 10, then 10 + 3 = 13 (no), 10 - 3 = 7 (no), 10 * 3 = 30 (no), 10 / 3 ≈ 3.333 (no).  \n- 3 + 6 = 9, then 9 + 4 = 13 (no), 9 - 4 = 5 (no), 9 * 4 = 36 (no), 9 / 4 = 2.25 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3.  \n4 - 3 = 1. 1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n3 - 4 = -1 (ignore).  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 * 6 = 72 (no), 12 - 6 = 6 (no), 6 - 12 = -6 (no), 12 / 6 = 2 (no), 6 / 12 = 0.5 (no).  \n- 4 * 6 = 24, then 24 * 3 = 72 (no), 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 / 3 = 8 (no), 3 / 24 = 0.125 (no).  \nbut wait — 4 * 6 = 24 exactly. that’s the target already, no need to combine with third.  \n\n24 is exactly the target.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [4, 3, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 4 / 3 ≈ 1.333, times 6 = 8 (no)  \n- 3 / 4 = 0.75, times 6 = 4.5 (no)  \n- 6 / 3 = 2, times 4 = 8 (no)  \n- 3 / 6 = 0.5, times 4 = 2 (no)  \n- 6 / 4 = 1.5, times 3 = 4.5 (no)  \n- 4 / 6 ≈ 0.667, times 3 = 2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two: 4 and 3 → 4 - 3 = 1 (factor of 24), then 1 * 6 = 6 (no)  \n3 - 4 = -1 (no)  \nnext closest: 6 and 4 → 6 - 4 = 2 (factor), then 2 * 3 = 6 (no)  \n4 - 6 = -2 (no)  \n6 and 3 → 6 - 3 = 3 (factor), then 3 * 4 = 12 (no)  \n3 - 6 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 4 * 3 = 12, then 12 + 6 = 18 (no), 12 - 6 = 6 (no), 12 * 6 = 72 (no), 12 / 6 = 2 (no)  \n- 4 * 6 = 24, then 24 + 3 = 27 (no), 24 - 3 = 21 (no), 24 * 3 = 72 (no), 24 / 3 = 8 (no)  \n- 3 * 6 = 18, then 18 + 4 = 22 (no), 18 - 4 = 14 (no), 18 * 4 = 72 (no), 18 / 4 = 4.5 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 4 + 3 = 7, then 7 * 6 = 42 (no), 7 + 6 = 13 (no), 7 - 6 = 1 (no), 6 - 7 = -1 (no)  \n- 4 + 6 = 10, then 10 * 3 = 30 (no), 10 + 3 = 13 (no), 10 - 3 = 7 (no), 3 - 10 = -7 (no)  \n- 3 + 6 = 9, then 9 * 4 = 36 (no), 9 + 4 = 13 (no), 9 - 4 = 5 (no), 4 - 9 = -5 (no)  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            1.0,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 2,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 0.334,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        3,
+        2,
+        6
+      ],
+      "action": "6 - 3 = 3",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 - 3 = 3, then 3 * 6 = 18, 18 + 6 = 24? Actually 18 + 6 = 24, but we'd have used both 6s and the 3, leaving 2. Or 3 * 8 = 24, but no 8. Still, 3 is a factor.",
+        "code": "",
+        "observation": "[3, 2, 6]"
+      },
+      "path_history": "6 - 3 = 3, then 3 * 6 = 18, 18 + 6 = 24? Actually 18 + 6 = 24, but we'd have used both 6s and the 3, leaving 2. Or 3 * 8 = 24, but no 8. Still, 3 is a factor.\nResult: [3, 2, 6]",
+      "evaluation": {
+        "state": "[3, 2, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 3 / 2 = 1.5, then 1.5 * 6 = 9 (no)  \n- 2 / 3 ≈ 0.6667, then * 6 = 4 (no)  \n- 3 / 6 = 0.5, then * 2 = 1 (no)  \n- 6 / 3 = 2, then 2 * 2 = 4 (no)  \n- 6 / 2 = 3, then 3 * 3 = 9 (no)  \n- 2 / 6 ≈ 0.3333, then * 3 = 1 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 2 → 3 - 2 = 1.  \n1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \nalso try 2 - 3 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 3 * 2 = 6, then 6 * 6 = 36 (no)  \n- 3 * 6 = 18, then 18 + 2 = 20 (no)  \n- 2 * 6 = 12, then 12 * 3 = 36 (no)  \n- 3 * 6 = 18, then 18 * 2 = 36 (no)  \n- 2 * 6 = 12, then 12 + 3 = 15 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 3 + 2 = 5, then 5 * 6 = 30 (no)  \n- 3 + 6 = 9, then 9 * 2 = 18 (no)  \n- 2 + 6 = 8, then 8 * 3 = 24 (exact!)  \n\nwe found 8 * 3 = 24.\n\nresult is exactly 24.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1.  \n  1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n  6 - 1 = 5 (no). 6 / 1 = 6 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no). 18 - 2 = 16 (no). 18 / 2 = 9 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no). 12 + 3 = 15 (no). 12 - 3 = 9 (no). 12 / 3 = 4 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no). 5 + 6 = 11 (no). 6 - 5 = 1 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no). 9 + 2 = 11 (no). 9 - 2 = 7 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1 (factor of 24).  \n  then 1 * 6 = 6 (no).  \n  6 - 3 = 3, then 3 * 2 = 6 (no).  \n  6 - 2 = 4, then 4 * 3 = 12 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 3 / 2 = 1.5, then 1.5 * 6 = 9 (no)  \n- 2 / 3 ≈ 0.6667, then * 6 = 4 (no)  \n- 3 / 6 = 0.5, then * 2 = 1 (no)  \n- 6 / 3 = 2, then 2 * 2 = 4 (no)  \n- 6 / 2 = 3, then 3 * 3 = 9 (no)  \n- 2 / 6 ≈ 0.3333, then * 3 = 1 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 2 → 3 - 2 = 1.  \n1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \nalso try 2 - 3 = -1 (no).  \n\n**attempt 3 (multiplication):**  \n- 3 * 2 = 6, then 6 * 6 = 36 (no)  \n- 3 * 6 = 18, then 18 + 2 = 20 (no)  \n- 2 * 6 = 12, then 12 * 3 = 36 (no)  \n- 3 * 6 = 18, then 18 * 2 = 36 (no)  \n- 2 * 6 = 12, then 12 + 3 = 15 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 3 + 2 = 5, then 5 * 6 = 30 (no)  \n- 3 + 6 = 9, then 9 * 2 = 18 (no)  \n- 2 + 6 = 8, then 8 * 3 = 24 (exact!)  \n\nwe found 8 * 3 = 24.\n\nresult is exactly 24.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1.  \n  1 is a factor of 24. combine with third: 1 * 6 = 6 (no).  \n  6 - 1 = 5 (no). 6 / 1 = 6 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no). 18 - 2 = 16 (no). 18 / 2 = 9 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no). 12 + 3 = 15 (no). 12 - 3 = 9 (no). 12 / 3 = 4 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no). 5 + 6 = 11 (no). 6 - 5 = 1 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no). 9 + 2 = 11 (no). 9 - 2 = 7 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [3, 2, 6]  \ntarget: 24  \n\n- attempt 1 (division):  \n  6 / 3 = 2, then 2 * 2 = 4 (no).  \n  6 / 2 = 3, then 3 * 3 = 9 (no).  \n  3 / 2 = 1.5, then 1.5 * 6 = 9 (no).  \n  2 / 3 ≈ 0.666, then 0.666 * 6 = 4 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 3 and 2 → 3 - 2 = 1 (factor of 24).  \n  then 1 * 6 = 6 (no).  \n  6 - 3 = 3, then 3 * 2 = 6 (no).  \n  6 - 2 = 4, then 4 * 3 = 12 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  3 * 2 = 6, then 6 * 6 = 36 (no).  \n  3 * 6 = 18, then 18 + 2 = 20 (no).  \n  2 * 6 = 12, then 12 * 3 = 36 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  3 + 2 = 5, then 5 * 6 = 30 (no).  \n  3 + 6 = 9, then 9 * 2 = 18 (no).  \n  2 + 6 = 8, then 8 * 3 = 24 (exact!).  \n\nfound: 2 + 6 = 8, then 8 * 3 = 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 1,
+      "state": [
+        12.0,
+        2
+      ],
+      "action": "36 / 3 = 12.0",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "36 / 3 = 12, factor of 24 (12 * 2 = 24)",
+        "code": "",
+        "observation": "[12.0, 2]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]",
+      "evaluation": {
+        "state": "[12.0, 2]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12.0
+        },
+        "llm_judgments": [
+          "we have two numbers: 12.0 and 2.  \nsince there are only two numbers, we can freely try operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure",
+          "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '12.0 * 2=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 12.0 and 2.  \nsince there are only two numbers, we can freely try operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure",
+            "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 12.0 and 2.  \nwe can freely try all operations.\n\n- 12.0 * 2 = 24 (exact).  \n\nthat works immediately.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "12.0 * 2",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "29": {
+          "id": 29,
+          "parent_id": 8,
+          "state": [
+            24.0
+          ],
+          "action": "12.0 * 2",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [12.0, 2], 12.0 * 2 = 24",
+            "code": "numbers = [12.0, 2]\na, b = 12.0, 2\nresult = 12.0 * 2\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]\nOperation: 12.0 * 2 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 9,
+      "parent_id": 1,
+      "state": [
+        18.0,
+        3
+      ],
+      "action": "36 / 2 = 18.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "36 / 2 = 18, 18 + 3 = 21 (close to 24, 3 difference), could use 24 - 3 = 21 but not direct",
+        "code": "",
+        "observation": "[18.0, 3]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 2 = 18, 18 + 3 = 21 (close to 24, 3 difference), could use 24 - 3 = 21 but not direct\nResult: [18.0, 3]",
+      "evaluation": {
+        "state": "[18.0, 3]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 18.0,3.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 1,
+      "state": [
+        33,
+        2
+      ],
+      "action": "36 - 3 = 33",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "36 - 3 = 33, 33 - 2 = 31 (too far from 24)",
+        "code": "",
+        "observation": "[33, 2]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 - 3 = 33, 33 - 2 = 31 (too far from 24)\nResult: [33, 2]",
+      "evaluation": {
+        "state": "[33, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 33.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 1,
+      "state": [
+        34,
+        3
+      ],
+      "action": "36 - 2 = 34",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "36 - 2 = 34, 34 - 3 = 31 (too far)",
+        "code": "",
+        "observation": "[34, 3]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 - 2 = 34, 34 - 3 = 31 (too far)\nResult: [34, 3]",
+      "evaluation": {
+        "state": "[34, 3]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 34.0,3.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 1,
+      "state": [
+        6,
+        36
+      ],
+      "action": "2 * 3 = 6",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "2 * 3 = 6, factor of 24 (36 - 6 = 30, not 24; 36 / 6 = 6, not 24; 36 - 12 = 24 requires 12, not 6)",
+        "code": "",
+        "observation": "[6, 36]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n2 * 3 = 6, factor of 24 (36 - 6 = 30, not 24; 36 / 6 = 6, not 24; 36 - 12 = 24 requires 12, not 6)\nResult: [6, 36]",
+      "evaluation": {
+        "state": "[6, 36]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 6.0,36.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 1,
+      "state": [
+        38,
+        3
+      ],
+      "action": "36 + 2 = 38",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "36 + 2 = 38, 38 - 3 = 35 (far from 24)",
+        "code": "",
+        "observation": "[38, 3]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 + 2 = 38, 38 - 3 = 35 (far from 24)\nResult: [38, 3]",
+      "evaluation": {
+        "state": "[38, 3]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 38.0,3.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 1,
+      "state": [
+        39,
+        2
+      ],
+      "action": "36 + 3 = 39",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "36 + 3 = 39, 39 - 2 = 37 (far from 24)",
+        "code": "",
+        "observation": "[39, 2]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 + 3 = 39, 39 - 2 = 37 (far from 24)\nResult: [39, 2]",
+      "evaluation": {
+        "state": "[39, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 39.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 1,
+      "state": [
+        1,
+        36
+      ],
+      "action": "3 - 2 = 1",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "3 - 2 = 1, factor of 24 (36 / 1 = 36, not 24; 36 - 1 = 35; 36 + 1 = 37)",
+        "code": "",
+        "observation": "[1, 36]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n3 - 2 = 1, factor of 24 (36 / 1 = 36, not 24; 36 - 1 = 35; 36 + 1 = 37)\nResult: [1, 36]",
+      "evaluation": {
+        "state": "[1, 36]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,36.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 3,
+      "state": [
+        36,
+        6
+      ],
+      "action": "12 * 3 = 36",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "12 * 3 = 36, then 36 - 6 = 30 (not 24), but 36 / 6 = 6, then 6 * ? no. However 12 * 3 = 36 is a large number that could be reduced by subtracting or dividing by 6 to get 24? 36 - 12 = 24 but 12 is already used. 36 - 6 = 30, no. 36 / 1.5 = 24 but no 1.5. Not promising.",
+        "code": "",
+        "observation": "[36, 6]"
+      },
+      "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 * 3 = 36, then 36 - 6 = 30 (not 24), but 36 / 6 = 6, then 6 * ? no. However 12 * 3 = 36 is a large number that could be reduced by subtracting or dividing by 6 to get 24? 36 - 12 = 24 but 12 is already used. 36 - 6 = 30, no. 36 / 1.5 = 24 but no 1.5. Not promising.\nResult: [36, 6]",
+      "evaluation": {
+        "state": "[36, 6]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 36.0,6.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 3,
+      "state": [
+        4.0,
+        6
+      ],
+      "action": "12 / 3 = 4.0",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).",
+        "code": "",
+        "observation": "[4.0, 6]"
+      },
+      "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]",
+      "evaluation": {
+        "state": "[4.0, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we can freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '4.0 * 6=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we can freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat matches within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 4.0 and 6.  \nsince there are only two numbers, we freely try all operations.\n\n- 4.0 * 6 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "4.0 * 6",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "28": {
+          "id": 28,
+          "parent_id": 17,
+          "state": [
+            24.0
+          ],
+          "action": "4.0 * 6",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [4.0, 6], 4.0 * 6 = 24",
+            "code": "numbers = [4.0, 6]\na, b = 4.0, 6\nresult = 4.0 * 6\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]\nOperation: 4.0 * 6 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 18,
+      "parent_id": 4,
+      "state": [
+        3.0,
+        2
+      ],
+      "action": "6 / 2.0 = 3.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "6 / 2 = 3, factor of 24 (3 * 8 = 24, but 8 not present; 3 * 2 * 4 = 24, but 2 and 6 remain: 3 * 2 = 6, 6 * 4? no; still factor)",
+        "code": "",
+        "observation": "[3.0, 2]"
+      },
+      "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]\n6 / 2 = 3, factor of 24 (3 * 8 = 24, but 8 not present; 3 * 2 * 4 = 24, but 2 and 6 remain: 3 * 2 = 6, 6 * 4? no; still factor)\nResult: [3.0, 2]",
+      "evaluation": {
+        "state": "[3.0, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 4,
+      "state": [
+        0.3333333333333333,
+        2
+      ],
+      "action": "2.0 / 6 = 0.3333333333333333",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "2 / 6 = 0.333..., useful fraction: 0.333 * 72 = 24, but 72 not available; could combine with remaining 2: 2 / 0.333 = 6, then 6*4? no; less promising but included per division strategy",
+        "code": "",
+        "observation": "[0.3333333333333333, 2]"
+      },
+      "path_history": "6 / 3 = 2, then 6 * 2 = 12, 12 * 2 = 24? Actually 12 * 2 = 24, but we already have a 2 from division. Could do 6 * (6/3) * 2 = 24. Promising fraction.\nResult: [2.0, 2, 6]\n2 / 6 = 0.333..., useful fraction: 0.333 * 72 = 24, but 72 not available; could combine with remaining 2: 2 / 0.333 = 6, then 6*4? no; less promising but included per division strategy\nResult: [0.3333333333333333, 2]",
+      "evaluation": {
+        "state": "[0.3333333333333333, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.3333333333333333,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 20,
+      "parent_id": 5,
+      "state": [
+        3.0,
+        2
+      ],
+      "action": "0.5 * 6 = 3.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "0.5 * 6 = 3, factor of 24 (24/3=8, and 8-2=6 or 2*? not directly, but 3*8=24 requires 8 which we don't have; however 3*2=6, 6*4=24 — not helpful. But 3 is a factor of 24 so worth noting.",
+        "code": "",
+        "observation": "[3.0, 2]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n0.5 * 6 = 3, factor of 24 (24/3=8, and 8-2=6 or 2*? not directly, but 3*8=24 requires 8 which we don't have; however 3*2=6, 6*4=24 — not helpful. But 3 is a factor of 24 so worth noting.\nResult: [3.0, 2]",
+      "evaluation": {
+        "state": "[3.0, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 21,
+      "parent_id": 5,
+      "state": [
+        0.08333333333333333,
+        2
+      ],
+      "action": "0.5 / 6 = 0.08333333333333333",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "0.5 / 6 ≈ 0.0833, not directly useful but could be used in division: 2 / 0.0833 = 24 — wait, 2 / (0.5/6) = 2 * 12 = 24 indeed! So this fraction is useful.",
+        "code": "",
+        "observation": "[0.08333333333333333, 2]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n0.5 / 6 ≈ 0.0833, not directly useful but could be used in division: 2 / 0.0833 = 24 — wait, 2 / (0.5/6) = 2 * 12 = 24 indeed! So this fraction is useful.\nResult: [0.08333333333333333, 2]",
+      "evaluation": {
+        "state": "[0.08333333333333333, 2]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 2
+        },
+        "llm_judgments": [
+          "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try all operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works.\n\nanswer: sure",
+          "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works immediately.\n\nanswer: sure",
+          "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations.\n\n- multiply: 2 * 0.08333333333333333 = 0.16666666666666666 (no).  \n- divide: 2 / 0.08333333333333333 = 24.0 exactly (since 2 ÷ (1/12) = 24).  \n\nthat is exactly 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "❌ VERIFIER: claimed '2 * 12=24' but actual=24.0000 — closing"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try all operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works.\n\nanswer: sure",
+            "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations since there are only two numbers.\n\n- try multiplication: 0.08333333333333333 * 2 = 0.16666666666666666 (no).  \n- try division: 2 / 0.08333333333333333 = 2 ÷ (1/12) = 2 * 12 = 24 (exact!).  \n\nthat works immediately.\n\nanswer: sure",
+            "we have two numbers: 0.08333333333333333 (which is 1/12) and 2.  \nwe can freely try operations.\n\n- multiply: 2 * 0.08333333333333333 = 0.16666666666666666 (no).  \n- divide: 2 / 0.08333333333333333 = 24.0 exactly (since 2 ÷ (1/12) = 24).  \n\nthat is exactly 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_result": null,
+        "extracted_operation": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 22,
+      "parent_id": 5,
+      "state": [
+        12,
+        0.5
+      ],
+      "action": "2 * 6 = 12",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).",
+        "code": "",
+        "observation": "[12, 0.5]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]",
+      "evaluation": {
+        "state": "[12, 0.5]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '12 / 0.5=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 12 and 0.5.  \nwe can freely try all operations.\n\n- 12 / 0.5 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "12 / 0.5",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "27": {
+          "id": 27,
+          "parent_id": 22,
+          "state": [
+            24.0
+          ],
+          "action": "12 / 0.5",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [12, 0.5], 12 / 0.5 = 24",
+            "code": "numbers = [12, 0.5]\na, b = 12, 0.5\nresult = 12 / 0.5\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]\nOperation: 12 / 0.5 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 23,
+      "parent_id": 5,
+      "state": [
+        1.0,
+        6
+      ],
+      "action": "0.5 * 2 = 1.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "2 * 0.5 = 1, factor of 24 (1*24=24, but we'd need 24 from remaining 6 — 6*4=24, no 4; or 6/0.25=24 — not here). Could multiply 1*6=6, then 6*4 — no.",
+        "code": "",
+        "observation": "[1.0, 6]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n2 * 0.5 = 1, factor of 24 (1*24=24, but we'd need 24 from remaining 6 — 6*4=24, no 4; or 6/0.25=24 — not here). Could multiply 1*6=6, then 6*4 — no.\nResult: [1.0, 6]",
+      "evaluation": {
+        "state": "[1.0, 6]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,6.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 24,
+      "parent_id": 5,
+      "state": [
+        4,
+        0.5
+      ],
+      "action": "6 - 2 = 4",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "6 - 2 = 4, factor of 24 (4*6=24, but 6 used; or 4*0.5=2, 2*12 — no. However 24/4=6, and we have 0.5 and 2: 6/0.5=12, 12*2=24).",
+        "code": "",
+        "observation": "[4, 0.5]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 - 2 = 4, factor of 24 (4*6=24, but 6 used; or 4*0.5=2, 2*12 — no. However 24/4=6, and we have 0.5 and 2: 6/0.5=12, 12*2=24).\nResult: [4, 0.5]",
+      "evaluation": {
+        "state": "[4, 0.5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,0.5",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 25,
+      "parent_id": 5,
+      "state": [
+        -4,
+        0.5
+      ],
+      "action": "2 - 6 = -4",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "2 - 6 = -4, negative factor — could be used: -4 * -6 = 24, but -6 not present; or -4 * 0.5 = -2, then -2 * -12 — not helpful.",
+        "code": "",
+        "observation": "[-4, 0.5]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n2 - 6 = -4, negative factor — could be used: -4 * -6 = 24, but -6 not present; or -4 * 0.5 = -2, then -2 * -12 — not helpful.\nResult: [-4, 0.5]",
+      "evaluation": {
+        "state": "[-4, 0.5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -4.0,0.5",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 26,
+      "parent_id": 5,
+      "state": [
+        5.5,
+        2
+      ],
+      "action": "6 - 0.5 = 5.5",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "6 - 0.5 = 5.5, not a factor of 24, but 24 - 5.5 = 18.5 not present; or 24/5.5 not integer. Less promising.",
+        "code": "",
+        "observation": "[5.5, 2]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 - 0.5 = 5.5, not a factor of 24, but 24 - 5.5 = 18.5 not present; or 24/5.5 not integer. Less promising.\nResult: [5.5, 2]",
+      "evaluation": {
+        "state": "[5.5, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 5.5,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 27,
+      "parent_id": 22,
+      "state": [
+        24.0
+      ],
+      "action": "12 / 0.5",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [12, 0.5], 12 / 0.5 = 24",
+        "code": "numbers = [12, 0.5]\na, b = 12, 0.5\nresult = 12 / 0.5\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "3 / 6 = 0.5, then 6 / 0.5 = 12, 12 * 2 = 24. Good fractional path.\nResult: [0.5, 2, 6]\n6 * 2 = 12, factor of 24 (12*2=24, but 2 is already used; however 12*2=24 and we have 0.5 left: 12/0.5=24).\nResult: [12, 0.5]\nOperation: 12 / 0.5 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 28,
+      "parent_id": 17,
+      "state": [
+        24.0
+      ],
+      "action": "4.0 * 6",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [4.0, 6], 4.0 * 6 = 24",
+        "code": "numbers = [4.0, 6]\na, b = 4.0, 6\nresult = 4.0 * 6\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "6 * 2 = 12, factor of 24 (24 = 12 * 2). Then remaining [3, 6] could combine to 2 (6/3=2) to multiply: 12 * 2 = 24. Promising.\nResult: [12, 3, 6]\n12 + 3 = 15, then 15 + 6 = 21 (not 24), but 15 + 9 = 24? Not helpful directly. However, 12 - 6 = 6, 6 * 3 = 18? No. Actually 12 * 3 = 36, 36 - 6 = 30? Not 24. Let's check factor: 12 * 2 = 24, and 3 + ? = 2? No. 12 * 2 = 24, 3 - 1? Not. But 12 / 3 = 4, factor of 24 (since 4 * 6 = 24).\nResult: [4.0, 6]\nOperation: 4.0 * 6 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 29,
+      "parent_id": 8,
+      "state": [
+        24.0
+      ],
+      "action": "12.0 * 2",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [12.0, 2], 12.0 * 2 = 24",
+        "code": "numbers = [12.0, 2]\na, b = 12.0, 2\nresult = 12.0 * 2\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "6 * 6 = 36, then 36 - 2 = 34, not 24, but 36 - 12 = 24, and 3 * 4 = 12, so maybe not directly. But 36 - 12 = 24, and 12 = 2 * 6 or 3 * 4. This pair gives a large number that could subtract to 24 if combined with 12 later.\nResult: [36, 2, 3]\n36 / 3 = 12, factor of 24 (12 * 2 = 24)\nResult: [12.0, 2]\nOperation: 12.0 * 2 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    27,
+    28,
+    29
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 11,
+      "re_evaluations": 0,
+      "unique_states": 11,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

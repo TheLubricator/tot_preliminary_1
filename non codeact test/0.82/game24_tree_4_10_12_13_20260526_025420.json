@@ -1,0 +1,2086 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-26T02:54:20.978009",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 20,
+      "api_calls": 11,
+      "cache_hits": 0,
+      "solutions_found": 0,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 11,
+      "session_start": "2026-05-26T02:53:28.028775",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 17,
+      "total_input_tokens": 8892,
+      "total_output_tokens": 9668,
+      "api_saved_two_num_cache": 51,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": false,
+      "winning_depth1_count": 4,
+      "winning_depth1_proposed": 0,
+      "deadend_memory": {
+        "patterns_stored": 87,
+        "two_num_cache_size": 1072,
+        "total_checked": 19,
+        "total_skipped": 17,
+        "skip_rate": "89.5%"
+      },
+      "time_seconds": 52.95
+    },
+    "correct_path_in_proposals": false,
+    "winning_depth1_count": 4,
+    "winning_depth1_proposed": 0,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 87,
+      "total_checked": 19,
+      "total_skipped": 17,
+      "api_calls_saved": 51,
+      "api_saved_two_num_cache": 51,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        4,
+        10,
+        12,
+        13
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 2,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            25,
+            4,
+            10
+          ],
+          "action": "12 + 13 = 25",
+          "value": 0.0012,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.",
+            "code": "",
+            "observation": "[25, 4, 10]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]",
+          "evaluation": {
+            "state": "[25, 4, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 25
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with 25: 25 - 6 = 19 (no), 25 + 6 = 31 (no), 25 * 6 = 150 (no), 25 / 6 ≈ 4.167 (no).  \nalso try 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6 (factor of 24).  \nthen 6 * 25 = 150 (no).  \nalso 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 - 25 = 15 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with third (25):  \n- 25 - 6 = 19 (no)  \n- 6 - 25 = -19 (no)  \n- 25 + 6 = 31 (no)  \n- 25 * 6 = 150 (no)  \n- 25 / 6 ≈ 4.1667 (no)  \n- 6 / 25 = 0.24 (no)  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no), 250 + 4 = 254 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no), 29 + 10 = 39 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with 25: 25 - 6 = 19 (no), 25 + 6 = 31 (no), 25 * 6 = 150 (no), 25 / 6 ≈ 4.167 (no).  \nalso try 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6 (factor of 24).  \nthen 6 * 25 = 150 (no).  \nalso 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 - 25 = 15 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with third (25):  \n- 25 - 6 = 19 (no)  \n- 6 - 25 = -19 (no)  \n- 25 + 6 = 31 (no)  \n- 25 * 6 = 150 (no)  \n- 25 / 6 ≈ 4.1667 (no)  \n- 6 / 25 = 0.24 (no)  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no), 250 + 4 = 254 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no), 29 + 10 = 39 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 9,
+          "children": {
+            "3": {
+              "id": 3,
+              "parent_id": 1,
+              "state": [
+                6,
+                25
+              ],
+              "action": "10 - 4 = 6",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "25 - 10 = 15, then 15 + 4 = 19 (not 24), but 15 - 4 = 11 (not 24). However, 25 - 4 = 21, then 21 + 10 = 31 (too high). Let's try factor check: 25 - 4 = 21, 21 is 3*7, not a factor of 24. But 25 - 10 = 15, 15 is 3*5, not a factor. 4 * 10 = 40, too high. 25 + 4 = 29, then 29 - 10 = 19. This is not promising directly. Let's check difference-from-24: 24 - 25 = -1, not present. 24 - 4 = 20, not present. 24 - 10 = 14, not present. Division: 4/10 = 0.4, 25/0.4 = 62.5 (no). 10/4 = 2.5, 25/2.5 = 10 (not 24). 25/4 = 6.25, 6.25*10 = 62.5. 25/10 = 2.5, 2.5*4 = 10. None give 24 directly. But 25 - 4 = 21, then 21 + 10 = 31, not 24. 25 - 10 = 15, then 15 + 4 = 19. 10 - 4 = 6, then 25 - 6 = 19. 10 - 4 = 6, 6*4 = 24 but we already used 4. Wait: 10 - 4 = 6, then 25 - 6 = 19. Not 24. However, 10 - 4 = 6, and 6*4 = 24 but we need a second 4. Not available. Let's try 25 - 1 = 24, but we have no 1. All options seem unpromising, but we must propose. The best: 10 - 4 = 6, which is a factor of 24, and 25 - 6 = 19, but 19 is not 24. However, 6 can multiply with 4 to get 24, but we already used 4. Actually 6 * 4 = 24, but the 4 is used in subtraction. So this is a dead end. Let's check 25 - 10 = 15, 15 + 9 = 24, no 9. 25 - 4 = 21, 21 + 3 = 24, no 3. 10 + 4 = 14, 14 + 10 = 24? No. 25 + 10 = 35, 35 - 11 = 24, no. 25 + 4 = 29, 29 - 5 = 24, no. The most promising is 10 - 4 = 6 (factor), then we need to make 24 from [25, 6] via 25 - 6 = 19, 25 + 6 = 31, 25*6=150, 25/6≈4.17, 6/25=0.24. None give 24. So this is weak. Next best: 25 - 10 = 15, then 15 + 9 = 24, no. 25 - 4 = 21, need 3. 4*10=40, 40-16=24, no. 25/10=2.5, 2.5*9.6=24, no. I'll propose the only factor-producing operation: 10 - 4 = 6.",
+                "code": "",
+                "observation": "[6, 25]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 10 = 15, then 15 + 4 = 19 (not 24), but 15 - 4 = 11 (not 24). However, 25 - 4 = 21, then 21 + 10 = 31 (too high). Let's try factor check: 25 - 4 = 21, 21 is 3*7, not a factor of 24. But 25 - 10 = 15, 15 is 3*5, not a factor. 4 * 10 = 40, too high. 25 + 4 = 29, then 29 - 10 = 19. This is not promising directly. Let's check difference-from-24: 24 - 25 = -1, not present. 24 - 4 = 20, not present. 24 - 10 = 14, not present. Division: 4/10 = 0.4, 25/0.4 = 62.5 (no). 10/4 = 2.5, 25/2.5 = 10 (not 24). 25/4 = 6.25, 6.25*10 = 62.5. 25/10 = 2.5, 2.5*4 = 10. None give 24 directly. But 25 - 4 = 21, then 21 + 10 = 31, not 24. 25 - 10 = 15, then 15 + 4 = 19. 10 - 4 = 6, then 25 - 6 = 19. 10 - 4 = 6, 6*4 = 24 but we already used 4. Wait: 10 - 4 = 6, then 25 - 6 = 19. Not 24. However, 10 - 4 = 6, and 6*4 = 24 but we need a second 4. Not available. Let's try 25 - 1 = 24, but we have no 1. All options seem unpromising, but we must propose. The best: 10 - 4 = 6, which is a factor of 24, and 25 - 6 = 19, but 19 is not 24. However, 6 can multiply with 4 to get 24, but we already used 4. Actually 6 * 4 = 24, but the 4 is used in subtraction. So this is a dead end. Let's check 25 - 10 = 15, 15 + 9 = 24, no 9. 25 - 4 = 21, 21 + 3 = 24, no 3. 10 + 4 = 14, 14 + 10 = 24? No. 25 + 10 = 35, 35 - 11 = 24, no. 25 + 4 = 29, 29 - 5 = 24, no. The most promising is 10 - 4 = 6 (factor), then we need to make 24 from [25, 6] via 25 - 6 = 19, 25 + 6 = 31, 25*6=150, 25/6≈4.17, 6/25=0.24. None give 24. So this is weak. Next best: 25 - 10 = 15, then 15 + 9 = 24, no. 25 - 4 = 21, need 3. 4*10=40, 40-16=24, no. 25/10=2.5, 2.5*9.6=24, no. I'll propose the only factor-producing operation: 10 - 4 = 6.\nResult: [6, 25]",
+              "evaluation": {
+                "state": "[6, 25]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 6.0,25.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "4": {
+              "id": 4,
+              "parent_id": 1,
+              "state": [
+                15,
+                4
+              ],
+              "action": "25 - 10 = 15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "25 - 10 = 15, difference from 24 is 9, not directly useful but 15 and 4 can combine to 60, 11, 19, 3.75 — promising for multiplication path",
+                "code": "",
+                "observation": "[15, 4]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 10 = 15, difference from 24 is 9, not directly useful but 15 and 4 can combine to 60, 11, 19, 3.75 — promising for multiplication path\nResult: [15, 4]",
+              "evaluation": {
+                "state": "[15, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "5": {
+              "id": 5,
+              "parent_id": 1,
+              "state": [
+                -15,
+                4
+              ],
+              "action": "10 - 25 = -15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "10 - 25 = -15, negative result can be useful with multiplication: -15 * -? = positive, but limited options with 4",
+                "code": "",
+                "observation": "[-15, 4]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n10 - 25 = -15, negative result can be useful with multiplication: -15 * -? = positive, but limited options with 4\nResult: [-15, 4]",
+              "evaluation": {
+                "state": "[-15, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -15.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "6": {
+              "id": 6,
+              "parent_id": 1,
+              "state": [
+                21,
+                10
+              ],
+              "action": "25 - 4 = 21",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "25 - 4 = 21, difference from 24 is 3, and 10/10? No — but 21 + 3 = 24, and 3 is not present. Not ideal but keeps option open",
+                "code": "",
+                "observation": "[21, 10]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 4 = 21, difference from 24 is 3, and 10/10? No — but 21 + 3 = 24, and 3 is not present. Not ideal but keeps option open\nResult: [21, 10]",
+              "evaluation": {
+                "state": "[21, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 21.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 1,
+              "state": [
+                -21,
+                10
+              ],
+              "action": "4 - 25 = -21",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "4 - 25 = -21, negative result, can pair with 10: -21 + 45? No. Low potential but required for coverage",
+                "code": "",
+                "observation": "[-21, 10]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n4 - 25 = -21, negative result, can pair with 10: -21 + 45? No. Low potential but required for coverage\nResult: [-21, 10]",
+              "evaluation": {
+                "state": "[-21, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -21.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 1,
+              "state": [
+                35,
+                4
+              ],
+              "action": "25 + 10 = 35",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "25 + 10 = 35, too large, but 35 - 11 = 24, no 11 present. Not promising but covers addition pair",
+                "code": "",
+                "observation": "[35, 4]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 + 10 = 35, too large, but 35 - 11 = 24, no 11 present. Not promising but covers addition pair\nResult: [35, 4]",
+              "evaluation": {
+                "state": "[35, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 35.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 1,
+              "state": [
+                29,
+                10
+              ],
+              "action": "25 + 4 = 29",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "25 + 4 = 29, difference from 24 is 5, and 10/2? No 2. Not strong but covers pair",
+                "code": "",
+                "observation": "[29, 10]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 + 4 = 29, difference from 24 is 5, and 10/2? No 2. Not strong but covers pair\nResult: [29, 10]",
+              "evaluation": {
+                "state": "[29, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 29.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 1,
+              "state": [
+                14,
+                25
+              ],
+              "action": "4 + 10 = 14",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "4 + 10 = 14, difference from 24 is 10, and 25 - 1? No. 14 + 10 = 24 if we had another 10. Moderate potential",
+                "code": "",
+                "observation": "[14, 25]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n4 + 10 = 14, difference from 24 is 10, and 25 - 1? No. 14 + 10 = 24 if we had another 10. Moderate potential\nResult: [14, 25]",
+              "evaluation": {
+                "state": "[14, 25]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 14.0,25.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 1,
+              "state": [
+                100,
+                10
+              ],
+              "action": "25 * 4 = 100",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "25 * 4 = 100, too large, but 100 / (10/2.4)? No. Not useful but covers multiplication pair",
+                "code": "",
+                "observation": "[100, 10]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 * 4 = 100, too large, but 100 / (10/2.4)? No. Not useful but covers multiplication pair\nResult: [100, 10]",
+              "evaluation": {
+                "state": "[100, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 100.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            22,
+            4,
+            13
+          ],
+          "action": "10 + 12 = 22",
+          "value": 0.0012,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.",
+            "code": "",
+            "observation": "[22, 4, 13]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]",
+          "evaluation": {
+            "state": "[22, 4, 13]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 22
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, times 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, times 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, times 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, times 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, times 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \ntry 13 - 4 = 9 (same).  \ntry 22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 - 13 = 75 (no), 88 / 13 ≈ 6.769 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no), 286 - 4 = 282 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.3636 (no), 52 + 22 = 74 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 - 2? no third number left.  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 17 + 22 = 39 (no), 22 - 17 = 5 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 9 + 22 = 31 (no)  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no), 88 - 13 = 75 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then / 4 = 71.5 (no), - 4 = 282 (no), + 4 = 290 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 + 22 = 74 (no), 52 / 22 ≈ 2.36 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 + 13 = 39 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no), 35 + 4 = 39 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no), 22 + 17 = 39 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 22 - 9 = 13 (no)  \n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18, not a factor.  \nno success.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.36 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no)  \n- 22 + 4 + 13 = 39 (no)  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, times 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, times 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, times 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, times 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, times 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \ntry 13 - 4 = 9 (same).  \ntry 22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 - 13 = 75 (no), 88 / 13 ≈ 6.769 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no), 286 - 4 = 282 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.3636 (no), 52 + 22 = 74 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 - 2? no third number left.  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 17 + 22 = 39 (no), 22 - 17 = 5 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 9 + 22 = 31 (no)  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no), 88 - 13 = 75 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then / 4 = 71.5 (no), - 4 = 282 (no), + 4 = 290 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 + 22 = 74 (no), 52 / 22 ≈ 2.36 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 + 13 = 39 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no), 35 + 4 = 39 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no), 22 + 17 = 39 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 22 - 9 = 13 (no)  \n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18, not a factor.  \nno success.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.36 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no)  \n- 22 + 4 + 13 = 39 (no)  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "12": {
+              "id": 12,
+              "parent_id": 2,
+              "state": [
+                9,
+                4
+              ],
+              "action": "22 - 13 = 9",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "22 - 13 = 9, difference from 24 is 15, not promising alone",
+                "code": "",
+                "observation": "[9, 4]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 - 13 = 9, difference from 24 is 15, not promising alone\nResult: [9, 4]",
+              "evaluation": {
+                "state": "[9, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 9.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 2,
+              "state": [
+                -9,
+                4
+              ],
+              "action": "13 - 22 = -9",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "13 - 22 = -9, difference from 24 is 33, not promising",
+                "code": "",
+                "observation": "[-9, 4]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 - 22 = -9, difference from 24 is 33, not promising\nResult: [-9, 4]",
+              "evaluation": {
+                "state": "[-9, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -9.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 2,
+              "state": [
+                26,
+                13
+              ],
+              "action": "22 + 4 = 26",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "22 + 4 = 26, difference from 24 is 2, and 2 is a factor of 24 — could multiply 2 by 13 to get 26, not 24",
+                "code": "",
+                "observation": "[26, 13]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 + 4 = 26, difference from 24 is 2, and 2 is a factor of 24 — could multiply 2 by 13 to get 26, not 24\nResult: [26, 13]",
+              "evaluation": {
+                "state": "[26, 13]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 26.0,13.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 2,
+              "state": [
+                18,
+                13
+              ],
+              "action": "22 - 4 = 18",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "22 - 4 = 18, difference from 24 is 6, and 6 is a factor of 24 — 18+6=24 but 6 not available",
+                "code": "",
+                "observation": "[18, 13]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 - 4 = 18, difference from 24 is 6, and 6 is a factor of 24 — 18+6=24 but 6 not available\nResult: [18, 13]",
+              "evaluation": {
+                "state": "[18, 13]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 18.0,13.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 2,
+              "state": [
+                -18,
+                13
+              ],
+              "action": "4 - 22 = -18",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "4 - 22 = -18, not useful",
+                "code": "",
+                "observation": "[-18, 13]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n4 - 22 = -18, not useful\nResult: [-18, 13]",
+              "evaluation": {
+                "state": "[-18, 13]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -18.0,13.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 2,
+              "state": [
+                17,
+                22
+              ],
+              "action": "13 + 4 = 17",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "13 + 4 = 17, difference from 24 is 7, not a factor or present number",
+                "code": "",
+                "observation": "[17, 22]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 + 4 = 17, difference from 24 is 7, not a factor or present number\nResult: [17, 22]",
+              "evaluation": {
+                "state": "[17, 22]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 17.0,22.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "18": {
+              "id": 18,
+              "parent_id": 2,
+              "state": [
+                9,
+                22
+              ],
+              "action": "13 - 4 = 9",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "13 - 4 = 9, difference from 24 is 15, not useful",
+                "code": "",
+                "observation": "[9, 22]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 - 4 = 9, difference from 24 is 15, not useful\nResult: [9, 22]",
+              "evaluation": {
+                "state": "[9, 22]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 9.0,22.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "19": {
+              "id": 19,
+              "parent_id": 2,
+              "state": [
+                -9,
+                22
+              ],
+              "action": "4 - 13 = -9",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "4 - 13 = -9, not useful",
+                "code": "",
+                "observation": "[-9, 22]"
+              },
+              "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n4 - 13 = -9, not useful\nResult: [-9, 22]",
+              "evaluation": {
+                "state": "[-9, 22]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -9.0,22.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        25,
+        4,
+        10
+      ],
+      "action": "12 + 13 = 25",
+      "value": 0.0012,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.",
+        "code": "",
+        "observation": "[25, 4, 10]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]",
+      "evaluation": {
+        "state": "[25, 4, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 25
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with 25: 25 - 6 = 19 (no), 25 + 6 = 31 (no), 25 * 6 = 150 (no), 25 / 6 ≈ 4.167 (no).  \nalso try 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6 (factor of 24).  \nthen 6 * 25 = 150 (no).  \nalso 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 - 25 = 15 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with third (25):  \n- 25 - 6 = 19 (no)  \n- 6 - 25 = -19 (no)  \n- 25 + 6 = 31 (no)  \n- 25 * 6 = 150 (no)  \n- 25 / 6 ≈ 4.1667 (no)  \n- 6 / 25 = 0.24 (no)  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no), 250 + 4 = 254 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no), 29 + 10 = 39 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with 25: 25 - 6 = 19 (no), 25 + 6 = 31 (no), 25 * 6 = 150 (no), 25 / 6 ≈ 4.167 (no).  \nalso try 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6 (factor of 24).  \nthen 6 * 25 = 150 (no).  \nalso 4 - 10 = -6 (no).  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 - 25 = 15 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [25, 4, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 25 / 4 = 6.25, then 6.25 * 10 = 62.5 (no)  \n- 4 / 25 = 0.16, then 0.16 * 10 = 1.6 (no)  \n- 25 / 10 = 2.5, then 2.5 * 4 = 10 (no)  \n- 10 / 25 = 0.4, then 0.4 * 4 = 1.6 (no)  \n- 4 / 10 = 0.4, then 0.4 * 25 = 10 (no)  \n- 10 / 4 = 2.5, then 2.5 * 25 = 62.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 4 → 10 - 4 = 6.  \n6 is a factor of 24. combine with third (25):  \n- 25 - 6 = 19 (no)  \n- 6 - 25 = -19 (no)  \n- 25 + 6 = 31 (no)  \n- 25 * 6 = 150 (no)  \n- 25 / 6 ≈ 4.1667 (no)  \n- 6 / 25 = 0.24 (no)  \n\n**attempt 3 (multiplication):**  \n- 25 * 4 = 100, then 100 - 10 = 90 (no), 100 / 10 = 10 (no), 100 + 10 = 110 (no)  \n- 25 * 10 = 250, then 250 / 4 = 62.5 (no), 250 - 4 = 246 (no), 250 + 4 = 254 (no)  \n- 4 * 10 = 40, then 40 - 25 = 15 (no), 40 / 25 = 1.6 (no), 40 + 25 = 65 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 25 + 4 = 29, then 29 - 10 = 19 (no), 29 + 10 = 39 (no)  \n- 25 + 10 = 35, then 35 - 4 = 31 (no)  \n- 4 + 10 = 14, then 14 + 25 = 39 (no), 25 - 14 = 11 (no)  \n\nno result near 24 found.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 9,
+      "children": {
+        "3": {
+          "id": 3,
+          "parent_id": 1,
+          "state": [
+            6,
+            25
+          ],
+          "action": "10 - 4 = 6",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "25 - 10 = 15, then 15 + 4 = 19 (not 24), but 15 - 4 = 11 (not 24). However, 25 - 4 = 21, then 21 + 10 = 31 (too high). Let's try factor check: 25 - 4 = 21, 21 is 3*7, not a factor of 24. But 25 - 10 = 15, 15 is 3*5, not a factor. 4 * 10 = 40, too high. 25 + 4 = 29, then 29 - 10 = 19. This is not promising directly. Let's check difference-from-24: 24 - 25 = -1, not present. 24 - 4 = 20, not present. 24 - 10 = 14, not present. Division: 4/10 = 0.4, 25/0.4 = 62.5 (no). 10/4 = 2.5, 25/2.5 = 10 (not 24). 25/4 = 6.25, 6.25*10 = 62.5. 25/10 = 2.5, 2.5*4 = 10. None give 24 directly. But 25 - 4 = 21, then 21 + 10 = 31, not 24. 25 - 10 = 15, then 15 + 4 = 19. 10 - 4 = 6, then 25 - 6 = 19. 10 - 4 = 6, 6*4 = 24 but we already used 4. Wait: 10 - 4 = 6, then 25 - 6 = 19. Not 24. However, 10 - 4 = 6, and 6*4 = 24 but we need a second 4. Not available. Let's try 25 - 1 = 24, but we have no 1. All options seem unpromising, but we must propose. The best: 10 - 4 = 6, which is a factor of 24, and 25 - 6 = 19, but 19 is not 24. However, 6 can multiply with 4 to get 24, but we already used 4. Actually 6 * 4 = 24, but the 4 is used in subtraction. So this is a dead end. Let's check 25 - 10 = 15, 15 + 9 = 24, no 9. 25 - 4 = 21, 21 + 3 = 24, no 3. 10 + 4 = 14, 14 + 10 = 24? No. 25 + 10 = 35, 35 - 11 = 24, no. 25 + 4 = 29, 29 - 5 = 24, no. The most promising is 10 - 4 = 6 (factor), then we need to make 24 from [25, 6] via 25 - 6 = 19, 25 + 6 = 31, 25*6=150, 25/6≈4.17, 6/25=0.24. None give 24. So this is weak. Next best: 25 - 10 = 15, then 15 + 9 = 24, no. 25 - 4 = 21, need 3. 4*10=40, 40-16=24, no. 25/10=2.5, 2.5*9.6=24, no. I'll propose the only factor-producing operation: 10 - 4 = 6.",
+            "code": "",
+            "observation": "[6, 25]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 10 = 15, then 15 + 4 = 19 (not 24), but 15 - 4 = 11 (not 24). However, 25 - 4 = 21, then 21 + 10 = 31 (too high). Let's try factor check: 25 - 4 = 21, 21 is 3*7, not a factor of 24. But 25 - 10 = 15, 15 is 3*5, not a factor. 4 * 10 = 40, too high. 25 + 4 = 29, then 29 - 10 = 19. This is not promising directly. Let's check difference-from-24: 24 - 25 = -1, not present. 24 - 4 = 20, not present. 24 - 10 = 14, not present. Division: 4/10 = 0.4, 25/0.4 = 62.5 (no). 10/4 = 2.5, 25/2.5 = 10 (not 24). 25/4 = 6.25, 6.25*10 = 62.5. 25/10 = 2.5, 2.5*4 = 10. None give 24 directly. But 25 - 4 = 21, then 21 + 10 = 31, not 24. 25 - 10 = 15, then 15 + 4 = 19. 10 - 4 = 6, then 25 - 6 = 19. 10 - 4 = 6, 6*4 = 24 but we already used 4. Wait: 10 - 4 = 6, then 25 - 6 = 19. Not 24. However, 10 - 4 = 6, and 6*4 = 24 but we need a second 4. Not available. Let's try 25 - 1 = 24, but we have no 1. All options seem unpromising, but we must propose. The best: 10 - 4 = 6, which is a factor of 24, and 25 - 6 = 19, but 19 is not 24. However, 6 can multiply with 4 to get 24, but we already used 4. Actually 6 * 4 = 24, but the 4 is used in subtraction. So this is a dead end. Let's check 25 - 10 = 15, 15 + 9 = 24, no 9. 25 - 4 = 21, 21 + 3 = 24, no 3. 10 + 4 = 14, 14 + 10 = 24? No. 25 + 10 = 35, 35 - 11 = 24, no. 25 + 4 = 29, 29 - 5 = 24, no. The most promising is 10 - 4 = 6 (factor), then we need to make 24 from [25, 6] via 25 - 6 = 19, 25 + 6 = 31, 25*6=150, 25/6≈4.17, 6/25=0.24. None give 24. So this is weak. Next best: 25 - 10 = 15, then 15 + 9 = 24, no. 25 - 4 = 21, need 3. 4*10=40, 40-16=24, no. 25/10=2.5, 2.5*9.6=24, no. I'll propose the only factor-producing operation: 10 - 4 = 6.\nResult: [6, 25]",
+          "evaluation": {
+            "state": "[6, 25]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 6.0,25.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 1,
+          "state": [
+            15,
+            4
+          ],
+          "action": "25 - 10 = 15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "25 - 10 = 15, difference from 24 is 9, not directly useful but 15 and 4 can combine to 60, 11, 19, 3.75 — promising for multiplication path",
+            "code": "",
+            "observation": "[15, 4]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 10 = 15, difference from 24 is 9, not directly useful but 15 and 4 can combine to 60, 11, 19, 3.75 — promising for multiplication path\nResult: [15, 4]",
+          "evaluation": {
+            "state": "[15, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 1,
+          "state": [
+            -15,
+            4
+          ],
+          "action": "10 - 25 = -15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "10 - 25 = -15, negative result can be useful with multiplication: -15 * -? = positive, but limited options with 4",
+            "code": "",
+            "observation": "[-15, 4]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n10 - 25 = -15, negative result can be useful with multiplication: -15 * -? = positive, but limited options with 4\nResult: [-15, 4]",
+          "evaluation": {
+            "state": "[-15, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -15.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 1,
+          "state": [
+            21,
+            10
+          ],
+          "action": "25 - 4 = 21",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "25 - 4 = 21, difference from 24 is 3, and 10/10? No — but 21 + 3 = 24, and 3 is not present. Not ideal but keeps option open",
+            "code": "",
+            "observation": "[21, 10]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 4 = 21, difference from 24 is 3, and 10/10? No — but 21 + 3 = 24, and 3 is not present. Not ideal but keeps option open\nResult: [21, 10]",
+          "evaluation": {
+            "state": "[21, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 21.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 1,
+          "state": [
+            -21,
+            10
+          ],
+          "action": "4 - 25 = -21",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "4 - 25 = -21, negative result, can pair with 10: -21 + 45? No. Low potential but required for coverage",
+            "code": "",
+            "observation": "[-21, 10]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n4 - 25 = -21, negative result, can pair with 10: -21 + 45? No. Low potential but required for coverage\nResult: [-21, 10]",
+          "evaluation": {
+            "state": "[-21, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -21.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 1,
+          "state": [
+            35,
+            4
+          ],
+          "action": "25 + 10 = 35",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "25 + 10 = 35, too large, but 35 - 11 = 24, no 11 present. Not promising but covers addition pair",
+            "code": "",
+            "observation": "[35, 4]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 + 10 = 35, too large, but 35 - 11 = 24, no 11 present. Not promising but covers addition pair\nResult: [35, 4]",
+          "evaluation": {
+            "state": "[35, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 35.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 1,
+          "state": [
+            29,
+            10
+          ],
+          "action": "25 + 4 = 29",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "25 + 4 = 29, difference from 24 is 5, and 10/2? No 2. Not strong but covers pair",
+            "code": "",
+            "observation": "[29, 10]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 + 4 = 29, difference from 24 is 5, and 10/2? No 2. Not strong but covers pair\nResult: [29, 10]",
+          "evaluation": {
+            "state": "[29, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 29.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 1,
+          "state": [
+            14,
+            25
+          ],
+          "action": "4 + 10 = 14",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "4 + 10 = 14, difference from 24 is 10, and 25 - 1? No. 14 + 10 = 24 if we had another 10. Moderate potential",
+            "code": "",
+            "observation": "[14, 25]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n4 + 10 = 14, difference from 24 is 10, and 25 - 1? No. 14 + 10 = 24 if we had another 10. Moderate potential\nResult: [14, 25]",
+          "evaluation": {
+            "state": "[14, 25]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 14.0,25.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 1,
+          "state": [
+            100,
+            10
+          ],
+          "action": "25 * 4 = 100",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "25 * 4 = 100, too large, but 100 / (10/2.4)? No. Not useful but covers multiplication pair",
+            "code": "",
+            "observation": "[100, 10]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 * 4 = 100, too large, but 100 / (10/2.4)? No. Not useful but covers multiplication pair\nResult: [100, 10]",
+          "evaluation": {
+            "state": "[100, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 100.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        22,
+        4,
+        13
+      ],
+      "action": "10 + 12 = 22",
+      "value": 0.0012,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.",
+        "code": "",
+        "observation": "[22, 4, 13]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]",
+      "evaluation": {
+        "state": "[22, 4, 13]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 22
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, times 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, times 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, times 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, times 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, times 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \ntry 13 - 4 = 9 (same).  \ntry 22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 - 13 = 75 (no), 88 / 13 ≈ 6.769 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no), 286 - 4 = 282 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.3636 (no), 52 + 22 = 74 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 - 2? no third number left.  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 17 + 22 = 39 (no), 22 - 17 = 5 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 9 + 22 = 31 (no)  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no), 88 - 13 = 75 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then / 4 = 71.5 (no), - 4 = 282 (no), + 4 = 290 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 + 22 = 74 (no), 52 / 22 ≈ 2.36 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 + 13 = 39 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no), 35 + 4 = 39 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no), 22 + 17 = 39 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 22 - 9 = 13 (no)  \n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18, not a factor.  \nno success.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.36 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no)  \n- 22 + 4 + 13 = 39 (no)  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, times 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, times 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, times 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, times 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, times 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \ntry 13 - 4 = 9 (same).  \ntry 22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 - 13 = 75 (no), 88 / 13 ≈ 6.769 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no), 286 - 4 = 282 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.3636 (no), 52 + 22 = 74 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 - 2? no third number left.  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 17 + 22 = 39 (no), 22 - 17 = 5 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 9 + 22 = 31 (no)  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no), 88 - 13 = 75 (no), 88 + 13 = 101 (no)  \n- 22 * 13 = 286, then / 4 = 71.5 (no), - 4 = 282 (no), + 4 = 290 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 + 22 = 74 (no), 52 / 22 ≈ 2.36 (no)  \n\nno.\n\n**attempt 4 (addition and adjust):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no), 26 + 13 = 39 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no), 35 + 4 = 39 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no), 22 + 17 = 39 (no)  \n\nno.\n\n**attempt 5 (other combos):**  \n- 22 - 4 = 18, then 18 + 13 = 31 (no)  \n- 22 - 13 = 9, then 9 + 4 = 13 (no)  \n- 13 - 4 = 9, then 22 - 9 = 13 (no)  \n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [22, 4, 13]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 22 / 4 = 5.5, then 5.5 * 13 = 71.5 (no)  \n- 4 / 22 ≈ 0.1818, then * 13 ≈ 2.36 (no)  \n- 22 / 13 ≈ 1.6923, then * 4 ≈ 6.769 (no)  \n- 13 / 22 ≈ 0.5909, then * 4 ≈ 2.364 (no)  \n- 13 / 4 = 3.25, then * 22 = 71.5 (no)  \n- 4 / 13 ≈ 0.3077, then * 22 ≈ 6.769 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 13 and 22 → 22 - 13 = 9.  \n9 is not a factor of 24 (1,2,3,4,6,8,12).  \nnext closest: 13 and 4 → 13 - 4 = 9 (same).  \n22 - 4 = 18, not a factor.  \nno success.\n\n**attempt 3 (multiplication):**  \n- 22 * 4 = 88, then 88 / 13 ≈ 6.769 (no)  \n- 22 * 13 = 286, then 286 / 4 = 71.5 (no)  \n- 4 * 13 = 52, then 52 - 22 = 30 (no), 52 / 22 ≈ 2.36 (no)  \n\n**attempt 4 (addition and adjusting):**  \n- 22 + 4 = 26, then 26 - 13 = 13 (no)  \n- 22 + 13 = 35, then 35 - 4 = 31 (no)  \n- 4 + 13 = 17, then 22 - 17 = 5 (no)  \n- 22 + 4 + 13 = 39 (no)  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "12": {
+          "id": 12,
+          "parent_id": 2,
+          "state": [
+            9,
+            4
+          ],
+          "action": "22 - 13 = 9",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "22 - 13 = 9, difference from 24 is 15, not promising alone",
+            "code": "",
+            "observation": "[9, 4]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 - 13 = 9, difference from 24 is 15, not promising alone\nResult: [9, 4]",
+          "evaluation": {
+            "state": "[9, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 9.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 2,
+          "state": [
+            -9,
+            4
+          ],
+          "action": "13 - 22 = -9",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "13 - 22 = -9, difference from 24 is 33, not promising",
+            "code": "",
+            "observation": "[-9, 4]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 - 22 = -9, difference from 24 is 33, not promising\nResult: [-9, 4]",
+          "evaluation": {
+            "state": "[-9, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -9.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 2,
+          "state": [
+            26,
+            13
+          ],
+          "action": "22 + 4 = 26",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "22 + 4 = 26, difference from 24 is 2, and 2 is a factor of 24 — could multiply 2 by 13 to get 26, not 24",
+            "code": "",
+            "observation": "[26, 13]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 + 4 = 26, difference from 24 is 2, and 2 is a factor of 24 — could multiply 2 by 13 to get 26, not 24\nResult: [26, 13]",
+          "evaluation": {
+            "state": "[26, 13]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 26.0,13.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 2,
+          "state": [
+            18,
+            13
+          ],
+          "action": "22 - 4 = 18",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "22 - 4 = 18, difference from 24 is 6, and 6 is a factor of 24 — 18+6=24 but 6 not available",
+            "code": "",
+            "observation": "[18, 13]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 - 4 = 18, difference from 24 is 6, and 6 is a factor of 24 — 18+6=24 but 6 not available\nResult: [18, 13]",
+          "evaluation": {
+            "state": "[18, 13]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 18.0,13.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 2,
+          "state": [
+            -18,
+            13
+          ],
+          "action": "4 - 22 = -18",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "4 - 22 = -18, not useful",
+            "code": "",
+            "observation": "[-18, 13]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n4 - 22 = -18, not useful\nResult: [-18, 13]",
+          "evaluation": {
+            "state": "[-18, 13]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -18.0,13.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 2,
+          "state": [
+            17,
+            22
+          ],
+          "action": "13 + 4 = 17",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "13 + 4 = 17, difference from 24 is 7, not a factor or present number",
+            "code": "",
+            "observation": "[17, 22]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 + 4 = 17, difference from 24 is 7, not a factor or present number\nResult: [17, 22]",
+          "evaluation": {
+            "state": "[17, 22]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 17.0,22.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "18": {
+          "id": 18,
+          "parent_id": 2,
+          "state": [
+            9,
+            22
+          ],
+          "action": "13 - 4 = 9",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "13 - 4 = 9, difference from 24 is 15, not useful",
+            "code": "",
+            "observation": "[9, 22]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 - 4 = 9, difference from 24 is 15, not useful\nResult: [9, 22]",
+          "evaluation": {
+            "state": "[9, 22]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 9.0,22.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "19": {
+          "id": 19,
+          "parent_id": 2,
+          "state": [
+            -9,
+            22
+          ],
+          "action": "4 - 13 = -9",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "4 - 13 = -9, not useful",
+            "code": "",
+            "observation": "[-9, 22]"
+          },
+          "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n4 - 13 = -9, not useful\nResult: [-9, 22]",
+          "evaluation": {
+            "state": "[-9, 22]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -9.0,22.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 1,
+      "state": [
+        6,
+        25
+      ],
+      "action": "10 - 4 = 6",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "25 - 10 = 15, then 15 + 4 = 19 (not 24), but 15 - 4 = 11 (not 24). However, 25 - 4 = 21, then 21 + 10 = 31 (too high). Let's try factor check: 25 - 4 = 21, 21 is 3*7, not a factor of 24. But 25 - 10 = 15, 15 is 3*5, not a factor. 4 * 10 = 40, too high. 25 + 4 = 29, then 29 - 10 = 19. This is not promising directly. Let's check difference-from-24: 24 - 25 = -1, not present. 24 - 4 = 20, not present. 24 - 10 = 14, not present. Division: 4/10 = 0.4, 25/0.4 = 62.5 (no). 10/4 = 2.5, 25/2.5 = 10 (not 24). 25/4 = 6.25, 6.25*10 = 62.5. 25/10 = 2.5, 2.5*4 = 10. None give 24 directly. But 25 - 4 = 21, then 21 + 10 = 31, not 24. 25 - 10 = 15, then 15 + 4 = 19. 10 - 4 = 6, then 25 - 6 = 19. 10 - 4 = 6, 6*4 = 24 but we already used 4. Wait: 10 - 4 = 6, then 25 - 6 = 19. Not 24. However, 10 - 4 = 6, and 6*4 = 24 but we need a second 4. Not available. Let's try 25 - 1 = 24, but we have no 1. All options seem unpromising, but we must propose. The best: 10 - 4 = 6, which is a factor of 24, and 25 - 6 = 19, but 19 is not 24. However, 6 can multiply with 4 to get 24, but we already used 4. Actually 6 * 4 = 24, but the 4 is used in subtraction. So this is a dead end. Let's check 25 - 10 = 15, 15 + 9 = 24, no 9. 25 - 4 = 21, 21 + 3 = 24, no 3. 10 + 4 = 14, 14 + 10 = 24? No. 25 + 10 = 35, 35 - 11 = 24, no. 25 + 4 = 29, 29 - 5 = 24, no. The most promising is 10 - 4 = 6 (factor), then we need to make 24 from [25, 6] via 25 - 6 = 19, 25 + 6 = 31, 25*6=150, 25/6≈4.17, 6/25=0.24. None give 24. So this is weak. Next best: 25 - 10 = 15, then 15 + 9 = 24, no. 25 - 4 = 21, need 3. 4*10=40, 40-16=24, no. 25/10=2.5, 2.5*9.6=24, no. I'll propose the only factor-producing operation: 10 - 4 = 6.",
+        "code": "",
+        "observation": "[6, 25]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 10 = 15, then 15 + 4 = 19 (not 24), but 15 - 4 = 11 (not 24). However, 25 - 4 = 21, then 21 + 10 = 31 (too high). Let's try factor check: 25 - 4 = 21, 21 is 3*7, not a factor of 24. But 25 - 10 = 15, 15 is 3*5, not a factor. 4 * 10 = 40, too high. 25 + 4 = 29, then 29 - 10 = 19. This is not promising directly. Let's check difference-from-24: 24 - 25 = -1, not present. 24 - 4 = 20, not present. 24 - 10 = 14, not present. Division: 4/10 = 0.4, 25/0.4 = 62.5 (no). 10/4 = 2.5, 25/2.5 = 10 (not 24). 25/4 = 6.25, 6.25*10 = 62.5. 25/10 = 2.5, 2.5*4 = 10. None give 24 directly. But 25 - 4 = 21, then 21 + 10 = 31, not 24. 25 - 10 = 15, then 15 + 4 = 19. 10 - 4 = 6, then 25 - 6 = 19. 10 - 4 = 6, 6*4 = 24 but we already used 4. Wait: 10 - 4 = 6, then 25 - 6 = 19. Not 24. However, 10 - 4 = 6, and 6*4 = 24 but we need a second 4. Not available. Let's try 25 - 1 = 24, but we have no 1. All options seem unpromising, but we must propose. The best: 10 - 4 = 6, which is a factor of 24, and 25 - 6 = 19, but 19 is not 24. However, 6 can multiply with 4 to get 24, but we already used 4. Actually 6 * 4 = 24, but the 4 is used in subtraction. So this is a dead end. Let's check 25 - 10 = 15, 15 + 9 = 24, no 9. 25 - 4 = 21, 21 + 3 = 24, no 3. 10 + 4 = 14, 14 + 10 = 24? No. 25 + 10 = 35, 35 - 11 = 24, no. 25 + 4 = 29, 29 - 5 = 24, no. The most promising is 10 - 4 = 6 (factor), then we need to make 24 from [25, 6] via 25 - 6 = 19, 25 + 6 = 31, 25*6=150, 25/6≈4.17, 6/25=0.24. None give 24. So this is weak. Next best: 25 - 10 = 15, then 15 + 9 = 24, no. 25 - 4 = 21, need 3. 4*10=40, 40-16=24, no. 25/10=2.5, 2.5*9.6=24, no. I'll propose the only factor-producing operation: 10 - 4 = 6.\nResult: [6, 25]",
+      "evaluation": {
+        "state": "[6, 25]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 6.0,25.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 1,
+      "state": [
+        15,
+        4
+      ],
+      "action": "25 - 10 = 15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "25 - 10 = 15, difference from 24 is 9, not directly useful but 15 and 4 can combine to 60, 11, 19, 3.75 — promising for multiplication path",
+        "code": "",
+        "observation": "[15, 4]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 10 = 15, difference from 24 is 9, not directly useful but 15 and 4 can combine to 60, 11, 19, 3.75 — promising for multiplication path\nResult: [15, 4]",
+      "evaluation": {
+        "state": "[15, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 1,
+      "state": [
+        -15,
+        4
+      ],
+      "action": "10 - 25 = -15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "10 - 25 = -15, negative result can be useful with multiplication: -15 * -? = positive, but limited options with 4",
+        "code": "",
+        "observation": "[-15, 4]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n10 - 25 = -15, negative result can be useful with multiplication: -15 * -? = positive, but limited options with 4\nResult: [-15, 4]",
+      "evaluation": {
+        "state": "[-15, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -15.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 1,
+      "state": [
+        21,
+        10
+      ],
+      "action": "25 - 4 = 21",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "25 - 4 = 21, difference from 24 is 3, and 10/10? No — but 21 + 3 = 24, and 3 is not present. Not ideal but keeps option open",
+        "code": "",
+        "observation": "[21, 10]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 - 4 = 21, difference from 24 is 3, and 10/10? No — but 21 + 3 = 24, and 3 is not present. Not ideal but keeps option open\nResult: [21, 10]",
+      "evaluation": {
+        "state": "[21, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 21.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 1,
+      "state": [
+        -21,
+        10
+      ],
+      "action": "4 - 25 = -21",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "4 - 25 = -21, negative result, can pair with 10: -21 + 45? No. Low potential but required for coverage",
+        "code": "",
+        "observation": "[-21, 10]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n4 - 25 = -21, negative result, can pair with 10: -21 + 45? No. Low potential but required for coverage\nResult: [-21, 10]",
+      "evaluation": {
+        "state": "[-21, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -21.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 1,
+      "state": [
+        35,
+        4
+      ],
+      "action": "25 + 10 = 35",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "25 + 10 = 35, too large, but 35 - 11 = 24, no 11 present. Not promising but covers addition pair",
+        "code": "",
+        "observation": "[35, 4]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 + 10 = 35, too large, but 35 - 11 = 24, no 11 present. Not promising but covers addition pair\nResult: [35, 4]",
+      "evaluation": {
+        "state": "[35, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 35.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 1,
+      "state": [
+        29,
+        10
+      ],
+      "action": "25 + 4 = 29",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "25 + 4 = 29, difference from 24 is 5, and 10/2? No 2. Not strong but covers pair",
+        "code": "",
+        "observation": "[29, 10]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 + 4 = 29, difference from 24 is 5, and 10/2? No 2. Not strong but covers pair\nResult: [29, 10]",
+      "evaluation": {
+        "state": "[29, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 29.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 1,
+      "state": [
+        14,
+        25
+      ],
+      "action": "4 + 10 = 14",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "4 + 10 = 14, difference from 24 is 10, and 25 - 1? No. 14 + 10 = 24 if we had another 10. Moderate potential",
+        "code": "",
+        "observation": "[14, 25]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n4 + 10 = 14, difference from 24 is 10, and 25 - 1? No. 14 + 10 = 24 if we had another 10. Moderate potential\nResult: [14, 25]",
+      "evaluation": {
+        "state": "[14, 25]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 14.0,25.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 1,
+      "state": [
+        100,
+        10
+      ],
+      "action": "25 * 4 = 100",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "25 * 4 = 100, too large, but 100 / (10/2.4)? No. Not useful but covers multiplication pair",
+        "code": "",
+        "observation": "[100, 10]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12. 12 * 2 = 24, so making a 2 is useful. 13 - 11? Not here. 10 - 4 = 6, factor of 24 (6 * 4 = 24, but 4 is used). Actually 12 * 2 = 24, so check 10/5? No. 13 - 11? No. Let's compute: 12 + 13 = 25, close to 24. 25 - 1 = 24, but no 1. 12 + 13 = 25, difference 1, not directly helpful.\nResult: [25, 4, 10]\n25 * 4 = 100, too large, but 100 / (10/2.4)? No. Not useful but covers multiplication pair\nResult: [100, 10]",
+      "evaluation": {
+        "state": "[100, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 100.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 2,
+      "state": [
+        9,
+        4
+      ],
+      "action": "22 - 13 = 9",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "22 - 13 = 9, difference from 24 is 15, not promising alone",
+        "code": "",
+        "observation": "[9, 4]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 - 13 = 9, difference from 24 is 15, not promising alone\nResult: [9, 4]",
+      "evaluation": {
+        "state": "[9, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 9.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 2,
+      "state": [
+        -9,
+        4
+      ],
+      "action": "13 - 22 = -9",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "13 - 22 = -9, difference from 24 is 33, not promising",
+        "code": "",
+        "observation": "[-9, 4]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 - 22 = -9, difference from 24 is 33, not promising\nResult: [-9, 4]",
+      "evaluation": {
+        "state": "[-9, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -9.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 2,
+      "state": [
+        26,
+        13
+      ],
+      "action": "22 + 4 = 26",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "22 + 4 = 26, difference from 24 is 2, and 2 is a factor of 24 — could multiply 2 by 13 to get 26, not 24",
+        "code": "",
+        "observation": "[26, 13]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 + 4 = 26, difference from 24 is 2, and 2 is a factor of 24 — could multiply 2 by 13 to get 26, not 24\nResult: [26, 13]",
+      "evaluation": {
+        "state": "[26, 13]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 26.0,13.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 2,
+      "state": [
+        18,
+        13
+      ],
+      "action": "22 - 4 = 18",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "22 - 4 = 18, difference from 24 is 6, and 6 is a factor of 24 — 18+6=24 but 6 not available",
+        "code": "",
+        "observation": "[18, 13]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n22 - 4 = 18, difference from 24 is 6, and 6 is a factor of 24 — 18+6=24 but 6 not available\nResult: [18, 13]",
+      "evaluation": {
+        "state": "[18, 13]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 18.0,13.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 2,
+      "state": [
+        -18,
+        13
+      ],
+      "action": "4 - 22 = -18",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "4 - 22 = -18, not useful",
+        "code": "",
+        "observation": "[-18, 13]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n4 - 22 = -18, not useful\nResult: [-18, 13]",
+      "evaluation": {
+        "state": "[-18, 13]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -18.0,13.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 2,
+      "state": [
+        17,
+        22
+      ],
+      "action": "13 + 4 = 17",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "13 + 4 = 17, difference from 24 is 7, not a factor or present number",
+        "code": "",
+        "observation": "[17, 22]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 + 4 = 17, difference from 24 is 7, not a factor or present number\nResult: [17, 22]",
+      "evaluation": {
+        "state": "[17, 22]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 17.0,22.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 2,
+      "state": [
+        9,
+        22
+      ],
+      "action": "13 - 4 = 9",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "13 - 4 = 9, difference from 24 is 15, not useful",
+        "code": "",
+        "observation": "[9, 22]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n13 - 4 = 9, difference from 24 is 15, not useful\nResult: [9, 22]",
+      "evaluation": {
+        "state": "[9, 22]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 9.0,22.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 2,
+      "state": [
+        -9,
+        22
+      ],
+      "action": "4 - 13 = -9",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "4 - 13 = -9, not useful",
+        "code": "",
+        "observation": "[-9, 22]"
+      },
+      "path_history": "12 + 12 = 24, but we have only one 12; however 12 * 2 = 24 and 12 is already a factor — combine 12 with something to get 2: 10 - 8? not here. Actually 13 - 10 = 3, 12 * 2? No. Let's check: 12 * (13-10) = 12 * 3 = 36, no. But 12 is a factor, so pairing 12 with something to make 2: 4/2? Not. Skip. Let's do systematic: 12 * 2 = 24, but we don't have 2. However 12 + 12 = 24 not possible. Better: 13 - 12 = 1, not helpful. Actually 4 * 6 = 24, 6 = 10-4? no. Let's just start: 10 + 12 = 22, then 22 + 2? no. But 22 is close to 24, difference 2, and we have 4 and 13. 4/2? no. So not great. But first proposal: 12 + 13 = 25, then 25 - 1? no. Actually 25 - 1 = 24, but 1 from 4-10? no. So let's do the factor check: 4 * 6 = 24, 6 from 12/2? no. 8*3=24, 8 from 4+4? no. 12*2=24, 2 from 10-8? no. 24*1=24, 1 from 13-12? yes! 13-12=1, then 24*1=24 but we need 24 from remaining numbers? Wait we have 4 and 10 left, 4*10=40, no. Actually 24*1 requires a 24, which we don't have. So not. Let's do: 13 - 4 = 9, 9 * ? no. 10 + 13 = 23, then 23 + 1? no. 10 + 4 = 14, 14 + 10? no. Let's just generate all pairs systematically.\nResult: [22, 4, 13]\n4 - 13 = -9, not useful\nResult: [-9, 22]",
+      "evaluation": {
+        "state": "[-9, 22]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -9.0,22.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 2,
+      "re_evaluations": 0,
+      "unique_states": 2,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

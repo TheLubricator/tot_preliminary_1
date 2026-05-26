@@ -1,0 +1,1548 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-26T09:11:14.668938",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 14,
+      "api_calls": 14,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 14,
+      "session_start": "2026-05-26T09:10:21.068632",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 9,
+      "total_input_tokens": 10463,
+      "total_output_tokens": 7092,
+      "api_saved_two_num_cache": 27,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": true,
+      "winning_depth1_count": 6,
+      "winning_depth1_proposed": 1,
+      "deadend_memory": {
+        "patterns_stored": 7,
+        "two_num_cache_size": 93,
+        "total_checked": 12,
+        "total_skipped": 9,
+        "skip_rate": "75.0%"
+      },
+      "time_seconds": 53.6
+    },
+    "correct_path_in_proposals": true,
+    "winning_depth1_count": 6,
+    "winning_depth1_proposed": 1,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 7,
+      "total_checked": 12,
+      "total_skipped": 9,
+      "api_calls_saved": 27,
+      "api_saved_two_num_cache": 27,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        4,
+        3,
+        13,
+        4
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 2,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            9,
+            3,
+            4
+          ],
+          "action": "13 - 4 = 9",
+          "value": 0.6669999999999999,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24",
+            "code": "",
+            "observation": "[9, 3, 4]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]",
+          "evaluation": {
+            "state": "[9, 3, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333… (no).  \n- 9 / 4 = 2.25, then 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444… (no).  \n- 3 / 4 = 0.75 (no).  \n- 4 / 3 = 1.333…, then 1.333… * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3 → 4 - 3 = 1 (factor of 24).  \nthen 1 * 9 = 9 (no).  \n9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair)**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no)  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no)  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no)  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no)  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no)  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no)  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest: 3 and 4 → 4 - 3 = 1 (factor of 24), then 1 * 9 = 9 (no)  \n3 - 4 = -1 (not a positive factor)  \n\n**attempt 3 (multiply each pair)**  \n- 9 * 3 = 27, 27 - 4 = 23 (no)  \n- 9 * 4 = 36, 36 - 3 = 33 (no)  \n- 3 * 4 = 12, 12 + 9 = 21 (no)  \n\n**attempt 4 (add pairs and adjust)**  \n- 9 + 3 = 12, 12 * 4 = 48 (no)  \n- 9 + 4 = 13, 13 + 3 = 16 (no)  \n- 3 + 4 = 7, 7 * 9 = 63 (no)  \n\nno result within 0.001 of 24, and no result between 20 and 28 either (closest was 21 or 23).  \n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no).  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no).  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no).  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 4 (difference 1).  \n- 4 - 3 = 1 (factor of 24? yes, 1 is a factor).  \ncombine with third: 1 * 9 = 9 (no). 9 / 1 = 9 (no).  \n\nalso try 9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'impossible', 'sure']",
+              "Votes: sure=2, likely=0, impossible=1",
+              "Raw score: 0.667, Final score: 0.667"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333… (no).  \n- 9 / 4 = 2.25, then 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444… (no).  \n- 3 / 4 = 0.75 (no).  \n- 4 / 3 = 1.333…, then 1.333… * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3 → 4 - 3 = 1 (factor of 24).  \nthen 1 * 9 = 9 (no).  \n9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair)**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no)  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no)  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no)  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no)  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no)  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no)  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest: 3 and 4 → 4 - 3 = 1 (factor of 24), then 1 * 9 = 9 (no)  \n3 - 4 = -1 (not a positive factor)  \n\n**attempt 3 (multiply each pair)**  \n- 9 * 3 = 27, 27 - 4 = 23 (no)  \n- 9 * 4 = 36, 36 - 3 = 33 (no)  \n- 3 * 4 = 12, 12 + 9 = 21 (no)  \n\n**attempt 4 (add pairs and adjust)**  \n- 9 + 3 = 12, 12 * 4 = 48 (no)  \n- 9 + 4 = 13, 13 + 3 = 16 (no)  \n- 3 + 4 = 7, 7 * 9 = 63 (no)  \n\nno result within 0.001 of 24, and no result between 20 and 28 either (closest was 21 or 23).  \n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no).  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no).  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no).  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 4 (difference 1).  \n- 4 - 3 = 1 (factor of 24? yes, 1 is a factor).  \ncombine with third: 1 * 9 = 9 (no). 9 / 1 = 9 (no).  \n\nalso try 9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                0.001,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 2
+              }
+            },
+            "final_value": 0.6669999999999999,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "3": {
+              "id": 3,
+              "parent_id": 1,
+              "state": [
+                6,
+                4
+              ],
+              "action": "9 - 3 = 6",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 3 from 9 to get 6, a factor of 24",
+                "code": "",
+                "observation": "[6, 4]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]",
+              "evaluation": {
+                "state": "[6, 4]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 6
+                },
+                "llm_judgments": [
+                  "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 + 4 = 10 (not 24)  \n- 6 - 4 = 2 (not 24)  \n- 4 - 6 = -2 (not 24)  \n- 6 * 4 = 24 (exact!)\n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '6 * 4=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 + 4 = 10 (not 24)  \n- 6 - 4 = 2 (not 24)  \n- 4 - 6 = -2 (not 24)  \n- 6 * 4 = 24 (exact!)\n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "6 * 4",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "13": {
+                  "id": 13,
+                  "parent_id": 3,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "6 * 4",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [6, 4], 6 * 4 = 24",
+                    "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            },
+            "4": {
+              "id": 4,
+              "parent_id": 1,
+              "state": [
+                5,
+                3
+              ],
+              "action": "9 - 4 = 5",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 9 to get 5, which combined with 3 gives 15 or 8 — useful",
+                "code": "",
+                "observation": "[5, 3]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 4 from 9 to get 5, which combined with 3 gives 15 or 8 — useful\nResult: [5, 3]",
+              "evaluation": {
+                "state": "[5, 3]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 5.0,3.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "5": {
+              "id": 5,
+              "parent_id": 1,
+              "state": [
+                7,
+                9
+              ],
+              "action": "3 + 4 = 7",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 3 and 4 to get 7, then 9 and 7 can make 63 or 16 — possible path",
+                "code": "",
+                "observation": "[7, 9]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nAdd 3 and 4 to get 7, then 9 and 7 can make 63 or 16 — possible path\nResult: [7, 9]",
+              "evaluation": {
+                "state": "[7, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 7.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "6": {
+              "id": 6,
+              "parent_id": 1,
+              "state": [
+                12,
+                9
+              ],
+              "action": "3 * 4 = 12",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 3 and 4 to get 12, a factor of 24",
+                "code": "",
+                "observation": "[12, 9]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nMultiply 3 and 4 to get 12, a factor of 24\nResult: [12, 9]",
+              "evaluation": {
+                "state": "[12, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 12.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 1,
+              "state": [
+                3.0,
+                4
+              ],
+              "action": "9 / 3 = 3.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 9 by 3 to get 3, then have [3, 4] — can make 12 or 7",
+                "code": "",
+                "observation": "[3.0, 4]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nDivide 9 by 3 to get 3, then have [3, 4] — can make 12 or 7\nResult: [3.0, 4]",
+              "evaluation": {
+                "state": "[3.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 1,
+              "state": [
+                2.25,
+                3
+              ],
+              "action": "9 / 4 = 2.25",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 9 by 4 to get 2.25, then 2.25 * 3 = 6.75 — not great but avoids dead ends",
+                "code": "",
+                "observation": "[2.25, 3]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nDivide 9 by 4 to get 2.25, then 2.25 * 3 = 6.75 — not great but avoids dead ends\nResult: [2.25, 3]",
+              "evaluation": {
+                "state": "[2.25, 3]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 2.25,3.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 1,
+              "state": [
+                -5,
+                3
+              ],
+              "action": "4 - 9 = -5",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 9 from 4 to get -5, then -5 + 3 = -2 — unlikely but diversifies",
+                "code": "",
+                "observation": "[-5, 3]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 9 from 4 to get -5, then -5 + 3 = -2 — unlikely but diversifies\nResult: [-5, 3]",
+              "evaluation": {
+                "state": "[-5, 3]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -5.0,3.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 1,
+              "state": [
+                1,
+                9
+              ],
+              "action": "4 - 3 = 1",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 3 from 4 to get 1, then 9 - 1 = 8, and 8 * 3 = 24 if we had another 3",
+                "code": "",
+                "observation": "[1, 9]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 4 to get 1, then 9 - 1 = 8, and 8 * 3 = 24 if we had another 3\nResult: [1, 9]",
+              "evaluation": {
+                "state": "[1, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            4,
+            13,
+            12
+          ],
+          "action": "4 * 3 = 12",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 4 and 3 to get 12, a factor of 24",
+            "code": "",
+            "observation": "[12, 13, 4]"
+          },
+          "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]",
+          "evaluation": {
+            "state": "[12, 13, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 13
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 12 → 13 - 12 = 1.  \n  1 is a factor of 24. combine with third: 1 * 4 = 4 (no), 4 / 1 = 4 (no).  \n  also 12 - 13 = -1 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, combine with 4: 156 / 4 = 39 (no), 156 - 4 = 152 (no), 4 - 156 = -152 (no).  \n  12 * 4 = 48, combine with 13: 48 - 13 = 35 (no), 48 / 13 ≈ 3.69 (no), 13 - 48 = -35 (no).  \n  13 * 4 = 52, combine with 12: 52 - 12 = 40 (no), 52 / 12 ≈ 4.33 (no), 12 - 52 = -40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 4 = 21 (no), 25 + 4 = 29 (no).  \n  12 + 4 = 16, then 16 + 13 = 29 (no), 13 - 16 = -3 (no).  \n  13 + 4 = 17, then 17 + 12 = 29 (no), 12 - 17 = -5 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no).  \n  13 - 4 = 9 (not a factor of 24), skip.  \n  12 - 4 = 8 (factor of 24), then 8 * 13 = 104 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, 156 / 4 = 39 (no).  \n  12 * 4 = 48, 48 - 13 = 35 (no).  \n  13 * 4 = 52, 52 - 12 = 40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, 25 - 4 = 21 (no).  \n  12 + 4 = 16, 16 + 13 = 29 (no).  \n  13 + 4 = 17, 17 + 12 = 29 (no).  \n  25 + 4 = 29 (no).  \n\nno result between 20 and 28 either.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no)  \n- 13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no)  \n- 12 / 4 = 3, times 13 = 39 (no)  \n- 4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no)  \n- 13 / 4 = 3.25, times 12 = 39 (no)  \n- 4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13  \n13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no)  \nalso 12 - 13 = -1 (no)  \n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, then 156 / 4 = 39 (no)  \n- 12 * 4 = 48, then 48 - 13 = 35 (no)  \n- 13 * 4 = 52, then 52 - 12 = 40 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, then 25 - 4 = 21 (no)  \n- 12 + 4 = 16, then 16 + 13 = 29 (no)  \n- 13 + 4 = 17, then 17 + 12 = 29 (no)  \n- 25 + 4 = 29 (no)  \n- 25 - 4 = 21 (no)  \n\n**attempt 5 (other combos):**  \n- 13 - 4 = 9, then 12 + 9 = 21 (no)  \n- 12 - 4 = 8, then 13 + 8 = 21 (no)  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 12 → 13 - 12 = 1.  \n  1 is a factor of 24. combine with third: 1 * 4 = 4 (no), 4 / 1 = 4 (no).  \n  also 12 - 13 = -1 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, combine with 4: 156 / 4 = 39 (no), 156 - 4 = 152 (no), 4 - 156 = -152 (no).  \n  12 * 4 = 48, combine with 13: 48 - 13 = 35 (no), 48 / 13 ≈ 3.69 (no), 13 - 48 = -35 (no).  \n  13 * 4 = 52, combine with 12: 52 - 12 = 40 (no), 52 / 12 ≈ 4.33 (no), 12 - 52 = -40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 4 = 21 (no), 25 + 4 = 29 (no).  \n  12 + 4 = 16, then 16 + 13 = 29 (no), 13 - 16 = -3 (no).  \n  13 + 4 = 17, then 17 + 12 = 29 (no), 12 - 17 = -5 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no).  \n  13 - 4 = 9 (not a factor of 24), skip.  \n  12 - 4 = 8 (factor of 24), then 8 * 13 = 104 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, 156 / 4 = 39 (no).  \n  12 * 4 = 48, 48 - 13 = 35 (no).  \n  13 * 4 = 52, 52 - 12 = 40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, 25 - 4 = 21 (no).  \n  12 + 4 = 16, 16 + 13 = 29 (no).  \n  13 + 4 = 17, 17 + 12 = 29 (no).  \n  25 + 4 = 29 (no).  \n\nno result between 20 and 28 either.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no)  \n- 13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no)  \n- 12 / 4 = 3, times 13 = 39 (no)  \n- 4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no)  \n- 13 / 4 = 3.25, times 12 = 39 (no)  \n- 4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13  \n13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no)  \nalso 12 - 13 = -1 (no)  \n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, then 156 / 4 = 39 (no)  \n- 12 * 4 = 48, then 48 - 13 = 35 (no)  \n- 13 * 4 = 52, then 52 - 12 = 40 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, then 25 - 4 = 21 (no)  \n- 12 + 4 = 16, then 16 + 13 = 29 (no)  \n- 13 + 4 = 17, then 17 + 12 = 29 (no)  \n- 25 + 4 = 29 (no)  \n- 25 - 4 = 21 (no)  \n\n**attempt 5 (other combos):**  \n- 13 - 4 = 9, then 12 + 9 = 21 (no)  \n- 12 - 4 = 8, then 13 + 8 = 21 (no)  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 2,
+          "children": {
+            "11": {
+              "id": 11,
+              "parent_id": 2,
+              "state": [
+                16,
+                13
+              ],
+              "action": "4 + 12 = 16",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 12 to get 16, then 16 and 13 are left; 16+13=29, not 24, but 16+8=24, not directly helpful; however 16 is a useful building block.",
+                "code": "",
+                "observation": "[16, 13]"
+              },
+              "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]\nAdd 4 and 12 to get 16, then 16 and 13 are left; 16+13=29, not 24, but 16+8=24, not directly helpful; however 16 is a useful building block.\nResult: [16, 13]",
+              "evaluation": {
+                "state": "[16, 13]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,13.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 2,
+              "state": [
+                17,
+                12
+              ],
+              "action": "4 + 13 = 17",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 13 to get 17, a number that could combine with 12 to reach 24",
+                "code": "",
+                "observation": "[17, 12]"
+              },
+              "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]\nAdd 4 and 13 to get 17, a number that could combine with 12 to reach 24\nResult: [17, 12]",
+              "evaluation": {
+                "state": "[17, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 17.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        9,
+        3,
+        4
+      ],
+      "action": "13 - 4 = 9",
+      "value": 0.6669999999999999,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24",
+        "code": "",
+        "observation": "[9, 3, 4]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]",
+      "evaluation": {
+        "state": "[9, 3, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333… (no).  \n- 9 / 4 = 2.25, then 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444… (no).  \n- 3 / 4 = 0.75 (no).  \n- 4 / 3 = 1.333…, then 1.333… * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3 → 4 - 3 = 1 (factor of 24).  \nthen 1 * 9 = 9 (no).  \n9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair)**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no)  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no)  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no)  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no)  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no)  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no)  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest: 3 and 4 → 4 - 3 = 1 (factor of 24), then 1 * 9 = 9 (no)  \n3 - 4 = -1 (not a positive factor)  \n\n**attempt 3 (multiply each pair)**  \n- 9 * 3 = 27, 27 - 4 = 23 (no)  \n- 9 * 4 = 36, 36 - 3 = 33 (no)  \n- 3 * 4 = 12, 12 + 9 = 21 (no)  \n\n**attempt 4 (add pairs and adjust)**  \n- 9 + 3 = 12, 12 * 4 = 48 (no)  \n- 9 + 4 = 13, 13 + 3 = 16 (no)  \n- 3 + 4 = 7, 7 * 9 = 63 (no)  \n\nno result within 0.001 of 24, and no result between 20 and 28 either (closest was 21 or 23).  \n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no).  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no).  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no).  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 4 (difference 1).  \n- 4 - 3 = 1 (factor of 24? yes, 1 is a factor).  \ncombine with third: 1 * 9 = 9 (no). 9 / 1 = 9 (no).  \n\nalso try 9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'impossible', 'sure']",
+          "Votes: sure=2, likely=0, impossible=1",
+          "Raw score: 0.667, Final score: 0.667"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333… (no).  \n- 9 / 4 = 2.25, then 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444… (no).  \n- 3 / 4 = 0.75 (no).  \n- 4 / 3 = 1.333…, then 1.333… * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 3 → 4 - 3 = 1 (factor of 24).  \nthen 1 * 9 = 9 (no).  \n9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair)**  \n- 9 / 3 = 3, then 3 * 4 = 12 (no)  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no)  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no)  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no)  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no)  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no)  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest: 3 and 4 → 4 - 3 = 1 (factor of 24), then 1 * 9 = 9 (no)  \n3 - 4 = -1 (not a positive factor)  \n\n**attempt 3 (multiply each pair)**  \n- 9 * 3 = 27, 27 - 4 = 23 (no)  \n- 9 * 4 = 36, 36 - 3 = 33 (no)  \n- 3 * 4 = 12, 12 + 9 = 21 (no)  \n\n**attempt 4 (add pairs and adjust)**  \n- 9 + 3 = 12, 12 * 4 = 48 (no)  \n- 9 + 4 = 13, 13 + 3 = 16 (no)  \n- 3 + 4 = 7, 7 * 9 = 63 (no)  \n\nno result within 0.001 of 24, and no result between 20 and 28 either (closest was 21 or 23).  \n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [9, 3, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 9 / 3 = 3, then 3 * 4 = 12 (no).  \n- 3 / 9 = 0.333…, 0.333 * 4 = 1.333 (no).  \n- 9 / 4 = 2.25, 2.25 * 3 = 6.75 (no).  \n- 4 / 9 = 0.444…, 0.444 * 3 = 1.333 (no).  \n- 3 / 4 = 0.75, 0.75 * 9 = 6.75 (no).  \n- 4 / 3 = 1.333…, 1.333 * 9 = 12 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 3 and 4 (difference 1).  \n- 4 - 3 = 1 (factor of 24? yes, 1 is a factor).  \ncombine with third: 1 * 9 = 9 (no). 9 / 1 = 9 (no).  \n\nalso try 9 - 4 = 5 (not a factor of 24).  \n9 - 3 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            0.001,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 2
+          }
+        },
+        "final_value": 0.6669999999999999,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "3": {
+          "id": 3,
+          "parent_id": 1,
+          "state": [
+            6,
+            4
+          ],
+          "action": "9 - 3 = 6",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 3 from 9 to get 6, a factor of 24",
+            "code": "",
+            "observation": "[6, 4]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]",
+          "evaluation": {
+            "state": "[6, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 + 4 = 10 (not 24)  \n- 6 - 4 = 2 (not 24)  \n- 4 - 6 = -2 (not 24)  \n- 6 * 4 = 24 (exact!)\n\nthat's within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '6 * 4=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 + 4 = 10 (not 24)  \n- 6 - 4 = 2 (not 24)  \n- 4 - 6 = -2 (not 24)  \n- 6 * 4 = 24 (exact!)\n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "6 * 4",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "13": {
+              "id": 13,
+              "parent_id": 3,
+              "state": [
+                24.0
+              ],
+              "action": "6 * 4",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [6, 4], 6 * 4 = 24",
+                "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 1,
+          "state": [
+            5,
+            3
+          ],
+          "action": "9 - 4 = 5",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 9 to get 5, which combined with 3 gives 15 or 8 — useful",
+            "code": "",
+            "observation": "[5, 3]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 4 from 9 to get 5, which combined with 3 gives 15 or 8 — useful\nResult: [5, 3]",
+          "evaluation": {
+            "state": "[5, 3]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 5.0,3.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 1,
+          "state": [
+            7,
+            9
+          ],
+          "action": "3 + 4 = 7",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 3 and 4 to get 7, then 9 and 7 can make 63 or 16 — possible path",
+            "code": "",
+            "observation": "[7, 9]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nAdd 3 and 4 to get 7, then 9 and 7 can make 63 or 16 — possible path\nResult: [7, 9]",
+          "evaluation": {
+            "state": "[7, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 7.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 1,
+          "state": [
+            12,
+            9
+          ],
+          "action": "3 * 4 = 12",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 3 and 4 to get 12, a factor of 24",
+            "code": "",
+            "observation": "[12, 9]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nMultiply 3 and 4 to get 12, a factor of 24\nResult: [12, 9]",
+          "evaluation": {
+            "state": "[12, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 12.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 1,
+          "state": [
+            3.0,
+            4
+          ],
+          "action": "9 / 3 = 3.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 9 by 3 to get 3, then have [3, 4] — can make 12 or 7",
+            "code": "",
+            "observation": "[3.0, 4]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nDivide 9 by 3 to get 3, then have [3, 4] — can make 12 or 7\nResult: [3.0, 4]",
+          "evaluation": {
+            "state": "[3.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 1,
+          "state": [
+            2.25,
+            3
+          ],
+          "action": "9 / 4 = 2.25",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 9 by 4 to get 2.25, then 2.25 * 3 = 6.75 — not great but avoids dead ends",
+            "code": "",
+            "observation": "[2.25, 3]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nDivide 9 by 4 to get 2.25, then 2.25 * 3 = 6.75 — not great but avoids dead ends\nResult: [2.25, 3]",
+          "evaluation": {
+            "state": "[2.25, 3]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 2.25,3.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 1,
+          "state": [
+            -5,
+            3
+          ],
+          "action": "4 - 9 = -5",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 9 from 4 to get -5, then -5 + 3 = -2 — unlikely but diversifies",
+            "code": "",
+            "observation": "[-5, 3]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 9 from 4 to get -5, then -5 + 3 = -2 — unlikely but diversifies\nResult: [-5, 3]",
+          "evaluation": {
+            "state": "[-5, 3]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -5.0,3.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 1,
+          "state": [
+            1,
+            9
+          ],
+          "action": "4 - 3 = 1",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 3 from 4 to get 1, then 9 - 1 = 8, and 8 * 3 = 24 if we had another 3",
+            "code": "",
+            "observation": "[1, 9]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 4 to get 1, then 9 - 1 = 8, and 8 * 3 = 24 if we had another 3\nResult: [1, 9]",
+          "evaluation": {
+            "state": "[1, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        4,
+        13,
+        12
+      ],
+      "action": "4 * 3 = 12",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 4 and 3 to get 12, a factor of 24",
+        "code": "",
+        "observation": "[12, 13, 4]"
+      },
+      "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]",
+      "evaluation": {
+        "state": "[12, 13, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 13
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 12 → 13 - 12 = 1.  \n  1 is a factor of 24. combine with third: 1 * 4 = 4 (no), 4 / 1 = 4 (no).  \n  also 12 - 13 = -1 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, combine with 4: 156 / 4 = 39 (no), 156 - 4 = 152 (no), 4 - 156 = -152 (no).  \n  12 * 4 = 48, combine with 13: 48 - 13 = 35 (no), 48 / 13 ≈ 3.69 (no), 13 - 48 = -35 (no).  \n  13 * 4 = 52, combine with 12: 52 - 12 = 40 (no), 52 / 12 ≈ 4.33 (no), 12 - 52 = -40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 4 = 21 (no), 25 + 4 = 29 (no).  \n  12 + 4 = 16, then 16 + 13 = 29 (no), 13 - 16 = -3 (no).  \n  13 + 4 = 17, then 17 + 12 = 29 (no), 12 - 17 = -5 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no).  \n  13 - 4 = 9 (not a factor of 24), skip.  \n  12 - 4 = 8 (factor of 24), then 8 * 13 = 104 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, 156 / 4 = 39 (no).  \n  12 * 4 = 48, 48 - 13 = 35 (no).  \n  13 * 4 = 52, 52 - 12 = 40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, 25 - 4 = 21 (no).  \n  12 + 4 = 16, 16 + 13 = 29 (no).  \n  13 + 4 = 17, 17 + 12 = 29 (no).  \n  25 + 4 = 29 (no).  \n\nno result between 20 and 28 either.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no)  \n- 13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no)  \n- 12 / 4 = 3, times 13 = 39 (no)  \n- 4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no)  \n- 13 / 4 = 3.25, times 12 = 39 (no)  \n- 4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13  \n13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no)  \nalso 12 - 13 = -1 (no)  \n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, then 156 / 4 = 39 (no)  \n- 12 * 4 = 48, then 48 - 13 = 35 (no)  \n- 13 * 4 = 52, then 52 - 12 = 40 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, then 25 - 4 = 21 (no)  \n- 12 + 4 = 16, then 16 + 13 = 29 (no)  \n- 13 + 4 = 17, then 17 + 12 = 29 (no)  \n- 25 + 4 = 29 (no)  \n- 25 - 4 = 21 (no)  \n\n**attempt 5 (other combos):**  \n- 13 - 4 = 9, then 12 + 9 = 21 (no)  \n- 12 - 4 = 8, then 13 + 8 = 21 (no)  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 and 12 → 13 - 12 = 1.  \n  1 is a factor of 24. combine with third: 1 * 4 = 4 (no), 4 / 1 = 4 (no).  \n  also 12 - 13 = -1 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, combine with 4: 156 / 4 = 39 (no), 156 - 4 = 152 (no), 4 - 156 = -152 (no).  \n  12 * 4 = 48, combine with 13: 48 - 13 = 35 (no), 48 / 13 ≈ 3.69 (no), 13 - 48 = -35 (no).  \n  13 * 4 = 52, combine with 12: 52 - 12 = 40 (no), 52 / 12 ≈ 4.33 (no), 12 - 52 = -40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, then 25 - 4 = 21 (no), 25 + 4 = 29 (no).  \n  12 + 4 = 16, then 16 + 13 = 29 (no), 13 - 16 = -3 (no).  \n  13 + 4 = 17, then 17 + 12 = 29 (no), 12 - 17 = -5 (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n- attempt 1 (division, both orders):  \n  12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no).  \n  13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no).  \n  12 / 4 = 3, times 13 = 39 (no).  \n  4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no).  \n  13 / 4 = 3.25, times 12 = 39 (no).  \n  4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no).  \n  13 - 4 = 9 (not a factor of 24), skip.  \n  12 - 4 = 8 (factor of 24), then 8 * 13 = 104 (no).  \n\n- attempt 3 (multiplication):  \n  12 * 13 = 156, 156 / 4 = 39 (no).  \n  12 * 4 = 48, 48 - 13 = 35 (no).  \n  13 * 4 = 52, 52 - 12 = 40 (no).  \n\n- attempt 4 (addition and adjust):  \n  12 + 13 = 25, 25 - 4 = 21 (no).  \n  12 + 4 = 16, 16 + 13 = 29 (no).  \n  13 + 4 = 17, 17 + 12 = 29 (no).  \n  25 + 4 = 29 (no).  \n\nno result between 20 and 28 either.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [12, 13, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 12 / 13 ≈ 0.923, times 4 ≈ 3.69 (no)  \n- 13 / 12 ≈ 1.0833, times 4 ≈ 4.33 (no)  \n- 12 / 4 = 3, times 13 = 39 (no)  \n- 4 / 12 ≈ 0.333, times 13 ≈ 4.33 (no)  \n- 13 / 4 = 3.25, times 12 = 39 (no)  \n- 4 / 13 ≈ 0.3077, times 12 ≈ 3.69 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 12 and 13  \n13 - 12 = 1 (factor of 24), then 1 * 4 = 4 (no)  \nalso 12 - 13 = -1 (no)  \n\n**attempt 3 (multiplication):**  \n- 12 * 13 = 156, then 156 / 4 = 39 (no)  \n- 12 * 4 = 48, then 48 - 13 = 35 (no)  \n- 13 * 4 = 52, then 52 - 12 = 40 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 12 + 13 = 25, then 25 - 4 = 21 (no)  \n- 12 + 4 = 16, then 16 + 13 = 29 (no)  \n- 13 + 4 = 17, then 17 + 12 = 29 (no)  \n- 25 + 4 = 29 (no)  \n- 25 - 4 = 21 (no)  \n\n**attempt 5 (other combos):**  \n- 13 - 4 = 9, then 12 + 9 = 21 (no)  \n- 12 - 4 = 8, then 13 + 8 = 21 (no)  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 2,
+      "children": {
+        "11": {
+          "id": 11,
+          "parent_id": 2,
+          "state": [
+            16,
+            13
+          ],
+          "action": "4 + 12 = 16",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 12 to get 16, then 16 and 13 are left; 16+13=29, not 24, but 16+8=24, not directly helpful; however 16 is a useful building block.",
+            "code": "",
+            "observation": "[16, 13]"
+          },
+          "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]\nAdd 4 and 12 to get 16, then 16 and 13 are left; 16+13=29, not 24, but 16+8=24, not directly helpful; however 16 is a useful building block.\nResult: [16, 13]",
+          "evaluation": {
+            "state": "[16, 13]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,13.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 2,
+          "state": [
+            17,
+            12
+          ],
+          "action": "4 + 13 = 17",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 13 to get 17, a number that could combine with 12 to reach 24",
+            "code": "",
+            "observation": "[17, 12]"
+          },
+          "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]\nAdd 4 and 13 to get 17, a number that could combine with 12 to reach 24\nResult: [17, 12]",
+          "evaluation": {
+            "state": "[17, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 17.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 1,
+      "state": [
+        6,
+        4
+      ],
+      "action": "9 - 3 = 6",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 3 from 9 to get 6, a factor of 24",
+        "code": "",
+        "observation": "[6, 4]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]",
+      "evaluation": {
+        "state": "[6, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 + 4 = 10 (not 24)  \n- 6 - 4 = 2 (not 24)  \n- 4 - 6 = -2 (not 24)  \n- 6 * 4 = 24 (exact!)\n\nthat's within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '6 * 4=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 + 4 = 10 (not 24)  \n- 6 - 4 = 2 (not 24)  \n- 4 - 6 = -2 (not 24)  \n- 6 * 4 = 24 (exact!)\n\nthat's within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try all operations.\n\n- 6 * 4 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "6 * 4",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "13": {
+          "id": 13,
+          "parent_id": 3,
+          "state": [
+            24.0
+          ],
+          "action": "6 * 4",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [6, 4], 6 * 4 = 24",
+            "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 1,
+      "state": [
+        5,
+        3
+      ],
+      "action": "9 - 4 = 5",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 9 to get 5, which combined with 3 gives 15 or 8 — useful",
+        "code": "",
+        "observation": "[5, 3]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 4 from 9 to get 5, which combined with 3 gives 15 or 8 — useful\nResult: [5, 3]",
+      "evaluation": {
+        "state": "[5, 3]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 5.0,3.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 1,
+      "state": [
+        7,
+        9
+      ],
+      "action": "3 + 4 = 7",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 3 and 4 to get 7, then 9 and 7 can make 63 or 16 — possible path",
+        "code": "",
+        "observation": "[7, 9]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nAdd 3 and 4 to get 7, then 9 and 7 can make 63 or 16 — possible path\nResult: [7, 9]",
+      "evaluation": {
+        "state": "[7, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 7.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 1,
+      "state": [
+        12,
+        9
+      ],
+      "action": "3 * 4 = 12",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 3 and 4 to get 12, a factor of 24",
+        "code": "",
+        "observation": "[12, 9]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nMultiply 3 and 4 to get 12, a factor of 24\nResult: [12, 9]",
+      "evaluation": {
+        "state": "[12, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 12.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 1,
+      "state": [
+        3.0,
+        4
+      ],
+      "action": "9 / 3 = 3.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 9 by 3 to get 3, then have [3, 4] — can make 12 or 7",
+        "code": "",
+        "observation": "[3.0, 4]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nDivide 9 by 3 to get 3, then have [3, 4] — can make 12 or 7\nResult: [3.0, 4]",
+      "evaluation": {
+        "state": "[3.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 1,
+      "state": [
+        2.25,
+        3
+      ],
+      "action": "9 / 4 = 2.25",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 9 by 4 to get 2.25, then 2.25 * 3 = 6.75 — not great but avoids dead ends",
+        "code": "",
+        "observation": "[2.25, 3]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nDivide 9 by 4 to get 2.25, then 2.25 * 3 = 6.75 — not great but avoids dead ends\nResult: [2.25, 3]",
+      "evaluation": {
+        "state": "[2.25, 3]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 2.25,3.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 1,
+      "state": [
+        -5,
+        3
+      ],
+      "action": "4 - 9 = -5",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 9 from 4 to get -5, then -5 + 3 = -2 — unlikely but diversifies",
+        "code": "",
+        "observation": "[-5, 3]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 9 from 4 to get -5, then -5 + 3 = -2 — unlikely but diversifies\nResult: [-5, 3]",
+      "evaluation": {
+        "state": "[-5, 3]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -5.0,3.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 1,
+      "state": [
+        1,
+        9
+      ],
+      "action": "4 - 3 = 1",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 3 from 4 to get 1, then 9 - 1 = 8, and 8 * 3 = 24 if we had another 3",
+        "code": "",
+        "observation": "[1, 9]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 4 to get 1, then 9 - 1 = 8, and 8 * 3 = 24 if we had another 3\nResult: [1, 9]",
+      "evaluation": {
+        "state": "[1, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 2,
+      "state": [
+        16,
+        13
+      ],
+      "action": "4 + 12 = 16",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 12 to get 16, then 16 and 13 are left; 16+13=29, not 24, but 16+8=24, not directly helpful; however 16 is a useful building block.",
+        "code": "",
+        "observation": "[16, 13]"
+      },
+      "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]\nAdd 4 and 12 to get 16, then 16 and 13 are left; 16+13=29, not 24, but 16+8=24, not directly helpful; however 16 is a useful building block.\nResult: [16, 13]",
+      "evaluation": {
+        "state": "[16, 13]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,13.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 2,
+      "state": [
+        17,
+        12
+      ],
+      "action": "4 + 13 = 17",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 13 to get 17, a number that could combine with 12 to reach 24",
+        "code": "",
+        "observation": "[17, 12]"
+      },
+      "path_history": "Multiply 4 and 3 to get 12, a factor of 24\nResult: [12, 13, 4]\nAdd 4 and 13 to get 17, a number that could combine with 12 to reach 24\nResult: [17, 12]",
+      "evaluation": {
+        "state": "[17, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 17.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 3,
+      "state": [
+        24.0
+      ],
+      "action": "6 * 4",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [6, 4], 6 * 4 = 24",
+        "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "13 minus 4 gives 9, which with 3 and 4 can make 12 or 24\nResult: [9, 3, 4]\nSubtract 3 from 9 to get 6, a factor of 24\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    13
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 3,
+      "re_evaluations": 0,
+      "unique_states": 3,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

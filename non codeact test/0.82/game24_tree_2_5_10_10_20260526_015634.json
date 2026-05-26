@@ -1,0 +1,1984 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-26T01:56:34.213854",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 19,
+      "api_calls": 10,
+      "cache_hits": 0,
+      "solutions_found": 0,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 10,
+      "session_start": "2026-05-26T01:55:49.700785",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 16,
+      "total_input_tokens": 8148,
+      "total_output_tokens": 8470,
+      "api_saved_two_num_cache": 48,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": false,
+      "winning_depth1_count": 3,
+      "winning_depth1_proposed": 0,
+      "deadend_memory": {
+        "patterns_stored": 34,
+        "two_num_cache_size": 555,
+        "total_checked": 18,
+        "total_skipped": 16,
+        "skip_rate": "88.9%"
+      },
+      "time_seconds": 44.51
+    },
+    "correct_path_in_proposals": false,
+    "winning_depth1_count": 3,
+    "winning_depth1_proposed": 0,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 34,
+      "total_checked": 18,
+      "total_skipped": 16,
+      "api_calls_saved": 48,
+      "api_saved_two_num_cache": 48,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        2,
+        5,
+        10,
+        10
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 2,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            20,
+            2,
+            5
+          ],
+          "action": "10 + 10 = 20",
+          "value": 0.0012,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.",
+            "code": "",
+            "observation": "[20, 2, 5]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]",
+          "evaluation": {
+            "state": "[20, 2, 5]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 20
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \nno success.\n\nno path found within 5 attempts.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [20, 2, 5]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 2 / 20 = 0.1, 0.1 * 5 = 0.5 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 5 / 20 = 0.25, 0.25 * 2 = 0.5 (no).  \n- 2 / 5 = 0.4, 0.4 * 20 = 8 (no).  \n- 5 / 2 = 2.5, 2.5 * 20 = 50 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n- 20 * 3 = 60 (no).  \n- 20 / 3 ≈ 6.667 (no).  \n- 20 + 3 = 23 (no).  \n- 20 - 3 = 17 (no).  \n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, 40 - 5 = 35 (no). 40 + 5 = 45 (no). 40 / 5 = 8 (no).  \n- 20 * 5 = 100, 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no).  \n- 2 * 5 = 10, 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no). 5 - 40 = -35 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no). 2 - 100 = -98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no). 10 - 20 = -10 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no). 22 * 5 = 110 (no). 22 / 5 = 4.4 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no). 25 * 2 = 50 (no). 25 / 2 = 12.5 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no). 20 * 7 = 140 (no). 20 / 7 ≈ 2.857 (no).  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28 inclusive (closest was 23 or 27).\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \nno success.\n\nno path found within 5 attempts.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [20, 2, 5]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 2 / 20 = 0.1, 0.1 * 5 = 0.5 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 5 / 20 = 0.25, 0.25 * 2 = 0.5 (no).  \n- 2 / 5 = 0.4, 0.4 * 20 = 8 (no).  \n- 5 / 2 = 2.5, 2.5 * 20 = 50 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n- 20 * 3 = 60 (no).  \n- 20 / 3 ≈ 6.667 (no).  \n- 20 + 3 = 23 (no).  \n- 20 - 3 = 17 (no).  \n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, 40 - 5 = 35 (no). 40 + 5 = 45 (no). 40 / 5 = 8 (no).  \n- 20 * 5 = 100, 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no).  \n- 2 * 5 = 10, 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no). 5 - 40 = -35 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no). 2 - 100 = -98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no). 10 - 20 = -10 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no). 22 * 5 = 110 (no). 22 / 5 = 4.4 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no). 25 * 2 = 50 (no). 25 / 2 = 12.5 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no). 20 * 7 = 140 (no). 20 / 7 ≈ 2.857 (no).  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28 inclusive (closest was 23 or 27).\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.0012,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "11": {
+              "id": 11,
+              "parent_id": 1,
+              "state": [
+                15,
+                2
+              ],
+              "action": "20 - 5 = 15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 - 5 = 15, then 15 + 2 = 17, not 24; but 15 is a factor of 24? No. However 15 + 9 = 24, but 9 not present. Not promising.",
+                "code": "",
+                "observation": "[15, 2]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 - 5 = 15, then 15 + 2 = 17, not 24; but 15 is a factor of 24? No. However 15 + 9 = 24, but 9 not present. Not promising.\nResult: [15, 2]",
+              "evaluation": {
+                "state": "[15, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 1,
+              "state": [
+                -15,
+                2
+              ],
+              "action": "5 - 20 = -15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "5 - 20 = -15, then -15 + 2 = -13, not useful; negative could combine with -8 to make 24 but no -8. Skip.",
+                "code": "",
+                "observation": "[-15, 2]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n5 - 20 = -15, then -15 + 2 = -13, not useful; negative could combine with -8 to make 24 but no -8. Skip.\nResult: [-15, 2]",
+              "evaluation": {
+                "state": "[-15, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -15.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 1,
+              "state": [
+                18,
+                5
+              ],
+              "action": "20 - 2 = 18",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 - 2 = 18, then 18 + 5 = 23, close but not 24. 18 is not a factor of 24. Not promising.",
+                "code": "",
+                "observation": "[18, 5]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 - 2 = 18, then 18 + 5 = 23, close but not 24. 18 is not a factor of 24. Not promising.\nResult: [18, 5]",
+              "evaluation": {
+                "state": "[18, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 18.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 1,
+              "state": [
+                -18,
+                5
+              ],
+              "action": "2 - 20 = -18",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "2 - 20 = -18, then -18 + 5 = -13, not useful.",
+                "code": "",
+                "observation": "[-18, 5]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n2 - 20 = -18, then -18 + 5 = -13, not useful.\nResult: [-18, 5]",
+              "evaluation": {
+                "state": "[-18, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -18.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 1,
+              "state": [
+                22,
+                5
+              ],
+              "action": "20 + 2 = 22",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 + 2 = 22, then 22 + 5 = 27, too high. 22 is not a factor of 24.",
+                "code": "",
+                "observation": "[22, 5]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 + 2 = 22, then 22 + 5 = 27, too high. 22 is not a factor of 24.\nResult: [22, 5]",
+              "evaluation": {
+                "state": "[22, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 22.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 1,
+              "state": [
+                25,
+                2
+              ],
+              "action": "20 + 5 = 25",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 + 5 = 25, then 25 - 2 = 23, close but not 24. 25 not a factor.",
+                "code": "",
+                "observation": "[25, 2]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 + 5 = 25, then 25 - 2 = 23, close but not 24. 25 not a factor.\nResult: [25, 2]",
+              "evaluation": {
+                "state": "[25, 2]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 25.0,2.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 1,
+              "state": [
+                7,
+                20
+              ],
+              "action": "2 + 5 = 7",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "2 + 5 = 7, then 20 - 7 = 13, not 24. 7 is not a factor of 24.",
+                "code": "",
+                "observation": "[7, 20]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n2 + 5 = 7, then 20 - 7 = 13, not 24. 7 is not a factor of 24.\nResult: [7, 20]",
+              "evaluation": {
+                "state": "[7, 20]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 7.0,20.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "18": {
+              "id": 18,
+              "parent_id": 1,
+              "state": [
+                40,
+                5
+              ],
+              "action": "20 * 2 = 40",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 * 2 = 40, then 40 - 5 = 35, too high. 40 not a factor.",
+                "code": "",
+                "observation": "[40, 5]"
+              },
+              "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 * 2 = 40, then 40 - 5 = 35, too high. 40 not a factor.\nResult: [40, 5]",
+              "evaluation": {
+                "state": "[40, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 40.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            20,
+            5,
+            10
+          ],
+          "action": "10 * 2 = 20",
+          "value": 0.2408,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.",
+            "code": "",
+            "observation": "[20, 5, 10]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]",
+          "evaluation": {
+            "state": "[20, 5, 10]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 20
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 20 - 10 = 10 (not a factor).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no).  \n- 20 + 5 + 10 = 35 (no).  \n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no)  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no)  \n- 20 / 10 = 2, then 2 * 5 = 10 (no)  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no)  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no)  \n- 10 / 5 = 2, then 2 * 20 = 40 (no)  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nalso try 20 - 10 = 10 (not a factor), 20 - 5 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no), 100 - 10 = 90 (no), 100 + 10 = 110 (no)  \n- 20 * 10 = 200, then 200 / 5 = 40 (no), 200 - 5 = 195 (no)  \n- 5 * 10 = 50, then 50 - 20 = 30 (no), 50 / 20 = 2.5 (no), 50 + 20 = 70 (no)  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no), 25 - 1? no.  \n- 20 + 10 = 30, then 30 - 5 = 25 (no), 30 - 6? no.  \n- 5 + 10 = 15, then 15 + 20 = 35 (no), 20 - 15 = 5 (no).  \n\nno result near 24.\n\n**attempt 5 (any remaining promising try):**  \n20 - 5 = 15, then 15 + 10 = 25 (close but not within 0.001 of 24).  \n25 is between 20 and 28 inclusive.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5.  \n10 - 5 = 5. is 5 a factor of 24? no (24 / 5 = 4.8).  \n5 - 10 = -5 (no).  \n20 - 10 = 10 (not a factor of 24).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no). 100 - 10 = 90 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no). 200 - 5 = 195 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no). 50 / 20 = 2.5 (no).  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no). 20 - 15 = 5 (no).  \n\n**attempt 5 (other combos not yet tried):**  \n- 20 - 5 = 15, then 15 + 10 = 25 (no).  \n- 20 - 10 = 10, then 10 + 5 = 15 (no).  \n- 10 - 5 = 5, then 5 + 20 = 25 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'likely', 'impossible']",
+              "Votes: sure=0, likely=1, impossible=2",
+              "Raw score: 0.201, Final score: 0.241"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 20 - 10 = 10 (not a factor).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no).  \n- 20 + 5 + 10 = 35 (no).  \n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no)  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no)  \n- 20 / 10 = 2, then 2 * 5 = 10 (no)  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no)  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no)  \n- 10 / 5 = 2, then 2 * 20 = 40 (no)  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nalso try 20 - 10 = 10 (not a factor), 20 - 5 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no), 100 - 10 = 90 (no), 100 + 10 = 110 (no)  \n- 20 * 10 = 200, then 200 / 5 = 40 (no), 200 - 5 = 195 (no)  \n- 5 * 10 = 50, then 50 - 20 = 30 (no), 50 / 20 = 2.5 (no), 50 + 20 = 70 (no)  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no), 25 - 1? no.  \n- 20 + 10 = 30, then 30 - 5 = 25 (no), 30 - 6? no.  \n- 5 + 10 = 15, then 15 + 20 = 35 (no), 20 - 15 = 5 (no).  \n\nno result near 24.\n\n**attempt 5 (any remaining promising try):**  \n20 - 5 = 15, then 15 + 10 = 25 (close but not within 0.001 of 24).  \n25 is between 20 and 28 inclusive.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5.  \n10 - 5 = 5. is 5 a factor of 24? no (24 / 5 = 4.8).  \n5 - 10 = -5 (no).  \n20 - 10 = 10 (not a factor of 24).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no). 100 - 10 = 90 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no). 200 - 5 = 195 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no). 50 / 20 = 2.5 (no).  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no). 20 - 15 = 5 (no).  \n\n**attempt 5 (other combos not yet tried):**  \n- 20 - 5 = 15, then 15 + 10 = 25 (no).  \n- 20 - 10 = 10, then 10 + 5 = 15 (no).  \n- 10 - 5 = 5, then 5 + 20 = 25 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.6,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 2,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.2408,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "3": {
+              "id": 3,
+              "parent_id": 2,
+              "state": [
+                15,
+                10
+              ],
+              "action": "20 - 5 = 15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 - 5 = 15, then 15 + 10 = 25, close to 24; also 15 is 24-9, but 9 not present; moderate promise",
+                "code": "",
+                "observation": "[15, 10]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 - 5 = 15, then 15 + 10 = 25, close to 24; also 15 is 24-9, but 9 not present; moderate promise\nResult: [15, 10]",
+              "evaluation": {
+                "state": "[15, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "4": {
+              "id": 4,
+              "parent_id": 2,
+              "state": [
+                10,
+                5
+              ],
+              "action": "20 - 10 = 10",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 - 10 = 10, then 10 + 5 = 15, not close; but 10 is a factor of 20, could combine with 5 later",
+                "code": "",
+                "observation": "[10, 5]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 - 10 = 10, then 10 + 5 = 15, not close; but 10 is a factor of 20, could combine with 5 later\nResult: [10, 5]",
+              "evaluation": {
+                "state": "[10, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 10.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "5": {
+              "id": 5,
+              "parent_id": 2,
+              "state": [
+                -15,
+                10
+              ],
+              "action": "5 - 20 = -15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "5 - 20 = -15, then -15 + 10 = -5, not promising; but negative could multiply with negative later",
+                "code": "",
+                "observation": "[-15, 10]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n5 - 20 = -15, then -15 + 10 = -5, not promising; but negative could multiply with negative later\nResult: [-15, 10]",
+              "evaluation": {
+                "state": "[-15, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -15.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "6": {
+              "id": 6,
+              "parent_id": 2,
+              "state": [
+                5,
+                20
+              ],
+              "action": "10 - 5 = 5",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "10 - 5 = 5, then 20 - 5 = 15; or 5 * 4.8? Not factor of 24",
+                "code": "",
+                "observation": "[5, 20]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n10 - 5 = 5, then 20 - 5 = 15; or 5 * 4.8? Not factor of 24\nResult: [5, 20]",
+              "evaluation": {
+                "state": "[5, 20]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 5.0,20.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 2,
+              "state": [
+                25,
+                10
+              ],
+              "action": "20 + 5 = 25",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 + 5 = 25, then 25 - 10 = 15, not 24; but 25 is close to 24",
+                "code": "",
+                "observation": "[25, 10]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 + 5 = 25, then 25 - 10 = 15, not 24; but 25 is close to 24\nResult: [25, 10]",
+              "evaluation": {
+                "state": "[25, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 25.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 2,
+              "state": [
+                30,
+                5
+              ],
+              "action": "20 + 10 = 30",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 + 10 = 30, then 30 - 5 = 25, close to 24; could also do 30 - 6 = 24 but 6 not present",
+                "code": "",
+                "observation": "[30, 5]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 + 10 = 30, then 30 - 5 = 25, close to 24; could also do 30 - 6 = 24 but 6 not present\nResult: [30, 5]",
+              "evaluation": {
+                "state": "[30, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 30.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 2,
+              "state": [
+                15,
+                20
+              ],
+              "action": "5 + 10 = 15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "5 + 10 = 15, then 20 - 15 = 5, not promising; but 15 is 24-9, no 9",
+                "code": "",
+                "observation": "[15, 20]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n5 + 10 = 15, then 20 - 15 = 5, not promising; but 15 is 24-9, no 9\nResult: [15, 20]",
+              "evaluation": {
+                "state": "[15, 20]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,20.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 2,
+              "state": [
+                100,
+                10
+              ],
+              "action": "20 * 5 = 100",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "20 * 5 = 100, too large; but 100 / 10 = 10, not 24; or 100 - 76 = 24, no 76",
+                "code": "",
+                "observation": "[100, 10]"
+              },
+              "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 * 5 = 100, too large; but 100 / 10 = 10, not 24; or 100 - 76 = 24, no 76\nResult: [100, 10]",
+              "evaluation": {
+                "state": "[100, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 100.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        20,
+        2,
+        5
+      ],
+      "action": "10 + 10 = 20",
+      "value": 0.0012,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.",
+        "code": "",
+        "observation": "[20, 2, 5]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]",
+      "evaluation": {
+        "state": "[20, 2, 5]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 20
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \nno success.\n\nno path found within 5 attempts.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [20, 2, 5]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 2 / 20 = 0.1, 0.1 * 5 = 0.5 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 5 / 20 = 0.25, 0.25 * 2 = 0.5 (no).  \n- 2 / 5 = 0.4, 0.4 * 20 = 8 (no).  \n- 5 / 2 = 2.5, 2.5 * 20 = 50 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n- 20 * 3 = 60 (no).  \n- 20 / 3 ≈ 6.667 (no).  \n- 20 + 3 = 23 (no).  \n- 20 - 3 = 17 (no).  \n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, 40 - 5 = 35 (no). 40 + 5 = 45 (no). 40 / 5 = 8 (no).  \n- 20 * 5 = 100, 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no).  \n- 2 * 5 = 10, 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no). 5 - 40 = -35 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no). 2 - 100 = -98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no). 10 - 20 = -10 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no). 22 * 5 = 110 (no). 22 / 5 = 4.4 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no). 25 * 2 = 50 (no). 25 / 2 = 12.5 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no). 20 * 7 = 140 (no). 20 / 7 ≈ 2.857 (no).  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28 inclusive (closest was 23 or 27).\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \nno success.\n\nno path found within 5 attempts.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [20, 2, 5]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 2 / 20 = 0.1, 0.1 * 5 = 0.5 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 5 / 20 = 0.25, 0.25 * 2 = 0.5 (no).  \n- 2 / 5 = 0.4, 0.4 * 20 = 8 (no).  \n- 5 / 2 = 2.5, 2.5 * 20 = 50 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n- 20 * 3 = 60 (no).  \n- 20 / 3 ≈ 6.667 (no).  \n- 20 + 3 = 23 (no).  \n- 20 - 3 = 17 (no).  \n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, 40 - 5 = 35 (no). 40 + 5 = 45 (no). 40 / 5 = 8 (no).  \n- 20 * 5 = 100, 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no).  \n- 2 * 5 = 10, 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, 22 + 5 = 27 (no). 22 - 5 = 17 (no).  \n- 20 + 5 = 25, 25 - 2 = 23 (no). 25 + 2 = 27 (no).  \n- 2 + 5 = 7, 20 - 7 = 13 (no). 20 + 7 = 27 (no).  \n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 20 / 2 = 10, then 10 * 5 = 50 (no).  \n- 20 / 5 = 4, then 4 * 2 = 8 (no).  \n- 2 / 20 = 0.1, then 0.1 * 5 = 0.5 (no).  \n- 2 / 5 = 0.4, then 0.4 * 20 = 8 (no).  \n- 5 / 20 = 0.25, then 0.25 * 2 = 0.5 (no).  \n- 5 / 2 = 2.5, then 2.5 * 20 = 50 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 2 and 5 (difference 3).  \n3 is a factor of 24. combine with third (20):  \n20 * 3 = 60 (no).  \n20 / 3 ≈ 6.667 (no).  \n3 + 20 = 23 (no).  \n20 - 3 = 17 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 20 * 2 = 40, then 40 - 5 = 35 (no). 40 / 5 = 8 (no). 40 + 5 = 45 (no). 5 - 40 = -35 (no).  \n- 20 * 5 = 100, then 100 / 2 = 50 (no). 100 - 2 = 98 (no). 100 + 2 = 102 (no). 2 - 100 = -98 (no).  \n- 2 * 5 = 10, then 10 + 20 = 30 (no). 20 - 10 = 10 (no). 20 / 10 = 2 (no). 10 - 20 = -10 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 20 + 2 = 22, then 22 + 5 = 27 (no). 22 - 5 = 17 (no). 22 * 5 = 110 (no). 22 / 5 = 4.4 (no).  \n- 20 + 5 = 25, then 25 - 2 = 23 (no). 25 + 2 = 27 (no). 25 * 2 = 50 (no). 25 / 2 = 12.5 (no).  \n- 2 + 5 = 7, then 20 - 7 = 13 (no). 20 + 7 = 27 (no). 20 * 7 = 140 (no). 20 / 7 ≈ 2.857 (no).  \n\nno path found.\n\nresult is not within 0.001 of 24, nor between 20 and 28 inclusive (closest was 23 or 27).\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.0012,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "11": {
+          "id": 11,
+          "parent_id": 1,
+          "state": [
+            15,
+            2
+          ],
+          "action": "20 - 5 = 15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 - 5 = 15, then 15 + 2 = 17, not 24; but 15 is a factor of 24? No. However 15 + 9 = 24, but 9 not present. Not promising.",
+            "code": "",
+            "observation": "[15, 2]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 - 5 = 15, then 15 + 2 = 17, not 24; but 15 is a factor of 24? No. However 15 + 9 = 24, but 9 not present. Not promising.\nResult: [15, 2]",
+          "evaluation": {
+            "state": "[15, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 1,
+          "state": [
+            -15,
+            2
+          ],
+          "action": "5 - 20 = -15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "5 - 20 = -15, then -15 + 2 = -13, not useful; negative could combine with -8 to make 24 but no -8. Skip.",
+            "code": "",
+            "observation": "[-15, 2]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n5 - 20 = -15, then -15 + 2 = -13, not useful; negative could combine with -8 to make 24 but no -8. Skip.\nResult: [-15, 2]",
+          "evaluation": {
+            "state": "[-15, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -15.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 1,
+          "state": [
+            18,
+            5
+          ],
+          "action": "20 - 2 = 18",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 - 2 = 18, then 18 + 5 = 23, close but not 24. 18 is not a factor of 24. Not promising.",
+            "code": "",
+            "observation": "[18, 5]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 - 2 = 18, then 18 + 5 = 23, close but not 24. 18 is not a factor of 24. Not promising.\nResult: [18, 5]",
+          "evaluation": {
+            "state": "[18, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 18.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 1,
+          "state": [
+            -18,
+            5
+          ],
+          "action": "2 - 20 = -18",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "2 - 20 = -18, then -18 + 5 = -13, not useful.",
+            "code": "",
+            "observation": "[-18, 5]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n2 - 20 = -18, then -18 + 5 = -13, not useful.\nResult: [-18, 5]",
+          "evaluation": {
+            "state": "[-18, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -18.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 1,
+          "state": [
+            22,
+            5
+          ],
+          "action": "20 + 2 = 22",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 + 2 = 22, then 22 + 5 = 27, too high. 22 is not a factor of 24.",
+            "code": "",
+            "observation": "[22, 5]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 + 2 = 22, then 22 + 5 = 27, too high. 22 is not a factor of 24.\nResult: [22, 5]",
+          "evaluation": {
+            "state": "[22, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 22.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 1,
+          "state": [
+            25,
+            2
+          ],
+          "action": "20 + 5 = 25",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 + 5 = 25, then 25 - 2 = 23, close but not 24. 25 not a factor.",
+            "code": "",
+            "observation": "[25, 2]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 + 5 = 25, then 25 - 2 = 23, close but not 24. 25 not a factor.\nResult: [25, 2]",
+          "evaluation": {
+            "state": "[25, 2]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 25.0,2.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 1,
+          "state": [
+            7,
+            20
+          ],
+          "action": "2 + 5 = 7",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "2 + 5 = 7, then 20 - 7 = 13, not 24. 7 is not a factor of 24.",
+            "code": "",
+            "observation": "[7, 20]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n2 + 5 = 7, then 20 - 7 = 13, not 24. 7 is not a factor of 24.\nResult: [7, 20]",
+          "evaluation": {
+            "state": "[7, 20]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 7.0,20.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "18": {
+          "id": 18,
+          "parent_id": 1,
+          "state": [
+            40,
+            5
+          ],
+          "action": "20 * 2 = 40",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 * 2 = 40, then 40 - 5 = 35, too high. 40 not a factor.",
+            "code": "",
+            "observation": "[40, 5]"
+          },
+          "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 * 2 = 40, then 40 - 5 = 35, too high. 40 not a factor.\nResult: [40, 5]",
+          "evaluation": {
+            "state": "[40, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 40.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        20,
+        5,
+        10
+      ],
+      "action": "10 * 2 = 20",
+      "value": 0.2408,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.",
+        "code": "",
+        "observation": "[20, 5, 10]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]",
+      "evaluation": {
+        "state": "[20, 5, 10]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 20
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 20 - 10 = 10 (not a factor).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no).  \n- 20 + 5 + 10 = 35 (no).  \n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no)  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no)  \n- 20 / 10 = 2, then 2 * 5 = 10 (no)  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no)  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no)  \n- 10 / 5 = 2, then 2 * 20 = 40 (no)  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nalso try 20 - 10 = 10 (not a factor), 20 - 5 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no), 100 - 10 = 90 (no), 100 + 10 = 110 (no)  \n- 20 * 10 = 200, then 200 / 5 = 40 (no), 200 - 5 = 195 (no)  \n- 5 * 10 = 50, then 50 - 20 = 30 (no), 50 / 20 = 2.5 (no), 50 + 20 = 70 (no)  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no), 25 - 1? no.  \n- 20 + 10 = 30, then 30 - 5 = 25 (no), 30 - 6? no.  \n- 5 + 10 = 15, then 15 + 20 = 35 (no), 20 - 15 = 5 (no).  \n\nno result near 24.\n\n**attempt 5 (any remaining promising try):**  \n20 - 5 = 15, then 15 + 10 = 25 (close but not within 0.001 of 24).  \n25 is between 20 and 28 inclusive.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5.  \n10 - 5 = 5. is 5 a factor of 24? no (24 / 5 = 4.8).  \n5 - 10 = -5 (no).  \n20 - 10 = 10 (not a factor of 24).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no). 100 - 10 = 90 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no). 200 - 5 = 195 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no). 50 / 20 = 2.5 (no).  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no). 20 - 15 = 5 (no).  \n\n**attempt 5 (other combos not yet tried):**  \n- 20 - 5 = 15, then 15 + 10 = 25 (no).  \n- 20 - 10 = 10, then 10 + 5 = 15 (no).  \n- 10 - 5 = 5, then 5 + 20 = 25 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'likely', 'impossible']",
+          "Votes: sure=0, likely=1, impossible=2",
+          "Raw score: 0.201, Final score: 0.241"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 20 - 10 = 10 (not a factor).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no).  \n- 20 + 5 + 10 = 35 (no).  \n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no)  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no)  \n- 20 / 10 = 2, then 2 * 5 = 10 (no)  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no)  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no)  \n- 10 / 5 = 2, then 2 * 20 = 40 (no)  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5 → 10 - 5 = 5.  \n5 is not a factor of 24 (factors: 1,2,3,4,6,8,12).  \nalso try 20 - 10 = 10 (not a factor), 20 - 5 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no), 100 - 10 = 90 (no), 100 + 10 = 110 (no)  \n- 20 * 10 = 200, then 200 / 5 = 40 (no), 200 - 5 = 195 (no)  \n- 5 * 10 = 50, then 50 - 20 = 30 (no), 50 / 20 = 2.5 (no), 50 + 20 = 70 (no)  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no), 25 - 1? no.  \n- 20 + 10 = 30, then 30 - 5 = 25 (no), 30 - 6? no.  \n- 5 + 10 = 15, then 15 + 20 = 35 (no), 20 - 15 = 5 (no).  \n\nno result near 24.\n\n**attempt 5 (any remaining promising try):**  \n20 - 5 = 15, then 15 + 10 = 25 (close but not within 0.001 of 24).  \n25 is between 20 and 28 inclusive.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [20, 5, 10]  \ntarget: 24  \n\n**attempt 1 (division — both orders for each pair):**  \n- 20 / 5 = 4, then 4 * 10 = 40 (no).  \n- 5 / 20 = 0.25, then 0.25 * 10 = 2.5 (no).  \n- 20 / 10 = 2, then 2 * 5 = 10 (no).  \n- 10 / 20 = 0.5, then 0.5 * 5 = 2.5 (no).  \n- 5 / 10 = 0.5, then 0.5 * 20 = 10 (no).  \n- 10 / 5 = 2, then 2 * 20 = 40 (no).  \n\n**attempt 2 (close subtraction — two closest numbers):**  \nclosest two: 10 and 5.  \n10 - 5 = 5. is 5 a factor of 24? no (24 / 5 = 4.8).  \n5 - 10 = -5 (no).  \n20 - 10 = 10 (not a factor of 24).  \n20 - 5 = 15 (not a factor).  \n\n**attempt 3 (multiplication — each pair):**  \n- 20 * 5 = 100, then 100 / 10 = 10 (no). 100 - 10 = 90 (no).  \n- 20 * 10 = 200, then 200 / 5 = 40 (no). 200 - 5 = 195 (no).  \n- 5 * 10 = 50, then 50 - 20 = 30 (no). 50 / 20 = 2.5 (no).  \n\n**attempt 4 (addition and adjust with third):**  \n- 20 + 5 = 25, then 25 - 10 = 15 (no).  \n- 20 + 10 = 30, then 30 - 5 = 25 (no).  \n- 5 + 10 = 15, then 15 + 20 = 35 (no). 20 - 15 = 5 (no).  \n\n**attempt 5 (other combos not yet tried):**  \n- 20 - 5 = 15, then 15 + 10 = 25 (no).  \n- 20 - 10 = 10, then 10 + 5 = 15 (no).  \n- 10 - 5 = 5, then 5 + 20 = 25 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.6,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 2,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.2408,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "3": {
+          "id": 3,
+          "parent_id": 2,
+          "state": [
+            15,
+            10
+          ],
+          "action": "20 - 5 = 15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 - 5 = 15, then 15 + 10 = 25, close to 24; also 15 is 24-9, but 9 not present; moderate promise",
+            "code": "",
+            "observation": "[15, 10]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 - 5 = 15, then 15 + 10 = 25, close to 24; also 15 is 24-9, but 9 not present; moderate promise\nResult: [15, 10]",
+          "evaluation": {
+            "state": "[15, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 2,
+          "state": [
+            10,
+            5
+          ],
+          "action": "20 - 10 = 10",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 - 10 = 10, then 10 + 5 = 15, not close; but 10 is a factor of 20, could combine with 5 later",
+            "code": "",
+            "observation": "[10, 5]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 - 10 = 10, then 10 + 5 = 15, not close; but 10 is a factor of 20, could combine with 5 later\nResult: [10, 5]",
+          "evaluation": {
+            "state": "[10, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 10.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 2,
+          "state": [
+            -15,
+            10
+          ],
+          "action": "5 - 20 = -15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "5 - 20 = -15, then -15 + 10 = -5, not promising; but negative could multiply with negative later",
+            "code": "",
+            "observation": "[-15, 10]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n5 - 20 = -15, then -15 + 10 = -5, not promising; but negative could multiply with negative later\nResult: [-15, 10]",
+          "evaluation": {
+            "state": "[-15, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -15.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 2,
+          "state": [
+            5,
+            20
+          ],
+          "action": "10 - 5 = 5",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "10 - 5 = 5, then 20 - 5 = 15; or 5 * 4.8? Not factor of 24",
+            "code": "",
+            "observation": "[5, 20]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n10 - 5 = 5, then 20 - 5 = 15; or 5 * 4.8? Not factor of 24\nResult: [5, 20]",
+          "evaluation": {
+            "state": "[5, 20]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 5.0,20.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 2,
+          "state": [
+            25,
+            10
+          ],
+          "action": "20 + 5 = 25",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 + 5 = 25, then 25 - 10 = 15, not 24; but 25 is close to 24",
+            "code": "",
+            "observation": "[25, 10]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 + 5 = 25, then 25 - 10 = 15, not 24; but 25 is close to 24\nResult: [25, 10]",
+          "evaluation": {
+            "state": "[25, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 25.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 2,
+          "state": [
+            30,
+            5
+          ],
+          "action": "20 + 10 = 30",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 + 10 = 30, then 30 - 5 = 25, close to 24; could also do 30 - 6 = 24 but 6 not present",
+            "code": "",
+            "observation": "[30, 5]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 + 10 = 30, then 30 - 5 = 25, close to 24; could also do 30 - 6 = 24 but 6 not present\nResult: [30, 5]",
+          "evaluation": {
+            "state": "[30, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 30.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 2,
+          "state": [
+            15,
+            20
+          ],
+          "action": "5 + 10 = 15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "5 + 10 = 15, then 20 - 15 = 5, not promising; but 15 is 24-9, no 9",
+            "code": "",
+            "observation": "[15, 20]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n5 + 10 = 15, then 20 - 15 = 5, not promising; but 15 is 24-9, no 9\nResult: [15, 20]",
+          "evaluation": {
+            "state": "[15, 20]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,20.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 2,
+          "state": [
+            100,
+            10
+          ],
+          "action": "20 * 5 = 100",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "20 * 5 = 100, too large; but 100 / 10 = 10, not 24; or 100 - 76 = 24, no 76",
+            "code": "",
+            "observation": "[100, 10]"
+          },
+          "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 * 5 = 100, too large; but 100 / 10 = 10, not 24; or 100 - 76 = 24, no 76\nResult: [100, 10]",
+          "evaluation": {
+            "state": "[100, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 100.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 2,
+      "state": [
+        15,
+        10
+      ],
+      "action": "20 - 5 = 15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 - 5 = 15, then 15 + 10 = 25, close to 24; also 15 is 24-9, but 9 not present; moderate promise",
+        "code": "",
+        "observation": "[15, 10]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 - 5 = 15, then 15 + 10 = 25, close to 24; also 15 is 24-9, but 9 not present; moderate promise\nResult: [15, 10]",
+      "evaluation": {
+        "state": "[15, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 2,
+      "state": [
+        10,
+        5
+      ],
+      "action": "20 - 10 = 10",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 - 10 = 10, then 10 + 5 = 15, not close; but 10 is a factor of 20, could combine with 5 later",
+        "code": "",
+        "observation": "[10, 5]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 - 10 = 10, then 10 + 5 = 15, not close; but 10 is a factor of 20, could combine with 5 later\nResult: [10, 5]",
+      "evaluation": {
+        "state": "[10, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 10.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 2,
+      "state": [
+        -15,
+        10
+      ],
+      "action": "5 - 20 = -15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "5 - 20 = -15, then -15 + 10 = -5, not promising; but negative could multiply with negative later",
+        "code": "",
+        "observation": "[-15, 10]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n5 - 20 = -15, then -15 + 10 = -5, not promising; but negative could multiply with negative later\nResult: [-15, 10]",
+      "evaluation": {
+        "state": "[-15, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -15.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 2,
+      "state": [
+        5,
+        20
+      ],
+      "action": "10 - 5 = 5",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "10 - 5 = 5, then 20 - 5 = 15; or 5 * 4.8? Not factor of 24",
+        "code": "",
+        "observation": "[5, 20]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n10 - 5 = 5, then 20 - 5 = 15; or 5 * 4.8? Not factor of 24\nResult: [5, 20]",
+      "evaluation": {
+        "state": "[5, 20]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 5.0,20.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 2,
+      "state": [
+        25,
+        10
+      ],
+      "action": "20 + 5 = 25",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 + 5 = 25, then 25 - 10 = 15, not 24; but 25 is close to 24",
+        "code": "",
+        "observation": "[25, 10]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 + 5 = 25, then 25 - 10 = 15, not 24; but 25 is close to 24\nResult: [25, 10]",
+      "evaluation": {
+        "state": "[25, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 25.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 2,
+      "state": [
+        30,
+        5
+      ],
+      "action": "20 + 10 = 30",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 + 10 = 30, then 30 - 5 = 25, close to 24; could also do 30 - 6 = 24 but 6 not present",
+        "code": "",
+        "observation": "[30, 5]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 + 10 = 30, then 30 - 5 = 25, close to 24; could also do 30 - 6 = 24 but 6 not present\nResult: [30, 5]",
+      "evaluation": {
+        "state": "[30, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 30.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 2,
+      "state": [
+        15,
+        20
+      ],
+      "action": "5 + 10 = 15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "5 + 10 = 15, then 20 - 15 = 5, not promising; but 15 is 24-9, no 9",
+        "code": "",
+        "observation": "[15, 20]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n5 + 10 = 15, then 20 - 15 = 5, not promising; but 15 is 24-9, no 9\nResult: [15, 20]",
+      "evaluation": {
+        "state": "[15, 20]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,20.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 2,
+      "state": [
+        100,
+        10
+      ],
+      "action": "20 * 5 = 100",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 * 5 = 100, too large; but 100 / 10 = 10, not 24; or 100 - 76 = 24, no 76",
+        "code": "",
+        "observation": "[100, 10]"
+      },
+      "path_history": "10 * 2 = 20, difference from 24 is 4, and we have 10 and 5 left — 20 + 4 = 24, but 4 not present. However 20 + (10-5)=25, close. Not ideal but factor path: 20 * (10/5) = 40, not 24. Better: 20 + 5 - 10/10? Not direct. Still, 20 is close to 24.\nResult: [20, 5, 10]\n20 * 5 = 100, too large; but 100 / 10 = 10, not 24; or 100 - 76 = 24, no 76\nResult: [100, 10]",
+      "evaluation": {
+        "state": "[100, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 100.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 1,
+      "state": [
+        15,
+        2
+      ],
+      "action": "20 - 5 = 15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 - 5 = 15, then 15 + 2 = 17, not 24; but 15 is a factor of 24? No. However 15 + 9 = 24, but 9 not present. Not promising.",
+        "code": "",
+        "observation": "[15, 2]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 - 5 = 15, then 15 + 2 = 17, not 24; but 15 is a factor of 24? No. However 15 + 9 = 24, but 9 not present. Not promising.\nResult: [15, 2]",
+      "evaluation": {
+        "state": "[15, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 1,
+      "state": [
+        -15,
+        2
+      ],
+      "action": "5 - 20 = -15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "5 - 20 = -15, then -15 + 2 = -13, not useful; negative could combine with -8 to make 24 but no -8. Skip.",
+        "code": "",
+        "observation": "[-15, 2]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n5 - 20 = -15, then -15 + 2 = -13, not useful; negative could combine with -8 to make 24 but no -8. Skip.\nResult: [-15, 2]",
+      "evaluation": {
+        "state": "[-15, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -15.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 1,
+      "state": [
+        18,
+        5
+      ],
+      "action": "20 - 2 = 18",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 - 2 = 18, then 18 + 5 = 23, close but not 24. 18 is not a factor of 24. Not promising.",
+        "code": "",
+        "observation": "[18, 5]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 - 2 = 18, then 18 + 5 = 23, close but not 24. 18 is not a factor of 24. Not promising.\nResult: [18, 5]",
+      "evaluation": {
+        "state": "[18, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 18.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 1,
+      "state": [
+        -18,
+        5
+      ],
+      "action": "2 - 20 = -18",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "2 - 20 = -18, then -18 + 5 = -13, not useful.",
+        "code": "",
+        "observation": "[-18, 5]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n2 - 20 = -18, then -18 + 5 = -13, not useful.\nResult: [-18, 5]",
+      "evaluation": {
+        "state": "[-18, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -18.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 1,
+      "state": [
+        22,
+        5
+      ],
+      "action": "20 + 2 = 22",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 + 2 = 22, then 22 + 5 = 27, too high. 22 is not a factor of 24.",
+        "code": "",
+        "observation": "[22, 5]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 + 2 = 22, then 22 + 5 = 27, too high. 22 is not a factor of 24.\nResult: [22, 5]",
+      "evaluation": {
+        "state": "[22, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 22.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 1,
+      "state": [
+        25,
+        2
+      ],
+      "action": "20 + 5 = 25",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 + 5 = 25, then 25 - 2 = 23, close but not 24. 25 not a factor.",
+        "code": "",
+        "observation": "[25, 2]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 + 5 = 25, then 25 - 2 = 23, close but not 24. 25 not a factor.\nResult: [25, 2]",
+      "evaluation": {
+        "state": "[25, 2]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 25.0,2.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 1,
+      "state": [
+        7,
+        20
+      ],
+      "action": "2 + 5 = 7",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "2 + 5 = 7, then 20 - 7 = 13, not 24. 7 is not a factor of 24.",
+        "code": "",
+        "observation": "[7, 20]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n2 + 5 = 7, then 20 - 7 = 13, not 24. 7 is not a factor of 24.\nResult: [7, 20]",
+      "evaluation": {
+        "state": "[7, 20]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 7.0,20.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 1,
+      "state": [
+        40,
+        5
+      ],
+      "action": "20 * 2 = 40",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "20 * 2 = 40, then 40 - 5 = 35, too high. 40 not a factor.",
+        "code": "",
+        "observation": "[40, 5]"
+      },
+      "path_history": "10 + 10 = 20, difference from 24 is 4, and 4 * 2 = 8? Not directly, but 20 + 2 + 5 = 27, not 24. However 20 + 5 - 2 = 23, close but not 24. Needs more work.\nResult: [20, 2, 5]\n20 * 2 = 40, then 40 - 5 = 35, too high. 40 not a factor.\nResult: [40, 5]",
+      "evaluation": {
+        "state": "[40, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 40.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 2,
+      "re_evaluations": 0,
+      "unique_states": 2,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

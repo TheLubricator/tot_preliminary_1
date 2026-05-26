@@ -1,0 +1,1882 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-26T01:54:01.371271",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 18,
+      "api_calls": 11,
+      "cache_hits": 0,
+      "solutions_found": 0,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 11,
+      "session_start": "2026-05-26T01:53:10.903850",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 15,
+      "total_input_tokens": 8892,
+      "total_output_tokens": 9452,
+      "api_saved_two_num_cache": 45,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": false,
+      "winning_depth1_count": 6,
+      "winning_depth1_proposed": 0,
+      "deadend_memory": {
+        "patterns_stored": 32,
+        "two_num_cache_size": 534,
+        "total_checked": 17,
+        "total_skipped": 15,
+        "skip_rate": "88.2%"
+      },
+      "time_seconds": 50.47
+    },
+    "correct_path_in_proposals": false,
+    "winning_depth1_count": 6,
+    "winning_depth1_proposed": 0,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 32,
+      "total_checked": 17,
+      "total_skipped": 15,
+      "api_calls_saved": 45,
+      "api_saved_two_num_cache": 45,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        5,
+        6,
+        8,
+        12
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 2,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            96,
+            5,
+            6
+          ],
+          "action": "8 * 12 = 96",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.",
+            "code": "",
+            "observation": "[96, 5, 6]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]",
+          "evaluation": {
+            "state": "[96, 5, 6]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 96
+            },
+            "llm_judgments": [
+              "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 * 96 = 2880 (no). 30 + 96 = 126 (no). 96 - 30 = 66 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 + 11 = 107 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5 (other combinations):**  \ntry 96 / (5 - 6/?) — no, that's complex.  \ntry 96 / 4 = 24, but we don't have 4.  \ntry (96 / 6) * something: 16 * 1.5 = 24, but 5/?? no.  \ntry 5 * 4.8 = 24, but 96/20 = 4.8, 20 from 5+? no.  \nno path found.\n\nall attempts exhausted. no result near 24.\n\nanswer: impossible",
+              "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 - 96 = -66 (no). 96 - 30 = 66 (no). 30 + 96 = 126 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5:**  \ntry other combinations:  \n- 96 / (5 - 6/?) — not needed, we already tried all pair operations systematically.  \n- 96 - (5 * 6) = 96 - 30 = 66 (no).  \n- (96 / 6) * 5 = 16 * 5 = 80 (no).  \n- (96 / 5) * 6 = 19.2 * 6 = 115.2 (no).  \n- 5 * 6 - 96 = 30 - 96 = -66 (no).  \n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no)  \n- 96 / 6 = 16, then 16 * 5 = 80 (no)  \n- 5 / 96 ≈ 0.052 (no)  \n- 6 / 96 = 0.0625 (no)  \n- 5 / 6 ≈ 0.833, then 0.833 * 96 ≈ 80 (no)  \n- 6 / 5 = 1.2, then 1.2 * 96 = 115.2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24.  \ncombine with third: 96 * 1 = 96 (no), 96 / 1 = 96 (no), 96 + 1 = 97 (no), 96 - 1 = 95 (no).  \n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no), 480 - 6 = 474 (no), 480 + 6 = 486 (no)  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no), 576 - 5 = 571 (no)  \n- 5 * 6 = 30, then 30 - 96 = -66 (no), 96 - 30 = 66 (no), 30 + 96 = 126 (no), 96 / 30 = 3.2 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 96 + 5 = 101, 101 - 6 = 95 (no), 101 + 6 = 107 (no)  \n- 96 + 6 = 102, 102 - 5 = 97 (no)  \n- 5 + 6 = 11, 96 - 11 = 85 (no), 96 + 11 = 107 (no), 96 / 11 ≈ 8.727 (no)  \n\n**attempt 5 (other combos):**  \n- 96 - 5 = 91, 91 - 6 = 85 (no)  \n- 96 - 6 = 90, 90 - 5 = 85 (no)  \n- 96 / (5 + 6) = 96 / 11 ≈ 8.727 (no)  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 * 96 = 2880 (no). 30 + 96 = 126 (no). 96 - 30 = 66 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 + 11 = 107 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5 (other combinations):**  \ntry 96 / (5 - 6/?) — no, that's complex.  \ntry 96 / 4 = 24, but we don't have 4.  \ntry (96 / 6) * something: 16 * 1.5 = 24, but 5/?? no.  \ntry 5 * 4.8 = 24, but 96/20 = 4.8, 20 from 5+? no.  \nno path found.\n\nall attempts exhausted. no result near 24.\n\nanswer: impossible",
+                "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 - 96 = -66 (no). 96 - 30 = 66 (no). 30 + 96 = 126 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5:**  \ntry other combinations:  \n- 96 / (5 - 6/?) — not needed, we already tried all pair operations systematically.  \n- 96 - (5 * 6) = 96 - 30 = 66 (no).  \n- (96 / 6) * 5 = 16 * 5 = 80 (no).  \n- (96 / 5) * 6 = 19.2 * 6 = 115.2 (no).  \n- 5 * 6 - 96 = 30 - 96 = -66 (no).  \n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no)  \n- 96 / 6 = 16, then 16 * 5 = 80 (no)  \n- 5 / 96 ≈ 0.052 (no)  \n- 6 / 96 = 0.0625 (no)  \n- 5 / 6 ≈ 0.833, then 0.833 * 96 ≈ 80 (no)  \n- 6 / 5 = 1.2, then 1.2 * 96 = 115.2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24.  \ncombine with third: 96 * 1 = 96 (no), 96 / 1 = 96 (no), 96 + 1 = 97 (no), 96 - 1 = 95 (no).  \n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no), 480 - 6 = 474 (no), 480 + 6 = 486 (no)  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no), 576 - 5 = 571 (no)  \n- 5 * 6 = 30, then 30 - 96 = -66 (no), 96 - 30 = 66 (no), 30 + 96 = 126 (no), 96 / 30 = 3.2 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 96 + 5 = 101, 101 - 6 = 95 (no), 101 + 6 = 107 (no)  \n- 96 + 6 = 102, 102 - 5 = 97 (no)  \n- 5 + 6 = 11, 96 - 11 = 85 (no), 96 + 11 = 107 (no), 96 / 11 ≈ 8.727 (no)  \n\n**attempt 5 (other combos):**  \n- 96 - 5 = 91, 91 - 6 = 85 (no)  \n- 96 - 6 = 90, 90 - 5 = 85 (no)  \n- 96 / (5 + 6) = 96 / 11 ≈ 8.727 (no)  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "3": {
+              "id": 3,
+              "parent_id": 1,
+              "state": [
+                16.0,
+                5
+              ],
+              "action": "96 / 6 = 16.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "96 / 6 = 16, factor of 24 (16 * 1.5 = 24, but 5 remains; 16 + 8 = 24 but no 8; however 16 is a factor of 24? No, 24/16=1.5. But 96/4=24, not relevant. Actually 96/6=16, and 16+5=21, not 24; 16*1.5=24, but 5/?? Not clean. Nonetheless 16 is close to 24 and 5+? Not great. Let's try another: 96/4=24 but no 4. 96/6=16, then 16+5=21, then 21+3? No. Let's check factor: 96/4=24, but 4 not present. 96/6=16, 16 is not a factor of 24 (24/16=1.5). So this is not a factor, but it's a large reduction. Might lead to 16,5,6 → 16+6=22, 22+5=27, not 24. Not promising. Actually 96/6=16, then 16+5=21, then 21+3? No. Or 16*1.5=24, but 5/?? 5/?? No. So skip.",
+                "code": "",
+                "observation": "[16.0, 5]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 / 6 = 16, factor of 24 (16 * 1.5 = 24, but 5 remains; 16 + 8 = 24 but no 8; however 16 is a factor of 24? No, 24/16=1.5. But 96/4=24, not relevant. Actually 96/6=16, and 16+5=21, not 24; 16*1.5=24, but 5/?? Not clean. Nonetheless 16 is close to 24 and 5+? Not great. Let's try another: 96/4=24 but no 4. 96/6=16, then 16+5=21, then 21+3? No. Let's check factor: 96/4=24, but 4 not present. 96/6=16, 16 is not a factor of 24 (24/16=1.5). So this is not a factor, but it's a large reduction. Might lead to 16,5,6 → 16+6=22, 22+5=27, not 24. Not promising. Actually 96/6=16, then 16+5=21, then 21+3? No. Or 16*1.5=24, but 5/?? 5/?? No. So skip.\nResult: [16.0, 5]",
+              "evaluation": {
+                "state": "[16.0, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "4": {
+              "id": 4,
+              "parent_id": 1,
+              "state": [
+                0.0625,
+                5
+              ],
+              "action": "6 / 96 = 0.0625",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "6 / 96 = 0.0625, a fraction that could be used: 5 / 0.0625 = 80 (not 24), or 0.0625 * 24 = 1.5, not promising. Avoid unless necessary.",
+                "code": "",
+                "observation": "[0.0625, 5]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n6 / 96 = 0.0625, a fraction that could be used: 5 / 0.0625 = 80 (not 24), or 0.0625 * 24 = 1.5, not promising. Avoid unless necessary.\nResult: [0.0625, 5]",
+              "evaluation": {
+                "state": "[0.0625, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0625,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "5": {
+              "id": 5,
+              "parent_id": 1,
+              "state": [
+                90,
+                5
+              ],
+              "action": "96 - 6 = 90",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "96 - 6 = 90, then 90 / 5 = 18, or 90 - 5 = 85, not 24. But 90 is large, not promising.",
+                "code": "",
+                "observation": "[90, 5]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 - 6 = 90, then 90 / 5 = 18, or 90 - 5 = 85, not 24. But 90 is large, not promising.\nResult: [90, 5]",
+              "evaluation": {
+                "state": "[90, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 90.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "6": {
+              "id": 6,
+              "parent_id": 1,
+              "state": [
+                -90,
+                5
+              ],
+              "action": "6 - 96 = -90",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "6 - 96 = -90, negative result can be used: -90 / -5 = 18, or -90 + 5 = -85, not helpful. Avoid if possible.",
+                "code": "",
+                "observation": "[-90, 5]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n6 - 96 = -90, negative result can be used: -90 / -5 = 18, or -90 + 5 = -85, not helpful. Avoid if possible.\nResult: [-90, 5]",
+              "evaluation": {
+                "state": "[-90, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -90.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 1,
+              "state": [
+                480,
+                6
+              ],
+              "action": "96 * 5 = 480",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "96 * 5 = 480, too large, but 480 / 6 = 80, not 24. Not promising.",
+                "code": "",
+                "observation": "[480, 6]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 * 5 = 480, too large, but 480 / 6 = 80, not 24. Not promising.\nResult: [480, 6]",
+              "evaluation": {
+                "state": "[480, 6]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 480.0,6.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 1,
+              "state": [
+                19.2,
+                6
+              ],
+              "action": "96 / 5 = 19.2",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "96 / 5 = 19.2, then 19.2 + 6 = 25.2 (close to 24), or 19.2 - 6 = 13.2, not great. Could be used: 6 - 19.2 = -13.2, or 19.2 * 6 = 115.2. Not promising.",
+                "code": "",
+                "observation": "[19.2, 6]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 / 5 = 19.2, then 19.2 + 6 = 25.2 (close to 24), or 19.2 - 6 = 13.2, not great. Could be used: 6 - 19.2 = -13.2, or 19.2 * 6 = 115.2. Not promising.\nResult: [19.2, 6]",
+              "evaluation": {
+                "state": "[19.2, 6]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 19.2,6.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 1,
+              "state": [
+                0.052083333333333336,
+                6
+              ],
+              "action": "5 / 96 = 0.052083333333333336",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "5 / 96 ≈ 0.05208, then 6 / 0.05208 ≈ 115.2, not 24. Avoid.",
+                "code": "",
+                "observation": "[0.052083333333333336, 6]"
+              },
+              "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n5 / 96 ≈ 0.05208, then 6 / 0.05208 ≈ 115.2, not 24. Avoid.\nResult: [0.052083333333333336, 6]",
+              "evaluation": {
+                "state": "[0.052083333333333336, 6]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.052083333333333336,6.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            11,
+            8,
+            12
+          ],
+          "action": "5 + 6 = 11",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.",
+            "code": "",
+            "observation": "[11, 8, 12]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]",
+          "evaluation": {
+            "state": "[11, 8, 12]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). then 1 * 8 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). then 3 * 12 = 36 (no).  \n- 12 - 8 = 4 (factor of 24). then 4 * 11 = 44 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative.  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjusting):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative.  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative.  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative.  \n\nno result near 24 found.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no), 12 - 3 = 9 (no), 12 + 3 = 15 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no), 11 - 4 = 7 (no), 11 + 4 = 15 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 = -76 (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 = -7 (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 = -15 (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 = -9 (no).  \n\nno result near 24 found.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). then 1 * 8 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). then 3 * 12 = 36 (no).  \n- 12 - 8 = 4 (factor of 24). then 4 * 11 = 44 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative.  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjusting):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative.  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative.  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative.  \n\nno result near 24 found.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no), 12 - 3 = 9 (no), 12 + 3 = 15 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no), 11 - 4 = 7 (no), 11 + 4 = 15 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 = -76 (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 = -7 (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 = -15 (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 = -9 (no).  \n\nno result near 24 found.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "10": {
+              "id": 10,
+              "parent_id": 2,
+              "state": [
+                4,
+                11
+              ],
+              "action": "12 - 8 = 4",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "12 - 8 = 4, factor of 24 (4 * 6 = 24, and 11 is close to 6? No, but 4 is a strong factor to multiply with remaining 11 to get 44, not 24 — however 4 * 6 = 24, and 11 is not 6. Still, having a factor of 24 is promising for later combination.",
+                "code": "",
+                "observation": "[4, 11]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 - 8 = 4, factor of 24 (4 * 6 = 24, and 11 is close to 6? No, but 4 is a strong factor to multiply with remaining 11 to get 44, not 24 — however 4 * 6 = 24, and 11 is not 6. Still, having a factor of 24 is promising for later combination.\nResult: [4, 11]",
+              "evaluation": {
+                "state": "[4, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 2,
+              "state": [
+                20,
+                11
+              ],
+              "action": "12 + 8 = 20",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "12 + 8 = 20, difference from 24 is 4, and 11 is left — 20 + 4 = 24, but 4 is not 11. However 20 + 11 = 31, too high. Not directly promising but worth exploring.",
+                "code": "",
+                "observation": "[20, 11]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 + 8 = 20, difference from 24 is 4, and 11 is left — 20 + 4 = 24, but 4 is not 11. However 20 + 11 = 31, too high. Not directly promising but worth exploring.\nResult: [20, 11]",
+              "evaluation": {
+                "state": "[20, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 20.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 2,
+              "state": [
+                1,
+                8
+              ],
+              "action": "12 - 11 = 1",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "12 - 11 = 1, factor of 24 (1 * 24 = 24). Having 1 is useful because 1 * anything = itself, so with remaining 8 we can do 8 * 3 = 24? No 3 missing. But 1 can be used to multiply or divide.",
+                "code": "",
+                "observation": "[1, 8]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 - 11 = 1, factor of 24 (1 * 24 = 24). Having 1 is useful because 1 * anything = itself, so with remaining 8 we can do 8 * 3 = 24? No 3 missing. But 1 can be used to multiply or divide.\nResult: [1, 8]",
+              "evaluation": {
+                "state": "[1, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 2,
+              "state": [
+                -1,
+                8
+              ],
+              "action": "11 - 12 = -1",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "11 - 12 = -1, negative factor. -1 * -24 = 24, but no -24 present. Could multiply -1 by -8 to get 8? Not directly. Less promising but included for completeness.",
+                "code": "",
+                "observation": "[-1, 8]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n11 - 12 = -1, negative factor. -1 * -24 = 24, but no -24 present. Could multiply -1 by -8 to get 8? Not directly. Less promising but included for completeness.\nResult: [-1, 8]",
+              "evaluation": {
+                "state": "[-1, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -1.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 2,
+              "state": [
+                19,
+                12
+              ],
+              "action": "8 + 11 = 19",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "8 + 11 = 19, difference from 24 is 5, remaining 12 — 19 + 5 = 24, but 5 is not 12. Not promising.",
+                "code": "",
+                "observation": "[19, 12]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n8 + 11 = 19, difference from 24 is 5, remaining 12 — 19 + 5 = 24, but 5 is not 12. Not promising.\nResult: [19, 12]",
+              "evaluation": {
+                "state": "[19, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 19.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 2,
+              "state": [
+                96,
+                11
+              ],
+              "action": "12 * 8 = 96",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "12 * 8 = 96, too large for direct use, but 96 / 4 = 24, and 11 is not 4. Could subtract 11? 96 - 72 = 24, not helpful.",
+                "code": "",
+                "observation": "[96, 11]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 * 8 = 96, too large for direct use, but 96 / 4 = 24, and 11 is not 4. Could subtract 11? 96 - 72 = 24, not helpful.\nResult: [96, 11]",
+              "evaluation": {
+                "state": "[96, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 96.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 2,
+              "state": [
+                132,
+                8
+              ],
+              "action": "12 * 11 = 132",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "12 * 11 = 132, very large, not promising.",
+                "code": "",
+                "observation": "[132, 8]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 * 11 = 132, very large, not promising.\nResult: [132, 8]",
+              "evaluation": {
+                "state": "[132, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 132.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 2,
+              "state": [
+                88,
+                12
+              ],
+              "action": "8 * 11 = 88",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "8 * 11 = 88, large, 88 - 64 = 24, no 64; 88 / 3.666 = 24, not helpful.",
+                "code": "",
+                "observation": "[88, 12]"
+              },
+              "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n8 * 11 = 88, large, 88 - 64 = 24, no 64; 88 / 3.666 = 24, not helpful.\nResult: [88, 12]",
+              "evaluation": {
+                "state": "[88, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 88.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        96,
+        5,
+        6
+      ],
+      "action": "8 * 12 = 96",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.",
+        "code": "",
+        "observation": "[96, 5, 6]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]",
+      "evaluation": {
+        "state": "[96, 5, 6]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 96
+        },
+        "llm_judgments": [
+          "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 * 96 = 2880 (no). 30 + 96 = 126 (no). 96 - 30 = 66 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 + 11 = 107 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5 (other combinations):**  \ntry 96 / (5 - 6/?) — no, that's complex.  \ntry 96 / 4 = 24, but we don't have 4.  \ntry (96 / 6) * something: 16 * 1.5 = 24, but 5/?? no.  \ntry 5 * 4.8 = 24, but 96/20 = 4.8, 20 from 5+? no.  \nno path found.\n\nall attempts exhausted. no result near 24.\n\nanswer: impossible",
+          "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 - 96 = -66 (no). 96 - 30 = 66 (no). 30 + 96 = 126 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5:**  \ntry other combinations:  \n- 96 / (5 - 6/?) — not needed, we already tried all pair operations systematically.  \n- 96 - (5 * 6) = 96 - 30 = 66 (no).  \n- (96 / 6) * 5 = 16 * 5 = 80 (no).  \n- (96 / 5) * 6 = 19.2 * 6 = 115.2 (no).  \n- 5 * 6 - 96 = 30 - 96 = -66 (no).  \n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no)  \n- 96 / 6 = 16, then 16 * 5 = 80 (no)  \n- 5 / 96 ≈ 0.052 (no)  \n- 6 / 96 = 0.0625 (no)  \n- 5 / 6 ≈ 0.833, then 0.833 * 96 ≈ 80 (no)  \n- 6 / 5 = 1.2, then 1.2 * 96 = 115.2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24.  \ncombine with third: 96 * 1 = 96 (no), 96 / 1 = 96 (no), 96 + 1 = 97 (no), 96 - 1 = 95 (no).  \n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no), 480 - 6 = 474 (no), 480 + 6 = 486 (no)  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no), 576 - 5 = 571 (no)  \n- 5 * 6 = 30, then 30 - 96 = -66 (no), 96 - 30 = 66 (no), 30 + 96 = 126 (no), 96 / 30 = 3.2 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 96 + 5 = 101, 101 - 6 = 95 (no), 101 + 6 = 107 (no)  \n- 96 + 6 = 102, 102 - 5 = 97 (no)  \n- 5 + 6 = 11, 96 - 11 = 85 (no), 96 + 11 = 107 (no), 96 / 11 ≈ 8.727 (no)  \n\n**attempt 5 (other combos):**  \n- 96 - 5 = 91, 91 - 6 = 85 (no)  \n- 96 - 6 = 90, 90 - 5 = 85 (no)  \n- 96 / (5 + 6) = 96 / 11 ≈ 8.727 (no)  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 * 96 = 2880 (no). 30 + 96 = 126 (no). 96 - 30 = 66 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 + 11 = 107 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5 (other combinations):**  \ntry 96 / (5 - 6/?) — no, that's complex.  \ntry 96 / 4 = 24, but we don't have 4.  \ntry (96 / 6) * something: 16 * 1.5 = 24, but 5/?? no.  \ntry 5 * 4.8 = 24, but 96/20 = 4.8, 20 from 5+? no.  \nno path found.\n\nall attempts exhausted. no result near 24.\n\nanswer: impossible",
+            "we have numbers: 96, 5, 6. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no).  \n- 96 / 6 = 16, then 16 * 5 = 80 (no).  \n- 5 / 96 ≈ 0.052, then * 6 ≈ 0.312 (no).  \n- 5 / 6 ≈ 0.833, then * 96 ≈ 80 (no).  \n- 6 / 96 = 0.0625, then * 5 = 0.3125 (no).  \n- 6 / 5 = 1.2, then * 96 = 115.2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24. combine with third: 96 * 1 = 96 (no). 96 / 1 = 96 (no). 96 + 1 = 97 (no). 96 - 1 = 95 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no). 480 - 6 = 474 (no). 480 + 6 = 486 (no).  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no). 576 - 5 = 571 (no).  \n- 5 * 6 = 30, then 30 - 96 = -66 (no). 96 - 30 = 66 (no). 30 + 96 = 126 (no). 96 / 30 = 3.2 (no).  \nno success.\n\n**attempt 4 (addition and adjusting):**  \n- 96 + 5 = 101, then 101 - 6 = 95 (no). 101 + 6 = 107 (no).  \n- 96 + 6 = 102, then 102 - 5 = 97 (no).  \n- 5 + 6 = 11, then 96 - 11 = 85 (no). 96 / 11 ≈ 8.727 (no). 11 * 96 = 1056 (no).  \nno success.\n\n**attempt 5:**  \ntry other combinations:  \n- 96 / (5 - 6/?) — not needed, we already tried all pair operations systematically.  \n- 96 - (5 * 6) = 96 - 30 = 66 (no).  \n- (96 / 6) * 5 = 16 * 5 = 80 (no).  \n- (96 / 5) * 6 = 19.2 * 6 = 115.2 (no).  \n- 5 * 6 - 96 = 30 - 96 = -66 (no).  \n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 96 / 5 = 19.2, then 19.2 * 6 = 115.2 (no)  \n- 96 / 6 = 16, then 16 * 5 = 80 (no)  \n- 5 / 96 ≈ 0.052 (no)  \n- 6 / 96 = 0.0625 (no)  \n- 5 / 6 ≈ 0.833, then 0.833 * 96 ≈ 80 (no)  \n- 6 / 5 = 1.2, then 1.2 * 96 = 115.2 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 6.  \n6 - 5 = 1. 1 is a factor of 24.  \ncombine with third: 96 * 1 = 96 (no), 96 / 1 = 96 (no), 96 + 1 = 97 (no), 96 - 1 = 95 (no).  \n\n**attempt 3 (multiplication):**  \n- 96 * 5 = 480, then 480 / 6 = 80 (no), 480 - 6 = 474 (no), 480 + 6 = 486 (no)  \n- 96 * 6 = 576, then 576 / 5 = 115.2 (no), 576 - 5 = 571 (no)  \n- 5 * 6 = 30, then 30 - 96 = -66 (no), 96 - 30 = 66 (no), 30 + 96 = 126 (no), 96 / 30 = 3.2 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 96 + 5 = 101, 101 - 6 = 95 (no), 101 + 6 = 107 (no)  \n- 96 + 6 = 102, 102 - 5 = 97 (no)  \n- 5 + 6 = 11, 96 - 11 = 85 (no), 96 + 11 = 107 (no), 96 / 11 ≈ 8.727 (no)  \n\n**attempt 5 (other combos):**  \n- 96 - 5 = 91, 91 - 6 = 85 (no)  \n- 96 - 6 = 90, 90 - 5 = 85 (no)  \n- 96 / (5 + 6) = 96 / 11 ≈ 8.727 (no)  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "3": {
+          "id": 3,
+          "parent_id": 1,
+          "state": [
+            16.0,
+            5
+          ],
+          "action": "96 / 6 = 16.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "96 / 6 = 16, factor of 24 (16 * 1.5 = 24, but 5 remains; 16 + 8 = 24 but no 8; however 16 is a factor of 24? No, 24/16=1.5. But 96/4=24, not relevant. Actually 96/6=16, and 16+5=21, not 24; 16*1.5=24, but 5/?? Not clean. Nonetheless 16 is close to 24 and 5+? Not great. Let's try another: 96/4=24 but no 4. 96/6=16, then 16+5=21, then 21+3? No. Let's check factor: 96/4=24, but 4 not present. 96/6=16, 16 is not a factor of 24 (24/16=1.5). So this is not a factor, but it's a large reduction. Might lead to 16,5,6 → 16+6=22, 22+5=27, not 24. Not promising. Actually 96/6=16, then 16+5=21, then 21+3? No. Or 16*1.5=24, but 5/?? 5/?? No. So skip.",
+            "code": "",
+            "observation": "[16.0, 5]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 / 6 = 16, factor of 24 (16 * 1.5 = 24, but 5 remains; 16 + 8 = 24 but no 8; however 16 is a factor of 24? No, 24/16=1.5. But 96/4=24, not relevant. Actually 96/6=16, and 16+5=21, not 24; 16*1.5=24, but 5/?? Not clean. Nonetheless 16 is close to 24 and 5+? Not great. Let's try another: 96/4=24 but no 4. 96/6=16, then 16+5=21, then 21+3? No. Let's check factor: 96/4=24, but 4 not present. 96/6=16, 16 is not a factor of 24 (24/16=1.5). So this is not a factor, but it's a large reduction. Might lead to 16,5,6 → 16+6=22, 22+5=27, not 24. Not promising. Actually 96/6=16, then 16+5=21, then 21+3? No. Or 16*1.5=24, but 5/?? 5/?? No. So skip.\nResult: [16.0, 5]",
+          "evaluation": {
+            "state": "[16.0, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 1,
+          "state": [
+            0.0625,
+            5
+          ],
+          "action": "6 / 96 = 0.0625",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "6 / 96 = 0.0625, a fraction that could be used: 5 / 0.0625 = 80 (not 24), or 0.0625 * 24 = 1.5, not promising. Avoid unless necessary.",
+            "code": "",
+            "observation": "[0.0625, 5]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n6 / 96 = 0.0625, a fraction that could be used: 5 / 0.0625 = 80 (not 24), or 0.0625 * 24 = 1.5, not promising. Avoid unless necessary.\nResult: [0.0625, 5]",
+          "evaluation": {
+            "state": "[0.0625, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0625,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 1,
+          "state": [
+            90,
+            5
+          ],
+          "action": "96 - 6 = 90",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "96 - 6 = 90, then 90 / 5 = 18, or 90 - 5 = 85, not 24. But 90 is large, not promising.",
+            "code": "",
+            "observation": "[90, 5]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 - 6 = 90, then 90 / 5 = 18, or 90 - 5 = 85, not 24. But 90 is large, not promising.\nResult: [90, 5]",
+          "evaluation": {
+            "state": "[90, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 90.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 1,
+          "state": [
+            -90,
+            5
+          ],
+          "action": "6 - 96 = -90",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "6 - 96 = -90, negative result can be used: -90 / -5 = 18, or -90 + 5 = -85, not helpful. Avoid if possible.",
+            "code": "",
+            "observation": "[-90, 5]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n6 - 96 = -90, negative result can be used: -90 / -5 = 18, or -90 + 5 = -85, not helpful. Avoid if possible.\nResult: [-90, 5]",
+          "evaluation": {
+            "state": "[-90, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -90.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 1,
+          "state": [
+            480,
+            6
+          ],
+          "action": "96 * 5 = 480",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "96 * 5 = 480, too large, but 480 / 6 = 80, not 24. Not promising.",
+            "code": "",
+            "observation": "[480, 6]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 * 5 = 480, too large, but 480 / 6 = 80, not 24. Not promising.\nResult: [480, 6]",
+          "evaluation": {
+            "state": "[480, 6]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 480.0,6.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 1,
+          "state": [
+            19.2,
+            6
+          ],
+          "action": "96 / 5 = 19.2",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "96 / 5 = 19.2, then 19.2 + 6 = 25.2 (close to 24), or 19.2 - 6 = 13.2, not great. Could be used: 6 - 19.2 = -13.2, or 19.2 * 6 = 115.2. Not promising.",
+            "code": "",
+            "observation": "[19.2, 6]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 / 5 = 19.2, then 19.2 + 6 = 25.2 (close to 24), or 19.2 - 6 = 13.2, not great. Could be used: 6 - 19.2 = -13.2, or 19.2 * 6 = 115.2. Not promising.\nResult: [19.2, 6]",
+          "evaluation": {
+            "state": "[19.2, 6]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 19.2,6.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 1,
+          "state": [
+            0.052083333333333336,
+            6
+          ],
+          "action": "5 / 96 = 0.052083333333333336",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "5 / 96 ≈ 0.05208, then 6 / 0.05208 ≈ 115.2, not 24. Avoid.",
+            "code": "",
+            "observation": "[0.052083333333333336, 6]"
+          },
+          "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n5 / 96 ≈ 0.05208, then 6 / 0.05208 ≈ 115.2, not 24. Avoid.\nResult: [0.052083333333333336, 6]",
+          "evaluation": {
+            "state": "[0.052083333333333336, 6]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.052083333333333336,6.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        11,
+        8,
+        12
+      ],
+      "action": "5 + 6 = 11",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.",
+        "code": "",
+        "observation": "[11, 8, 12]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]",
+      "evaluation": {
+        "state": "[11, 8, 12]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). then 1 * 8 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). then 3 * 12 = 36 (no).  \n- 12 - 8 = 4 (factor of 24). then 4 * 11 = 44 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative.  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjusting):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative.  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative.  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative.  \n\nno result near 24 found.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no), 12 - 3 = 9 (no), 12 + 3 = 15 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no), 11 - 4 = 7 (no), 11 + 4 = 15 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 = -76 (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 = -7 (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 = -15 (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 = -9 (no).  \n\nno result near 24 found.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). then 1 * 8 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). then 3 * 12 = 36 (no).  \n- 12 - 8 = 4 (factor of 24). then 4 * 11 = 44 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative (no).  \n\nno result near 24 found.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 negative.  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjusting):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 negative.  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 negative.  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 negative.  \n\nno result near 24 found.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [11, 8, 12]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n- 11 / 8 = 1.375, then 1.375 * 12 = 16.5 (no)  \n- 8 / 11 ≈ 0.727, then 0.727 * 12 ≈ 8.727 (no)  \n- 11 / 12 ≈ 0.9167, then 0.9167 * 8 ≈ 7.333 (no)  \n- 12 / 11 ≈ 1.0909, then 1.0909 * 8 ≈ 8.727 (no)  \n- 8 / 12 ≈ 0.6667, then 0.6667 * 11 ≈ 7.333 (no)  \n- 12 / 8 = 1.5, then 1.5 * 11 = 16.5 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 12 (difference 1) or 8 and 11 (difference 3).  \n- 12 - 11 = 1 (factor of 24? yes, 1 is a factor). combine with 8: 1 * 8 = 8 (no), 8 / 1 = 8 (no).  \n- 11 - 8 = 3 (factor of 24). combine with 12: 3 * 12 = 36 (no), 12 / 3 = 4 (no), 12 - 3 = 9 (no), 12 + 3 = 15 (no).  \n- 12 - 8 = 4 (factor of 24). combine with 11: 4 * 11 = 44 (no), 11 / 4 = 2.75 (no), 11 - 4 = 7 (no), 11 + 4 = 15 (no).  \n\n**attempt 3 (multiplication):**  \n- 11 * 8 = 88, then 88 / 12 ≈ 7.333 (no), 88 - 12 = 76 (no), 12 - 88 = -76 (no).  \n- 11 * 12 = 132, then 132 / 8 = 16.5 (no), 132 - 8 = 124 (no).  \n- 8 * 12 = 96, then 96 / 11 ≈ 8.727 (no), 96 - 11 = 85 (no).  \n\n**attempt 4 (addition and adjust):**  \n- 11 + 8 = 19, then 19 + 12 = 31 (no), 19 - 12 = 7 (no), 12 - 19 = -7 (no).  \n- 11 + 12 = 23, then 23 + 8 = 31 (no), 23 - 8 = 15 (no), 8 - 23 = -15 (no).  \n- 8 + 12 = 20, then 20 + 11 = 31 (no), 20 - 11 = 9 (no), 11 - 20 = -9 (no).  \n\nno result near 24 found.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "10": {
+          "id": 10,
+          "parent_id": 2,
+          "state": [
+            4,
+            11
+          ],
+          "action": "12 - 8 = 4",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "12 - 8 = 4, factor of 24 (4 * 6 = 24, and 11 is close to 6? No, but 4 is a strong factor to multiply with remaining 11 to get 44, not 24 — however 4 * 6 = 24, and 11 is not 6. Still, having a factor of 24 is promising for later combination.",
+            "code": "",
+            "observation": "[4, 11]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 - 8 = 4, factor of 24 (4 * 6 = 24, and 11 is close to 6? No, but 4 is a strong factor to multiply with remaining 11 to get 44, not 24 — however 4 * 6 = 24, and 11 is not 6. Still, having a factor of 24 is promising for later combination.\nResult: [4, 11]",
+          "evaluation": {
+            "state": "[4, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 2,
+          "state": [
+            20,
+            11
+          ],
+          "action": "12 + 8 = 20",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "12 + 8 = 20, difference from 24 is 4, and 11 is left — 20 + 4 = 24, but 4 is not 11. However 20 + 11 = 31, too high. Not directly promising but worth exploring.",
+            "code": "",
+            "observation": "[20, 11]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 + 8 = 20, difference from 24 is 4, and 11 is left — 20 + 4 = 24, but 4 is not 11. However 20 + 11 = 31, too high. Not directly promising but worth exploring.\nResult: [20, 11]",
+          "evaluation": {
+            "state": "[20, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 20.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 2,
+          "state": [
+            1,
+            8
+          ],
+          "action": "12 - 11 = 1",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "12 - 11 = 1, factor of 24 (1 * 24 = 24). Having 1 is useful because 1 * anything = itself, so with remaining 8 we can do 8 * 3 = 24? No 3 missing. But 1 can be used to multiply or divide.",
+            "code": "",
+            "observation": "[1, 8]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 - 11 = 1, factor of 24 (1 * 24 = 24). Having 1 is useful because 1 * anything = itself, so with remaining 8 we can do 8 * 3 = 24? No 3 missing. But 1 can be used to multiply or divide.\nResult: [1, 8]",
+          "evaluation": {
+            "state": "[1, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 2,
+          "state": [
+            -1,
+            8
+          ],
+          "action": "11 - 12 = -1",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "11 - 12 = -1, negative factor. -1 * -24 = 24, but no -24 present. Could multiply -1 by -8 to get 8? Not directly. Less promising but included for completeness.",
+            "code": "",
+            "observation": "[-1, 8]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n11 - 12 = -1, negative factor. -1 * -24 = 24, but no -24 present. Could multiply -1 by -8 to get 8? Not directly. Less promising but included for completeness.\nResult: [-1, 8]",
+          "evaluation": {
+            "state": "[-1, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -1.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 2,
+          "state": [
+            19,
+            12
+          ],
+          "action": "8 + 11 = 19",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "8 + 11 = 19, difference from 24 is 5, remaining 12 — 19 + 5 = 24, but 5 is not 12. Not promising.",
+            "code": "",
+            "observation": "[19, 12]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n8 + 11 = 19, difference from 24 is 5, remaining 12 — 19 + 5 = 24, but 5 is not 12. Not promising.\nResult: [19, 12]",
+          "evaluation": {
+            "state": "[19, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 19.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 2,
+          "state": [
+            96,
+            11
+          ],
+          "action": "12 * 8 = 96",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "12 * 8 = 96, too large for direct use, but 96 / 4 = 24, and 11 is not 4. Could subtract 11? 96 - 72 = 24, not helpful.",
+            "code": "",
+            "observation": "[96, 11]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 * 8 = 96, too large for direct use, but 96 / 4 = 24, and 11 is not 4. Could subtract 11? 96 - 72 = 24, not helpful.\nResult: [96, 11]",
+          "evaluation": {
+            "state": "[96, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 96.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 2,
+          "state": [
+            132,
+            8
+          ],
+          "action": "12 * 11 = 132",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "12 * 11 = 132, very large, not promising.",
+            "code": "",
+            "observation": "[132, 8]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 * 11 = 132, very large, not promising.\nResult: [132, 8]",
+          "evaluation": {
+            "state": "[132, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 132.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 2,
+          "state": [
+            88,
+            12
+          ],
+          "action": "8 * 11 = 88",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "8 * 11 = 88, large, 88 - 64 = 24, no 64; 88 / 3.666 = 24, not helpful.",
+            "code": "",
+            "observation": "[88, 12]"
+          },
+          "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n8 * 11 = 88, large, 88 - 64 = 24, no 64; 88 / 3.666 = 24, not helpful.\nResult: [88, 12]",
+          "evaluation": {
+            "state": "[88, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 88.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 1,
+      "state": [
+        16.0,
+        5
+      ],
+      "action": "96 / 6 = 16.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "96 / 6 = 16, factor of 24 (16 * 1.5 = 24, but 5 remains; 16 + 8 = 24 but no 8; however 16 is a factor of 24? No, 24/16=1.5. But 96/4=24, not relevant. Actually 96/6=16, and 16+5=21, not 24; 16*1.5=24, but 5/?? Not clean. Nonetheless 16 is close to 24 and 5+? Not great. Let's try another: 96/4=24 but no 4. 96/6=16, then 16+5=21, then 21+3? No. Let's check factor: 96/4=24, but 4 not present. 96/6=16, 16 is not a factor of 24 (24/16=1.5). So this is not a factor, but it's a large reduction. Might lead to 16,5,6 → 16+6=22, 22+5=27, not 24. Not promising. Actually 96/6=16, then 16+5=21, then 21+3? No. Or 16*1.5=24, but 5/?? 5/?? No. So skip.",
+        "code": "",
+        "observation": "[16.0, 5]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 / 6 = 16, factor of 24 (16 * 1.5 = 24, but 5 remains; 16 + 8 = 24 but no 8; however 16 is a factor of 24? No, 24/16=1.5. But 96/4=24, not relevant. Actually 96/6=16, and 16+5=21, not 24; 16*1.5=24, but 5/?? Not clean. Nonetheless 16 is close to 24 and 5+? Not great. Let's try another: 96/4=24 but no 4. 96/6=16, then 16+5=21, then 21+3? No. Let's check factor: 96/4=24, but 4 not present. 96/6=16, 16 is not a factor of 24 (24/16=1.5). So this is not a factor, but it's a large reduction. Might lead to 16,5,6 → 16+6=22, 22+5=27, not 24. Not promising. Actually 96/6=16, then 16+5=21, then 21+3? No. Or 16*1.5=24, but 5/?? 5/?? No. So skip.\nResult: [16.0, 5]",
+      "evaluation": {
+        "state": "[16.0, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 1,
+      "state": [
+        0.0625,
+        5
+      ],
+      "action": "6 / 96 = 0.0625",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "6 / 96 = 0.0625, a fraction that could be used: 5 / 0.0625 = 80 (not 24), or 0.0625 * 24 = 1.5, not promising. Avoid unless necessary.",
+        "code": "",
+        "observation": "[0.0625, 5]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n6 / 96 = 0.0625, a fraction that could be used: 5 / 0.0625 = 80 (not 24), or 0.0625 * 24 = 1.5, not promising. Avoid unless necessary.\nResult: [0.0625, 5]",
+      "evaluation": {
+        "state": "[0.0625, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0625,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 1,
+      "state": [
+        90,
+        5
+      ],
+      "action": "96 - 6 = 90",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "96 - 6 = 90, then 90 / 5 = 18, or 90 - 5 = 85, not 24. But 90 is large, not promising.",
+        "code": "",
+        "observation": "[90, 5]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 - 6 = 90, then 90 / 5 = 18, or 90 - 5 = 85, not 24. But 90 is large, not promising.\nResult: [90, 5]",
+      "evaluation": {
+        "state": "[90, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 90.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 1,
+      "state": [
+        -90,
+        5
+      ],
+      "action": "6 - 96 = -90",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "6 - 96 = -90, negative result can be used: -90 / -5 = 18, or -90 + 5 = -85, not helpful. Avoid if possible.",
+        "code": "",
+        "observation": "[-90, 5]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n6 - 96 = -90, negative result can be used: -90 / -5 = 18, or -90 + 5 = -85, not helpful. Avoid if possible.\nResult: [-90, 5]",
+      "evaluation": {
+        "state": "[-90, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -90.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 1,
+      "state": [
+        480,
+        6
+      ],
+      "action": "96 * 5 = 480",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "96 * 5 = 480, too large, but 480 / 6 = 80, not 24. Not promising.",
+        "code": "",
+        "observation": "[480, 6]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 * 5 = 480, too large, but 480 / 6 = 80, not 24. Not promising.\nResult: [480, 6]",
+      "evaluation": {
+        "state": "[480, 6]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 480.0,6.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 1,
+      "state": [
+        19.2,
+        6
+      ],
+      "action": "96 / 5 = 19.2",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "96 / 5 = 19.2, then 19.2 + 6 = 25.2 (close to 24), or 19.2 - 6 = 13.2, not great. Could be used: 6 - 19.2 = -13.2, or 19.2 * 6 = 115.2. Not promising.",
+        "code": "",
+        "observation": "[19.2, 6]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n96 / 5 = 19.2, then 19.2 + 6 = 25.2 (close to 24), or 19.2 - 6 = 13.2, not great. Could be used: 6 - 19.2 = -13.2, or 19.2 * 6 = 115.2. Not promising.\nResult: [19.2, 6]",
+      "evaluation": {
+        "state": "[19.2, 6]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 19.2,6.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 1,
+      "state": [
+        0.052083333333333336,
+        6
+      ],
+      "action": "5 / 96 = 0.052083333333333336",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "5 / 96 ≈ 0.05208, then 6 / 0.05208 ≈ 115.2, not 24. Avoid.",
+        "code": "",
+        "observation": "[0.052083333333333336, 6]"
+      },
+      "path_history": "8 * 12 = 96, 96 / 4 = 24, and 5 - 6 = -1 (not helpful), but 8*12 is large, could combine with 6/5 fraction later. Promising because 96/4=24, and 6-5=1, so 96/(6-5) would be 96, not 24. Actually 96/4=24, but no 4 present. However, 12/6=2, then 8*2=16, 16+5=21, not 24. Let me check: 8+12=20, 20+5=25, 25-6=19. Not great. But 12*8=96 is huge, could divide by (6-5)=1 or 5-6=-1, not helpful. Still, large product is worth exploring.\nResult: [96, 5, 6]\n5 / 96 ≈ 0.05208, then 6 / 0.05208 ≈ 115.2, not 24. Avoid.\nResult: [0.052083333333333336, 6]",
+      "evaluation": {
+        "state": "[0.052083333333333336, 6]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.052083333333333336,6.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 2,
+      "state": [
+        4,
+        11
+      ],
+      "action": "12 - 8 = 4",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "12 - 8 = 4, factor of 24 (4 * 6 = 24, and 11 is close to 6? No, but 4 is a strong factor to multiply with remaining 11 to get 44, not 24 — however 4 * 6 = 24, and 11 is not 6. Still, having a factor of 24 is promising for later combination.",
+        "code": "",
+        "observation": "[4, 11]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 - 8 = 4, factor of 24 (4 * 6 = 24, and 11 is close to 6? No, but 4 is a strong factor to multiply with remaining 11 to get 44, not 24 — however 4 * 6 = 24, and 11 is not 6. Still, having a factor of 24 is promising for later combination.\nResult: [4, 11]",
+      "evaluation": {
+        "state": "[4, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 2,
+      "state": [
+        20,
+        11
+      ],
+      "action": "12 + 8 = 20",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "12 + 8 = 20, difference from 24 is 4, and 11 is left — 20 + 4 = 24, but 4 is not 11. However 20 + 11 = 31, too high. Not directly promising but worth exploring.",
+        "code": "",
+        "observation": "[20, 11]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 + 8 = 20, difference from 24 is 4, and 11 is left — 20 + 4 = 24, but 4 is not 11. However 20 + 11 = 31, too high. Not directly promising but worth exploring.\nResult: [20, 11]",
+      "evaluation": {
+        "state": "[20, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 20.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 2,
+      "state": [
+        1,
+        8
+      ],
+      "action": "12 - 11 = 1",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "12 - 11 = 1, factor of 24 (1 * 24 = 24). Having 1 is useful because 1 * anything = itself, so with remaining 8 we can do 8 * 3 = 24? No 3 missing. But 1 can be used to multiply or divide.",
+        "code": "",
+        "observation": "[1, 8]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 - 11 = 1, factor of 24 (1 * 24 = 24). Having 1 is useful because 1 * anything = itself, so with remaining 8 we can do 8 * 3 = 24? No 3 missing. But 1 can be used to multiply or divide.\nResult: [1, 8]",
+      "evaluation": {
+        "state": "[1, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 2,
+      "state": [
+        -1,
+        8
+      ],
+      "action": "11 - 12 = -1",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "11 - 12 = -1, negative factor. -1 * -24 = 24, but no -24 present. Could multiply -1 by -8 to get 8? Not directly. Less promising but included for completeness.",
+        "code": "",
+        "observation": "[-1, 8]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n11 - 12 = -1, negative factor. -1 * -24 = 24, but no -24 present. Could multiply -1 by -8 to get 8? Not directly. Less promising but included for completeness.\nResult: [-1, 8]",
+      "evaluation": {
+        "state": "[-1, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -1.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 2,
+      "state": [
+        19,
+        12
+      ],
+      "action": "8 + 11 = 19",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "8 + 11 = 19, difference from 24 is 5, remaining 12 — 19 + 5 = 24, but 5 is not 12. Not promising.",
+        "code": "",
+        "observation": "[19, 12]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n8 + 11 = 19, difference from 24 is 5, remaining 12 — 19 + 5 = 24, but 5 is not 12. Not promising.\nResult: [19, 12]",
+      "evaluation": {
+        "state": "[19, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 19.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 2,
+      "state": [
+        96,
+        11
+      ],
+      "action": "12 * 8 = 96",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "12 * 8 = 96, too large for direct use, but 96 / 4 = 24, and 11 is not 4. Could subtract 11? 96 - 72 = 24, not helpful.",
+        "code": "",
+        "observation": "[96, 11]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 * 8 = 96, too large for direct use, but 96 / 4 = 24, and 11 is not 4. Could subtract 11? 96 - 72 = 24, not helpful.\nResult: [96, 11]",
+      "evaluation": {
+        "state": "[96, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 96.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 2,
+      "state": [
+        132,
+        8
+      ],
+      "action": "12 * 11 = 132",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "12 * 11 = 132, very large, not promising.",
+        "code": "",
+        "observation": "[132, 8]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n12 * 11 = 132, very large, not promising.\nResult: [132, 8]",
+      "evaluation": {
+        "state": "[132, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 132.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 2,
+      "state": [
+        88,
+        12
+      ],
+      "action": "8 * 11 = 88",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "8 * 11 = 88, large, 88 - 64 = 24, no 64; 88 / 3.666 = 24, not helpful.",
+        "code": "",
+        "observation": "[88, 12]"
+      },
+      "path_history": "5 + 6 = 11, not a factor of 24, but 24 - 11 = 13 (not present) and 11 does not combine obviously; still a basic option to explore.\nResult: [11, 8, 12]\n8 * 11 = 88, large, 88 - 64 = 24, no 64; 88 / 3.666 = 24, not helpful.\nResult: [88, 12]",
+      "evaluation": {
+        "state": "[88, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 88.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 2,
+      "re_evaluations": 0,
+      "unique_states": 2,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

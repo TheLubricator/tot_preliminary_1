@@ -1,0 +1,4338 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-25T22:42:24.554288",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 41,
+      "api_calls": 15,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 15,
+      "session_start": "2026-05-25T22:41:55.137040",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 30,
+      "total_input_tokens": 10559,
+      "total_output_tokens": 6341,
+      "api_saved_two_num_cache": 30,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": true,
+      "winning_depth1_count": 3,
+      "winning_depth1_proposed": 2,
+      "deadend_memory": {
+        "patterns_stored": 75,
+        "two_num_cache_size": 727,
+        "total_checked": 39,
+        "total_skipped": 30,
+        "skip_rate": "76.9%"
+      },
+      "time_seconds": 29.42
+    },
+    "correct_path_in_proposals": true,
+    "winning_depth1_count": 3,
+    "winning_depth1_proposed": 2,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 75,
+      "total_checked": 39,
+      "total_skipped": 30,
+      "api_calls_saved": 30,
+      "api_saved_two_num_cache": 30,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        1,
+        4,
+        4,
+        11
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 8,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            16,
+            1,
+            11
+          ],
+          "action": "4 * 4 = 16",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 4 and 4 to get 16, then later combine with 11 and 1",
+            "code": "",
+            "observation": "[16, 1, 11]"
+          },
+          "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]",
+          "evaluation": {
+            "state": "[16, 1, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 16
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [16, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 11 = 27 (no).  \n16 / 11 ≈ 1.4545, times 1 = 1.4545 (no).  \n1 / 16 = 0.0625, times 11 = 0.6875 (no).  \n1 / 11 ≈ 0.0909, times 16 ≈ 1.4545 (no).  \n11 / 1 = 11, then 11 + 16 = 27 (no).  \n11 / 16 = 0.6875, times 1 = 0.6875 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 16 → 16 - 11 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 11 - 1 = 10 (not a factor).  \n16 - 1 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n16 * 1 = 16, then 16 + 11 = 27 (no).  \n16 * 11 = 176, then 176 / 1 = 176 (no).  \n1 * 11 = 11, then 11 + 16 = 27 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n16 + 1 = 17, then 17 + 11 = 28 (within 20–28).  \n16 + 11 = 27, then 27 + 1 = 28 (also within range).  \n1 + 11 = 12, then 12 + 16 = 28.  \nwe have 28, which is between 20 and 28 inclusive.\n\n**attempt 5:**  \ntry 16 + 11 = 27, then 27 - 1 = 26 (still within 20–28).  \nno exact 24 found.\n\nresult is 28, which is within 20–28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [16, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 11 = 27 (no).  \n16 / 11 ≈ 1.4545, times 1 = 1.4545 (no).  \n1 / 16 = 0.0625, times 11 = 0.6875 (no).  \n1 / 11 ≈ 0.0909, times 16 ≈ 1.4545 (no).  \n11 / 1 = 11, then 11 + 16 = 27 (no).  \n11 / 16 = 0.6875, times 1 = 0.6875 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 16 → 16 - 11 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 11 - 1 = 10 (not a factor).  \n16 - 1 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n16 * 1 = 16, then 16 + 11 = 27 (no).  \n16 * 11 = 176, then 176 / 1 = 176 (no).  \n1 * 11 = 11, then 11 + 16 = 27 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n16 + 1 = 17, then 17 + 11 = 28 (within 20–28).  \n16 + 11 = 27, then 27 + 1 = 28 (also within range).  \n1 + 11 = 12, then 12 + 16 = 28.  \nwe have 28, which is between 20 and 28 inclusive.\n\n**attempt 5:**  \ntry 16 + 11 = 27, then 27 - 1 = 26 (still within 20–28).  \nno exact 24 found.\n\nresult is 28, which is within 20–28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 5,
+          "children": {
+            "23": {
+              "id": 23,
+              "parent_id": 1,
+              "state": [
+                15,
+                11
+              ],
+              "action": "16 - 1 = 15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 1 from 16 to get 15, leaving [15, 11]",
+                "code": "",
+                "observation": "[15, 11]"
+              },
+              "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nSubtract 1 from 16 to get 15, leaving [15, 11]\nResult: [15, 11]",
+              "evaluation": {
+                "state": "[15, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "24": {
+              "id": 24,
+              "parent_id": 1,
+              "state": [
+                27,
+                1
+              ],
+              "action": "16 + 11 = 27",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 16 and 11 to get 27, leaving [27, 1]",
+                "code": "",
+                "observation": "[27, 1]"
+              },
+              "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nAdd 16 and 11 to get 27, leaving [27, 1]\nResult: [27, 1]",
+              "evaluation": {
+                "state": "[27, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 27.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "25": {
+              "id": 25,
+              "parent_id": 1,
+              "state": [
+                16,
+                11
+              ],
+              "action": "16 * 1 = 16",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 16 and 1 to get 16, leaving [16, 11]",
+                "code": "",
+                "observation": "[16, 11]"
+              },
+              "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nMultiply 16 and 1 to get 16, leaving [16, 11]\nResult: [16, 11]",
+              "evaluation": {
+                "state": "[16, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "26": {
+              "id": 26,
+              "parent_id": 1,
+              "state": [
+                5,
+                1
+              ],
+              "action": "16 - 11 = 5",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 11 from 16 to get 5, leaving [5, 1]",
+                "code": "",
+                "observation": "[5, 1]"
+              },
+              "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nSubtract 11 from 16 to get 5, leaving [5, 1]\nResult: [5, 1]",
+              "evaluation": {
+                "state": "[5, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 5.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "27": {
+              "id": 27,
+              "parent_id": 1,
+              "state": [
+                12,
+                16
+              ],
+              "action": "1 + 11 = 12",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 1 and 11 to get 12, leaving [16, 12]",
+                "code": "",
+                "observation": "[12, 16]"
+              },
+              "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nAdd 1 and 11 to get 12, leaving [16, 12]\nResult: [12, 16]",
+              "evaluation": {
+                "state": "[12, 16]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 12.0,16.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            12,
+            4,
+            4
+          ],
+          "action": "11 + 1 = 12",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 11 and 1 to get 12, then work with the two 4s",
+            "code": "",
+            "observation": "[12, 4, 4]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]",
+          "evaluation": {
+            "state": "[12, 4, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 12
+            },
+            "llm_judgments": [
+              "we have numbers [12, 4, 4] and target 24.\n\n- attempt 1 (division):  \n  12 / 4 = 3, then 3 * 4 = 12 (no).  \n  4 / 12 = 0.333..., 0.333 * 4 = 1.333 (no).  \n  4 / 4 = 1, then 1 * 12 = 12 (no).  \n  no division path works.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 12 and 4 → 12 - 4 = 8 (factor of 24!), then 8 * 4 = 32 (no).  \n  also 4 - 12 = -8, then -8 * 4 = -32 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  12 * 4 = 48, then 48 / 4 = 12 (no).  \n  4 * 4 = 16, then 16 + 12 = 28 (within 20–28).  \n  this gives 28.\n\nresult 28 is between 20 and 28 inclusive.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers [12, 4, 4] and target 24.\n\n- attempt 1 (division):  \n  12 / 4 = 3, then 3 * 4 = 12 (no).  \n  4 / 12 = 0.333..., 0.333 * 4 = 1.333 (no).  \n  4 / 4 = 1, then 1 * 12 = 12 (no).  \n  no division path works.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 12 and 4 → 12 - 4 = 8 (factor of 24!), then 8 * 4 = 32 (no).  \n  also 4 - 12 = -8, then -8 * 4 = -32 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  12 * 4 = 48, then 48 / 4 = 12 (no).  \n  4 * 4 = 16, then 16 + 12 = 28 (within 20–28).  \n  this gives 28.\n\nresult 28 is between 20 and 28 inclusive.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 6,
+          "children": {
+            "28": {
+              "id": 28,
+              "parent_id": 2,
+              "state": [
+                3.0,
+                4
+              ],
+              "action": "12 / 4 = 3.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 12 by 4 to get 3, then work with 3 and 4",
+                "code": "",
+                "observation": "[3.0, 4]"
+              },
+              "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nDivide 12 by 4 to get 3, then work with 3 and 4\nResult: [3.0, 4]",
+              "evaluation": {
+                "state": "[3.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "29": {
+              "id": 29,
+              "parent_id": 2,
+              "state": [
+                8,
+                4
+              ],
+              "action": "12 - 4 = 8",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 12 to get 8, then work with 8 and 4",
+                "code": "",
+                "observation": "[8, 4]"
+              },
+              "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nSubtract 4 from 12 to get 8, then work with 8 and 4\nResult: [8, 4]",
+              "evaluation": {
+                "state": "[8, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "30": {
+              "id": 30,
+              "parent_id": 2,
+              "state": [
+                8,
+                12
+              ],
+              "action": "4 + 4 = 8",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 4 to get 8, then work with 12 and 8",
+                "code": "",
+                "observation": "[8, 12]"
+              },
+              "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nAdd 4 and 4 to get 8, then work with 12 and 8\nResult: [8, 12]",
+              "evaluation": {
+                "state": "[8, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "31": {
+              "id": 31,
+              "parent_id": 2,
+              "state": [
+                16,
+                12
+              ],
+              "action": "4 * 4 = 16",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 4 by 4 to get 16, then work with 12 and 16",
+                "code": "",
+                "observation": "[16, 12]"
+              },
+              "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nMultiply 4 by 4 to get 16, then work with 12 and 16\nResult: [16, 12]",
+              "evaluation": {
+                "state": "[16, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "32": {
+              "id": 32,
+              "parent_id": 2,
+              "state": [
+                0,
+                12
+              ],
+              "action": "4 - 4 = 0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 4 to get 0, then work with 12 and 0",
+                "code": "",
+                "observation": "[0, 12]"
+              },
+              "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nSubtract 4 from 4 to get 0, then work with 12 and 0\nResult: [0, 12]",
+              "evaluation": {
+                "state": "[0, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "33": {
+              "id": 33,
+              "parent_id": 2,
+              "state": [
+                1.0,
+                12
+              ],
+              "action": "4 / 4 = 1.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 4 by 4 to get 1, then work with 12 and 1",
+                "code": "",
+                "observation": "[1.0, 12]"
+              },
+              "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nDivide 4 by 4 to get 1, then work with 12 and 1\nResult: [1.0, 12]",
+              "evaluation": {
+                "state": "[1.0, 12]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,12.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            10,
+            4,
+            4
+          ],
+          "action": "11 - 1 = 10",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 1 from 11 to get 10, then combine with 4 and 4",
+            "code": "",
+            "observation": "[10, 4, 4]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]",
+          "evaluation": {
+            "state": "[10, 4, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 10
+            },
+            "llm_judgments": [
+              "we have numbers: 10, 4, 4. target: 24.\n\n- attempt 1 (division):  \n  10 / 4 = 2.5, then 2.5 * 4 = 10 (no).  \n  4 / 10 = 0.4, then 0.4 * 4 = 1.6 (no).  \n  4 / 4 = 1, then 1 * 10 = 10 (no).  \n  other order: 4 / 4 = 1 already done. no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 10 and 4 → 10 - 4 = 6 (factor of 24!), then 6 * 4 = 24 (exact!).\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 10, 4, 4. target: 24.\n\n- attempt 1 (division):  \n  10 / 4 = 2.5, then 2.5 * 4 = 10 (no).  \n  4 / 10 = 0.4, then 0.4 * 4 = 1.6 (no).  \n  4 / 4 = 1, then 1 * 10 = 10 (no).  \n  other order: 4 / 4 = 1 already done. no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 10 and 4 → 10 - 4 = 6 (factor of 24!), then 6 * 4 = 24 (exact!).\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "9": {
+              "id": 9,
+              "parent_id": 3,
+              "state": [
+                8,
+                10
+              ],
+              "action": "4 + 4 = 8",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 4 to get 8",
+                "code": "",
+                "observation": "[8, 10]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nAdd 4 and 4 to get 8\nResult: [8, 10]",
+              "evaluation": {
+                "state": "[8, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 3,
+              "state": [
+                16,
+                10
+              ],
+              "action": "4 * 4 = 16",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 4 by 4 to get 16, then work with 10 and 16",
+                "code": "",
+                "observation": "[16, 10]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nMultiply 4 by 4 to get 16, then work with 10 and 16\nResult: [16, 10]",
+              "evaluation": {
+                "state": "[16, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 3,
+              "state": [
+                2.5,
+                4
+              ],
+              "action": "10 / 4 = 2.5",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 10 by 4 to get 2.5, then combine with 4",
+                "code": "",
+                "observation": "[2.5, 4]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nDivide 10 by 4 to get 2.5, then combine with 4\nResult: [2.5, 4]",
+              "evaluation": {
+                "state": "[2.5, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 2.5,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 3,
+              "state": [
+                1.0,
+                10
+              ],
+              "action": "4 / 4 = 1.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 4 by 4 to get 1, then use with 10",
+                "code": "",
+                "observation": "[1.0, 10]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nDivide 4 by 4 to get 1, then use with 10\nResult: [1.0, 10]",
+              "evaluation": {
+                "state": "[1.0, 10]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,10.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 3,
+              "state": [
+                6,
+                4
+              ],
+              "action": "10 - 4 = 6",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 4 from 10 to get 6, then combine with remaining 4",
+                "code": "",
+                "observation": "[6, 4]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]",
+              "evaluation": {
+                "state": "[6, 4]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 6
+                },
+                "llm_judgments": [
+                  "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).\n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '6 * 4=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).\n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "6 * 4",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "40": {
+                  "id": 40,
+                  "parent_id": 13,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "6 * 4",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [6, 4], 6 * 4 = 24",
+                    "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 3,
+              "state": [
+                -6,
+                4
+              ],
+              "action": "4 - 10 = -6",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 10 from 4 to get -6, then use with the other 4",
+                "code": "",
+                "observation": "[-6, 4]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 10 from 4 to get -6, then use with the other 4\nResult: [-6, 4]",
+              "evaluation": {
+                "state": "[-6, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -6.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 3,
+              "state": [
+                14,
+                4
+              ],
+              "action": "10 + 4 = 14",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 10 and 4 to get 14, then work with remaining 4",
+                "code": "",
+                "observation": "[14, 4]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nAdd 10 and 4 to get 14, then work with remaining 4\nResult: [14, 4]",
+              "evaluation": {
+                "state": "[14, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 14.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 3,
+              "state": [
+                40,
+                4
+              ],
+              "action": "10 * 4 = 40",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 10 by 4 to get 40, then combine with the other 4",
+                "code": "",
+                "observation": "[40, 4]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nMultiply 10 by 4 to get 40, then combine with the other 4\nResult: [40, 4]",
+              "evaluation": {
+                "state": "[40, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 40.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            7,
+            1,
+            4
+          ],
+          "action": "11 - 4 = 7",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 4 from 11 to get 7, then later use 4 and 1",
+            "code": "",
+            "observation": "[7, 1, 4]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]",
+          "evaluation": {
+            "state": "[7, 1, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 7
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [7, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n7 / 1 = 7, then 7 * 4 = 28 (no).  \n1 / 7 ≈ 0.1429, times 4 = 0.571 (no).  \n4 / 1 = 4, then 4 * 7 = 28 (no).  \n1 / 4 = 0.25, times 7 = 1.75 (no).  \n7 / 4 = 1.75, times 1 = 1.75 (no).  \n4 / 7 ≈ 0.571, times 1 = 0.571 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 4 and 1 → 4 - 1 = 3 (factor of 24).  \nthen 3 * 7 = 21 (no).  \n7 - 4 = 3, then 3 * 1 = 3 (no).  \n7 - 1 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [7, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n7 / 1 = 7, then 7 * 4 = 28 (no).  \n1 / 7 ≈ 0.1429, times 4 = 0.571 (no).  \n4 / 1 = 4, then 4 * 7 = 28 (no).  \n1 / 4 = 0.25, times 7 = 1.75 (no).  \n7 / 4 = 1.75, times 1 = 1.75 (no).  \n4 / 7 ≈ 0.571, times 1 = 0.571 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 4 and 1 → 4 - 1 = 3 (factor of 24).  \nthen 3 * 7 = 21 (no).  \n7 - 4 = 3, then 3 * 1 = 3 (no).  \n7 - 1 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 6,
+          "children": {
+            "17": {
+              "id": 17,
+              "parent_id": 4,
+              "state": [
+                28,
+                1
+              ],
+              "action": "7 * 4 = 28",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 7 and 4 to get 28, then later combine with 1",
+                "code": "",
+                "observation": "[28, 1]"
+              },
+              "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nMultiply 7 and 4 to get 28, then later combine with 1\nResult: [28, 1]",
+              "evaluation": {
+                "state": "[28, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 28.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "18": {
+              "id": 18,
+              "parent_id": 4,
+              "state": [
+                11,
+                1
+              ],
+              "action": "7 + 4 = 11",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 7 and 4 to get 11, keep 1 for later",
+                "code": "",
+                "observation": "[11, 1]"
+              },
+              "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nAdd 7 and 4 to get 11, keep 1 for later\nResult: [11, 1]",
+              "evaluation": {
+                "state": "[11, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 11.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "19": {
+              "id": 19,
+              "parent_id": 4,
+              "state": [
+                3,
+                1
+              ],
+              "action": "7 - 4 = 3",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 7 to get 3, then combine with 1",
+                "code": "",
+                "observation": "[3, 1]"
+              },
+              "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nSubtract 4 from 7 to get 3, then combine with 1\nResult: [3, 1]",
+              "evaluation": {
+                "state": "[3, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "20": {
+              "id": 20,
+              "parent_id": 4,
+              "state": [
+                4.0,
+                7
+              ],
+              "action": "4 / 1 = 4.0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 4 by 1 to get 4, then work with 7",
+                "code": "",
+                "observation": "[4.0, 7]"
+              },
+              "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nDivide 4 by 1 to get 4, then work with 7\nResult: [4.0, 7]",
+              "evaluation": {
+                "state": "[4.0, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "21": {
+              "id": 21,
+              "parent_id": 4,
+              "state": [
+                8,
+                4
+              ],
+              "action": "7 + 1 = 8",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 7 and 1 to get 8, then work with 4",
+                "code": "",
+                "observation": "[8, 4]"
+              },
+              "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nAdd 7 and 1 to get 8, then work with 4\nResult: [8, 4]",
+              "evaluation": {
+                "state": "[8, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "22": {
+              "id": 22,
+              "parent_id": 4,
+              "state": [
+                3,
+                7
+              ],
+              "action": "4 - 1 = 3",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 1 from 4 to get 3, then combine with 7",
+                "code": "",
+                "observation": "[3, 7]"
+              },
+              "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nSubtract 1 from 4 to get 3, then combine with 7\nResult: [3, 7]",
+              "evaluation": {
+                "state": "[3, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            2.75,
+            1,
+            4
+          ],
+          "action": "11 / 4 = 2.75",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 11 by 4 to get 2.75, then combine with remaining numbers",
+            "code": "",
+            "observation": "[2.75, 1, 4]"
+          },
+          "path_history": "Divide 11 by 4 to get 2.75, then combine with remaining numbers\nResult: [2.75, 1, 4]",
+          "evaluation": {
+            "state": "[2.75, 1, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 4
+            },
+            "llm_judgments": [
+              "[2.75, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n4 / 1 = 4, then 4 * 2.75 = 11 (no).  \n1 / 4 = 0.25, then 0.25 * 2.75 = 0.6875 (no).  \n2.75 / 1 = 2.75, then 2.75 * 4 = 11 (no).  \n4 / 2.75 ≈ 1.4545, then 1.4545 * 1 = 1.4545 (no).  \n1 / 2.75 ≈ 0.3636, then 0.3636 * 4 ≈ 1.4545 (no).  \n2.75 / 4 = 0.6875, then 0.6875 * 1 = 0.6875 (no).  \n\n- attempt 2 (close subtraction):  \nclosest numbers: 1 and 2.75 → 2.75 - 1 = 1.75 (not a factor of 24).  \n4 - 2.75 = 1.25 (not a factor).  \n4 - 1 = 3 (factor of 24!), then 3 * 2.75 = 8.25 (no).  \nalso try 2.75 - 4 = -1.25 (no).  \n\n- attempt 3 (multiplication):  \n2.75 * 1 = 2.75, then 2.75 * 4 = 11 (no).  \n2.75 * 4 = 11, then 11 * 1 = 11 (no).  \n1 * 4 = 4, then 4 * 2.75 = 11 (no).  \n\n- attempt 4 (addition):  \n2.75 + 1 = 3.75, then 3.75 * 4 = 15 (no).  \n2.75 + 4 = 6.75, then 6.75 * 1 = 6.75 (no).  \n1 + 4 = 5, then 5 * 2.75 = 13.75 (no).  \nalso try 2.75 + 1 + 4 = 7.75 (no).  \n2.75 * 4 = 11, 11 + 1 = 12 (no).  \n4 * 1 = 4, 4 + 2.75 = 6.75 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[2.75, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n4 / 1 = 4, then 4 * 2.75 = 11 (no).  \n1 / 4 = 0.25, then 0.25 * 2.75 = 0.6875 (no).  \n2.75 / 1 = 2.75, then 2.75 * 4 = 11 (no).  \n4 / 2.75 ≈ 1.4545, then 1.4545 * 1 = 1.4545 (no).  \n1 / 2.75 ≈ 0.3636, then 0.3636 * 4 ≈ 1.4545 (no).  \n2.75 / 4 = 0.6875, then 0.6875 * 1 = 0.6875 (no).  \n\n- attempt 2 (close subtraction):  \nclosest numbers: 1 and 2.75 → 2.75 - 1 = 1.75 (not a factor of 24).  \n4 - 2.75 = 1.25 (not a factor).  \n4 - 1 = 3 (factor of 24!), then 3 * 2.75 = 8.25 (no).  \nalso try 2.75 - 4 = -1.25 (no).  \n\n- attempt 3 (multiplication):  \n2.75 * 1 = 2.75, then 2.75 * 4 = 11 (no).  \n2.75 * 4 = 11, then 11 * 1 = 11 (no).  \n1 * 4 = 4, then 4 * 2.75 = 11 (no).  \n\n- attempt 4 (addition):  \n2.75 + 1 = 3.75, then 3.75 * 4 = 15 (no).  \n2.75 + 4 = 6.75, then 6.75 * 1 = 6.75 (no).  \n1 + 4 = 5, then 5 * 2.75 = 13.75 (no).  \nalso try 2.75 + 1 + 4 = 7.75 (no).  \n2.75 * 4 = 11, 11 + 1 = 12 (no).  \n4 * 1 = 4, 4 + 2.75 = 6.75 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            0,
+            1,
+            11
+          ],
+          "action": "4 - 4 = 0",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 4 from 4 to get 0, then multiply or add with others",
+            "code": "",
+            "observation": "[0, 1, 11]"
+          },
+          "path_history": "Subtract 4 from 4 to get 0, then multiply or add with others\nResult: [0, 1, 11]",
+          "evaluation": {
+            "state": "[0, 1, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 11
+            },
+            "llm_judgments": [
+              "we have numbers: 0, 1, 11. target: 24.\n\n- attempt 1 (division):  \n11 / 1 = 11, then 11 * 0 = 0 (no).  \n1 / 11 ≈ 0.0909, times 0 = 0 (no).  \n11 / 0 = undefined (skip).  \n1 / 0 undefined.  \n0 / 1 = 0, times 11 = 0 (no).  \n0 / 11 = 0, times 1 = 0 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1.  \n1 - 0 = 1. 1 is a factor of 24. combine with third (11): 1 * 11 = 11 (no), 11 / 1 = 11 (no), 11 + 1 = 12 (no), 11 - 1 = 10 (no).  \nno.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 11 = 0 (no).  \n0 * 11 = 0, then 0 * 1 = 0 (no).  \n1 * 11 = 11, then 11 * 0 = 0 (no), 11 + 0 = 11 (no), 11 - 0 = 11 (no), 0 / 11 = 0 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 11 = 12 (no).  \n0 + 11 = 11, then 11 + 1 = 12 (no).  \n1 + 11 = 12, then 12 + 0 = 12 (no), 12 - 0 = 12 (no).  \nno.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 0, 1, 11. target: 24.\n\n- attempt 1 (division):  \n11 / 1 = 11, then 11 * 0 = 0 (no).  \n1 / 11 ≈ 0.0909, times 0 = 0 (no).  \n11 / 0 = undefined (skip).  \n1 / 0 undefined.  \n0 / 1 = 0, times 11 = 0 (no).  \n0 / 11 = 0, times 1 = 0 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1.  \n1 - 0 = 1. 1 is a factor of 24. combine with third (11): 1 * 11 = 11 (no), 11 / 1 = 11 (no), 11 + 1 = 12 (no), 11 - 1 = 10 (no).  \nno.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 11 = 0 (no).  \n0 * 11 = 0, then 0 * 1 = 0 (no).  \n1 * 11 = 11, then 11 * 0 = 0 (no), 11 + 0 = 11 (no), 11 - 0 = 11 (no), 0 / 11 = 0 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 11 = 12 (no).  \n0 + 11 = 11, then 11 + 1 = 12 (no).  \n1 + 11 = 12, then 12 + 0 = 12 (no), 12 - 0 = 12 (no).  \nno.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            8,
+            1,
+            11
+          ],
+          "action": "4 + 4 = 8",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 4 and 4 to get 8, then combine with 11 and 1",
+            "code": "",
+            "observation": "[8, 1, 11]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]",
+          "evaluation": {
+            "state": "[8, 1, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 11
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [8, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 8 / 1 = 8, then 8 * 11 = 88 (no).  \n- 1 / 8 = 0.125, then 0.125 * 11 = 1.375 (no).  \n- 11 / 1 = 11, then 11 * 8 = 88 (no).  \n- 1 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no).  \n- 8 / 11 ≈ 0.727, then * 1 = 0.727 (no).  \n- 11 / 8 = 1.375, then * 1 = 1.375 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11 (difference 3), or 1 and 8 (difference 7).  \n- 11 - 8 = 3 (factor of 24), then 3 * 1 = 3 (no).  \n- 8 - 1 = 7 (not a factor of 24).  \n- 11 - 1 = 10 (not a factor).  \n\nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 1 = 8, then 8 + 11 = 19 (no), 8 * 11 = 88 (no), 11 - 8 = 3 (no).  \n- 8 * 11 = 88, then 88 / 1 = 88 (no), 88 - 1 = 87 (no).  \n- 1 * 11 = 11, then 11 + 8 = 19 (no), 8 - 11 = -3 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 8 + 1 = 9, then 9 + 11 = 20 (no), 11 - 9 = 2 (no), 9 * 11 = 99 (no).  \n- 8 + 11 = 19, then 19 + 1 = 20 (no), 19 - 1 = 18 (no).  \n- 1 + 11 = 12, then 12 * 8 = 96 (no), 12 + 8 = 20 (no), 8 - 12 = -4 (no).  \n\nno success.\n\n**attempt 5 (free operations with two numbers):**  \nwe have three numbers; no new operation left to try that hasn’t been covered.  \nno path to 24 found.\n\nresult is 20 from addition attempts, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [8, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 8 / 1 = 8, then 8 * 11 = 88 (no).  \n- 1 / 8 = 0.125, then 0.125 * 11 = 1.375 (no).  \n- 11 / 1 = 11, then 11 * 8 = 88 (no).  \n- 1 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no).  \n- 8 / 11 ≈ 0.727, then * 1 = 0.727 (no).  \n- 11 / 8 = 1.375, then * 1 = 1.375 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11 (difference 3), or 1 and 8 (difference 7).  \n- 11 - 8 = 3 (factor of 24), then 3 * 1 = 3 (no).  \n- 8 - 1 = 7 (not a factor of 24).  \n- 11 - 1 = 10 (not a factor).  \n\nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 1 = 8, then 8 + 11 = 19 (no), 8 * 11 = 88 (no), 11 - 8 = 3 (no).  \n- 8 * 11 = 88, then 88 / 1 = 88 (no), 88 - 1 = 87 (no).  \n- 1 * 11 = 11, then 11 + 8 = 19 (no), 8 - 11 = -3 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 8 + 1 = 9, then 9 + 11 = 20 (no), 11 - 9 = 2 (no), 9 * 11 = 99 (no).  \n- 8 + 11 = 19, then 19 + 1 = 20 (no), 19 - 1 = 18 (no).  \n- 1 + 11 = 12, then 12 * 8 = 96 (no), 12 + 8 = 20 (no), 8 - 12 = -4 (no).  \n\nno success.\n\n**attempt 5 (free operations with two numbers):**  \nwe have three numbers; no new operation left to try that hasn’t been covered.  \nno path to 24 found.\n\nresult is 20 from addition attempts, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 6,
+          "children": {
+            "34": {
+              "id": 34,
+              "parent_id": 7,
+              "state": [
+                9,
+                11
+              ],
+              "action": "8 + 1 = 9",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 8 and 1 to get 9, leaving 11 and 9",
+                "code": "",
+                "observation": "[9, 11]"
+              },
+              "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nAdd 8 and 1 to get 9, leaving 11 and 9\nResult: [9, 11]",
+              "evaluation": {
+                "state": "[9, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 9.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "35": {
+              "id": 35,
+              "parent_id": 7,
+              "state": [
+                7,
+                11
+              ],
+              "action": "8 - 1 = 7",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 1 from 8 to get 7, leaving 11 and 7",
+                "code": "",
+                "observation": "[7, 11]"
+              },
+              "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 1 from 8 to get 7, leaving 11 and 7\nResult: [7, 11]",
+              "evaluation": {
+                "state": "[7, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 7.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "36": {
+              "id": 36,
+              "parent_id": 7,
+              "state": [
+                3,
+                1
+              ],
+              "action": "11 - 8 = 3",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 8 from 11 to get 3, leaving 3 and 1",
+                "code": "",
+                "observation": "[3, 1]"
+              },
+              "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 8 from 11 to get 3, leaving 3 and 1\nResult: [3, 1]",
+              "evaluation": {
+                "state": "[3, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "37": {
+              "id": 37,
+              "parent_id": 7,
+              "state": [
+                10,
+                8
+              ],
+              "action": "11 - 1 = 10",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 1 from 11 to get 10, leaving 10 and 8",
+                "code": "",
+                "observation": "[10, 8]"
+              },
+              "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 1 from 11 to get 10, leaving 10 and 8\nResult: [10, 8]",
+              "evaluation": {
+                "state": "[10, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 10.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "38": {
+              "id": 38,
+              "parent_id": 7,
+              "state": [
+                8,
+                11
+              ],
+              "action": "8 * 1 = 8",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 8 and 1 to get 8, leaving 11 and 8",
+                "code": "",
+                "observation": "[8, 11]"
+              },
+              "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nMultiply 8 and 1 to get 8, leaving 11 and 8\nResult: [8, 11]",
+              "evaluation": {
+                "state": "[8, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "39": {
+              "id": 39,
+              "parent_id": 7,
+              "state": [
+                12,
+                8
+              ],
+              "action": "11 + 1 = 12",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 11 and 1 to get 12, leaving 8 and 12",
+                "code": "",
+                "observation": "[12, 8]"
+              },
+              "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nAdd 11 and 1 to get 12, leaving 8 and 12\nResult: [12, 8]",
+              "evaluation": {
+                "state": "[12, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 12.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            44,
+            1,
+            4
+          ],
+          "action": "11 * 4 = 44",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 11 and 4 to get 44, then try to reduce with 4 and 1",
+            "code": "",
+            "observation": "[44, 1, 4]"
+          },
+          "path_history": "Multiply 11 and 4 to get 44, then try to reduce with 4 and 1\nResult: [44, 1, 4]",
+          "evaluation": {
+            "state": "[44, 1, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 44
+            },
+            "llm_judgments": [
+              "we have numbers: 44, 1, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n44 / 1 = 44, then 44 * 4 = 176 (no).  \n44 / 4 = 11, then 11 * 1 = 11 (no).  \n1 / 44 ≈ 0.0227, then * 4 ≈ 0.09 (no).  \n1 / 4 = 0.25, then * 44 = 11 (no).  \n4 / 1 = 4, then * 44 = 176 (no).  \n4 / 44 ≈ 0.0909, then * 1 ≈ 0.09 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 1.  \n4 - 1 = 3. 3 is a factor of 24.  \ncombine with third: 44 * 3 = 132 (no). 44 / 3 ≈ 14.667 (no). 44 + 3 = 47 (no). 44 - 3 = 41 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n44 * 1 = 44, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \n44 * 4 = 176, then 176 / 1 = 176 (no). 176 - 1 = 175 (no).  \n1 * 4 = 4, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n44 + 1 = 45, then 45 - 4 = 41 (no). 45 + 4 = 49 (no).  \n44 + 4 = 48, then 48 - 1 = 47 (no). 48 / 1 = 48 (no).  \n1 + 4 = 5, then 44 - 5 = 39 (no). 44 + 5 = 49 (no). 44 / 5 = 8.8 (no).  \nno success.\n\nno path found within 0.001 of 24, and no result between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 44, 1, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n44 / 1 = 44, then 44 * 4 = 176 (no).  \n44 / 4 = 11, then 11 * 1 = 11 (no).  \n1 / 44 ≈ 0.0227, then * 4 ≈ 0.09 (no).  \n1 / 4 = 0.25, then * 44 = 11 (no).  \n4 / 1 = 4, then * 44 = 176 (no).  \n4 / 44 ≈ 0.0909, then * 1 ≈ 0.09 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 1.  \n4 - 1 = 3. 3 is a factor of 24.  \ncombine with third: 44 * 3 = 132 (no). 44 / 3 ≈ 14.667 (no). 44 + 3 = 47 (no). 44 - 3 = 41 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n44 * 1 = 44, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \n44 * 4 = 176, then 176 / 1 = 176 (no). 176 - 1 = 175 (no).  \n1 * 4 = 4, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n44 + 1 = 45, then 45 - 4 = 41 (no). 45 + 4 = 49 (no).  \n44 + 4 = 48, then 48 - 1 = 47 (no). 48 / 1 = 48 (no).  \n1 + 4 = 5, then 44 - 5 = 39 (no). 44 + 5 = 49 (no). 44 / 5 = 8.8 (no).  \nno success.\n\nno path found within 0.001 of 24, and no result between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        16,
+        1,
+        11
+      ],
+      "action": "4 * 4 = 16",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 4 and 4 to get 16, then later combine with 11 and 1",
+        "code": "",
+        "observation": "[16, 1, 11]"
+      },
+      "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]",
+      "evaluation": {
+        "state": "[16, 1, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 16
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [16, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 11 = 27 (no).  \n16 / 11 ≈ 1.4545, times 1 = 1.4545 (no).  \n1 / 16 = 0.0625, times 11 = 0.6875 (no).  \n1 / 11 ≈ 0.0909, times 16 ≈ 1.4545 (no).  \n11 / 1 = 11, then 11 + 16 = 27 (no).  \n11 / 16 = 0.6875, times 1 = 0.6875 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 16 → 16 - 11 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 11 - 1 = 10 (not a factor).  \n16 - 1 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n16 * 1 = 16, then 16 + 11 = 27 (no).  \n16 * 11 = 176, then 176 / 1 = 176 (no).  \n1 * 11 = 11, then 11 + 16 = 27 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n16 + 1 = 17, then 17 + 11 = 28 (within 20–28).  \n16 + 11 = 27, then 27 + 1 = 28 (also within range).  \n1 + 11 = 12, then 12 + 16 = 28.  \nwe have 28, which is between 20 and 28 inclusive.\n\n**attempt 5:**  \ntry 16 + 11 = 27, then 27 - 1 = 26 (still within 20–28).  \nno exact 24 found.\n\nresult is 28, which is within 20–28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [16, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 11 = 27 (no).  \n16 / 11 ≈ 1.4545, times 1 = 1.4545 (no).  \n1 / 16 = 0.0625, times 11 = 0.6875 (no).  \n1 / 11 ≈ 0.0909, times 16 ≈ 1.4545 (no).  \n11 / 1 = 11, then 11 + 16 = 27 (no).  \n11 / 16 = 0.6875, times 1 = 0.6875 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 11 and 16 → 16 - 11 = 5.  \n5 is not a factor of 24 (1,2,3,4,6,8,12).  \ntry 11 - 1 = 10 (not a factor).  \n16 - 1 = 15 (not a factor).  \nno.\n\n**attempt 3 (multiplication):**  \n16 * 1 = 16, then 16 + 11 = 27 (no).  \n16 * 11 = 176, then 176 / 1 = 176 (no).  \n1 * 11 = 11, then 11 + 16 = 27 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n16 + 1 = 17, then 17 + 11 = 28 (within 20–28).  \n16 + 11 = 27, then 27 + 1 = 28 (also within range).  \n1 + 11 = 12, then 12 + 16 = 28.  \nwe have 28, which is between 20 and 28 inclusive.\n\n**attempt 5:**  \ntry 16 + 11 = 27, then 27 - 1 = 26 (still within 20–28).  \nno exact 24 found.\n\nresult is 28, which is within 20–28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 5,
+      "children": {
+        "23": {
+          "id": 23,
+          "parent_id": 1,
+          "state": [
+            15,
+            11
+          ],
+          "action": "16 - 1 = 15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 1 from 16 to get 15, leaving [15, 11]",
+            "code": "",
+            "observation": "[15, 11]"
+          },
+          "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nSubtract 1 from 16 to get 15, leaving [15, 11]\nResult: [15, 11]",
+          "evaluation": {
+            "state": "[15, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "24": {
+          "id": 24,
+          "parent_id": 1,
+          "state": [
+            27,
+            1
+          ],
+          "action": "16 + 11 = 27",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 16 and 11 to get 27, leaving [27, 1]",
+            "code": "",
+            "observation": "[27, 1]"
+          },
+          "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nAdd 16 and 11 to get 27, leaving [27, 1]\nResult: [27, 1]",
+          "evaluation": {
+            "state": "[27, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 27.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "25": {
+          "id": 25,
+          "parent_id": 1,
+          "state": [
+            16,
+            11
+          ],
+          "action": "16 * 1 = 16",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 16 and 1 to get 16, leaving [16, 11]",
+            "code": "",
+            "observation": "[16, 11]"
+          },
+          "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nMultiply 16 and 1 to get 16, leaving [16, 11]\nResult: [16, 11]",
+          "evaluation": {
+            "state": "[16, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "26": {
+          "id": 26,
+          "parent_id": 1,
+          "state": [
+            5,
+            1
+          ],
+          "action": "16 - 11 = 5",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 11 from 16 to get 5, leaving [5, 1]",
+            "code": "",
+            "observation": "[5, 1]"
+          },
+          "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nSubtract 11 from 16 to get 5, leaving [5, 1]\nResult: [5, 1]",
+          "evaluation": {
+            "state": "[5, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 5.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "27": {
+          "id": 27,
+          "parent_id": 1,
+          "state": [
+            12,
+            16
+          ],
+          "action": "1 + 11 = 12",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 1 and 11 to get 12, leaving [16, 12]",
+            "code": "",
+            "observation": "[12, 16]"
+          },
+          "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nAdd 1 and 11 to get 12, leaving [16, 12]\nResult: [12, 16]",
+          "evaluation": {
+            "state": "[12, 16]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 12.0,16.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        12,
+        4,
+        4
+      ],
+      "action": "11 + 1 = 12",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 11 and 1 to get 12, then work with the two 4s",
+        "code": "",
+        "observation": "[12, 4, 4]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]",
+      "evaluation": {
+        "state": "[12, 4, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 12
+        },
+        "llm_judgments": [
+          "we have numbers [12, 4, 4] and target 24.\n\n- attempt 1 (division):  \n  12 / 4 = 3, then 3 * 4 = 12 (no).  \n  4 / 12 = 0.333..., 0.333 * 4 = 1.333 (no).  \n  4 / 4 = 1, then 1 * 12 = 12 (no).  \n  no division path works.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 12 and 4 → 12 - 4 = 8 (factor of 24!), then 8 * 4 = 32 (no).  \n  also 4 - 12 = -8, then -8 * 4 = -32 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  12 * 4 = 48, then 48 / 4 = 12 (no).  \n  4 * 4 = 16, then 16 + 12 = 28 (within 20–28).  \n  this gives 28.\n\nresult 28 is between 20 and 28 inclusive.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers [12, 4, 4] and target 24.\n\n- attempt 1 (division):  \n  12 / 4 = 3, then 3 * 4 = 12 (no).  \n  4 / 12 = 0.333..., 0.333 * 4 = 1.333 (no).  \n  4 / 4 = 1, then 1 * 12 = 12 (no).  \n  no division path works.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 12 and 4 → 12 - 4 = 8 (factor of 24!), then 8 * 4 = 32 (no).  \n  also 4 - 12 = -8, then -8 * 4 = -32 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  12 * 4 = 48, then 48 / 4 = 12 (no).  \n  4 * 4 = 16, then 16 + 12 = 28 (within 20–28).  \n  this gives 28.\n\nresult 28 is between 20 and 28 inclusive.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 6,
+      "children": {
+        "28": {
+          "id": 28,
+          "parent_id": 2,
+          "state": [
+            3.0,
+            4
+          ],
+          "action": "12 / 4 = 3.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 12 by 4 to get 3, then work with 3 and 4",
+            "code": "",
+            "observation": "[3.0, 4]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nDivide 12 by 4 to get 3, then work with 3 and 4\nResult: [3.0, 4]",
+          "evaluation": {
+            "state": "[3.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "29": {
+          "id": 29,
+          "parent_id": 2,
+          "state": [
+            8,
+            4
+          ],
+          "action": "12 - 4 = 8",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 12 to get 8, then work with 8 and 4",
+            "code": "",
+            "observation": "[8, 4]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nSubtract 4 from 12 to get 8, then work with 8 and 4\nResult: [8, 4]",
+          "evaluation": {
+            "state": "[8, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "30": {
+          "id": 30,
+          "parent_id": 2,
+          "state": [
+            8,
+            12
+          ],
+          "action": "4 + 4 = 8",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 4 to get 8, then work with 12 and 8",
+            "code": "",
+            "observation": "[8, 12]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nAdd 4 and 4 to get 8, then work with 12 and 8\nResult: [8, 12]",
+          "evaluation": {
+            "state": "[8, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "31": {
+          "id": 31,
+          "parent_id": 2,
+          "state": [
+            16,
+            12
+          ],
+          "action": "4 * 4 = 16",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 4 by 4 to get 16, then work with 12 and 16",
+            "code": "",
+            "observation": "[16, 12]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nMultiply 4 by 4 to get 16, then work with 12 and 16\nResult: [16, 12]",
+          "evaluation": {
+            "state": "[16, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "32": {
+          "id": 32,
+          "parent_id": 2,
+          "state": [
+            0,
+            12
+          ],
+          "action": "4 - 4 = 0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 4 to get 0, then work with 12 and 0",
+            "code": "",
+            "observation": "[0, 12]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nSubtract 4 from 4 to get 0, then work with 12 and 0\nResult: [0, 12]",
+          "evaluation": {
+            "state": "[0, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "33": {
+          "id": 33,
+          "parent_id": 2,
+          "state": [
+            1.0,
+            12
+          ],
+          "action": "4 / 4 = 1.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 4 by 4 to get 1, then work with 12 and 1",
+            "code": "",
+            "observation": "[1.0, 12]"
+          },
+          "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nDivide 4 by 4 to get 1, then work with 12 and 1\nResult: [1.0, 12]",
+          "evaluation": {
+            "state": "[1.0, 12]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,12.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        10,
+        4,
+        4
+      ],
+      "action": "11 - 1 = 10",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 1 from 11 to get 10, then combine with 4 and 4",
+        "code": "",
+        "observation": "[10, 4, 4]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]",
+      "evaluation": {
+        "state": "[10, 4, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 10
+        },
+        "llm_judgments": [
+          "we have numbers: 10, 4, 4. target: 24.\n\n- attempt 1 (division):  \n  10 / 4 = 2.5, then 2.5 * 4 = 10 (no).  \n  4 / 10 = 0.4, then 0.4 * 4 = 1.6 (no).  \n  4 / 4 = 1, then 1 * 10 = 10 (no).  \n  other order: 4 / 4 = 1 already done. no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 10 and 4 → 10 - 4 = 6 (factor of 24!), then 6 * 4 = 24 (exact!).\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 10, 4, 4. target: 24.\n\n- attempt 1 (division):  \n  10 / 4 = 2.5, then 2.5 * 4 = 10 (no).  \n  4 / 10 = 0.4, then 0.4 * 4 = 1.6 (no).  \n  4 / 4 = 1, then 1 * 10 = 10 (no).  \n  other order: 4 / 4 = 1 already done. no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  next closest: 10 and 4 → 10 - 4 = 6 (factor of 24!), then 6 * 4 = 24 (exact!).\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "9": {
+          "id": 9,
+          "parent_id": 3,
+          "state": [
+            8,
+            10
+          ],
+          "action": "4 + 4 = 8",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 4 to get 8",
+            "code": "",
+            "observation": "[8, 10]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nAdd 4 and 4 to get 8\nResult: [8, 10]",
+          "evaluation": {
+            "state": "[8, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 3,
+          "state": [
+            16,
+            10
+          ],
+          "action": "4 * 4 = 16",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 4 by 4 to get 16, then work with 10 and 16",
+            "code": "",
+            "observation": "[16, 10]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nMultiply 4 by 4 to get 16, then work with 10 and 16\nResult: [16, 10]",
+          "evaluation": {
+            "state": "[16, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 3,
+          "state": [
+            2.5,
+            4
+          ],
+          "action": "10 / 4 = 2.5",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 10 by 4 to get 2.5, then combine with 4",
+            "code": "",
+            "observation": "[2.5, 4]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nDivide 10 by 4 to get 2.5, then combine with 4\nResult: [2.5, 4]",
+          "evaluation": {
+            "state": "[2.5, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 2.5,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 3,
+          "state": [
+            1.0,
+            10
+          ],
+          "action": "4 / 4 = 1.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 4 by 4 to get 1, then use with 10",
+            "code": "",
+            "observation": "[1.0, 10]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nDivide 4 by 4 to get 1, then use with 10\nResult: [1.0, 10]",
+          "evaluation": {
+            "state": "[1.0, 10]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,10.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 3,
+          "state": [
+            6,
+            4
+          ],
+          "action": "10 - 4 = 6",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 4 from 10 to get 6, then combine with remaining 4",
+            "code": "",
+            "observation": "[6, 4]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]",
+          "evaluation": {
+            "state": "[6, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 6
+            },
+            "llm_judgments": [
+              "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).\n\nthat's within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '6 * 4=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).\n\nthat's within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "6 * 4",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "40": {
+              "id": 40,
+              "parent_id": 13,
+              "state": [
+                24.0
+              ],
+              "action": "6 * 4",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [6, 4], 6 * 4 = 24",
+                "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 3,
+          "state": [
+            -6,
+            4
+          ],
+          "action": "4 - 10 = -6",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 10 from 4 to get -6, then use with the other 4",
+            "code": "",
+            "observation": "[-6, 4]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 10 from 4 to get -6, then use with the other 4\nResult: [-6, 4]",
+          "evaluation": {
+            "state": "[-6, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -6.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 3,
+          "state": [
+            14,
+            4
+          ],
+          "action": "10 + 4 = 14",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 10 and 4 to get 14, then work with remaining 4",
+            "code": "",
+            "observation": "[14, 4]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nAdd 10 and 4 to get 14, then work with remaining 4\nResult: [14, 4]",
+          "evaluation": {
+            "state": "[14, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 14.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 3,
+          "state": [
+            40,
+            4
+          ],
+          "action": "10 * 4 = 40",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 10 by 4 to get 40, then combine with the other 4",
+            "code": "",
+            "observation": "[40, 4]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nMultiply 10 by 4 to get 40, then combine with the other 4\nResult: [40, 4]",
+          "evaluation": {
+            "state": "[40, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 40.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        7,
+        1,
+        4
+      ],
+      "action": "11 - 4 = 7",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 4 from 11 to get 7, then later use 4 and 1",
+        "code": "",
+        "observation": "[7, 1, 4]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]",
+      "evaluation": {
+        "state": "[7, 1, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 7
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [7, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n7 / 1 = 7, then 7 * 4 = 28 (no).  \n1 / 7 ≈ 0.1429, times 4 = 0.571 (no).  \n4 / 1 = 4, then 4 * 7 = 28 (no).  \n1 / 4 = 0.25, times 7 = 1.75 (no).  \n7 / 4 = 1.75, times 1 = 1.75 (no).  \n4 / 7 ≈ 0.571, times 1 = 0.571 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 4 and 1 → 4 - 1 = 3 (factor of 24).  \nthen 3 * 7 = 21 (no).  \n7 - 4 = 3, then 3 * 1 = 3 (no).  \n7 - 1 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [7, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n7 / 1 = 7, then 7 * 4 = 28 (no).  \n1 / 7 ≈ 0.1429, times 4 = 0.571 (no).  \n4 / 1 = 4, then 4 * 7 = 28 (no).  \n1 / 4 = 0.25, times 7 = 1.75 (no).  \n7 / 4 = 1.75, times 1 = 1.75 (no).  \n4 / 7 ≈ 0.571, times 1 = 0.571 (no).  \n\n- attempt 2 (close subtraction):  \nclosest two numbers: 4 and 1 → 4 - 1 = 3 (factor of 24).  \nthen 3 * 7 = 21 (no).  \n7 - 4 = 3, then 3 * 1 = 3 (no).  \n7 - 1 = 6 (factor of 24), then 6 * 4 = 24 (exact!).  \n\nwe found 24 exactly.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 6,
+      "children": {
+        "17": {
+          "id": 17,
+          "parent_id": 4,
+          "state": [
+            28,
+            1
+          ],
+          "action": "7 * 4 = 28",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 7 and 4 to get 28, then later combine with 1",
+            "code": "",
+            "observation": "[28, 1]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nMultiply 7 and 4 to get 28, then later combine with 1\nResult: [28, 1]",
+          "evaluation": {
+            "state": "[28, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 28.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "18": {
+          "id": 18,
+          "parent_id": 4,
+          "state": [
+            11,
+            1
+          ],
+          "action": "7 + 4 = 11",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 7 and 4 to get 11, keep 1 for later",
+            "code": "",
+            "observation": "[11, 1]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nAdd 7 and 4 to get 11, keep 1 for later\nResult: [11, 1]",
+          "evaluation": {
+            "state": "[11, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 11.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "19": {
+          "id": 19,
+          "parent_id": 4,
+          "state": [
+            3,
+            1
+          ],
+          "action": "7 - 4 = 3",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 7 to get 3, then combine with 1",
+            "code": "",
+            "observation": "[3, 1]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nSubtract 4 from 7 to get 3, then combine with 1\nResult: [3, 1]",
+          "evaluation": {
+            "state": "[3, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "20": {
+          "id": 20,
+          "parent_id": 4,
+          "state": [
+            4.0,
+            7
+          ],
+          "action": "4 / 1 = 4.0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 4 by 1 to get 4, then work with 7",
+            "code": "",
+            "observation": "[4.0, 7]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nDivide 4 by 1 to get 4, then work with 7\nResult: [4.0, 7]",
+          "evaluation": {
+            "state": "[4.0, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "21": {
+          "id": 21,
+          "parent_id": 4,
+          "state": [
+            8,
+            4
+          ],
+          "action": "7 + 1 = 8",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 7 and 1 to get 8, then work with 4",
+            "code": "",
+            "observation": "[8, 4]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nAdd 7 and 1 to get 8, then work with 4\nResult: [8, 4]",
+          "evaluation": {
+            "state": "[8, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "22": {
+          "id": 22,
+          "parent_id": 4,
+          "state": [
+            3,
+            7
+          ],
+          "action": "4 - 1 = 3",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 1 from 4 to get 3, then combine with 7",
+            "code": "",
+            "observation": "[3, 7]"
+          },
+          "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nSubtract 1 from 4 to get 3, then combine with 7\nResult: [3, 7]",
+          "evaluation": {
+            "state": "[3, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        2.75,
+        1,
+        4
+      ],
+      "action": "11 / 4 = 2.75",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 11 by 4 to get 2.75, then combine with remaining numbers",
+        "code": "",
+        "observation": "[2.75, 1, 4]"
+      },
+      "path_history": "Divide 11 by 4 to get 2.75, then combine with remaining numbers\nResult: [2.75, 1, 4]",
+      "evaluation": {
+        "state": "[2.75, 1, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 4
+        },
+        "llm_judgments": [
+          "[2.75, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n4 / 1 = 4, then 4 * 2.75 = 11 (no).  \n1 / 4 = 0.25, then 0.25 * 2.75 = 0.6875 (no).  \n2.75 / 1 = 2.75, then 2.75 * 4 = 11 (no).  \n4 / 2.75 ≈ 1.4545, then 1.4545 * 1 = 1.4545 (no).  \n1 / 2.75 ≈ 0.3636, then 0.3636 * 4 ≈ 1.4545 (no).  \n2.75 / 4 = 0.6875, then 0.6875 * 1 = 0.6875 (no).  \n\n- attempt 2 (close subtraction):  \nclosest numbers: 1 and 2.75 → 2.75 - 1 = 1.75 (not a factor of 24).  \n4 - 2.75 = 1.25 (not a factor).  \n4 - 1 = 3 (factor of 24!), then 3 * 2.75 = 8.25 (no).  \nalso try 2.75 - 4 = -1.25 (no).  \n\n- attempt 3 (multiplication):  \n2.75 * 1 = 2.75, then 2.75 * 4 = 11 (no).  \n2.75 * 4 = 11, then 11 * 1 = 11 (no).  \n1 * 4 = 4, then 4 * 2.75 = 11 (no).  \n\n- attempt 4 (addition):  \n2.75 + 1 = 3.75, then 3.75 * 4 = 15 (no).  \n2.75 + 4 = 6.75, then 6.75 * 1 = 6.75 (no).  \n1 + 4 = 5, then 5 * 2.75 = 13.75 (no).  \nalso try 2.75 + 1 + 4 = 7.75 (no).  \n2.75 * 4 = 11, 11 + 1 = 12 (no).  \n4 * 1 = 4, 4 + 2.75 = 6.75 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[2.75, 1, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n4 / 1 = 4, then 4 * 2.75 = 11 (no).  \n1 / 4 = 0.25, then 0.25 * 2.75 = 0.6875 (no).  \n2.75 / 1 = 2.75, then 2.75 * 4 = 11 (no).  \n4 / 2.75 ≈ 1.4545, then 1.4545 * 1 = 1.4545 (no).  \n1 / 2.75 ≈ 0.3636, then 0.3636 * 4 ≈ 1.4545 (no).  \n2.75 / 4 = 0.6875, then 0.6875 * 1 = 0.6875 (no).  \n\n- attempt 2 (close subtraction):  \nclosest numbers: 1 and 2.75 → 2.75 - 1 = 1.75 (not a factor of 24).  \n4 - 2.75 = 1.25 (not a factor).  \n4 - 1 = 3 (factor of 24!), then 3 * 2.75 = 8.25 (no).  \nalso try 2.75 - 4 = -1.25 (no).  \n\n- attempt 3 (multiplication):  \n2.75 * 1 = 2.75, then 2.75 * 4 = 11 (no).  \n2.75 * 4 = 11, then 11 * 1 = 11 (no).  \n1 * 4 = 4, then 4 * 2.75 = 11 (no).  \n\n- attempt 4 (addition):  \n2.75 + 1 = 3.75, then 3.75 * 4 = 15 (no).  \n2.75 + 4 = 6.75, then 6.75 * 1 = 6.75 (no).  \n1 + 4 = 5, then 5 * 2.75 = 13.75 (no).  \nalso try 2.75 + 1 + 4 = 7.75 (no).  \n2.75 * 4 = 11, 11 + 1 = 12 (no).  \n4 * 1 = 4, 4 + 2.75 = 6.75 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        0,
+        1,
+        11
+      ],
+      "action": "4 - 4 = 0",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 4 from 4 to get 0, then multiply or add with others",
+        "code": "",
+        "observation": "[0, 1, 11]"
+      },
+      "path_history": "Subtract 4 from 4 to get 0, then multiply or add with others\nResult: [0, 1, 11]",
+      "evaluation": {
+        "state": "[0, 1, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 11
+        },
+        "llm_judgments": [
+          "we have numbers: 0, 1, 11. target: 24.\n\n- attempt 1 (division):  \n11 / 1 = 11, then 11 * 0 = 0 (no).  \n1 / 11 ≈ 0.0909, times 0 = 0 (no).  \n11 / 0 = undefined (skip).  \n1 / 0 undefined.  \n0 / 1 = 0, times 11 = 0 (no).  \n0 / 11 = 0, times 1 = 0 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1.  \n1 - 0 = 1. 1 is a factor of 24. combine with third (11): 1 * 11 = 11 (no), 11 / 1 = 11 (no), 11 + 1 = 12 (no), 11 - 1 = 10 (no).  \nno.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 11 = 0 (no).  \n0 * 11 = 0, then 0 * 1 = 0 (no).  \n1 * 11 = 11, then 11 * 0 = 0 (no), 11 + 0 = 11 (no), 11 - 0 = 11 (no), 0 / 11 = 0 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 11 = 12 (no).  \n0 + 11 = 11, then 11 + 1 = 12 (no).  \n1 + 11 = 12, then 12 + 0 = 12 (no), 12 - 0 = 12 (no).  \nno.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 0, 1, 11. target: 24.\n\n- attempt 1 (division):  \n11 / 1 = 11, then 11 * 0 = 0 (no).  \n1 / 11 ≈ 0.0909, times 0 = 0 (no).  \n11 / 0 = undefined (skip).  \n1 / 0 undefined.  \n0 / 1 = 0, times 11 = 0 (no).  \n0 / 11 = 0, times 1 = 0 (no).  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1.  \n1 - 0 = 1. 1 is a factor of 24. combine with third (11): 1 * 11 = 11 (no), 11 / 1 = 11 (no), 11 + 1 = 12 (no), 11 - 1 = 10 (no).  \nno.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 11 = 0 (no).  \n0 * 11 = 0, then 0 * 1 = 0 (no).  \n1 * 11 = 11, then 11 * 0 = 0 (no), 11 + 0 = 11 (no), 11 - 0 = 11 (no), 0 / 11 = 0 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 11 = 12 (no).  \n0 + 11 = 11, then 11 + 1 = 12 (no).  \n1 + 11 = 12, then 12 + 0 = 12 (no), 12 - 0 = 12 (no).  \nno.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        8,
+        1,
+        11
+      ],
+      "action": "4 + 4 = 8",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 4 and 4 to get 8, then combine with 11 and 1",
+        "code": "",
+        "observation": "[8, 1, 11]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]",
+      "evaluation": {
+        "state": "[8, 1, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 11
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [8, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 8 / 1 = 8, then 8 * 11 = 88 (no).  \n- 1 / 8 = 0.125, then 0.125 * 11 = 1.375 (no).  \n- 11 / 1 = 11, then 11 * 8 = 88 (no).  \n- 1 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no).  \n- 8 / 11 ≈ 0.727, then * 1 = 0.727 (no).  \n- 11 / 8 = 1.375, then * 1 = 1.375 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11 (difference 3), or 1 and 8 (difference 7).  \n- 11 - 8 = 3 (factor of 24), then 3 * 1 = 3 (no).  \n- 8 - 1 = 7 (not a factor of 24).  \n- 11 - 1 = 10 (not a factor).  \n\nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 1 = 8, then 8 + 11 = 19 (no), 8 * 11 = 88 (no), 11 - 8 = 3 (no).  \n- 8 * 11 = 88, then 88 / 1 = 88 (no), 88 - 1 = 87 (no).  \n- 1 * 11 = 11, then 11 + 8 = 19 (no), 8 - 11 = -3 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 8 + 1 = 9, then 9 + 11 = 20 (no), 11 - 9 = 2 (no), 9 * 11 = 99 (no).  \n- 8 + 11 = 19, then 19 + 1 = 20 (no), 19 - 1 = 18 (no).  \n- 1 + 11 = 12, then 12 * 8 = 96 (no), 12 + 8 = 20 (no), 8 - 12 = -4 (no).  \n\nno success.\n\n**attempt 5 (free operations with two numbers):**  \nwe have three numbers; no new operation left to try that hasn’t been covered.  \nno path to 24 found.\n\nresult is 20 from addition attempts, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [8, 1, 11]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair both orders.  \n- 8 / 1 = 8, then 8 * 11 = 88 (no).  \n- 1 / 8 = 0.125, then 0.125 * 11 = 1.375 (no).  \n- 11 / 1 = 11, then 11 * 8 = 88 (no).  \n- 1 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no).  \n- 8 / 11 ≈ 0.727, then * 1 = 0.727 (no).  \n- 11 / 8 = 1.375, then * 1 = 1.375 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11 (difference 3), or 1 and 8 (difference 7).  \n- 11 - 8 = 3 (factor of 24), then 3 * 1 = 3 (no).  \n- 8 - 1 = 7 (not a factor of 24).  \n- 11 - 1 = 10 (not a factor).  \n\nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 1 = 8, then 8 + 11 = 19 (no), 8 * 11 = 88 (no), 11 - 8 = 3 (no).  \n- 8 * 11 = 88, then 88 / 1 = 88 (no), 88 - 1 = 87 (no).  \n- 1 * 11 = 11, then 11 + 8 = 19 (no), 8 - 11 = -3 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 8 + 1 = 9, then 9 + 11 = 20 (no), 11 - 9 = 2 (no), 9 * 11 = 99 (no).  \n- 8 + 11 = 19, then 19 + 1 = 20 (no), 19 - 1 = 18 (no).  \n- 1 + 11 = 12, then 12 * 8 = 96 (no), 12 + 8 = 20 (no), 8 - 12 = -4 (no).  \n\nno success.\n\n**attempt 5 (free operations with two numbers):**  \nwe have three numbers; no new operation left to try that hasn’t been covered.  \nno path to 24 found.\n\nresult is 20 from addition attempts, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 6,
+      "children": {
+        "34": {
+          "id": 34,
+          "parent_id": 7,
+          "state": [
+            9,
+            11
+          ],
+          "action": "8 + 1 = 9",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 8 and 1 to get 9, leaving 11 and 9",
+            "code": "",
+            "observation": "[9, 11]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nAdd 8 and 1 to get 9, leaving 11 and 9\nResult: [9, 11]",
+          "evaluation": {
+            "state": "[9, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 9.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "35": {
+          "id": 35,
+          "parent_id": 7,
+          "state": [
+            7,
+            11
+          ],
+          "action": "8 - 1 = 7",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 1 from 8 to get 7, leaving 11 and 7",
+            "code": "",
+            "observation": "[7, 11]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 1 from 8 to get 7, leaving 11 and 7\nResult: [7, 11]",
+          "evaluation": {
+            "state": "[7, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 7.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "36": {
+          "id": 36,
+          "parent_id": 7,
+          "state": [
+            3,
+            1
+          ],
+          "action": "11 - 8 = 3",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 8 from 11 to get 3, leaving 3 and 1",
+            "code": "",
+            "observation": "[3, 1]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 8 from 11 to get 3, leaving 3 and 1\nResult: [3, 1]",
+          "evaluation": {
+            "state": "[3, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "37": {
+          "id": 37,
+          "parent_id": 7,
+          "state": [
+            10,
+            8
+          ],
+          "action": "11 - 1 = 10",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 1 from 11 to get 10, leaving 10 and 8",
+            "code": "",
+            "observation": "[10, 8]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 1 from 11 to get 10, leaving 10 and 8\nResult: [10, 8]",
+          "evaluation": {
+            "state": "[10, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 10.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "38": {
+          "id": 38,
+          "parent_id": 7,
+          "state": [
+            8,
+            11
+          ],
+          "action": "8 * 1 = 8",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 8 and 1 to get 8, leaving 11 and 8",
+            "code": "",
+            "observation": "[8, 11]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nMultiply 8 and 1 to get 8, leaving 11 and 8\nResult: [8, 11]",
+          "evaluation": {
+            "state": "[8, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "39": {
+          "id": 39,
+          "parent_id": 7,
+          "state": [
+            12,
+            8
+          ],
+          "action": "11 + 1 = 12",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 11 and 1 to get 12, leaving 8 and 12",
+            "code": "",
+            "observation": "[12, 8]"
+          },
+          "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nAdd 11 and 1 to get 12, leaving 8 and 12\nResult: [12, 8]",
+          "evaluation": {
+            "state": "[12, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 12.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        44,
+        1,
+        4
+      ],
+      "action": "11 * 4 = 44",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 11 and 4 to get 44, then try to reduce with 4 and 1",
+        "code": "",
+        "observation": "[44, 1, 4]"
+      },
+      "path_history": "Multiply 11 and 4 to get 44, then try to reduce with 4 and 1\nResult: [44, 1, 4]",
+      "evaluation": {
+        "state": "[44, 1, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 44
+        },
+        "llm_judgments": [
+          "we have numbers: 44, 1, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n44 / 1 = 44, then 44 * 4 = 176 (no).  \n44 / 4 = 11, then 11 * 1 = 11 (no).  \n1 / 44 ≈ 0.0227, then * 4 ≈ 0.09 (no).  \n1 / 4 = 0.25, then * 44 = 11 (no).  \n4 / 1 = 4, then * 44 = 176 (no).  \n4 / 44 ≈ 0.0909, then * 1 ≈ 0.09 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 1.  \n4 - 1 = 3. 3 is a factor of 24.  \ncombine with third: 44 * 3 = 132 (no). 44 / 3 ≈ 14.667 (no). 44 + 3 = 47 (no). 44 - 3 = 41 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n44 * 1 = 44, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \n44 * 4 = 176, then 176 / 1 = 176 (no). 176 - 1 = 175 (no).  \n1 * 4 = 4, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n44 + 1 = 45, then 45 - 4 = 41 (no). 45 + 4 = 49 (no).  \n44 + 4 = 48, then 48 - 1 = 47 (no). 48 / 1 = 48 (no).  \n1 + 4 = 5, then 44 - 5 = 39 (no). 44 + 5 = 49 (no). 44 / 5 = 8.8 (no).  \nno success.\n\nno path found within 0.001 of 24, and no result between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 44, 1, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n44 / 1 = 44, then 44 * 4 = 176 (no).  \n44 / 4 = 11, then 11 * 1 = 11 (no).  \n1 / 44 ≈ 0.0227, then * 4 ≈ 0.09 (no).  \n1 / 4 = 0.25, then * 44 = 11 (no).  \n4 / 1 = 4, then * 44 = 176 (no).  \n4 / 44 ≈ 0.0909, then * 1 ≈ 0.09 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 1.  \n4 - 1 = 3. 3 is a factor of 24.  \ncombine with third: 44 * 3 = 132 (no). 44 / 3 ≈ 14.667 (no). 44 + 3 = 47 (no). 44 - 3 = 41 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n44 * 1 = 44, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \n44 * 4 = 176, then 176 / 1 = 176 (no). 176 - 1 = 175 (no).  \n1 * 4 = 4, then 44 - 4 = 40 (no). 44 + 4 = 48 (no). 44 / 4 = 11 (no).  \nno success.\n\n**attempt 4 (addition and adjust):**  \n44 + 1 = 45, then 45 - 4 = 41 (no). 45 + 4 = 49 (no).  \n44 + 4 = 48, then 48 - 1 = 47 (no). 48 / 1 = 48 (no).  \n1 + 4 = 5, then 44 - 5 = 39 (no). 44 + 5 = 49 (no). 44 / 5 = 8.8 (no).  \nno success.\n\nno path found within 0.001 of 24, and no result between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 3,
+      "state": [
+        8,
+        10
+      ],
+      "action": "4 + 4 = 8",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 4 to get 8",
+        "code": "",
+        "observation": "[8, 10]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nAdd 4 and 4 to get 8\nResult: [8, 10]",
+      "evaluation": {
+        "state": "[8, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 3,
+      "state": [
+        16,
+        10
+      ],
+      "action": "4 * 4 = 16",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 4 by 4 to get 16, then work with 10 and 16",
+        "code": "",
+        "observation": "[16, 10]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nMultiply 4 by 4 to get 16, then work with 10 and 16\nResult: [16, 10]",
+      "evaluation": {
+        "state": "[16, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 3,
+      "state": [
+        2.5,
+        4
+      ],
+      "action": "10 / 4 = 2.5",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 10 by 4 to get 2.5, then combine with 4",
+        "code": "",
+        "observation": "[2.5, 4]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nDivide 10 by 4 to get 2.5, then combine with 4\nResult: [2.5, 4]",
+      "evaluation": {
+        "state": "[2.5, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 2.5,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 3,
+      "state": [
+        1.0,
+        10
+      ],
+      "action": "4 / 4 = 1.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 4 by 4 to get 1, then use with 10",
+        "code": "",
+        "observation": "[1.0, 10]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nDivide 4 by 4 to get 1, then use with 10\nResult: [1.0, 10]",
+      "evaluation": {
+        "state": "[1.0, 10]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,10.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 3,
+      "state": [
+        6,
+        4
+      ],
+      "action": "10 - 4 = 6",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 4 from 10 to get 6, then combine with remaining 4",
+        "code": "",
+        "observation": "[6, 4]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]",
+      "evaluation": {
+        "state": "[6, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 6
+        },
+        "llm_judgments": [
+          "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).\n\nthat's within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '6 * 4=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 6 and 4.  \nsince there are only two numbers, we freely try operations.\n\n- 6 * 4 = 24 (exact).\n\nthat's within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "6 * 4",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "40": {
+          "id": 40,
+          "parent_id": 13,
+          "state": [
+            24.0
+          ],
+          "action": "6 * 4",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [6, 4], 6 * 4 = 24",
+            "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 14,
+      "parent_id": 3,
+      "state": [
+        -6,
+        4
+      ],
+      "action": "4 - 10 = -6",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 10 from 4 to get -6, then use with the other 4",
+        "code": "",
+        "observation": "[-6, 4]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 10 from 4 to get -6, then use with the other 4\nResult: [-6, 4]",
+      "evaluation": {
+        "state": "[-6, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -6.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 3,
+      "state": [
+        14,
+        4
+      ],
+      "action": "10 + 4 = 14",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 10 and 4 to get 14, then work with remaining 4",
+        "code": "",
+        "observation": "[14, 4]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nAdd 10 and 4 to get 14, then work with remaining 4\nResult: [14, 4]",
+      "evaluation": {
+        "state": "[14, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 14.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 3,
+      "state": [
+        40,
+        4
+      ],
+      "action": "10 * 4 = 40",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 10 by 4 to get 40, then combine with the other 4",
+        "code": "",
+        "observation": "[40, 4]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nMultiply 10 by 4 to get 40, then combine with the other 4\nResult: [40, 4]",
+      "evaluation": {
+        "state": "[40, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 40.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 4,
+      "state": [
+        28,
+        1
+      ],
+      "action": "7 * 4 = 28",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 7 and 4 to get 28, then later combine with 1",
+        "code": "",
+        "observation": "[28, 1]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nMultiply 7 and 4 to get 28, then later combine with 1\nResult: [28, 1]",
+      "evaluation": {
+        "state": "[28, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 28.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 4,
+      "state": [
+        11,
+        1
+      ],
+      "action": "7 + 4 = 11",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 7 and 4 to get 11, keep 1 for later",
+        "code": "",
+        "observation": "[11, 1]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nAdd 7 and 4 to get 11, keep 1 for later\nResult: [11, 1]",
+      "evaluation": {
+        "state": "[11, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 11.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 4,
+      "state": [
+        3,
+        1
+      ],
+      "action": "7 - 4 = 3",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 7 to get 3, then combine with 1",
+        "code": "",
+        "observation": "[3, 1]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nSubtract 4 from 7 to get 3, then combine with 1\nResult: [3, 1]",
+      "evaluation": {
+        "state": "[3, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 20,
+      "parent_id": 4,
+      "state": [
+        4.0,
+        7
+      ],
+      "action": "4 / 1 = 4.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 4 by 1 to get 4, then work with 7",
+        "code": "",
+        "observation": "[4.0, 7]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nDivide 4 by 1 to get 4, then work with 7\nResult: [4.0, 7]",
+      "evaluation": {
+        "state": "[4.0, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 21,
+      "parent_id": 4,
+      "state": [
+        8,
+        4
+      ],
+      "action": "7 + 1 = 8",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 7 and 1 to get 8, then work with 4",
+        "code": "",
+        "observation": "[8, 4]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nAdd 7 and 1 to get 8, then work with 4\nResult: [8, 4]",
+      "evaluation": {
+        "state": "[8, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 22,
+      "parent_id": 4,
+      "state": [
+        3,
+        7
+      ],
+      "action": "4 - 1 = 3",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 1 from 4 to get 3, then combine with 7",
+        "code": "",
+        "observation": "[3, 7]"
+      },
+      "path_history": "Subtract 4 from 11 to get 7, then later use 4 and 1\nResult: [7, 1, 4]\nSubtract 1 from 4 to get 3, then combine with 7\nResult: [3, 7]",
+      "evaluation": {
+        "state": "[3, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 23,
+      "parent_id": 1,
+      "state": [
+        15,
+        11
+      ],
+      "action": "16 - 1 = 15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 1 from 16 to get 15, leaving [15, 11]",
+        "code": "",
+        "observation": "[15, 11]"
+      },
+      "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nSubtract 1 from 16 to get 15, leaving [15, 11]\nResult: [15, 11]",
+      "evaluation": {
+        "state": "[15, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 24,
+      "parent_id": 1,
+      "state": [
+        27,
+        1
+      ],
+      "action": "16 + 11 = 27",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 16 and 11 to get 27, leaving [27, 1]",
+        "code": "",
+        "observation": "[27, 1]"
+      },
+      "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nAdd 16 and 11 to get 27, leaving [27, 1]\nResult: [27, 1]",
+      "evaluation": {
+        "state": "[27, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 27.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 25,
+      "parent_id": 1,
+      "state": [
+        16,
+        11
+      ],
+      "action": "16 * 1 = 16",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 16 and 1 to get 16, leaving [16, 11]",
+        "code": "",
+        "observation": "[16, 11]"
+      },
+      "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nMultiply 16 and 1 to get 16, leaving [16, 11]\nResult: [16, 11]",
+      "evaluation": {
+        "state": "[16, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 26,
+      "parent_id": 1,
+      "state": [
+        5,
+        1
+      ],
+      "action": "16 - 11 = 5",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 11 from 16 to get 5, leaving [5, 1]",
+        "code": "",
+        "observation": "[5, 1]"
+      },
+      "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nSubtract 11 from 16 to get 5, leaving [5, 1]\nResult: [5, 1]",
+      "evaluation": {
+        "state": "[5, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 5.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 27,
+      "parent_id": 1,
+      "state": [
+        12,
+        16
+      ],
+      "action": "1 + 11 = 12",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 1 and 11 to get 12, leaving [16, 12]",
+        "code": "",
+        "observation": "[12, 16]"
+      },
+      "path_history": "Multiply 4 and 4 to get 16, then later combine with 11 and 1\nResult: [16, 1, 11]\nAdd 1 and 11 to get 12, leaving [16, 12]\nResult: [12, 16]",
+      "evaluation": {
+        "state": "[12, 16]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 12.0,16.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 28,
+      "parent_id": 2,
+      "state": [
+        3.0,
+        4
+      ],
+      "action": "12 / 4 = 3.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 12 by 4 to get 3, then work with 3 and 4",
+        "code": "",
+        "observation": "[3.0, 4]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nDivide 12 by 4 to get 3, then work with 3 and 4\nResult: [3.0, 4]",
+      "evaluation": {
+        "state": "[3.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 29,
+      "parent_id": 2,
+      "state": [
+        8,
+        4
+      ],
+      "action": "12 - 4 = 8",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 12 to get 8, then work with 8 and 4",
+        "code": "",
+        "observation": "[8, 4]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nSubtract 4 from 12 to get 8, then work with 8 and 4\nResult: [8, 4]",
+      "evaluation": {
+        "state": "[8, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 30,
+      "parent_id": 2,
+      "state": [
+        8,
+        12
+      ],
+      "action": "4 + 4 = 8",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 4 to get 8, then work with 12 and 8",
+        "code": "",
+        "observation": "[8, 12]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nAdd 4 and 4 to get 8, then work with 12 and 8\nResult: [8, 12]",
+      "evaluation": {
+        "state": "[8, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 31,
+      "parent_id": 2,
+      "state": [
+        16,
+        12
+      ],
+      "action": "4 * 4 = 16",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 4 by 4 to get 16, then work with 12 and 16",
+        "code": "",
+        "observation": "[16, 12]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nMultiply 4 by 4 to get 16, then work with 12 and 16\nResult: [16, 12]",
+      "evaluation": {
+        "state": "[16, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 32,
+      "parent_id": 2,
+      "state": [
+        0,
+        12
+      ],
+      "action": "4 - 4 = 0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 4 to get 0, then work with 12 and 0",
+        "code": "",
+        "observation": "[0, 12]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nSubtract 4 from 4 to get 0, then work with 12 and 0\nResult: [0, 12]",
+      "evaluation": {
+        "state": "[0, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 33,
+      "parent_id": 2,
+      "state": [
+        1.0,
+        12
+      ],
+      "action": "4 / 4 = 1.0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 4 by 4 to get 1, then work with 12 and 1",
+        "code": "",
+        "observation": "[1.0, 12]"
+      },
+      "path_history": "Add 11 and 1 to get 12, then work with the two 4s\nResult: [12, 4, 4]\nDivide 4 by 4 to get 1, then work with 12 and 1\nResult: [1.0, 12]",
+      "evaluation": {
+        "state": "[1.0, 12]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,12.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 34,
+      "parent_id": 7,
+      "state": [
+        9,
+        11
+      ],
+      "action": "8 + 1 = 9",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 8 and 1 to get 9, leaving 11 and 9",
+        "code": "",
+        "observation": "[9, 11]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nAdd 8 and 1 to get 9, leaving 11 and 9\nResult: [9, 11]",
+      "evaluation": {
+        "state": "[9, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 9.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 35,
+      "parent_id": 7,
+      "state": [
+        7,
+        11
+      ],
+      "action": "8 - 1 = 7",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 1 from 8 to get 7, leaving 11 and 7",
+        "code": "",
+        "observation": "[7, 11]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 1 from 8 to get 7, leaving 11 and 7\nResult: [7, 11]",
+      "evaluation": {
+        "state": "[7, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 7.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 36,
+      "parent_id": 7,
+      "state": [
+        3,
+        1
+      ],
+      "action": "11 - 8 = 3",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 8 from 11 to get 3, leaving 3 and 1",
+        "code": "",
+        "observation": "[3, 1]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 8 from 11 to get 3, leaving 3 and 1\nResult: [3, 1]",
+      "evaluation": {
+        "state": "[3, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 37,
+      "parent_id": 7,
+      "state": [
+        10,
+        8
+      ],
+      "action": "11 - 1 = 10",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 1 from 11 to get 10, leaving 10 and 8",
+        "code": "",
+        "observation": "[10, 8]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nSubtract 1 from 11 to get 10, leaving 10 and 8\nResult: [10, 8]",
+      "evaluation": {
+        "state": "[10, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 10.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 38,
+      "parent_id": 7,
+      "state": [
+        8,
+        11
+      ],
+      "action": "8 * 1 = 8",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 8 and 1 to get 8, leaving 11 and 8",
+        "code": "",
+        "observation": "[8, 11]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nMultiply 8 and 1 to get 8, leaving 11 and 8\nResult: [8, 11]",
+      "evaluation": {
+        "state": "[8, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 39,
+      "parent_id": 7,
+      "state": [
+        12,
+        8
+      ],
+      "action": "11 + 1 = 12",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 11 and 1 to get 12, leaving 8 and 12",
+        "code": "",
+        "observation": "[12, 8]"
+      },
+      "path_history": "Add 4 and 4 to get 8, then combine with 11 and 1\nResult: [8, 1, 11]\nAdd 11 and 1 to get 12, leaving 8 and 12\nResult: [12, 8]",
+      "evaluation": {
+        "state": "[12, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 12.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 40,
+      "parent_id": 13,
+      "state": [
+        24.0
+      ],
+      "action": "6 * 4",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [6, 4], 6 * 4 = 24",
+        "code": "numbers = [6, 4]\na, b = 6, 4\nresult = 6 * 4\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Subtract 1 from 11 to get 10, then combine with 4 and 4\nResult: [10, 4, 4]\nSubtract 4 from 10 to get 6, then combine with remaining 4\nResult: [6, 4]\nOperation: 6 * 4 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    40
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 9,
+      "re_evaluations": 0,
+      "unique_states": 9,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

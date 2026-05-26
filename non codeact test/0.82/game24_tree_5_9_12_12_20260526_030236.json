@@ -1,0 +1,1830 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-26T03:02:36.885046",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 18,
+      "api_calls": 7,
+      "cache_hits": 0,
+      "solutions_found": 0,
+      "code_executions": 0,
+      "code_errors": 0,
+      "daily_requests": 7,
+      "session_start": "2026-05-26T03:01:57.511567",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 15,
+      "total_input_tokens": 5325,
+      "total_output_tokens": 6554,
+      "api_saved_two_num_cache": 45,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": false,
+      "winning_depth1_count": 6,
+      "winning_depth1_proposed": 0,
+      "deadend_memory": {
+        "patterns_stored": 89,
+        "two_num_cache_size": 1124,
+        "total_checked": 17,
+        "total_skipped": 15,
+        "skip_rate": "88.2%"
+      },
+      "time_seconds": 39.37
+    },
+    "correct_path_in_proposals": false,
+    "winning_depth1_count": 6,
+    "winning_depth1_proposed": 0,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 89,
+      "total_checked": 17,
+      "total_skipped": 15,
+      "api_calls_saved": 45,
+      "api_saved_two_num_cache": 45,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        5,
+        9,
+        12,
+        12
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 2,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            24,
+            5,
+            9
+          ],
+          "action": "12 + 12 = 24",
+          "value": 0.01,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "12 + 12 = 24, directly reaches 24 — this is the target itself.",
+            "code": "",
+            "observation": "[24, 5, 9]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]",
+          "evaluation": {
+            "state": "[24, 5, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "⚠️ DEAD-END: Contains 24 but not final state"
+            ],
+            "score_breakdown": {},
+            "final_value": 0.01,
+            "pattern_match": null,
+            "pattern_penalty_applied": false
+          },
+          "num_children": 8,
+          "children": {
+            "3": {
+              "id": 3,
+              "parent_id": 1,
+              "state": [
+                29,
+                9
+              ],
+              "action": "24 + 5 = 29",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 is already 24, but we must combine two numbers. 24 * 1 = 24, but we don't have 1. 24 / 1 = 24, but no 1. Check factors: 5 and 9 produce 45, 14, 4, 1.8, etc. 24 - 5 = 19, then 19 + 9 = 28 (not 24). 24 - 9 = 15, then 15 + 5 = 20. Not promising yet. Let's explore systematically.",
+                "code": "",
+                "observation": "[29, 9]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 is already 24, but we must combine two numbers. 24 * 1 = 24, but we don't have 1. 24 / 1 = 24, but no 1. Check factors: 5 and 9 produce 45, 14, 4, 1.8, etc. 24 - 5 = 19, then 19 + 9 = 28 (not 24). 24 - 9 = 15, then 15 + 5 = 20. Not promising yet. Let's explore systematically.\nResult: [29, 9]",
+              "evaluation": {
+                "state": "[29, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 29.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "4": {
+              "id": 4,
+              "parent_id": 1,
+              "state": [
+                33,
+                5
+              ],
+              "action": "24 + 9 = 33",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 + 5 = 29, then 29 - 9 = 20 (not 24). 29 - 9 = 20, could be 20 + 4 = 24 but no 4. Not promising.",
+                "code": "",
+                "observation": "[33, 5]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 + 5 = 29, then 29 - 9 = 20 (not 24). 29 - 9 = 20, could be 20 + 4 = 24 but no 4. Not promising.\nResult: [33, 5]",
+              "evaluation": {
+                "state": "[33, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 33.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "5": {
+              "id": 5,
+              "parent_id": 1,
+              "state": [
+                19,
+                9
+              ],
+              "action": "24 - 5 = 19",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 - 5 = 19, then 19 + 9 = 28 (not 24). 19 + 9 = 28, 28 - 4 = 24 but no 4. Not promising.",
+                "code": "",
+                "observation": "[19, 9]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 - 5 = 19, then 19 + 9 = 28 (not 24). 19 + 9 = 28, 28 - 4 = 24 but no 4. Not promising.\nResult: [19, 9]",
+              "evaluation": {
+                "state": "[19, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 19.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "6": {
+              "id": 6,
+              "parent_id": 1,
+              "state": [
+                15,
+                5
+              ],
+              "action": "24 - 9 = 15",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 - 9 = 15, then 15 + 5 = 20 (not 24). 15 + 5 = 20, 20 + 4 = 24 but no 4. Not promising.",
+                "code": "",
+                "observation": "[15, 5]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 - 9 = 15, then 15 + 5 = 20 (not 24). 15 + 5 = 20, 20 + 4 = 24 but no 4. Not promising.\nResult: [15, 5]",
+              "evaluation": {
+                "state": "[15, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 1,
+              "state": [
+                120,
+                9
+              ],
+              "action": "24 * 5 = 120",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 * 5 = 120, too large. 120 / 9 = 13.33, not 24. 120 / 5 = 24, but 5 already used. Not promising.",
+                "code": "",
+                "observation": "[120, 9]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 * 5 = 120, too large. 120 / 9 = 13.33, not 24. 120 / 5 = 24, but 5 already used. Not promising.\nResult: [120, 9]",
+              "evaluation": {
+                "state": "[120, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 120.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 1,
+              "state": [
+                216,
+                5
+              ],
+              "action": "24 * 9 = 216",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 * 9 = 216, too large. 216 / 5 = 43.2, not 24. Not promising.",
+                "code": "",
+                "observation": "[216, 5]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 * 9 = 216, too large. 216 / 5 = 43.2, not 24. Not promising.\nResult: [216, 5]",
+              "evaluation": {
+                "state": "[216, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 216.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 1,
+              "state": [
+                4.8,
+                9
+              ],
+              "action": "24 / 5 = 4.8",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 / 5 = 4.8, then 4.8 * 5 = 24 but 5 already used. 4.8 * 9 = 43.2, not 24. Not promising.",
+                "code": "",
+                "observation": "[4.8, 9]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 / 5 = 4.8, then 4.8 * 5 = 24 but 5 already used. 4.8 * 9 = 43.2, not 24. Not promising.\nResult: [4.8, 9]",
+              "evaluation": {
+                "state": "[4.8, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.8,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 1,
+              "state": [
+                2.6666666666666665,
+                5
+              ],
+              "action": "24 / 9 = 2.6666666666666665",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "24 / 9 ≈ 2.6667, then 2.6667 * 9 = 24 but 9 already used. 2.6667 * 5 = 13.33, not 24. Not promising.",
+                "code": "",
+                "observation": "[2.6666666666666665, 5]"
+              },
+              "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 / 9 ≈ 2.6667, then 2.6667 * 9 = 24 but 9 already used. 2.6667 * 5 = 13.33, not 24. Not promising.\nResult: [2.6666666666666665, 5]",
+              "evaluation": {
+                "state": "[2.6666666666666665, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 2.6666666666666665,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            0,
+            5,
+            9
+          ],
+          "action": "12 - 12 = 0",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.",
+            "code": "",
+            "observation": "[0, 5, 9]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]",
+          "evaluation": {
+            "state": "[0, 5, 9]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 9
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0): 4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 / 4 = 0 (no). 4 / 0 undefined.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  9 - 0 = 9, then 9 * 5 = 45 (no).  \n  5 - 0 = 5, then 5 * 9 = 45 (no).  \n  9 / 5 = 1.8, then 1.8 * 0 = 0 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0):  \n  4 * 0 = 0 (no).  \n  0 * 4 = 0 (no).  \n  4 / 0 undefined.  \n  0 / 4 = 0 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no).  \n  45 + 0 = 45 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  14 - 0 = 14 (no).  \n  no.\n\nno result near 24 or even between 20 and 28.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: 0, 5, 9  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 5 / 0 = undefined (skip).  \n- 9 / 0 = undefined (skip).  \n- 0 / 5 = 0, then 0 * 9 = 0 (no).  \n- 0 / 9 = 0, then 0 * 5 = 0 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 9 → 9 - 5 = 4.  \n4 is a factor of 24. combine with third (0):  \n4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 + 4 = 4 (no). 4 - 0 = 4 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 0 * 5 = 0, then 0 + 9 = 9 (no).  \n- 0 * 9 = 0, then 0 + 5 = 5 (no).  \n- 5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 5 + 9 = 14, then 14 + 0 = 14 (no). 14 - 0 = 14 (no). 14 * 0 = 0 (no).  \n- 0 + 5 = 5, then 5 + 9 = 14 (no).  \n- 0 + 9 = 9, then 9 + 5 = 14 (no).  \nno success.\n\n**attempt 5:**  \nonly remaining combos:  \n- 9 - 0 = 9, then 9 + 5 = 14 (no).  \n- 5 - 0 = 5, then 5 + 9 = 14 (no).  \nno path to 24.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0): 4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 / 4 = 0 (no). 4 / 0 undefined.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  9 - 0 = 9, then 9 * 5 = 45 (no).  \n  5 - 0 = 5, then 5 * 9 = 45 (no).  \n  9 / 5 = 1.8, then 1.8 * 0 = 0 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0):  \n  4 * 0 = 0 (no).  \n  0 * 4 = 0 (no).  \n  4 / 0 undefined.  \n  0 / 4 = 0 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no).  \n  45 + 0 = 45 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  14 - 0 = 14 (no).  \n  no.\n\nno result near 24 or even between 20 and 28.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: 0, 5, 9  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 5 / 0 = undefined (skip).  \n- 9 / 0 = undefined (skip).  \n- 0 / 5 = 0, then 0 * 9 = 0 (no).  \n- 0 / 9 = 0, then 0 * 5 = 0 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 9 → 9 - 5 = 4.  \n4 is a factor of 24. combine with third (0):  \n4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 + 4 = 4 (no). 4 - 0 = 4 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 0 * 5 = 0, then 0 + 9 = 9 (no).  \n- 0 * 9 = 0, then 0 + 5 = 5 (no).  \n- 5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 5 + 9 = 14, then 14 + 0 = 14 (no). 14 - 0 = 14 (no). 14 * 0 = 0 (no).  \n- 0 + 5 = 5, then 5 + 9 = 14 (no).  \n- 0 + 9 = 9, then 9 + 5 = 14 (no).  \nno success.\n\n**attempt 5:**  \nonly remaining combos:  \n- 9 - 0 = 9, then 9 + 5 = 14 (no).  \n- 5 - 0 = 5, then 5 + 9 = 14 (no).  \nno path to 24.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "11": {
+              "id": 11,
+              "parent_id": 2,
+              "state": [
+                4,
+                0
+              ],
+              "action": "9 - 5 = 4",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "9 - 5 = 4, factor of 24 (4 * 6 = 24, but 6 not present; still a factor). Could multiply with 0? Not directly, but 4 is promising.",
+                "code": "",
+                "observation": "[4, 0]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 - 5 = 4, factor of 24 (4 * 6 = 24, but 6 not present; still a factor). Could multiply with 0? Not directly, but 4 is promising.\nResult: [4, 0]",
+              "evaluation": {
+                "state": "[4, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 2,
+              "state": [
+                -4,
+                0
+              ],
+              "action": "5 - 9 = -4",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "5 - 9 = -4, negative factor; -4 * -6 = 24, but -6 not present. Could be used with 0? 0 - (-4) = 4, then 4 * 6? No 6. Still keep as option.",
+                "code": "",
+                "observation": "[-4, 0]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n5 - 9 = -4, negative factor; -4 * -6 = 24, but -6 not present. Could be used with 0? 0 - (-4) = 4, then 4 * 6? No 6. Still keep as option.\nResult: [-4, 0]",
+              "evaluation": {
+                "state": "[-4, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -4.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 2,
+              "state": [
+                14,
+                0
+              ],
+              "action": "9 + 5 = 14",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "9 + 5 = 14, difference from 24 is 10, not in list. 24 - 14 = 10, no 10. Not great.",
+                "code": "",
+                "observation": "[14, 0]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 + 5 = 14, difference from 24 is 10, not in list. 24 - 14 = 10, no 10. Not great.\nResult: [14, 0]",
+              "evaluation": {
+                "state": "[14, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 14.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 2,
+              "state": [
+                9,
+                5
+              ],
+              "action": "9 + 0 = 9",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "9 + 0 = 9, just returns 9, no progress.",
+                "code": "",
+                "observation": "[9, 5]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 + 0 = 9, just returns 9, no progress.\nResult: [9, 5]",
+              "evaluation": {
+                "state": "[9, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 9.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 2,
+              "state": [
+                45,
+                0
+              ],
+              "action": "9 * 5 = 45",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "9 * 5 = 45, too large; 45 - 24 = 21, not in list. 45 / 0 undefined. Not promising.",
+                "code": "",
+                "observation": "[45, 0]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 * 5 = 45, too large; 45 - 24 = 21, not in list. 45 / 0 undefined. Not promising.\nResult: [45, 0]",
+              "evaluation": {
+                "state": "[45, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 45.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 2,
+              "state": [
+                0,
+                5
+              ],
+              "action": "9 * 0 = 0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "9 * 0 = 0, dead end (avoid zero).",
+                "code": "",
+                "observation": "[0, 5]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 * 0 = 0, dead end (avoid zero).\nResult: [0, 5]",
+              "evaluation": {
+                "state": "[0, 5]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,5.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 2,
+              "state": [
+                0,
+                9
+              ],
+              "action": "5 * 0 = 0",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "5 * 0 = 0, dead end.",
+                "code": "",
+                "observation": "[0, 9]"
+              },
+              "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n5 * 0 = 0, dead end.\nResult: [0, 9]",
+              "evaluation": {
+                "state": "[0, 9]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,9.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        24,
+        5,
+        9
+      ],
+      "action": "12 + 12 = 24",
+      "value": 0.01,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "12 + 12 = 24, directly reaches 24 — this is the target itself.",
+        "code": "",
+        "observation": "[24, 5, 9]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]",
+      "evaluation": {
+        "state": "[24, 5, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "⚠️ DEAD-END: Contains 24 but not final state"
+        ],
+        "score_breakdown": {},
+        "final_value": 0.01,
+        "pattern_match": null,
+        "pattern_penalty_applied": false
+      },
+      "num_children": 8,
+      "children": {
+        "3": {
+          "id": 3,
+          "parent_id": 1,
+          "state": [
+            29,
+            9
+          ],
+          "action": "24 + 5 = 29",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 is already 24, but we must combine two numbers. 24 * 1 = 24, but we don't have 1. 24 / 1 = 24, but no 1. Check factors: 5 and 9 produce 45, 14, 4, 1.8, etc. 24 - 5 = 19, then 19 + 9 = 28 (not 24). 24 - 9 = 15, then 15 + 5 = 20. Not promising yet. Let's explore systematically.",
+            "code": "",
+            "observation": "[29, 9]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 is already 24, but we must combine two numbers. 24 * 1 = 24, but we don't have 1. 24 / 1 = 24, but no 1. Check factors: 5 and 9 produce 45, 14, 4, 1.8, etc. 24 - 5 = 19, then 19 + 9 = 28 (not 24). 24 - 9 = 15, then 15 + 5 = 20. Not promising yet. Let's explore systematically.\nResult: [29, 9]",
+          "evaluation": {
+            "state": "[29, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 29.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 1,
+          "state": [
+            33,
+            5
+          ],
+          "action": "24 + 9 = 33",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 + 5 = 29, then 29 - 9 = 20 (not 24). 29 - 9 = 20, could be 20 + 4 = 24 but no 4. Not promising.",
+            "code": "",
+            "observation": "[33, 5]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 + 5 = 29, then 29 - 9 = 20 (not 24). 29 - 9 = 20, could be 20 + 4 = 24 but no 4. Not promising.\nResult: [33, 5]",
+          "evaluation": {
+            "state": "[33, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 33.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 1,
+          "state": [
+            19,
+            9
+          ],
+          "action": "24 - 5 = 19",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 - 5 = 19, then 19 + 9 = 28 (not 24). 19 + 9 = 28, 28 - 4 = 24 but no 4. Not promising.",
+            "code": "",
+            "observation": "[19, 9]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 - 5 = 19, then 19 + 9 = 28 (not 24). 19 + 9 = 28, 28 - 4 = 24 but no 4. Not promising.\nResult: [19, 9]",
+          "evaluation": {
+            "state": "[19, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 19.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 1,
+          "state": [
+            15,
+            5
+          ],
+          "action": "24 - 9 = 15",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 - 9 = 15, then 15 + 5 = 20 (not 24). 15 + 5 = 20, 20 + 4 = 24 but no 4. Not promising.",
+            "code": "",
+            "observation": "[15, 5]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 - 9 = 15, then 15 + 5 = 20 (not 24). 15 + 5 = 20, 20 + 4 = 24 but no 4. Not promising.\nResult: [15, 5]",
+          "evaluation": {
+            "state": "[15, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 1,
+          "state": [
+            120,
+            9
+          ],
+          "action": "24 * 5 = 120",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 * 5 = 120, too large. 120 / 9 = 13.33, not 24. 120 / 5 = 24, but 5 already used. Not promising.",
+            "code": "",
+            "observation": "[120, 9]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 * 5 = 120, too large. 120 / 9 = 13.33, not 24. 120 / 5 = 24, but 5 already used. Not promising.\nResult: [120, 9]",
+          "evaluation": {
+            "state": "[120, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 120.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 1,
+          "state": [
+            216,
+            5
+          ],
+          "action": "24 * 9 = 216",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 * 9 = 216, too large. 216 / 5 = 43.2, not 24. Not promising.",
+            "code": "",
+            "observation": "[216, 5]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 * 9 = 216, too large. 216 / 5 = 43.2, not 24. Not promising.\nResult: [216, 5]",
+          "evaluation": {
+            "state": "[216, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 216.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 1,
+          "state": [
+            4.8,
+            9
+          ],
+          "action": "24 / 5 = 4.8",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 / 5 = 4.8, then 4.8 * 5 = 24 but 5 already used. 4.8 * 9 = 43.2, not 24. Not promising.",
+            "code": "",
+            "observation": "[4.8, 9]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 / 5 = 4.8, then 4.8 * 5 = 24 but 5 already used. 4.8 * 9 = 43.2, not 24. Not promising.\nResult: [4.8, 9]",
+          "evaluation": {
+            "state": "[4.8, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.8,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 1,
+          "state": [
+            2.6666666666666665,
+            5
+          ],
+          "action": "24 / 9 = 2.6666666666666665",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "24 / 9 ≈ 2.6667, then 2.6667 * 9 = 24 but 9 already used. 2.6667 * 5 = 13.33, not 24. Not promising.",
+            "code": "",
+            "observation": "[2.6666666666666665, 5]"
+          },
+          "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 / 9 ≈ 2.6667, then 2.6667 * 9 = 24 but 9 already used. 2.6667 * 5 = 13.33, not 24. Not promising.\nResult: [2.6666666666666665, 5]",
+          "evaluation": {
+            "state": "[2.6666666666666665, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 2.6666666666666665,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        0,
+        5,
+        9
+      ],
+      "action": "12 - 12 = 0",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.",
+        "code": "",
+        "observation": "[0, 5, 9]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]",
+      "evaluation": {
+        "state": "[0, 5, 9]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 9
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0): 4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 / 4 = 0 (no). 4 / 0 undefined.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  9 - 0 = 9, then 9 * 5 = 45 (no).  \n  5 - 0 = 5, then 5 * 9 = 45 (no).  \n  9 / 5 = 1.8, then 1.8 * 0 = 0 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0):  \n  4 * 0 = 0 (no).  \n  0 * 4 = 0 (no).  \n  4 / 0 undefined.  \n  0 / 4 = 0 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no).  \n  45 + 0 = 45 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  14 - 0 = 14 (no).  \n  no.\n\nno result near 24 or even between 20 and 28.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: 0, 5, 9  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 5 / 0 = undefined (skip).  \n- 9 / 0 = undefined (skip).  \n- 0 / 5 = 0, then 0 * 9 = 0 (no).  \n- 0 / 9 = 0, then 0 * 5 = 0 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 9 → 9 - 5 = 4.  \n4 is a factor of 24. combine with third (0):  \n4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 + 4 = 4 (no). 4 - 0 = 4 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 0 * 5 = 0, then 0 + 9 = 9 (no).  \n- 0 * 9 = 0, then 0 + 5 = 5 (no).  \n- 5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 5 + 9 = 14, then 14 + 0 = 14 (no). 14 - 0 = 14 (no). 14 * 0 = 0 (no).  \n- 0 + 5 = 5, then 5 + 9 = 14 (no).  \n- 0 + 9 = 9, then 9 + 5 = 14 (no).  \nno success.\n\n**attempt 5:**  \nonly remaining combos:  \n- 9 - 0 = 9, then 9 + 5 = 14 (no).  \n- 5 - 0 = 5, then 5 + 9 = 14 (no).  \nno path to 24.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0): 4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 / 4 = 0 (no). 4 / 0 undefined.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  9 - 0 = 9, then 9 * 5 = 45 (no).  \n  5 - 0 = 5, then 5 * 9 = 45 (no).  \n  9 / 5 = 1.8, then 1.8 * 0 = 0 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [0, 5, 9]  \ntarget: 24  \n\n- attempt 1 (division):  \n  5 / 0 = undefined (skip).  \n  9 / 0 = undefined (skip).  \n  0 / 5 = 0, then 0 * 9 = 0 (no).  \n  0 / 9 = 0, then 0 * 5 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 5 and 9 → 9 - 5 = 4.  \n  4 is a factor of 24. combine with third (0):  \n  4 * 0 = 0 (no).  \n  0 * 4 = 0 (no).  \n  4 / 0 undefined.  \n  0 / 4 = 0 (no).  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 5 = 0, then 0 + 9 = 9 (no).  \n  0 * 9 = 0, then 0 + 5 = 5 (no).  \n  5 * 9 = 45, then 45 - 0 = 45 (no).  \n  45 + 0 = 45 (no).  \n  no.\n\n- attempt 4 (addition and adjust):  \n  0 + 5 = 5, then 5 + 9 = 14 (no).  \n  0 + 9 = 9, then 9 + 5 = 14 (no).  \n  5 + 9 = 14, then 14 + 0 = 14 (no).  \n  14 - 0 = 14 (no).  \n  no.\n\nno result near 24 or even between 20 and 28.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: 0, 5, 9  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry each pair in both orders.  \n- 5 / 0 = undefined (skip).  \n- 9 / 0 = undefined (skip).  \n- 0 / 5 = 0, then 0 * 9 = 0 (no).  \n- 0 / 9 = 0, then 0 * 5 = 0 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 5 and 9 → 9 - 5 = 4.  \n4 is a factor of 24. combine with third (0):  \n4 * 0 = 0 (no). 0 * 4 = 0 (no). 0 + 4 = 4 (no). 4 - 0 = 4 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 0 * 5 = 0, then 0 + 9 = 9 (no).  \n- 0 * 9 = 0, then 0 + 5 = 5 (no).  \n- 5 * 9 = 45, then 45 - 0 = 45 (no). 45 + 0 = 45 (no). 45 / 0 undefined.  \nno success.\n\n**attempt 4 (addition and adjust):**  \n- 5 + 9 = 14, then 14 + 0 = 14 (no). 14 - 0 = 14 (no). 14 * 0 = 0 (no).  \n- 0 + 5 = 5, then 5 + 9 = 14 (no).  \n- 0 + 9 = 9, then 9 + 5 = 14 (no).  \nno success.\n\n**attempt 5:**  \nonly remaining combos:  \n- 9 - 0 = 9, then 9 + 5 = 14 (no).  \n- 5 - 0 = 5, then 5 + 9 = 14 (no).  \nno path to 24.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "11": {
+          "id": 11,
+          "parent_id": 2,
+          "state": [
+            4,
+            0
+          ],
+          "action": "9 - 5 = 4",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "9 - 5 = 4, factor of 24 (4 * 6 = 24, but 6 not present; still a factor). Could multiply with 0? Not directly, but 4 is promising.",
+            "code": "",
+            "observation": "[4, 0]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 - 5 = 4, factor of 24 (4 * 6 = 24, but 6 not present; still a factor). Could multiply with 0? Not directly, but 4 is promising.\nResult: [4, 0]",
+          "evaluation": {
+            "state": "[4, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 2,
+          "state": [
+            -4,
+            0
+          ],
+          "action": "5 - 9 = -4",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "5 - 9 = -4, negative factor; -4 * -6 = 24, but -6 not present. Could be used with 0? 0 - (-4) = 4, then 4 * 6? No 6. Still keep as option.",
+            "code": "",
+            "observation": "[-4, 0]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n5 - 9 = -4, negative factor; -4 * -6 = 24, but -6 not present. Could be used with 0? 0 - (-4) = 4, then 4 * 6? No 6. Still keep as option.\nResult: [-4, 0]",
+          "evaluation": {
+            "state": "[-4, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -4.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 2,
+          "state": [
+            14,
+            0
+          ],
+          "action": "9 + 5 = 14",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "9 + 5 = 14, difference from 24 is 10, not in list. 24 - 14 = 10, no 10. Not great.",
+            "code": "",
+            "observation": "[14, 0]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 + 5 = 14, difference from 24 is 10, not in list. 24 - 14 = 10, no 10. Not great.\nResult: [14, 0]",
+          "evaluation": {
+            "state": "[14, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 14.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 2,
+          "state": [
+            9,
+            5
+          ],
+          "action": "9 + 0 = 9",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "9 + 0 = 9, just returns 9, no progress.",
+            "code": "",
+            "observation": "[9, 5]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 + 0 = 9, just returns 9, no progress.\nResult: [9, 5]",
+          "evaluation": {
+            "state": "[9, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 9.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 2,
+          "state": [
+            45,
+            0
+          ],
+          "action": "9 * 5 = 45",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "9 * 5 = 45, too large; 45 - 24 = 21, not in list. 45 / 0 undefined. Not promising.",
+            "code": "",
+            "observation": "[45, 0]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 * 5 = 45, too large; 45 - 24 = 21, not in list. 45 / 0 undefined. Not promising.\nResult: [45, 0]",
+          "evaluation": {
+            "state": "[45, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 45.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 2,
+          "state": [
+            0,
+            5
+          ],
+          "action": "9 * 0 = 0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "9 * 0 = 0, dead end (avoid zero).",
+            "code": "",
+            "observation": "[0, 5]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 * 0 = 0, dead end (avoid zero).\nResult: [0, 5]",
+          "evaluation": {
+            "state": "[0, 5]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,5.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 2,
+          "state": [
+            0,
+            9
+          ],
+          "action": "5 * 0 = 0",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "5 * 0 = 0, dead end.",
+            "code": "",
+            "observation": "[0, 9]"
+          },
+          "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n5 * 0 = 0, dead end.\nResult: [0, 9]",
+          "evaluation": {
+            "state": "[0, 9]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,9.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 1,
+      "state": [
+        29,
+        9
+      ],
+      "action": "24 + 5 = 29",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 is already 24, but we must combine two numbers. 24 * 1 = 24, but we don't have 1. 24 / 1 = 24, but no 1. Check factors: 5 and 9 produce 45, 14, 4, 1.8, etc. 24 - 5 = 19, then 19 + 9 = 28 (not 24). 24 - 9 = 15, then 15 + 5 = 20. Not promising yet. Let's explore systematically.",
+        "code": "",
+        "observation": "[29, 9]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 is already 24, but we must combine two numbers. 24 * 1 = 24, but we don't have 1. 24 / 1 = 24, but no 1. Check factors: 5 and 9 produce 45, 14, 4, 1.8, etc. 24 - 5 = 19, then 19 + 9 = 28 (not 24). 24 - 9 = 15, then 15 + 5 = 20. Not promising yet. Let's explore systematically.\nResult: [29, 9]",
+      "evaluation": {
+        "state": "[29, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 29.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 1,
+      "state": [
+        33,
+        5
+      ],
+      "action": "24 + 9 = 33",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 + 5 = 29, then 29 - 9 = 20 (not 24). 29 - 9 = 20, could be 20 + 4 = 24 but no 4. Not promising.",
+        "code": "",
+        "observation": "[33, 5]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 + 5 = 29, then 29 - 9 = 20 (not 24). 29 - 9 = 20, could be 20 + 4 = 24 but no 4. Not promising.\nResult: [33, 5]",
+      "evaluation": {
+        "state": "[33, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 33.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 1,
+      "state": [
+        19,
+        9
+      ],
+      "action": "24 - 5 = 19",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 - 5 = 19, then 19 + 9 = 28 (not 24). 19 + 9 = 28, 28 - 4 = 24 but no 4. Not promising.",
+        "code": "",
+        "observation": "[19, 9]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 - 5 = 19, then 19 + 9 = 28 (not 24). 19 + 9 = 28, 28 - 4 = 24 but no 4. Not promising.\nResult: [19, 9]",
+      "evaluation": {
+        "state": "[19, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 19.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 1,
+      "state": [
+        15,
+        5
+      ],
+      "action": "24 - 9 = 15",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 - 9 = 15, then 15 + 5 = 20 (not 24). 15 + 5 = 20, 20 + 4 = 24 but no 4. Not promising.",
+        "code": "",
+        "observation": "[15, 5]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 - 9 = 15, then 15 + 5 = 20 (not 24). 15 + 5 = 20, 20 + 4 = 24 but no 4. Not promising.\nResult: [15, 5]",
+      "evaluation": {
+        "state": "[15, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 1,
+      "state": [
+        120,
+        9
+      ],
+      "action": "24 * 5 = 120",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 * 5 = 120, too large. 120 / 9 = 13.33, not 24. 120 / 5 = 24, but 5 already used. Not promising.",
+        "code": "",
+        "observation": "[120, 9]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 * 5 = 120, too large. 120 / 9 = 13.33, not 24. 120 / 5 = 24, but 5 already used. Not promising.\nResult: [120, 9]",
+      "evaluation": {
+        "state": "[120, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 120.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 1,
+      "state": [
+        216,
+        5
+      ],
+      "action": "24 * 9 = 216",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 * 9 = 216, too large. 216 / 5 = 43.2, not 24. Not promising.",
+        "code": "",
+        "observation": "[216, 5]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 * 9 = 216, too large. 216 / 5 = 43.2, not 24. Not promising.\nResult: [216, 5]",
+      "evaluation": {
+        "state": "[216, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 216.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 1,
+      "state": [
+        4.8,
+        9
+      ],
+      "action": "24 / 5 = 4.8",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 / 5 = 4.8, then 4.8 * 5 = 24 but 5 already used. 4.8 * 9 = 43.2, not 24. Not promising.",
+        "code": "",
+        "observation": "[4.8, 9]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 / 5 = 4.8, then 4.8 * 5 = 24 but 5 already used. 4.8 * 9 = 43.2, not 24. Not promising.\nResult: [4.8, 9]",
+      "evaluation": {
+        "state": "[4.8, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.8,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 1,
+      "state": [
+        2.6666666666666665,
+        5
+      ],
+      "action": "24 / 9 = 2.6666666666666665",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "24 / 9 ≈ 2.6667, then 2.6667 * 9 = 24 but 9 already used. 2.6667 * 5 = 13.33, not 24. Not promising.",
+        "code": "",
+        "observation": "[2.6666666666666665, 5]"
+      },
+      "path_history": "12 + 12 = 24, directly reaches 24 — this is the target itself.\nResult: [24, 5, 9]\n24 / 9 ≈ 2.6667, then 2.6667 * 9 = 24 but 9 already used. 2.6667 * 5 = 13.33, not 24. Not promising.\nResult: [2.6666666666666665, 5]",
+      "evaluation": {
+        "state": "[2.6666666666666665, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 2.6666666666666665,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 2,
+      "state": [
+        4,
+        0
+      ],
+      "action": "9 - 5 = 4",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "9 - 5 = 4, factor of 24 (4 * 6 = 24, but 6 not present; still a factor). Could multiply with 0? Not directly, but 4 is promising.",
+        "code": "",
+        "observation": "[4, 0]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 - 5 = 4, factor of 24 (4 * 6 = 24, but 6 not present; still a factor). Could multiply with 0? Not directly, but 4 is promising.\nResult: [4, 0]",
+      "evaluation": {
+        "state": "[4, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 2,
+      "state": [
+        -4,
+        0
+      ],
+      "action": "5 - 9 = -4",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "5 - 9 = -4, negative factor; -4 * -6 = 24, but -6 not present. Could be used with 0? 0 - (-4) = 4, then 4 * 6? No 6. Still keep as option.",
+        "code": "",
+        "observation": "[-4, 0]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n5 - 9 = -4, negative factor; -4 * -6 = 24, but -6 not present. Could be used with 0? 0 - (-4) = 4, then 4 * 6? No 6. Still keep as option.\nResult: [-4, 0]",
+      "evaluation": {
+        "state": "[-4, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -4.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 2,
+      "state": [
+        14,
+        0
+      ],
+      "action": "9 + 5 = 14",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "9 + 5 = 14, difference from 24 is 10, not in list. 24 - 14 = 10, no 10. Not great.",
+        "code": "",
+        "observation": "[14, 0]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 + 5 = 14, difference from 24 is 10, not in list. 24 - 14 = 10, no 10. Not great.\nResult: [14, 0]",
+      "evaluation": {
+        "state": "[14, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 14.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 2,
+      "state": [
+        9,
+        5
+      ],
+      "action": "9 + 0 = 9",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "9 + 0 = 9, just returns 9, no progress.",
+        "code": "",
+        "observation": "[9, 5]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 + 0 = 9, just returns 9, no progress.\nResult: [9, 5]",
+      "evaluation": {
+        "state": "[9, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 9.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 2,
+      "state": [
+        45,
+        0
+      ],
+      "action": "9 * 5 = 45",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "9 * 5 = 45, too large; 45 - 24 = 21, not in list. 45 / 0 undefined. Not promising.",
+        "code": "",
+        "observation": "[45, 0]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 * 5 = 45, too large; 45 - 24 = 21, not in list. 45 / 0 undefined. Not promising.\nResult: [45, 0]",
+      "evaluation": {
+        "state": "[45, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 45.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 2,
+      "state": [
+        0,
+        5
+      ],
+      "action": "9 * 0 = 0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "9 * 0 = 0, dead end (avoid zero).",
+        "code": "",
+        "observation": "[0, 5]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n9 * 0 = 0, dead end (avoid zero).\nResult: [0, 5]",
+      "evaluation": {
+        "state": "[0, 5]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,5.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 2,
+      "state": [
+        0,
+        9
+      ],
+      "action": "5 * 0 = 0",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "5 * 0 = 0, dead end.",
+        "code": "",
+        "observation": "[0, 9]"
+      },
+      "path_history": "12 - 12 = 0, but we avoid 0 unless no other options exist, so skip.\nResult: [0, 5, 9]\n5 * 0 = 0, dead end.\nResult: [0, 9]",
+      "evaluation": {
+        "state": "[0, 9]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,9.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 1,
+      "re_evaluations": 0,
+      "unique_states": 1,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

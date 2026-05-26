@@ -1,0 +1,4196 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-25T11:31:56.683443",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 1,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 38,
+      "api_calls": 20,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 37,
+      "code_errors": 0,
+      "daily_requests": 20,
+      "session_start": "2026-05-25T11:30:43.285552",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 22,
+      "total_input_tokens": 16760,
+      "total_output_tokens": 15874,
+      "api_saved_two_num_cache": 22,
+      "api_saved_3num_pattern": 2,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": true,
+      "winning_depth1_count": 3,
+      "winning_depth1_proposed": 2,
+      "deadend_memory": {
+        "patterns_stored": 32,
+        "two_num_cache_size": 327,
+        "total_checked": 36,
+        "total_skipped": 22,
+        "skip_rate": "61.1%"
+      },
+      "time_seconds": 73.4
+    },
+    "correct_path_in_proposals": true,
+    "winning_depth1_count": 3,
+    "winning_depth1_proposed": 2,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 32,
+      "total_checked": 36,
+      "total_skipped": 22,
+      "api_calls_saved": 22,
+      "api_saved_two_num_cache": 22,
+      "api_saved_3num_pattern": 2,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        7,
+        7,
+        8,
+        11
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 12,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            14,
+            8,
+            11
+          ],
+          "action": "[14, 8, 11]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 7 and 7 to get 14.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] + numbers[1]   # 7 + 7 = 14\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[14, 8, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]",
+          "evaluation": {
+            "state": "[14, 8, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 14
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\n**attempt 1 (division):**  \n14 / 8 = 1.75, then 1.75 * 11 = 19.25 (no).  \n8 / 14 ≈ 0.5714, * 11 ≈ 6.285 (no).  \n14 / 11 ≈ 1.2727, * 8 ≈ 10.18 (no).  \n11 / 14 ≈ 0.7857, * 8 ≈ 6.285 (no).  \n11 / 8 = 1.375, * 14 = 19.25 (no).  \n8 / 11 ≈ 0.7273, * 14 ≈ 10.18 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two: 11 and 14 → 14 - 11 = 3.  \n3 is a factor of 24. combine with 8: 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "⚡ PATTERN HINT: matches failure pattern (hit=4, ops=['unknown'])",
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "✅ PATTERN OVERRIDE: LLM disagreed ('sure') → keeping LLM score 1.000",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\n**attempt 1 (division):**  \n14 / 8 = 1.75, then 1.75 * 11 = 19.25 (no).  \n8 / 14 ≈ 0.5714, * 11 ≈ 6.285 (no).  \n14 / 11 ≈ 1.2727, * 8 ≈ 10.18 (no).  \n11 / 14 ≈ 0.7857, * 8 ≈ 6.285 (no).  \n11 / 8 = 1.375, * 14 = 19.25 (no).  \n8 / 11 ≈ 0.7273, * 14 ≈ 10.18 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two: 11 and 14 → 14 - 11 = 3.  \n3 is a factor of 24. combine with 8: 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": {
+              "sorted_vals": [
+                15,
+                10,
+                9
+              ],
+              "op_sequence": [
+                "unknown"
+              ],
+              "thought": "Raw score: 0.001, Final score: 0.001",
+              "hit_count": 4
+            },
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "13": {
+              "id": 13,
+              "parent_id": 1,
+              "state": [
+                22,
+                11
+              ],
+              "action": "[22, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 14 and 8 to get 22.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[0] + numbers[1]  # 14 + 8 = 22\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[22, 11]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nAdd 14 and 8 to get 22.\nResult: [22, 11]",
+              "evaluation": {
+                "state": "[22, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 22.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 1,
+              "state": [
+                6,
+                11
+              ],
+              "action": "[6, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 8 from 14 to get 6.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[0] - numbers[1]  # 14 - 8 = 6\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[6, 11]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 8 from 14 to get 6.\nResult: [6, 11]",
+              "evaluation": {
+                "state": "[6, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 6.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 1,
+              "state": [
+                -6,
+                11
+              ],
+              "action": "[-6, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 14 from 8 to get -6.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[1] - numbers[0]  # 8 - 14 = -6\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-6, 11]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 14 from 8 to get -6.\nResult: [-6, 11]",
+              "evaluation": {
+                "state": "[-6, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -6.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 1,
+              "state": [
+                112,
+                11
+              ],
+              "action": "[112, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 14 and 8 to get 112.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[0] * numbers[1]  # 14 * 8 = 112\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[112, 11]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nMultiply 14 and 8 to get 112.\nResult: [112, 11]",
+              "evaluation": {
+                "state": "[112, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 112.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 1,
+              "state": [
+                1.75,
+                11
+              ],
+              "action": "[1.75, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 14 by 8 to get 1.75.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[0] / numbers[1]  # 14 / 8 = 1.75\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.75, 11]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nDivide 14 by 8 to get 1.75.\nResult: [1.75, 11]",
+              "evaluation": {
+                "state": "[1.75, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.75,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "18": {
+              "id": 18,
+              "parent_id": 1,
+              "state": [
+                0.5714285714285714,
+                11
+              ],
+              "action": "[0.5714285714285714, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 8 by 14 to get approximately 0.5714.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[1] / numbers[0]  # 8 / 14 = 0.5714\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.5714285714285714, 11]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nDivide 8 by 14 to get approximately 0.5714.\nResult: [0.5714285714285714, 11]",
+              "evaluation": {
+                "state": "[0.5714285714285714, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.5714285714285714,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "19": {
+              "id": 19,
+              "parent_id": 1,
+              "state": [
+                25,
+                8
+              ],
+              "action": "[25, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 14 and 11 to get 25.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[0] + numbers[2]  # 14 + 11 = 25\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[25, 8]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nAdd 14 and 11 to get 25.\nResult: [25, 8]",
+              "evaluation": {
+                "state": "[25, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 25.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "20": {
+              "id": 20,
+              "parent_id": 1,
+              "state": [
+                3,
+                8
+              ],
+              "action": "[3, 8]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Subtract 11 from 14 to get 3.",
+                "code": "numbers = [14, 8, 11]\nres = numbers[0] - numbers[2]  # 14 - 11 = 3\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[3, 8]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]",
+              "evaluation": {
+                "state": "[3, 8]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 8
+                },
+                "llm_judgments": [
+                  "we have two numbers: 3 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 3 + 8 = 11 (no)  \n- 8 - 3 = 5 (no)  \n- 3 - 8 = -5 (no)  \n- 3 * 8 = 24 (exact!)\n\nresult is exactly 24, which is within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure']",
+                  "Votes: sure=1, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '3 * 8=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 3 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 3 + 8 = 11 (no)  \n- 8 - 3 = 5 (no)  \n- 3 - 8 = -5 (no)  \n- 3 * 8 = 24 (exact!)\n\nresult is exactly 24, which is within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 1
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "3 * 8",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "36": {
+                  "id": 36,
+                  "parent_id": 20,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "3 * 8",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [3, 8], 3 * 8 = 24",
+                    "code": "numbers = [3, 8]\na, b = 3, 8\nresult = 3 * 8\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nOperation: 3 * 8 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "37": {
+                  "id": 37,
+                  "parent_id": 20,
+                  "state": [
+                    24
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [3, 8], LLM chose: a*b",
+                    "code": "numbers = [3, 8]\na, b = 3, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nFor 2-number state [3, 8], LLM chose: a*b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: equals 24"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0,
+                    "pattern_match": null,
+                    "pattern_penalty_applied": false
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            56,
+            7,
+            11
+          ],
+          "action": "[56, 7, 11]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 7 and 8 to get 56.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] * numbers[2]   # 7 * 8 = 56\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[56, 7, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]",
+          "evaluation": {
+            "state": "[56, 7, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 56
+            },
+            "llm_judgments": [
+              "let's go step by step.\n\nnumbers: 56, 7, 11  \ntarget: 24  \n\n**attempt 1 (division, both orders for each pair)**  \n- 56 / 7 = 8, then 8 * 11 = 88 (no).  \n- 7 / 56 = 0.125, 0.125 * 11 = 1.375 (no).  \n- 56 / 11 ≈ 5.0909, 5.0909 * 7 ≈ 35.636 (no).  \n- 11 / 56 ≈ 0.1964, 0.1964 * 7 ≈ 1.375 (no).  \n- 7 / 11 ≈ 0.636, 0.636 * 56 ≈ 35.636 (no).  \n- 11 / 7 ≈ 1.5714, 1.5714 * 56 ≈ 88 (no).  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest pair: 11 and 7 → 11 - 7 = 4.  \n4 is a factor of 24. combine with 56: 56 / 4 = 14 (no). 4 * 56 = 224 (no). 56 - 4 = 52 (no). 56 + 4 = 60 (no).  \n\n**attempt 3 (multiply each pair)**  \n- 56 * 7 = 392, then 392 / 11 ≈ 35.636 (no). 392 - 11 = 381 (no). 392 + 11 = 403 (no).  \n- 56 * 11 = 616, then 616 / 7 = 88 (no). 616 - 7 = 609 (no).  \n- 7 * 11 = 77, then 77 - 56 = 21 (no). 77 + 56 = 133 (no). 56 - 77 = -21 (no).  \n\n**attempt 4 (add pairs and adjust)**  \n- 56 + 7 = 63, 63 - 11 = 52 (no). 63 + 11 = 74 (no).  \n- 56 + 11 = 67, 67 - 7 = 60 (no).  \n- 7 + 11 = 18, 18 + 56 = 74 (no). 56 - 18 = 38 (no).  \n\nno result near 24 found.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let's go step by step.\n\nnumbers: 56, 7, 11  \ntarget: 24  \n\n**attempt 1 (division, both orders for each pair)**  \n- 56 / 7 = 8, then 8 * 11 = 88 (no).  \n- 7 / 56 = 0.125, 0.125 * 11 = 1.375 (no).  \n- 56 / 11 ≈ 5.0909, 5.0909 * 7 ≈ 35.636 (no).  \n- 11 / 56 ≈ 0.1964, 0.1964 * 7 ≈ 1.375 (no).  \n- 7 / 11 ≈ 0.636, 0.636 * 56 ≈ 35.636 (no).  \n- 11 / 7 ≈ 1.5714, 1.5714 * 56 ≈ 88 (no).  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest pair: 11 and 7 → 11 - 7 = 4.  \n4 is a factor of 24. combine with 56: 56 / 4 = 14 (no). 4 * 56 = 224 (no). 56 - 4 = 52 (no). 56 + 4 = 60 (no).  \n\n**attempt 3 (multiply each pair)**  \n- 56 * 7 = 392, then 392 / 11 ≈ 35.636 (no). 392 - 11 = 381 (no). 392 + 11 = 403 (no).  \n- 56 * 11 = 616, then 616 / 7 = 88 (no). 616 - 7 = 609 (no).  \n- 7 * 11 = 77, then 77 - 56 = 21 (no). 77 + 56 = 133 (no). 56 - 77 = -21 (no).  \n\n**attempt 4 (add pairs and adjust)**  \n- 56 + 7 = 63, 63 - 11 = 52 (no). 63 + 11 = 74 (no).  \n- 56 + 11 = 67, 67 - 7 = 60 (no).  \n- 7 + 11 = 18, 18 + 56 = 74 (no). 56 - 18 = 38 (no).  \n\nno result near 24 found.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "28": {
+              "id": 28,
+              "parent_id": 2,
+              "state": [
+                63,
+                11
+              ],
+              "action": "[63, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 56 and 7 to get 63.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[0] + numbers[1]   # 56 + 7 = 63\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[63, 11]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nAdd 56 and 7 to get 63.\nResult: [63, 11]",
+              "evaluation": {
+                "state": "[63, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 63.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "29": {
+              "id": 29,
+              "parent_id": 2,
+              "state": [
+                392,
+                11
+              ],
+              "action": "[392, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 56 and 7 to get 392.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[0] * numbers[1]   # 56 * 7 = 392\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[392, 11]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nMultiply 56 and 7 to get 392.\nResult: [392, 11]",
+              "evaluation": {
+                "state": "[392, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 392.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "30": {
+              "id": 30,
+              "parent_id": 2,
+              "state": [
+                49,
+                11
+              ],
+              "action": "[49, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 7 from 56 to get 49.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[0] - numbers[1]   # 56 - 7 = 49\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[49, 11]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nSubtract 7 from 56 to get 49.\nResult: [49, 11]",
+              "evaluation": {
+                "state": "[49, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 49.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "31": {
+              "id": 31,
+              "parent_id": 2,
+              "state": [
+                -49,
+                11
+              ],
+              "action": "[-49, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 56 from 7 to get -49.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[1] - numbers[0]   # 7 - 56 = -49\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-49, 11]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nSubtract 56 from 7 to get -49.\nResult: [-49, 11]",
+              "evaluation": {
+                "state": "[-49, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -49.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "32": {
+              "id": 32,
+              "parent_id": 2,
+              "state": [
+                8.0,
+                11
+              ],
+              "action": "[8.0, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 56 by 7 to get 8.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[0] / numbers[1]   # 56 / 7 = 8\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[8.0, 11]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nDivide 56 by 7 to get 8.\nResult: [8.0, 11]",
+              "evaluation": {
+                "state": "[8.0, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "33": {
+              "id": 33,
+              "parent_id": 2,
+              "state": [
+                0.125,
+                11
+              ],
+              "action": "[0.125, 11]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 7 by 56 to get 0.125.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[1] / numbers[0]   # 7 / 56 = 0.125\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.125, 11]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nDivide 7 by 56 to get 0.125.\nResult: [0.125, 11]",
+              "evaluation": {
+                "state": "[0.125, 11]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.125,11.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "34": {
+              "id": 34,
+              "parent_id": 2,
+              "state": [
+                67,
+                7
+              ],
+              "action": "[67, 7]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 56 and 11 to get 67.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[0] + numbers[2]   # 56 + 11 = 67\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[67, 7]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nAdd 56 and 11 to get 67.\nResult: [67, 7]",
+              "evaluation": {
+                "state": "[67, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 67.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "35": {
+              "id": 35,
+              "parent_id": 2,
+              "state": [
+                616,
+                7
+              ],
+              "action": "[616, 7]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 56 and 11 to get 616.",
+                "code": "numbers = [56, 7, 11]\nres = numbers[0] * numbers[2]   # 56 * 11 = 616\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[616, 7]"
+              },
+              "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nMultiply 56 and 11 to get 616.\nResult: [616, 7]",
+              "evaluation": {
+                "state": "[616, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 616.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            4,
+            7,
+            8
+          ],
+          "action": "[4, 7, 8]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 7 from 11 to get 4.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[3] - numbers[1]   # 11 - 7 = 4\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4, 7, 8]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]",
+          "evaluation": {
+            "state": "[4, 7, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [4, 7, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 7 = 14 (no).  \n  7 / 4 = 1.75, then 1.75 * 8 = 14 (no).  \n  4 / 7 ≈ 0.571 (no).  \n  8 / 7 ≈ 1.1429, times 4 ≈ 4.57 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 8 - 7 = 1, then 1 * 4 = 4 (no).  \n  7 - 4 = 3, then 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [4, 7, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 7 = 14 (no).  \n  7 / 4 = 1.75, then 1.75 * 8 = 14 (no).  \n  4 / 7 ≈ 0.571 (no).  \n  8 / 7 ≈ 1.1429, times 4 ≈ 4.57 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 8 - 7 = 1, then 1 * 4 = 4 (no).  \n  7 - 4 = 3, then 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "21": {
+              "id": 21,
+              "parent_id": 3,
+              "state": [
+                11,
+                8
+              ],
+              "action": "[11, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 7 to get 11, then we have [11, 8]",
+                "code": "numbers = [4, 7, 8]\nres = numbers[0] + numbers[1]  # 4 + 7 = 11\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[11, 8]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nAdd 4 and 7 to get 11, then we have [11, 8]\nResult: [11, 8]",
+              "evaluation": {
+                "state": "[11, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 11.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "22": {
+              "id": 22,
+              "parent_id": 3,
+              "state": [
+                28,
+                8
+              ],
+              "action": "[28, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 4 and 7 to get 28, then we have [28, 8]",
+                "code": "numbers = [4, 7, 8]\nres = numbers[0] * numbers[1]  # 4 * 7 = 28\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[28, 8]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nMultiply 4 and 7 to get 28, then we have [28, 8]\nResult: [28, 8]",
+              "evaluation": {
+                "state": "[28, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 28.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "23": {
+              "id": 23,
+              "parent_id": 3,
+              "state": [
+                1.75,
+                8
+              ],
+              "action": "[1.75, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 7 by 4 to get 1.75, then we have [1.75, 8]",
+                "code": "numbers = [4, 7, 8]\nres = numbers[1] / numbers[0]  # 7 / 4 = 1.75\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.75, 8]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nDivide 7 by 4 to get 1.75, then we have [1.75, 8]\nResult: [1.75, 8]",
+              "evaluation": {
+                "state": "[1.75, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.75,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "24": {
+              "id": 24,
+              "parent_id": 3,
+              "state": [
+                12,
+                7
+              ],
+              "action": "[12, 7]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 8 to get 12, then we have [12, 7]",
+                "code": "numbers = [4, 7, 8]\nres = numbers[0] + numbers[2]  # 4 + 8 = 12\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[12, 7]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nAdd 4 and 8 to get 12, then we have [12, 7]\nResult: [12, 7]",
+              "evaluation": {
+                "state": "[12, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 12.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "25": {
+              "id": 25,
+              "parent_id": 3,
+              "state": [
+                4,
+                7
+              ],
+              "action": "[4, 7]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 8 to get 4, then we have [4, 7] (duplicate but valid)",
+                "code": "numbers = [4, 7, 8]\nres = numbers[2] - numbers[0]  # 8 - 4 = 4\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[4, 7]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nSubtract 4 from 8 to get 4, then we have [4, 7] (duplicate but valid)\nResult: [4, 7]",
+              "evaluation": {
+                "state": "[4, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "26": {
+              "id": 26,
+              "parent_id": 3,
+              "state": [
+                32,
+                7
+              ],
+              "action": "[32, 7]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 4 and 8 to get 32, then we have [32, 7]",
+                "code": "numbers = [4, 7, 8]\nres = numbers[0] * numbers[2]  # 4 * 8 = 32\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[32, 7]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nMultiply 4 and 8 to get 32, then we have [32, 7]\nResult: [32, 7]",
+              "evaluation": {
+                "state": "[32, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 32.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "27": {
+              "id": 27,
+              "parent_id": 3,
+              "state": [
+                2.0,
+                7
+              ],
+              "action": "[2.0, 7]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 8 by 4 to get 2, then we have [2, 7]",
+                "code": "numbers = [4, 7, 8]\nres = numbers[2] / numbers[0]  # 8 / 4 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[2.0, 7]"
+              },
+              "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nDivide 8 by 4 to get 2, then we have [2, 7]\nResult: [2.0, 7]",
+              "evaluation": {
+                "state": "[2.0, 7]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 2.0,7.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            1,
+            7,
+            11
+          ],
+          "action": "[1, 7, 11]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 7 from 8 to get 1 (using smallest number 7 as active operand).",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[2] - numbers[0]   # 8 - 7 = 1\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1, 7, 11]"
+          },
+          "path_history": "Subtract 7 from 8 to get 1 (using smallest number 7 as active operand).\nResult: [1, 7, 11]",
+          "evaluation": {
+            "state": "[1, 7, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 11
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: 1, 7, 11  \ntarget: 24  \n\n**attempt 1 (division)**  \n- 7 / 1 = 7, then 7 * 11 = 77 (no)  \n- 11 / 1 = 11, then 11 * 7 = 77 (no)  \n- 1 / 7 ≈ 0.1429, times 11 ≈ 1.57 (no)  \n- 1 / 11 ≈ 0.0909, times 7 ≈ 0.636 (no)  \n\n**attempt 2 (close subtraction)**  \nclosest two numbers: 7 and 11 → 11 - 7 = 4  \n4 is a factor of 24. combine with third (1): 4 * 1 = 4 (no), 4 / 1 = 4 (no), 1 / 4 = 0.25 (no).  \nalso try 7 - 1 = 6, 6 * 11 = 66 (no).  \n11 - 1 = 10, 10 * 7 = 70 (no).  \n\n**attempt 3 (multiplication)**  \n- 1 * 7 = 7, then 7 + 11 = 18 (no), 11 - 7 = 4 (no), 11 / 7 ≈ 1.57 (no)  \n- 1 * 11 = 11, then 11 + 7 = 18 (no), 11 - 7 = 4 (no), 7 / 11 ≈ 0.636 (no)  \n- 7 * 11 = 77, then 77 + 1 = 78 (no), 77 - 1 = 76 (no), 77 / 1 = 77 (no)  \n\n**attempt 4 (addition and adjusting)**  \n- 1 + 7 = 8, then 8 + 11 = 19 (no), 11 - 8 = 3 (no), 8 * 11 = 88 (no)  \n- 1 + 11 = 12, then 12 + 7 = 19 (no), 12 * 7 = 84 (no), 7 - 12 = -5 (no)  \n- 7 + 11 = 18, then 18 + 1 = 19 (no), 18 * 1 = 18 (no), 18 / 1 = 18 (no)  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: 1, 7, 11  \ntarget: 24  \n\n**attempt 1 (division)**  \n- 7 / 1 = 7, then 7 * 11 = 77 (no)  \n- 11 / 1 = 11, then 11 * 7 = 77 (no)  \n- 1 / 7 ≈ 0.1429, times 11 ≈ 1.57 (no)  \n- 1 / 11 ≈ 0.0909, times 7 ≈ 0.636 (no)  \n\n**attempt 2 (close subtraction)**  \nclosest two numbers: 7 and 11 → 11 - 7 = 4  \n4 is a factor of 24. combine with third (1): 4 * 1 = 4 (no), 4 / 1 = 4 (no), 1 / 4 = 0.25 (no).  \nalso try 7 - 1 = 6, 6 * 11 = 66 (no).  \n11 - 1 = 10, 10 * 7 = 70 (no).  \n\n**attempt 3 (multiplication)**  \n- 1 * 7 = 7, then 7 + 11 = 18 (no), 11 - 7 = 4 (no), 11 / 7 ≈ 1.57 (no)  \n- 1 * 11 = 11, then 11 + 7 = 18 (no), 11 - 7 = 4 (no), 7 / 11 ≈ 0.636 (no)  \n- 7 * 11 = 77, then 77 + 1 = 78 (no), 77 - 1 = 76 (no), 77 / 1 = 77 (no)  \n\n**attempt 4 (addition and adjusting)**  \n- 1 + 7 = 8, then 8 + 11 = 19 (no), 11 - 8 = 3 (no), 8 * 11 = 88 (no)  \n- 1 + 11 = 12, then 12 + 7 = 19 (no), 12 * 7 = 84 (no), 7 - 12 = -5 (no)  \n- 7 + 11 = 18, then 18 + 1 = 19 (no), 18 * 1 = 18 (no), 18 / 1 = 18 (no)  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            1.5714285714285714,
+            7,
+            8
+          ],
+          "action": "[1.5714285714285714, 7, 8]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 11 by 7 (approx 1.5714), then use with 7 and 8.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[3] / numbers[1]   # 11 / 7 ≈ 1.5714\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.5714285714285714, 7, 8]"
+          },
+          "path_history": "Divide 11 by 7 (approx 1.5714), then use with 7 and 8.\nResult: [1.5714285714285714, 7, 8]",
+          "evaluation": {
+            "state": "[1.5714285714285714, 7, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: 1.5714285714285714, 7, 8  \ntarget: 24\n\n**attempt 1 (division):**  \n- 7 / 1.5714285714285714 = 4.4545... (no)  \n- 8 / 1.5714285714285714 = 5.0909... (no)  \n- 1.5714285714285714 / 7 = 0.2245... (no)  \n- 1.5714285714285714 / 8 = 0.1964... (no)  \nnone combine with third to 24.\n\n**attempt 2 (close subtraction):**  \nclosest two: 7 and 8 → 8 - 7 = 1  \n1 is a factor of 24. combine with third: 1 * 1.5714285714285714 = 1.5714 (no).  \nalso 7 - 8 = -1 (no).\n\n**attempt 3 (multiplication):**  \n- 7 * 8 = 56, then 56 / 1.5714285714285714 = 35.636... (no)  \n- 7 * 1.5714285714285714 = 11.0 exactly?  \n  1.5714285714285714 * 7 = 11.0 (yes, exactly 11).  \n  then 11 + 8 = 19 (no), 11 * 8 = 88 (no), 8 - 11 = -3 (no), 11 - 8 = 3 (no).  \n- 8 * 1.5714285714285714 = 12.5714...  \n  12.5714 + 7 = 19.5714 (no), 12.5714 * 7 = 88 (no).\n\n**attempt 4 (addition and adjust):**  \n- 7 + 8 = 15, 15 + 1.5714 = 16.5714 (no)  \n- 7 + 1.5714 = 8.5714, 8.5714 + 8 = 16.5714 (no)  \n- 8 + 1.5714 = 9.5714, 9.5714 + 7 = 16.5714 (no)  \n- 15 - 1.5714 = 13.4286 (no)  \n- 15 * 1.5714 = 23.571 (close but not within 0.001 of 24)  \n- 15 / 1.5714 = 9.545 (no)\n\n**attempt 5 (other combos):**  \n- 8 - 1.5714 = 6.4286, 6.4286 * 7 = 45 (no)  \n- 7 - 1.5714 = 5.4286, 5.4286 * 8 = 43.4288 (no)  \n- 1.5714 * 7 = 11, 11 * 8 = 88 (no)  \n- 1.5714 * 8 = 12.5714, 12.5714 * 7 = 88 (no)\n\nbest result was 23.571, which is between 20 and 28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: 1.5714285714285714, 7, 8  \ntarget: 24\n\n**attempt 1 (division):**  \n- 7 / 1.5714285714285714 = 4.4545... (no)  \n- 8 / 1.5714285714285714 = 5.0909... (no)  \n- 1.5714285714285714 / 7 = 0.2245... (no)  \n- 1.5714285714285714 / 8 = 0.1964... (no)  \nnone combine with third to 24.\n\n**attempt 2 (close subtraction):**  \nclosest two: 7 and 8 → 8 - 7 = 1  \n1 is a factor of 24. combine with third: 1 * 1.5714285714285714 = 1.5714 (no).  \nalso 7 - 8 = -1 (no).\n\n**attempt 3 (multiplication):**  \n- 7 * 8 = 56, then 56 / 1.5714285714285714 = 35.636... (no)  \n- 7 * 1.5714285714285714 = 11.0 exactly?  \n  1.5714285714285714 * 7 = 11.0 (yes, exactly 11).  \n  then 11 + 8 = 19 (no), 11 * 8 = 88 (no), 8 - 11 = -3 (no), 11 - 8 = 3 (no).  \n- 8 * 1.5714285714285714 = 12.5714...  \n  12.5714 + 7 = 19.5714 (no), 12.5714 * 7 = 88 (no).\n\n**attempt 4 (addition and adjust):**  \n- 7 + 8 = 15, 15 + 1.5714 = 16.5714 (no)  \n- 7 + 1.5714 = 8.5714, 8.5714 + 8 = 16.5714 (no)  \n- 8 + 1.5714 = 9.5714, 9.5714 + 7 = 16.5714 (no)  \n- 15 - 1.5714 = 13.4286 (no)  \n- 15 * 1.5714 = 23.571 (close but not within 0.001 of 24)  \n- 15 / 1.5714 = 9.545 (no)\n\n**attempt 5 (other combos):**  \n- 8 - 1.5714 = 6.4286, 6.4286 * 7 = 45 (no)  \n- 7 - 1.5714 = 5.4286, 5.4286 * 8 = 43.4288 (no)  \n- 1.5714 * 7 = 11, 11 * 8 = 88 (no)  \n- 1.5714 * 8 = 12.5714, 12.5714 * 7 = 88 (no)\n\nbest result was 23.571, which is between 20 and 28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 0,
+          "state": [
+            19,
+            7,
+            7
+          ],
+          "action": "[19, 7, 7]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 8 and 11 to get 19.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[2] + numbers[3]   # 8 + 11 = 19\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[19, 7, 7]"
+          },
+          "path_history": "Add 8 and 11 to get 19.\nResult: [19, 7, 7]",
+          "evaluation": {
+            "state": "[19, 7, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 19
+            },
+            "llm_judgments": [
+              "[19, 7, 7]  \n- attempt 1 (division): 19 / 7 ≈ 2.714, times 7 ≈ 19 (no). 7 / 19 ≈ 0.368, times 7 ≈ 2.58 (no). 7 / 7 = 1, times 19 = 19 (no).  \n- attempt 2 (close subtraction): 7 - 7 = 0, combine with 19 → 0 or 19 (no).  \n- attempt 3 (multiplication): 7 * 7 = 49, 49 - 19 = 30 (no). 19 * 7 = 133, 133 / 7 = 19 (no).  \n- attempt 4 (addition): 19 + 7 = 26, 26 - 7 = 19 (no). 19 + 7 + 7 = 33 (no). 19 + 7 = 26, 26 + 7 = 33 (no).  \n- attempt 5: 7 + 7 = 14, 19 + 14 = 33 (no). 19 - 14 = 5 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "[19, 7, 7]  \n- attempt 1 (division): 19 / 7 ≈ 2.714, times 7 ≈ 19 (no). 7 / 19 ≈ 0.368, times 7 ≈ 2.58 (no). 7 / 7 = 1, times 19 = 19 (no).  \n- attempt 2 (close subtraction): 7 - 7 = 0, combine with 19 → 0 or 19 (no).  \n- attempt 3 (multiplication): 7 * 7 = 49, 49 - 19 = 30 (no). 19 * 7 = 133, 133 / 7 = 19 (no).  \n- attempt 4 (addition): 19 + 7 = 26, 26 - 7 = 19 (no). 19 + 7 + 7 = 33 (no). 19 + 7 = 26, 26 + 7 = 33 (no).  \n- attempt 5: 7 + 7 = 14, 19 + 14 = 33 (no). 19 - 14 = 5 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 0,
+          "state": [
+            77,
+            7,
+            8
+          ],
+          "action": "[77, 7, 8]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 7 and 11 to get 77.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] * numbers[3]   # 7 * 11 = 77\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[77, 7, 8]"
+          },
+          "path_history": "Multiply 7 and 11 to get 77.\nResult: [77, 7, 8]",
+          "evaluation": {
+            "state": "[77, 7, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 77
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\n**attempt 1 (division):**  \n77 / 7 = 11, then 11 * 8 = 88 (no).  \n7 / 77 ≈ 0.0909, times 8 ≈ 0.727 (no).  \n77 / 8 = 9.625, times 7 = 67.375 (no).  \n8 / 77 ≈ 0.1039, times 7 ≈ 0.727 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 7 and 8.  \n8 - 7 = 1. 1 is a factor of 24.  \n1 * 77 = 77 (no).  \n77 * 1 = 77 (no).  \nno.\n\n**attempt 3 (multiplication):**  \n77 * 7 = 539, then 539 / 8 = 67.375 (no).  \n77 * 8 = 616, then 616 / 7 = 88 (no).  \n7 * 8 = 56, then 56 - 77 = -21 (no), 77 - 56 = 21 (no), 56 + 77 = 133 (no).  \nno.\n\n**attempt 4 (addition and adjusting):**  \n77 + 7 = 84, 84 / 8 = 10.5 (no).  \n77 + 8 = 85, 85 - 7 = 78 (no).  \n7 + 8 = 15, 77 - 15 = 62 (no), 15 + 77 = 92 (no).  \nno.\n\n**attempt 5 (other combos):**  \n77 - 7 = 70, 70 / 8 = 8.75 (no).  \n77 - 8 = 69, 69 / 7 ≈ 9.857 (no).  \n8 - 77 = -69, no.  \nno path to 24.\n\nresult is far outside 20–28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "⚡ PATTERN HINT: matches failure pattern (hit=2, ops=['unknown'])",
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\n**attempt 1 (division):**  \n77 / 7 = 11, then 11 * 8 = 88 (no).  \n7 / 77 ≈ 0.0909, times 8 ≈ 0.727 (no).  \n77 / 8 = 9.625, times 7 = 67.375 (no).  \n8 / 77 ≈ 0.1039, times 7 ≈ 0.727 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 7 and 8.  \n8 - 7 = 1. 1 is a factor of 24.  \n1 * 77 = 77 (no).  \n77 * 1 = 77 (no).  \nno.\n\n**attempt 3 (multiplication):**  \n77 * 7 = 539, then 539 / 8 = 67.375 (no).  \n77 * 8 = 616, then 616 / 7 = 88 (no).  \n7 * 8 = 56, then 56 - 77 = -21 (no), 77 - 56 = 21 (no), 56 + 77 = 133 (no).  \nno.\n\n**attempt 4 (addition and adjusting):**  \n77 + 7 = 84, 84 / 8 = 10.5 (no).  \n77 + 8 = 85, 85 - 7 = 78 (no).  \n7 + 8 = 15, 77 - 15 = 62 (no), 15 + 77 = 92 (no).  \nno.\n\n**attempt 5 (other combos):**  \n77 - 7 = 70, 70 / 8 = 8.75 (no).  \n77 - 8 = 69, 69 / 7 ≈ 9.857 (no).  \n8 - 77 = -69, no.  \nno path to 24.\n\nresult is far outside 20–28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": {
+              "sorted_vals": [
+                84,
+                9,
+                8
+              ],
+              "op_sequence": [
+                "unknown"
+              ],
+              "thought": "Raw score: 0.001, Final score: 0.001",
+              "hit_count": 2
+            },
+            "pattern_penalty_applied": true,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 0,
+          "state": [
+            3,
+            7,
+            7
+          ],
+          "action": "[3, 7, 7]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 8 from 11 to get 3 (using smallest number 7 as active operand? Actually 7 is smallest, but here we use 8 and 11; to satisfy requirement, next step uses 7).",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[3] - numbers[2]   # 11 - 8 = 3\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3, 7, 7]"
+          },
+          "path_history": "Subtract 8 from 11 to get 3 (using smallest number 7 as active operand? Actually 7 is smallest, but here we use 8 and 11; to satisfy requirement, next step uses 7).\nResult: [3, 7, 7]",
+          "evaluation": {
+            "state": "[3, 7, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 7
+            },
+            "llm_judgments": [
+              "let's go step by step.\n\nnumbers: [3, 7, 7]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n7 / 3 ≈ 2.333, times 7 ≈ 16.33 (no).  \n3 / 7 ≈ 0.4286, times 7 ≈ 3 (no).  \n7 / 7 = 1, times 3 = 3 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \ntwo closest numbers: 7 and 7 → 7 - 7 = 0.  \n0 is not a factor of 24. no.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, 49 - 3 = 46 (no).  \n49 + 3 = 52 (no).  \n49 / 3 ≈ 16.33 (no).  \n3 * 7 = 21, 21 + 7 = 28 (within 20–28).  \n21 - 7 = 14 (no).  \n21 * 7 = 147 (no).  \n21 / 7 = 3 (no).  \nwe got 28.\n\n**attempt 4 (addition and adjust):**  \n7 + 7 = 14, 14 + 3 = 17 (no).  \n14 * 3 = 42 (no).  \n14 - 3 = 11 (no).  \n3 + 7 = 10, 10 + 7 = 17 (no).  \n10 * 7 = 70 (no).  \nno.\n\n**attempt 5:**  \nwe already found 28 in attempt 3.  \n28 is between 20 and 28 inclusive.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely']",
+              "Votes: sure=0, likely=1, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let's go step by step.\n\nnumbers: [3, 7, 7]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n7 / 3 ≈ 2.333, times 7 ≈ 16.33 (no).  \n3 / 7 ≈ 0.4286, times 7 ≈ 3 (no).  \n7 / 7 = 1, times 3 = 3 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \ntwo closest numbers: 7 and 7 → 7 - 7 = 0.  \n0 is not a factor of 24. no.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, 49 - 3 = 46 (no).  \n49 + 3 = 52 (no).  \n49 / 3 ≈ 16.33 (no).  \n3 * 7 = 21, 21 + 7 = 28 (within 20–28).  \n21 - 7 = 14 (no).  \n21 * 7 = 147 (no).  \n21 / 7 = 3 (no).  \nwe got 28.\n\n**attempt 4 (addition and adjust):**  \n7 + 7 = 14, 14 + 3 = 17 (no).  \n14 * 3 = 42 (no).  \n14 - 3 = 11 (no).  \n3 + 7 = 10, 10 + 7 = 17 (no).  \n10 * 7 = 70 (no).  \nno.\n\n**attempt 5:**  \nwe already found 28 in attempt 3.  \n28 is between 20 and 28 inclusive.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 0,
+          "state": [
+            1.0,
+            8,
+            11
+          ],
+          "action": "[1.0, 8, 11]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide 7 by 7 to get 1 (using smallest number 7 as active operand).",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] / numbers[1]   # 7 / 7 = 1\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 8, 11]"
+          },
+          "path_history": "Divide 7 by 7 to get 1 (using smallest number 7 as active operand).\nResult: [1.0, 8, 11]",
+          "evaluation": {
+            "state": "[1.0, 8, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 11
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: 1.0, 8, 11  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 1.0 = 8, then 8 * 11 = 88 (no)  \n- 11 / 1.0 = 11, then 11 * 8 = 88 (no)  \n- 1.0 / 8 = 0.125, then 0.125 * 11 = 1.375 (no)  \n- 1.0 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no)  \n- 11 / 8 = 1.375, then * 1.0 = 1.375 (no)  \n- 8 / 11 ≈ 0.727, then * 1.0 = 0.727 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11  \n11 - 8 = 3, then 3 * 1.0 = 3 (no, 3 is a factor of 24 but 3 * 1.0 ≠ 24)  \nalso 8 - 11 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 1.0 * 8 = 8, then 8 + 11 = 19 (no)  \n- 1.0 * 11 = 11, then 11 + 8 = 19 (no)  \n- 8 * 11 = 88, then 88 / 1.0 = 88 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 8 + 11 = 19, then 19 + 1.0 = 20 (no)  \n- 8 + 1.0 = 9, then 9 + 11 = 20 (no)  \n- 11 + 1.0 = 12, then 12 + 8 = 20 (no)  \n- 8 + 11 = 19, then 19 * 1.0 = 19 (no)  \n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: 1.0, 8, 11  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 1.0 = 8, then 8 * 11 = 88 (no)  \n- 11 / 1.0 = 11, then 11 * 8 = 88 (no)  \n- 1.0 / 8 = 0.125, then 0.125 * 11 = 1.375 (no)  \n- 1.0 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no)  \n- 11 / 8 = 1.375, then * 1.0 = 1.375 (no)  \n- 8 / 11 ≈ 0.727, then * 1.0 = 0.727 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11  \n11 - 8 = 3, then 3 * 1.0 = 3 (no, 3 is a factor of 24 but 3 * 1.0 ≠ 24)  \nalso 8 - 11 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 1.0 * 8 = 8, then 8 + 11 = 19 (no)  \n- 1.0 * 11 = 11, then 11 + 8 = 19 (no)  \n- 8 * 11 = 88, then 88 / 1.0 = 88 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 8 + 11 = 19, then 19 + 1.0 = 20 (no)  \n- 8 + 1.0 = 9, then 9 + 11 = 20 (no)  \n- 11 + 1.0 = 12, then 12 + 8 = 20 (no)  \n- 8 + 11 = 19, then 19 * 1.0 = 19 (no)  \n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 0,
+          "state": [
+            0,
+            8,
+            11
+          ],
+          "action": "[0, 8, 11]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 7 from 7 to get 0 (using smallest number 7 as active operand).",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] - numbers[1]   # 7 - 7 = 0\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 8, 11]"
+          },
+          "path_history": "Subtract 7 from 7 to get 0 (using smallest number 7 as active operand).\nResult: [0, 8, 11]",
+          "evaluation": {
+            "state": "[0, 8, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 11
+            },
+            "llm_judgments": [
+              "we have numbers: 0, 8, 11. target: 24.\n\n- attempt 1 (division):  \n  8 / 0 = undefined (skip).  \n  11 / 0 = undefined (skip).  \n  0 / 8 = 0, then 0 * 11 = 0 (no).  \n  0 / 11 = 0, then 0 * 8 = 0 (no).  \n  8 / 11 ≈ 0.727, times 0 = 0 (no).  \n  11 / 8 = 1.375, times 0 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 8 and 11.  \n  11 - 8 = 3. 3 is a factor of 24. combine with third (0): 3 * 0 = 0 (no), 3 + 0 = 3 (no), etc.  \n  8 - 11 = -3, same issue.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 8 = 0, then 0 + 11 = 11 (no), 0 * 11 = 0 (no).  \n  0 * 11 = 0, then 0 + 8 = 8 (no).  \n  8 * 11 = 88, then 88 * 0 = 0 (no), 88 + 0 = 88 (no), 88 - 0 = 88 (no).  \n  no.\n\n- attempt 4 (addition and adjusting):  \n  0 + 8 = 8, then 8 + 11 = 19 (no).  \n  0 + 11 = 11, then 11 + 8 = 19 (no).  \n  8 + 11 = 19, then 19 + 0 = 19 (no), 19 - 0 = 19 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 0, 8, 11. target: 24.\n\n- attempt 1 (division):  \n  8 / 0 = undefined (skip).  \n  11 / 0 = undefined (skip).  \n  0 / 8 = 0, then 0 * 11 = 0 (no).  \n  0 / 11 = 0, then 0 * 8 = 0 (no).  \n  8 / 11 ≈ 0.727, times 0 = 0 (no).  \n  11 / 8 = 1.375, times 0 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 8 and 11.  \n  11 - 8 = 3. 3 is a factor of 24. combine with third (0): 3 * 0 = 0 (no), 3 + 0 = 3 (no), etc.  \n  8 - 11 = -3, same issue.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 8 = 0, then 0 + 11 = 11 (no), 0 * 11 = 0 (no).  \n  0 * 11 = 0, then 0 + 8 = 8 (no).  \n  8 * 11 = 88, then 88 * 0 = 0 (no), 88 + 0 = 88 (no), 88 - 0 = 88 (no).  \n  no.\n\n- attempt 4 (addition and adjusting):  \n  0 + 8 = 8, then 8 + 11 = 19 (no).  \n  0 + 11 = 11, then 11 + 8 = 19 (no).  \n  8 + 11 = 19, then 19 + 0 = 19 (no), 19 - 0 = 19 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 0,
+          "state": [
+            88,
+            7,
+            7
+          ],
+          "action": "[88, 7, 7]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply 8 and 11 to get 88.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[2] * numbers[3]   # 8 * 11 = 88\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[88, 7, 7]"
+          },
+          "path_history": "Multiply 8 and 11 to get 88.\nResult: [88, 7, 7]",
+          "evaluation": {
+            "state": "[88, 7, 7]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 88
+            },
+            "llm_judgments": [
+              "we have numbers: 88, 7, 7. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n88 / 7 ≈ 12.5714, then 12.5714 * 7 = 88 (no).  \n7 / 88 ≈ 0.0795, then * 7 ≈ 0.557 (no).  \n7 / 7 = 1, then 1 * 88 = 88 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 7 and 7.  \n7 - 7 = 0, not a factor of 24.  \nnext closest: 88 and 7 → 88 - 7 = 81, not a factor.  \n7 - 88 = -81, not a factor.  \nno.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, then 49 + 88 = 137 (no), 88 - 49 = 39 (no), 49 - 88 = -39 (no), 88 / 49 ≈ 1.796 (no).  \n88 * 7 = 616, then 616 / 7 = 88 (no), 616 - 7 = 609 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n88 + 7 = 95, then 95 + 7 = 102 (no), 95 - 7 = 88 (no).  \n7 + 7 = 14, then 88 - 14 = 74 (no), 88 / 14 ≈ 6.2857 (no), 14 * something? 14 * 1.714 ≈ 24? 88 / 14 is not 24.  \nno.\n\n**attempt 5:**  \ntry 88 / 7 ≈ 12.5714, then 12.5714 + 7 = 19.5714 (no).  \n7 / 7 = 1, then 88 - 1 = 87 (no).  \nno path found.\n\nresult is far from 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 88, 7, 7. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n88 / 7 ≈ 12.5714, then 12.5714 * 7 = 88 (no).  \n7 / 88 ≈ 0.0795, then * 7 ≈ 0.557 (no).  \n7 / 7 = 1, then 1 * 88 = 88 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 7 and 7.  \n7 - 7 = 0, not a factor of 24.  \nnext closest: 88 and 7 → 88 - 7 = 81, not a factor.  \n7 - 88 = -81, not a factor.  \nno.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, then 49 + 88 = 137 (no), 88 - 49 = 39 (no), 49 - 88 = -39 (no), 88 / 49 ≈ 1.796 (no).  \n88 * 7 = 616, then 616 / 7 = 88 (no), 616 - 7 = 609 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n88 + 7 = 95, then 95 + 7 = 102 (no), 95 - 7 = 88 (no).  \n7 + 7 = 14, then 88 - 14 = 74 (no), 88 / 14 ≈ 6.2857 (no), 14 * something? 14 * 1.714 ≈ 24? 88 / 14 is not 24.  \nno.\n\n**attempt 5:**  \ntry 88 / 7 ≈ 12.5714, then 12.5714 + 7 = 19.5714 (no).  \n7 / 7 = 1, then 88 - 1 = 87 (no).  \nno path found.\n\nresult is far from 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 0,
+          "state": [
+            15,
+            7,
+            11
+          ],
+          "action": "[15, 7, 11]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add 7 and 8 to get 15.",
+            "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] + numbers[2]   # 7 + 8 = 15\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15, 7, 11]"
+          },
+          "path_history": "Add 7 and 8 to get 15.\nResult: [15, 7, 11]",
+          "evaluation": {
+            "state": "[15, 7, 11]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 15
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\n**attempt 1 (division):**  \n- 15 / 7 ≈ 2.1429, times 11 ≈ 23.571 (no)  \n- 7 / 15 ≈ 0.4667, times 11 ≈ 5.133 (no)  \n- 15 / 11 ≈ 1.3636, times 7 ≈ 9.545 (no)  \n- 11 / 15 ≈ 0.7333, times 7 ≈ 5.133 (no)  \n- 11 / 7 ≈ 1.5714, times 15 ≈ 23.571 (no)  \n- 7 / 11 ≈ 0.6364, times 15 ≈ 9.545 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 15 and 11 → 15 - 11 = 4. 4 is a factor of 24. combine with 7: 4 * 7 = 28 (no), 7 / 4 = 1.75 (no), 7 - 4 = 3 (no), 4 - 7 = -3 (no).  \nnext closest: 15 and 7 → 15 - 7 = 8. 8 is a factor. combine with 11: 8 * 11 = 88 (no), 11 / 8 = 1.375 (no), 11 - 8 = 3 (no), 8 - 11 = -3 (no).  \n11 - 7 = 4 (already tried with 15, no).\n\n**attempt 3 (multiplication):**  \n- 15 * 7 = 105, combine with 11: 105 - 11 = 94, 105 / 11 ≈ 9.545, 11 - 105 = -94 (no)  \n- 15 * 11 = 165, combine with 7: 165 - 7 = 158, 165 / 7 ≈ 23.571 (no)  \n- 7 * 11 = 77, combine with 15: 77 - 15 = 62, 77 / 15 ≈ 5.133, 15 - 77 = -62 (no)\n\n**attempt 4 (addition and adjust):**  \n- 15 + 7 = 22, then 22 + 11 = 33 (no), 22 - 11 = 11 (no), 22 * 11 = 242 (no)  \n- 15 + 11 = 26, then 26 - 7 = 19 (no), 26 + 7 = 33 (no)  \n- 7 + 11 = 18, then 18 + 15 = 33 (no), 18 - 15 = 3 (no), 15 - 18 = -3 (no)\n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "⚡ PATTERN HINT: matches failure pattern (hit=2, ops=['unknown'])",
+              "LLM evaluations: ['impossible']",
+              "Votes: sure=0, likely=0, impossible=1",
+              "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\n**attempt 1 (division):**  \n- 15 / 7 ≈ 2.1429, times 11 ≈ 23.571 (no)  \n- 7 / 15 ≈ 0.4667, times 11 ≈ 5.133 (no)  \n- 15 / 11 ≈ 1.3636, times 7 ≈ 9.545 (no)  \n- 11 / 15 ≈ 0.7333, times 7 ≈ 5.133 (no)  \n- 11 / 7 ≈ 1.5714, times 15 ≈ 23.571 (no)  \n- 7 / 11 ≈ 0.6364, times 15 ≈ 9.545 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 15 and 11 → 15 - 11 = 4. 4 is a factor of 24. combine with 7: 4 * 7 = 28 (no), 7 / 4 = 1.75 (no), 7 - 4 = 3 (no), 4 - 7 = -3 (no).  \nnext closest: 15 and 7 → 15 - 7 = 8. 8 is a factor. combine with 11: 8 * 11 = 88 (no), 11 / 8 = 1.375 (no), 11 - 8 = 3 (no), 8 - 11 = -3 (no).  \n11 - 7 = 4 (already tried with 15, no).\n\n**attempt 3 (multiplication):**  \n- 15 * 7 = 105, combine with 11: 105 - 11 = 94, 105 / 11 ≈ 9.545, 11 - 105 = -94 (no)  \n- 15 * 11 = 165, combine with 7: 165 - 7 = 158, 165 / 7 ≈ 23.571 (no)  \n- 7 * 11 = 77, combine with 15: 77 - 15 = 62, 77 / 15 ≈ 5.133, 15 - 77 = -62 (no)\n\n**attempt 4 (addition and adjust):**  \n- 15 + 7 = 22, then 22 + 11 = 33 (no), 22 - 11 = 11 (no), 22 * 11 = 242 (no)  \n- 15 + 11 = 26, then 26 - 7 = 19 (no), 26 + 7 = 33 (no)  \n- 7 + 11 = 18, then 18 + 15 = 33 (no), 18 - 15 = 3 (no), 15 - 18 = -3 (no)\n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 1,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": {
+              "sorted_vals": [
+                14,
+                12,
+                8
+              ],
+              "op_sequence": [
+                "unknown"
+              ],
+              "thought": "Raw score: 0.001, Final score: 0.001",
+              "hit_count": 2
+            },
+            "pattern_penalty_applied": true,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        14,
+        8,
+        11
+      ],
+      "action": "[14, 8, 11]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 7 and 7 to get 14.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] + numbers[1]   # 7 + 7 = 14\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[14, 8, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]",
+      "evaluation": {
+        "state": "[14, 8, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 14
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\n**attempt 1 (division):**  \n14 / 8 = 1.75, then 1.75 * 11 = 19.25 (no).  \n8 / 14 ≈ 0.5714, * 11 ≈ 6.285 (no).  \n14 / 11 ≈ 1.2727, * 8 ≈ 10.18 (no).  \n11 / 14 ≈ 0.7857, * 8 ≈ 6.285 (no).  \n11 / 8 = 1.375, * 14 = 19.25 (no).  \n8 / 11 ≈ 0.7273, * 14 ≈ 10.18 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two: 11 and 14 → 14 - 11 = 3.  \n3 is a factor of 24. combine with 8: 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "⚡ PATTERN HINT: matches failure pattern (hit=4, ops=['unknown'])",
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "✅ PATTERN OVERRIDE: LLM disagreed ('sure') → keeping LLM score 1.000",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\n**attempt 1 (division):**  \n14 / 8 = 1.75, then 1.75 * 11 = 19.25 (no).  \n8 / 14 ≈ 0.5714, * 11 ≈ 6.285 (no).  \n14 / 11 ≈ 1.2727, * 8 ≈ 10.18 (no).  \n11 / 14 ≈ 0.7857, * 8 ≈ 6.285 (no).  \n11 / 8 = 1.375, * 14 = 19.25 (no).  \n8 / 11 ≈ 0.7273, * 14 ≈ 10.18 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two: 11 and 14 → 14 - 11 = 3.  \n3 is a factor of 24. combine with 8: 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": {
+          "sorted_vals": [
+            15,
+            10,
+            9
+          ],
+          "op_sequence": [
+            "unknown"
+          ],
+          "thought": "Raw score: 0.001, Final score: 0.001",
+          "hit_count": 4
+        },
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "13": {
+          "id": 13,
+          "parent_id": 1,
+          "state": [
+            22,
+            11
+          ],
+          "action": "[22, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 14 and 8 to get 22.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[0] + numbers[1]  # 14 + 8 = 22\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[22, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nAdd 14 and 8 to get 22.\nResult: [22, 11]",
+          "evaluation": {
+            "state": "[22, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 22.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 1,
+          "state": [
+            6,
+            11
+          ],
+          "action": "[6, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 8 from 14 to get 6.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[0] - numbers[1]  # 14 - 8 = 6\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[6, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 8 from 14 to get 6.\nResult: [6, 11]",
+          "evaluation": {
+            "state": "[6, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 6.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 1,
+          "state": [
+            -6,
+            11
+          ],
+          "action": "[-6, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 14 from 8 to get -6.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[1] - numbers[0]  # 8 - 14 = -6\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-6, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 14 from 8 to get -6.\nResult: [-6, 11]",
+          "evaluation": {
+            "state": "[-6, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -6.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 1,
+          "state": [
+            112,
+            11
+          ],
+          "action": "[112, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 14 and 8 to get 112.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[0] * numbers[1]  # 14 * 8 = 112\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[112, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nMultiply 14 and 8 to get 112.\nResult: [112, 11]",
+          "evaluation": {
+            "state": "[112, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 112.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 1,
+          "state": [
+            1.75,
+            11
+          ],
+          "action": "[1.75, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 14 by 8 to get 1.75.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[0] / numbers[1]  # 14 / 8 = 1.75\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.75, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nDivide 14 by 8 to get 1.75.\nResult: [1.75, 11]",
+          "evaluation": {
+            "state": "[1.75, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.75,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "18": {
+          "id": 18,
+          "parent_id": 1,
+          "state": [
+            0.5714285714285714,
+            11
+          ],
+          "action": "[0.5714285714285714, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 8 by 14 to get approximately 0.5714.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[1] / numbers[0]  # 8 / 14 = 0.5714\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.5714285714285714, 11]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nDivide 8 by 14 to get approximately 0.5714.\nResult: [0.5714285714285714, 11]",
+          "evaluation": {
+            "state": "[0.5714285714285714, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.5714285714285714,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "19": {
+          "id": 19,
+          "parent_id": 1,
+          "state": [
+            25,
+            8
+          ],
+          "action": "[25, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 14 and 11 to get 25.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[0] + numbers[2]  # 14 + 11 = 25\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[25, 8]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nAdd 14 and 11 to get 25.\nResult: [25, 8]",
+          "evaluation": {
+            "state": "[25, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 25.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "20": {
+          "id": 20,
+          "parent_id": 1,
+          "state": [
+            3,
+            8
+          ],
+          "action": "[3, 8]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract 11 from 14 to get 3.",
+            "code": "numbers = [14, 8, 11]\nres = numbers[0] - numbers[2]  # 14 - 11 = 3\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3, 8]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]",
+          "evaluation": {
+            "state": "[3, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "we have two numbers: 3 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 3 + 8 = 11 (no)  \n- 8 - 3 = 5 (no)  \n- 3 - 8 = -5 (no)  \n- 3 * 8 = 24 (exact!)\n\nresult is exactly 24, which is within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure']",
+              "Votes: sure=1, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '3 * 8=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 3 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 3 + 8 = 11 (no)  \n- 8 - 3 = 5 (no)  \n- 3 - 8 = -5 (no)  \n- 3 * 8 = 24 (exact!)\n\nresult is exactly 24, which is within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 1
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "3 * 8",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "36": {
+              "id": 36,
+              "parent_id": 20,
+              "state": [
+                24.0
+              ],
+              "action": "3 * 8",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [3, 8], 3 * 8 = 24",
+                "code": "numbers = [3, 8]\na, b = 3, 8\nresult = 3 * 8\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nOperation: 3 * 8 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "37": {
+              "id": 37,
+              "parent_id": 20,
+              "state": [
+                24
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [3, 8], LLM chose: a*b",
+                "code": "numbers = [3, 8]\na, b = 3, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nFor 2-number state [3, 8], LLM chose: a*b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: equals 24"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        56,
+        7,
+        11
+      ],
+      "action": "[56, 7, 11]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 7 and 8 to get 56.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] * numbers[2]   # 7 * 8 = 56\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[56, 7, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]",
+      "evaluation": {
+        "state": "[56, 7, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 56
+        },
+        "llm_judgments": [
+          "let's go step by step.\n\nnumbers: 56, 7, 11  \ntarget: 24  \n\n**attempt 1 (division, both orders for each pair)**  \n- 56 / 7 = 8, then 8 * 11 = 88 (no).  \n- 7 / 56 = 0.125, 0.125 * 11 = 1.375 (no).  \n- 56 / 11 ≈ 5.0909, 5.0909 * 7 ≈ 35.636 (no).  \n- 11 / 56 ≈ 0.1964, 0.1964 * 7 ≈ 1.375 (no).  \n- 7 / 11 ≈ 0.636, 0.636 * 56 ≈ 35.636 (no).  \n- 11 / 7 ≈ 1.5714, 1.5714 * 56 ≈ 88 (no).  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest pair: 11 and 7 → 11 - 7 = 4.  \n4 is a factor of 24. combine with 56: 56 / 4 = 14 (no). 4 * 56 = 224 (no). 56 - 4 = 52 (no). 56 + 4 = 60 (no).  \n\n**attempt 3 (multiply each pair)**  \n- 56 * 7 = 392, then 392 / 11 ≈ 35.636 (no). 392 - 11 = 381 (no). 392 + 11 = 403 (no).  \n- 56 * 11 = 616, then 616 / 7 = 88 (no). 616 - 7 = 609 (no).  \n- 7 * 11 = 77, then 77 - 56 = 21 (no). 77 + 56 = 133 (no). 56 - 77 = -21 (no).  \n\n**attempt 4 (add pairs and adjust)**  \n- 56 + 7 = 63, 63 - 11 = 52 (no). 63 + 11 = 74 (no).  \n- 56 + 11 = 67, 67 - 7 = 60 (no).  \n- 7 + 11 = 18, 18 + 56 = 74 (no). 56 - 18 = 38 (no).  \n\nno result near 24 found.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let's go step by step.\n\nnumbers: 56, 7, 11  \ntarget: 24  \n\n**attempt 1 (division, both orders for each pair)**  \n- 56 / 7 = 8, then 8 * 11 = 88 (no).  \n- 7 / 56 = 0.125, 0.125 * 11 = 1.375 (no).  \n- 56 / 11 ≈ 5.0909, 5.0909 * 7 ≈ 35.636 (no).  \n- 11 / 56 ≈ 0.1964, 0.1964 * 7 ≈ 1.375 (no).  \n- 7 / 11 ≈ 0.636, 0.636 * 56 ≈ 35.636 (no).  \n- 11 / 7 ≈ 1.5714, 1.5714 * 56 ≈ 88 (no).  \n\n**attempt 2 (subtract two closest numbers)**  \nclosest pair: 11 and 7 → 11 - 7 = 4.  \n4 is a factor of 24. combine with 56: 56 / 4 = 14 (no). 4 * 56 = 224 (no). 56 - 4 = 52 (no). 56 + 4 = 60 (no).  \n\n**attempt 3 (multiply each pair)**  \n- 56 * 7 = 392, then 392 / 11 ≈ 35.636 (no). 392 - 11 = 381 (no). 392 + 11 = 403 (no).  \n- 56 * 11 = 616, then 616 / 7 = 88 (no). 616 - 7 = 609 (no).  \n- 7 * 11 = 77, then 77 - 56 = 21 (no). 77 + 56 = 133 (no). 56 - 77 = -21 (no).  \n\n**attempt 4 (add pairs and adjust)**  \n- 56 + 7 = 63, 63 - 11 = 52 (no). 63 + 11 = 74 (no).  \n- 56 + 11 = 67, 67 - 7 = 60 (no).  \n- 7 + 11 = 18, 18 + 56 = 74 (no). 56 - 18 = 38 (no).  \n\nno result near 24 found.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "28": {
+          "id": 28,
+          "parent_id": 2,
+          "state": [
+            63,
+            11
+          ],
+          "action": "[63, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 56 and 7 to get 63.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[0] + numbers[1]   # 56 + 7 = 63\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[63, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nAdd 56 and 7 to get 63.\nResult: [63, 11]",
+          "evaluation": {
+            "state": "[63, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 63.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "29": {
+          "id": 29,
+          "parent_id": 2,
+          "state": [
+            392,
+            11
+          ],
+          "action": "[392, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 56 and 7 to get 392.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[0] * numbers[1]   # 56 * 7 = 392\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[392, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nMultiply 56 and 7 to get 392.\nResult: [392, 11]",
+          "evaluation": {
+            "state": "[392, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 392.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "30": {
+          "id": 30,
+          "parent_id": 2,
+          "state": [
+            49,
+            11
+          ],
+          "action": "[49, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 7 from 56 to get 49.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[0] - numbers[1]   # 56 - 7 = 49\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[49, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nSubtract 7 from 56 to get 49.\nResult: [49, 11]",
+          "evaluation": {
+            "state": "[49, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 49.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "31": {
+          "id": 31,
+          "parent_id": 2,
+          "state": [
+            -49,
+            11
+          ],
+          "action": "[-49, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 56 from 7 to get -49.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[1] - numbers[0]   # 7 - 56 = -49\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-49, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nSubtract 56 from 7 to get -49.\nResult: [-49, 11]",
+          "evaluation": {
+            "state": "[-49, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -49.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "32": {
+          "id": 32,
+          "parent_id": 2,
+          "state": [
+            8.0,
+            11
+          ],
+          "action": "[8.0, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 56 by 7 to get 8.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[0] / numbers[1]   # 56 / 7 = 8\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8.0, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nDivide 56 by 7 to get 8.\nResult: [8.0, 11]",
+          "evaluation": {
+            "state": "[8.0, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "33": {
+          "id": 33,
+          "parent_id": 2,
+          "state": [
+            0.125,
+            11
+          ],
+          "action": "[0.125, 11]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 7 by 56 to get 0.125.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[1] / numbers[0]   # 7 / 56 = 0.125\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.125, 11]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nDivide 7 by 56 to get 0.125.\nResult: [0.125, 11]",
+          "evaluation": {
+            "state": "[0.125, 11]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.125,11.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "34": {
+          "id": 34,
+          "parent_id": 2,
+          "state": [
+            67,
+            7
+          ],
+          "action": "[67, 7]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 56 and 11 to get 67.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[0] + numbers[2]   # 56 + 11 = 67\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[67, 7]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nAdd 56 and 11 to get 67.\nResult: [67, 7]",
+          "evaluation": {
+            "state": "[67, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 67.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "35": {
+          "id": 35,
+          "parent_id": 2,
+          "state": [
+            616,
+            7
+          ],
+          "action": "[616, 7]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 56 and 11 to get 616.",
+            "code": "numbers = [56, 7, 11]\nres = numbers[0] * numbers[2]   # 56 * 11 = 616\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[616, 7]"
+          },
+          "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nMultiply 56 and 11 to get 616.\nResult: [616, 7]",
+          "evaluation": {
+            "state": "[616, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 616.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        4,
+        7,
+        8
+      ],
+      "action": "[4, 7, 8]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 7 from 11 to get 4.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[3] - numbers[1]   # 11 - 7 = 4\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4, 7, 8]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]",
+      "evaluation": {
+        "state": "[4, 7, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [4, 7, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 7 = 14 (no).  \n  7 / 4 = 1.75, then 1.75 * 8 = 14 (no).  \n  4 / 7 ≈ 0.571 (no).  \n  8 / 7 ≈ 1.1429, times 4 ≈ 4.57 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 8 - 7 = 1, then 1 * 4 = 4 (no).  \n  7 - 4 = 3, then 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [4, 7, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 7 = 14 (no).  \n  7 / 4 = 1.75, then 1.75 * 8 = 14 (no).  \n  4 / 7 ≈ 0.571 (no).  \n  8 / 7 ≈ 1.1429, times 4 ≈ 4.57 (no).  \n\n- attempt 2 (close subtraction):  \n  closest two: 8 - 7 = 1, then 1 * 4 = 4 (no).  \n  7 - 4 = 3, then 3 * 8 = 24 (exact!).  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "21": {
+          "id": 21,
+          "parent_id": 3,
+          "state": [
+            11,
+            8
+          ],
+          "action": "[11, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 7 to get 11, then we have [11, 8]",
+            "code": "numbers = [4, 7, 8]\nres = numbers[0] + numbers[1]  # 4 + 7 = 11\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[11, 8]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nAdd 4 and 7 to get 11, then we have [11, 8]\nResult: [11, 8]",
+          "evaluation": {
+            "state": "[11, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 11.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "22": {
+          "id": 22,
+          "parent_id": 3,
+          "state": [
+            28,
+            8
+          ],
+          "action": "[28, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 4 and 7 to get 28, then we have [28, 8]",
+            "code": "numbers = [4, 7, 8]\nres = numbers[0] * numbers[1]  # 4 * 7 = 28\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[28, 8]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nMultiply 4 and 7 to get 28, then we have [28, 8]\nResult: [28, 8]",
+          "evaluation": {
+            "state": "[28, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 28.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "23": {
+          "id": 23,
+          "parent_id": 3,
+          "state": [
+            1.75,
+            8
+          ],
+          "action": "[1.75, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 7 by 4 to get 1.75, then we have [1.75, 8]",
+            "code": "numbers = [4, 7, 8]\nres = numbers[1] / numbers[0]  # 7 / 4 = 1.75\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.75, 8]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nDivide 7 by 4 to get 1.75, then we have [1.75, 8]\nResult: [1.75, 8]",
+          "evaluation": {
+            "state": "[1.75, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.75,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "24": {
+          "id": 24,
+          "parent_id": 3,
+          "state": [
+            12,
+            7
+          ],
+          "action": "[12, 7]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 8 to get 12, then we have [12, 7]",
+            "code": "numbers = [4, 7, 8]\nres = numbers[0] + numbers[2]  # 4 + 8 = 12\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[12, 7]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nAdd 4 and 8 to get 12, then we have [12, 7]\nResult: [12, 7]",
+          "evaluation": {
+            "state": "[12, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 12.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "25": {
+          "id": 25,
+          "parent_id": 3,
+          "state": [
+            4,
+            7
+          ],
+          "action": "[4, 7]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 8 to get 4, then we have [4, 7] (duplicate but valid)",
+            "code": "numbers = [4, 7, 8]\nres = numbers[2] - numbers[0]  # 8 - 4 = 4\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4, 7]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nSubtract 4 from 8 to get 4, then we have [4, 7] (duplicate but valid)\nResult: [4, 7]",
+          "evaluation": {
+            "state": "[4, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "26": {
+          "id": 26,
+          "parent_id": 3,
+          "state": [
+            32,
+            7
+          ],
+          "action": "[32, 7]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 4 and 8 to get 32, then we have [32, 7]",
+            "code": "numbers = [4, 7, 8]\nres = numbers[0] * numbers[2]  # 4 * 8 = 32\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[32, 7]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nMultiply 4 and 8 to get 32, then we have [32, 7]\nResult: [32, 7]",
+          "evaluation": {
+            "state": "[32, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 32.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "27": {
+          "id": 27,
+          "parent_id": 3,
+          "state": [
+            2.0,
+            7
+          ],
+          "action": "[2.0, 7]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 8 by 4 to get 2, then we have [2, 7]",
+            "code": "numbers = [4, 7, 8]\nres = numbers[2] / numbers[0]  # 8 / 4 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.0, 7]"
+          },
+          "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nDivide 8 by 4 to get 2, then we have [2, 7]\nResult: [2.0, 7]",
+          "evaluation": {
+            "state": "[2.0, 7]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 2.0,7.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        1,
+        7,
+        11
+      ],
+      "action": "[1, 7, 11]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 7 from 8 to get 1 (using smallest number 7 as active operand).",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[2] - numbers[0]   # 8 - 7 = 1\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1, 7, 11]"
+      },
+      "path_history": "Subtract 7 from 8 to get 1 (using smallest number 7 as active operand).\nResult: [1, 7, 11]",
+      "evaluation": {
+        "state": "[1, 7, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 11
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: 1, 7, 11  \ntarget: 24  \n\n**attempt 1 (division)**  \n- 7 / 1 = 7, then 7 * 11 = 77 (no)  \n- 11 / 1 = 11, then 11 * 7 = 77 (no)  \n- 1 / 7 ≈ 0.1429, times 11 ≈ 1.57 (no)  \n- 1 / 11 ≈ 0.0909, times 7 ≈ 0.636 (no)  \n\n**attempt 2 (close subtraction)**  \nclosest two numbers: 7 and 11 → 11 - 7 = 4  \n4 is a factor of 24. combine with third (1): 4 * 1 = 4 (no), 4 / 1 = 4 (no), 1 / 4 = 0.25 (no).  \nalso try 7 - 1 = 6, 6 * 11 = 66 (no).  \n11 - 1 = 10, 10 * 7 = 70 (no).  \n\n**attempt 3 (multiplication)**  \n- 1 * 7 = 7, then 7 + 11 = 18 (no), 11 - 7 = 4 (no), 11 / 7 ≈ 1.57 (no)  \n- 1 * 11 = 11, then 11 + 7 = 18 (no), 11 - 7 = 4 (no), 7 / 11 ≈ 0.636 (no)  \n- 7 * 11 = 77, then 77 + 1 = 78 (no), 77 - 1 = 76 (no), 77 / 1 = 77 (no)  \n\n**attempt 4 (addition and adjusting)**  \n- 1 + 7 = 8, then 8 + 11 = 19 (no), 11 - 8 = 3 (no), 8 * 11 = 88 (no)  \n- 1 + 11 = 12, then 12 + 7 = 19 (no), 12 * 7 = 84 (no), 7 - 12 = -5 (no)  \n- 7 + 11 = 18, then 18 + 1 = 19 (no), 18 * 1 = 18 (no), 18 / 1 = 18 (no)  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: 1, 7, 11  \ntarget: 24  \n\n**attempt 1 (division)**  \n- 7 / 1 = 7, then 7 * 11 = 77 (no)  \n- 11 / 1 = 11, then 11 * 7 = 77 (no)  \n- 1 / 7 ≈ 0.1429, times 11 ≈ 1.57 (no)  \n- 1 / 11 ≈ 0.0909, times 7 ≈ 0.636 (no)  \n\n**attempt 2 (close subtraction)**  \nclosest two numbers: 7 and 11 → 11 - 7 = 4  \n4 is a factor of 24. combine with third (1): 4 * 1 = 4 (no), 4 / 1 = 4 (no), 1 / 4 = 0.25 (no).  \nalso try 7 - 1 = 6, 6 * 11 = 66 (no).  \n11 - 1 = 10, 10 * 7 = 70 (no).  \n\n**attempt 3 (multiplication)**  \n- 1 * 7 = 7, then 7 + 11 = 18 (no), 11 - 7 = 4 (no), 11 / 7 ≈ 1.57 (no)  \n- 1 * 11 = 11, then 11 + 7 = 18 (no), 11 - 7 = 4 (no), 7 / 11 ≈ 0.636 (no)  \n- 7 * 11 = 77, then 77 + 1 = 78 (no), 77 - 1 = 76 (no), 77 / 1 = 77 (no)  \n\n**attempt 4 (addition and adjusting)**  \n- 1 + 7 = 8, then 8 + 11 = 19 (no), 11 - 8 = 3 (no), 8 * 11 = 88 (no)  \n- 1 + 11 = 12, then 12 + 7 = 19 (no), 12 * 7 = 84 (no), 7 - 12 = -5 (no)  \n- 7 + 11 = 18, then 18 + 1 = 19 (no), 18 * 1 = 18 (no), 18 / 1 = 18 (no)  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        1.5714285714285714,
+        7,
+        8
+      ],
+      "action": "[1.5714285714285714, 7, 8]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 11 by 7 (approx 1.5714), then use with 7 and 8.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[3] / numbers[1]   # 11 / 7 ≈ 1.5714\nremaining = [numbers[0], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.5714285714285714, 7, 8]"
+      },
+      "path_history": "Divide 11 by 7 (approx 1.5714), then use with 7 and 8.\nResult: [1.5714285714285714, 7, 8]",
+      "evaluation": {
+        "state": "[1.5714285714285714, 7, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: 1.5714285714285714, 7, 8  \ntarget: 24\n\n**attempt 1 (division):**  \n- 7 / 1.5714285714285714 = 4.4545... (no)  \n- 8 / 1.5714285714285714 = 5.0909... (no)  \n- 1.5714285714285714 / 7 = 0.2245... (no)  \n- 1.5714285714285714 / 8 = 0.1964... (no)  \nnone combine with third to 24.\n\n**attempt 2 (close subtraction):**  \nclosest two: 7 and 8 → 8 - 7 = 1  \n1 is a factor of 24. combine with third: 1 * 1.5714285714285714 = 1.5714 (no).  \nalso 7 - 8 = -1 (no).\n\n**attempt 3 (multiplication):**  \n- 7 * 8 = 56, then 56 / 1.5714285714285714 = 35.636... (no)  \n- 7 * 1.5714285714285714 = 11.0 exactly?  \n  1.5714285714285714 * 7 = 11.0 (yes, exactly 11).  \n  then 11 + 8 = 19 (no), 11 * 8 = 88 (no), 8 - 11 = -3 (no), 11 - 8 = 3 (no).  \n- 8 * 1.5714285714285714 = 12.5714...  \n  12.5714 + 7 = 19.5714 (no), 12.5714 * 7 = 88 (no).\n\n**attempt 4 (addition and adjust):**  \n- 7 + 8 = 15, 15 + 1.5714 = 16.5714 (no)  \n- 7 + 1.5714 = 8.5714, 8.5714 + 8 = 16.5714 (no)  \n- 8 + 1.5714 = 9.5714, 9.5714 + 7 = 16.5714 (no)  \n- 15 - 1.5714 = 13.4286 (no)  \n- 15 * 1.5714 = 23.571 (close but not within 0.001 of 24)  \n- 15 / 1.5714 = 9.545 (no)\n\n**attempt 5 (other combos):**  \n- 8 - 1.5714 = 6.4286, 6.4286 * 7 = 45 (no)  \n- 7 - 1.5714 = 5.4286, 5.4286 * 8 = 43.4288 (no)  \n- 1.5714 * 7 = 11, 11 * 8 = 88 (no)  \n- 1.5714 * 8 = 12.5714, 12.5714 * 7 = 88 (no)\n\nbest result was 23.571, which is between 20 and 28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: 1.5714285714285714, 7, 8  \ntarget: 24\n\n**attempt 1 (division):**  \n- 7 / 1.5714285714285714 = 4.4545... (no)  \n- 8 / 1.5714285714285714 = 5.0909... (no)  \n- 1.5714285714285714 / 7 = 0.2245... (no)  \n- 1.5714285714285714 / 8 = 0.1964... (no)  \nnone combine with third to 24.\n\n**attempt 2 (close subtraction):**  \nclosest two: 7 and 8 → 8 - 7 = 1  \n1 is a factor of 24. combine with third: 1 * 1.5714285714285714 = 1.5714 (no).  \nalso 7 - 8 = -1 (no).\n\n**attempt 3 (multiplication):**  \n- 7 * 8 = 56, then 56 / 1.5714285714285714 = 35.636... (no)  \n- 7 * 1.5714285714285714 = 11.0 exactly?  \n  1.5714285714285714 * 7 = 11.0 (yes, exactly 11).  \n  then 11 + 8 = 19 (no), 11 * 8 = 88 (no), 8 - 11 = -3 (no), 11 - 8 = 3 (no).  \n- 8 * 1.5714285714285714 = 12.5714...  \n  12.5714 + 7 = 19.5714 (no), 12.5714 * 7 = 88 (no).\n\n**attempt 4 (addition and adjust):**  \n- 7 + 8 = 15, 15 + 1.5714 = 16.5714 (no)  \n- 7 + 1.5714 = 8.5714, 8.5714 + 8 = 16.5714 (no)  \n- 8 + 1.5714 = 9.5714, 9.5714 + 7 = 16.5714 (no)  \n- 15 - 1.5714 = 13.4286 (no)  \n- 15 * 1.5714 = 23.571 (close but not within 0.001 of 24)  \n- 15 / 1.5714 = 9.545 (no)\n\n**attempt 5 (other combos):**  \n- 8 - 1.5714 = 6.4286, 6.4286 * 7 = 45 (no)  \n- 7 - 1.5714 = 5.4286, 5.4286 * 8 = 43.4288 (no)  \n- 1.5714 * 7 = 11, 11 * 8 = 88 (no)  \n- 1.5714 * 8 = 12.5714, 12.5714 * 7 = 88 (no)\n\nbest result was 23.571, which is between 20 and 28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "state": [
+        19,
+        7,
+        7
+      ],
+      "action": "[19, 7, 7]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 8 and 11 to get 19.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[2] + numbers[3]   # 8 + 11 = 19\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[19, 7, 7]"
+      },
+      "path_history": "Add 8 and 11 to get 19.\nResult: [19, 7, 7]",
+      "evaluation": {
+        "state": "[19, 7, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 19
+        },
+        "llm_judgments": [
+          "[19, 7, 7]  \n- attempt 1 (division): 19 / 7 ≈ 2.714, times 7 ≈ 19 (no). 7 / 19 ≈ 0.368, times 7 ≈ 2.58 (no). 7 / 7 = 1, times 19 = 19 (no).  \n- attempt 2 (close subtraction): 7 - 7 = 0, combine with 19 → 0 or 19 (no).  \n- attempt 3 (multiplication): 7 * 7 = 49, 49 - 19 = 30 (no). 19 * 7 = 133, 133 / 7 = 19 (no).  \n- attempt 4 (addition): 19 + 7 = 26, 26 - 7 = 19 (no). 19 + 7 + 7 = 33 (no). 19 + 7 = 26, 26 + 7 = 33 (no).  \n- attempt 5: 7 + 7 = 14, 19 + 14 = 33 (no). 19 - 14 = 5 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "[19, 7, 7]  \n- attempt 1 (division): 19 / 7 ≈ 2.714, times 7 ≈ 19 (no). 7 / 19 ≈ 0.368, times 7 ≈ 2.58 (no). 7 / 7 = 1, times 19 = 19 (no).  \n- attempt 2 (close subtraction): 7 - 7 = 0, combine with 19 → 0 or 19 (no).  \n- attempt 3 (multiplication): 7 * 7 = 49, 49 - 19 = 30 (no). 19 * 7 = 133, 133 / 7 = 19 (no).  \n- attempt 4 (addition): 19 + 7 = 26, 26 - 7 = 19 (no). 19 + 7 + 7 = 33 (no). 19 + 7 = 26, 26 + 7 = 33 (no).  \n- attempt 5: 7 + 7 = 14, 19 + 14 = 33 (no). 19 - 14 = 5 (no).  \n\nno result near 24.  \n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 0,
+      "state": [
+        77,
+        7,
+        8
+      ],
+      "action": "[77, 7, 8]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 7 and 11 to get 77.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] * numbers[3]   # 7 * 11 = 77\nremaining = [numbers[1], numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[77, 7, 8]"
+      },
+      "path_history": "Multiply 7 and 11 to get 77.\nResult: [77, 7, 8]",
+      "evaluation": {
+        "state": "[77, 7, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 77
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\n**attempt 1 (division):**  \n77 / 7 = 11, then 11 * 8 = 88 (no).  \n7 / 77 ≈ 0.0909, times 8 ≈ 0.727 (no).  \n77 / 8 = 9.625, times 7 = 67.375 (no).  \n8 / 77 ≈ 0.1039, times 7 ≈ 0.727 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 7 and 8.  \n8 - 7 = 1. 1 is a factor of 24.  \n1 * 77 = 77 (no).  \n77 * 1 = 77 (no).  \nno.\n\n**attempt 3 (multiplication):**  \n77 * 7 = 539, then 539 / 8 = 67.375 (no).  \n77 * 8 = 616, then 616 / 7 = 88 (no).  \n7 * 8 = 56, then 56 - 77 = -21 (no), 77 - 56 = 21 (no), 56 + 77 = 133 (no).  \nno.\n\n**attempt 4 (addition and adjusting):**  \n77 + 7 = 84, 84 / 8 = 10.5 (no).  \n77 + 8 = 85, 85 - 7 = 78 (no).  \n7 + 8 = 15, 77 - 15 = 62 (no), 15 + 77 = 92 (no).  \nno.\n\n**attempt 5 (other combos):**  \n77 - 7 = 70, 70 / 8 = 8.75 (no).  \n77 - 8 = 69, 69 / 7 ≈ 9.857 (no).  \n8 - 77 = -69, no.  \nno path to 24.\n\nresult is far outside 20–28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "⚡ PATTERN HINT: matches failure pattern (hit=2, ops=['unknown'])",
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\n**attempt 1 (division):**  \n77 / 7 = 11, then 11 * 8 = 88 (no).  \n7 / 77 ≈ 0.0909, times 8 ≈ 0.727 (no).  \n77 / 8 = 9.625, times 7 = 67.375 (no).  \n8 / 77 ≈ 0.1039, times 7 ≈ 0.727 (no).  \nno.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 7 and 8.  \n8 - 7 = 1. 1 is a factor of 24.  \n1 * 77 = 77 (no).  \n77 * 1 = 77 (no).  \nno.\n\n**attempt 3 (multiplication):**  \n77 * 7 = 539, then 539 / 8 = 67.375 (no).  \n77 * 8 = 616, then 616 / 7 = 88 (no).  \n7 * 8 = 56, then 56 - 77 = -21 (no), 77 - 56 = 21 (no), 56 + 77 = 133 (no).  \nno.\n\n**attempt 4 (addition and adjusting):**  \n77 + 7 = 84, 84 / 8 = 10.5 (no).  \n77 + 8 = 85, 85 - 7 = 78 (no).  \n7 + 8 = 15, 77 - 15 = 62 (no), 15 + 77 = 92 (no).  \nno.\n\n**attempt 5 (other combos):**  \n77 - 7 = 70, 70 / 8 = 8.75 (no).  \n77 - 8 = 69, 69 / 7 ≈ 9.857 (no).  \n8 - 77 = -69, no.  \nno path to 24.\n\nresult is far outside 20–28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": {
+          "sorted_vals": [
+            84,
+            9,
+            8
+          ],
+          "op_sequence": [
+            "unknown"
+          ],
+          "thought": "Raw score: 0.001, Final score: 0.001",
+          "hit_count": 2
+        },
+        "pattern_penalty_applied": true,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 0,
+      "state": [
+        3,
+        7,
+        7
+      ],
+      "action": "[3, 7, 7]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 8 from 11 to get 3 (using smallest number 7 as active operand? Actually 7 is smallest, but here we use 8 and 11; to satisfy requirement, next step uses 7).",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[3] - numbers[2]   # 11 - 8 = 3\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3, 7, 7]"
+      },
+      "path_history": "Subtract 8 from 11 to get 3 (using smallest number 7 as active operand? Actually 7 is smallest, but here we use 8 and 11; to satisfy requirement, next step uses 7).\nResult: [3, 7, 7]",
+      "evaluation": {
+        "state": "[3, 7, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 7
+        },
+        "llm_judgments": [
+          "let's go step by step.\n\nnumbers: [3, 7, 7]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n7 / 3 ≈ 2.333, times 7 ≈ 16.33 (no).  \n3 / 7 ≈ 0.4286, times 7 ≈ 3 (no).  \n7 / 7 = 1, times 3 = 3 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \ntwo closest numbers: 7 and 7 → 7 - 7 = 0.  \n0 is not a factor of 24. no.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, 49 - 3 = 46 (no).  \n49 + 3 = 52 (no).  \n49 / 3 ≈ 16.33 (no).  \n3 * 7 = 21, 21 + 7 = 28 (within 20–28).  \n21 - 7 = 14 (no).  \n21 * 7 = 147 (no).  \n21 / 7 = 3 (no).  \nwe got 28.\n\n**attempt 4 (addition and adjust):**  \n7 + 7 = 14, 14 + 3 = 17 (no).  \n14 * 3 = 42 (no).  \n14 - 3 = 11 (no).  \n3 + 7 = 10, 10 + 7 = 17 (no).  \n10 * 7 = 70 (no).  \nno.\n\n**attempt 5:**  \nwe already found 28 in attempt 3.  \n28 is between 20 and 28 inclusive.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely']",
+          "Votes: sure=0, likely=1, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let's go step by step.\n\nnumbers: [3, 7, 7]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n7 / 3 ≈ 2.333, times 7 ≈ 16.33 (no).  \n3 / 7 ≈ 0.4286, times 7 ≈ 3 (no).  \n7 / 7 = 1, times 3 = 3 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \ntwo closest numbers: 7 and 7 → 7 - 7 = 0.  \n0 is not a factor of 24. no.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, 49 - 3 = 46 (no).  \n49 + 3 = 52 (no).  \n49 / 3 ≈ 16.33 (no).  \n3 * 7 = 21, 21 + 7 = 28 (within 20–28).  \n21 - 7 = 14 (no).  \n21 * 7 = 147 (no).  \n21 / 7 = 3 (no).  \nwe got 28.\n\n**attempt 4 (addition and adjust):**  \n7 + 7 = 14, 14 + 3 = 17 (no).  \n14 * 3 = 42 (no).  \n14 - 3 = 11 (no).  \n3 + 7 = 10, 10 + 7 = 17 (no).  \n10 * 7 = 70 (no).  \nno.\n\n**attempt 5:**  \nwe already found 28 in attempt 3.  \n28 is between 20 and 28 inclusive.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 0,
+      "state": [
+        1.0,
+        8,
+        11
+      ],
+      "action": "[1.0, 8, 11]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide 7 by 7 to get 1 (using smallest number 7 as active operand).",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] / numbers[1]   # 7 / 7 = 1\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 8, 11]"
+      },
+      "path_history": "Divide 7 by 7 to get 1 (using smallest number 7 as active operand).\nResult: [1.0, 8, 11]",
+      "evaluation": {
+        "state": "[1.0, 8, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 11
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: 1.0, 8, 11  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 1.0 = 8, then 8 * 11 = 88 (no)  \n- 11 / 1.0 = 11, then 11 * 8 = 88 (no)  \n- 1.0 / 8 = 0.125, then 0.125 * 11 = 1.375 (no)  \n- 1.0 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no)  \n- 11 / 8 = 1.375, then * 1.0 = 1.375 (no)  \n- 8 / 11 ≈ 0.727, then * 1.0 = 0.727 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11  \n11 - 8 = 3, then 3 * 1.0 = 3 (no, 3 is a factor of 24 but 3 * 1.0 ≠ 24)  \nalso 8 - 11 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 1.0 * 8 = 8, then 8 + 11 = 19 (no)  \n- 1.0 * 11 = 11, then 11 + 8 = 19 (no)  \n- 8 * 11 = 88, then 88 / 1.0 = 88 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 8 + 11 = 19, then 19 + 1.0 = 20 (no)  \n- 8 + 1.0 = 9, then 9 + 11 = 20 (no)  \n- 11 + 1.0 = 12, then 12 + 8 = 20 (no)  \n- 8 + 11 = 19, then 19 * 1.0 = 19 (no)  \n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: 1.0, 8, 11  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 1.0 = 8, then 8 * 11 = 88 (no)  \n- 11 / 1.0 = 11, then 11 * 8 = 88 (no)  \n- 1.0 / 8 = 0.125, then 0.125 * 11 = 1.375 (no)  \n- 1.0 / 11 ≈ 0.0909, then * 8 ≈ 0.727 (no)  \n- 11 / 8 = 1.375, then * 1.0 = 1.375 (no)  \n- 8 / 11 ≈ 0.727, then * 1.0 = 0.727 (no)  \n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 8 and 11  \n11 - 8 = 3, then 3 * 1.0 = 3 (no, 3 is a factor of 24 but 3 * 1.0 ≠ 24)  \nalso 8 - 11 = -3 (no)  \n\n**attempt 3 (multiplication):**  \n- 1.0 * 8 = 8, then 8 + 11 = 19 (no)  \n- 1.0 * 11 = 11, then 11 + 8 = 19 (no)  \n- 8 * 11 = 88, then 88 / 1.0 = 88 (no)  \n\n**attempt 4 (addition and adjust):**  \n- 8 + 11 = 19, then 19 + 1.0 = 20 (no)  \n- 8 + 1.0 = 9, then 9 + 11 = 20 (no)  \n- 11 + 1.0 = 12, then 12 + 8 = 20 (no)  \n- 8 + 11 = 19, then 19 * 1.0 = 19 (no)  \n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 0,
+      "state": [
+        0,
+        8,
+        11
+      ],
+      "action": "[0, 8, 11]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 7 from 7 to get 0 (using smallest number 7 as active operand).",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] - numbers[1]   # 7 - 7 = 0\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 8, 11]"
+      },
+      "path_history": "Subtract 7 from 7 to get 0 (using smallest number 7 as active operand).\nResult: [0, 8, 11]",
+      "evaluation": {
+        "state": "[0, 8, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 11
+        },
+        "llm_judgments": [
+          "we have numbers: 0, 8, 11. target: 24.\n\n- attempt 1 (division):  \n  8 / 0 = undefined (skip).  \n  11 / 0 = undefined (skip).  \n  0 / 8 = 0, then 0 * 11 = 0 (no).  \n  0 / 11 = 0, then 0 * 8 = 0 (no).  \n  8 / 11 ≈ 0.727, times 0 = 0 (no).  \n  11 / 8 = 1.375, times 0 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 8 and 11.  \n  11 - 8 = 3. 3 is a factor of 24. combine with third (0): 3 * 0 = 0 (no), 3 + 0 = 3 (no), etc.  \n  8 - 11 = -3, same issue.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 8 = 0, then 0 + 11 = 11 (no), 0 * 11 = 0 (no).  \n  0 * 11 = 0, then 0 + 8 = 8 (no).  \n  8 * 11 = 88, then 88 * 0 = 0 (no), 88 + 0 = 88 (no), 88 - 0 = 88 (no).  \n  no.\n\n- attempt 4 (addition and adjusting):  \n  0 + 8 = 8, then 8 + 11 = 19 (no).  \n  0 + 11 = 11, then 11 + 8 = 19 (no).  \n  8 + 11 = 19, then 19 + 0 = 19 (no), 19 - 0 = 19 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 0, 8, 11. target: 24.\n\n- attempt 1 (division):  \n  8 / 0 = undefined (skip).  \n  11 / 0 = undefined (skip).  \n  0 / 8 = 0, then 0 * 11 = 0 (no).  \n  0 / 11 = 0, then 0 * 8 = 0 (no).  \n  8 / 11 ≈ 0.727, times 0 = 0 (no).  \n  11 / 8 = 1.375, times 0 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two: 8 and 11.  \n  11 - 8 = 3. 3 is a factor of 24. combine with third (0): 3 * 0 = 0 (no), 3 + 0 = 3 (no), etc.  \n  8 - 11 = -3, same issue.  \n  no.\n\n- attempt 3 (multiplication):  \n  0 * 8 = 0, then 0 + 11 = 11 (no), 0 * 11 = 0 (no).  \n  0 * 11 = 0, then 0 + 8 = 8 (no).  \n  8 * 11 = 88, then 88 * 0 = 0 (no), 88 + 0 = 88 (no), 88 - 0 = 88 (no).  \n  no.\n\n- attempt 4 (addition and adjusting):  \n  0 + 8 = 8, then 8 + 11 = 19 (no).  \n  0 + 11 = 11, then 11 + 8 = 19 (no).  \n  8 + 11 = 19, then 19 + 0 = 19 (no), 19 - 0 = 19 (no).  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 0,
+      "state": [
+        88,
+        7,
+        7
+      ],
+      "action": "[88, 7, 7]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply 8 and 11 to get 88.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[2] * numbers[3]   # 8 * 11 = 88\nremaining = [numbers[0], numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[88, 7, 7]"
+      },
+      "path_history": "Multiply 8 and 11 to get 88.\nResult: [88, 7, 7]",
+      "evaluation": {
+        "state": "[88, 7, 7]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 88
+        },
+        "llm_judgments": [
+          "we have numbers: 88, 7, 7. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n88 / 7 ≈ 12.5714, then 12.5714 * 7 = 88 (no).  \n7 / 88 ≈ 0.0795, then * 7 ≈ 0.557 (no).  \n7 / 7 = 1, then 1 * 88 = 88 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 7 and 7.  \n7 - 7 = 0, not a factor of 24.  \nnext closest: 88 and 7 → 88 - 7 = 81, not a factor.  \n7 - 88 = -81, not a factor.  \nno.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, then 49 + 88 = 137 (no), 88 - 49 = 39 (no), 49 - 88 = -39 (no), 88 / 49 ≈ 1.796 (no).  \n88 * 7 = 616, then 616 / 7 = 88 (no), 616 - 7 = 609 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n88 + 7 = 95, then 95 + 7 = 102 (no), 95 - 7 = 88 (no).  \n7 + 7 = 14, then 88 - 14 = 74 (no), 88 / 14 ≈ 6.2857 (no), 14 * something? 14 * 1.714 ≈ 24? 88 / 14 is not 24.  \nno.\n\n**attempt 5:**  \ntry 88 / 7 ≈ 12.5714, then 12.5714 + 7 = 19.5714 (no).  \n7 / 7 = 1, then 88 - 1 = 87 (no).  \nno path found.\n\nresult is far from 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 88, 7, 7. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n88 / 7 ≈ 12.5714, then 12.5714 * 7 = 88 (no).  \n7 / 88 ≈ 0.0795, then * 7 ≈ 0.557 (no).  \n7 / 7 = 1, then 1 * 88 = 88 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 7 and 7.  \n7 - 7 = 0, not a factor of 24.  \nnext closest: 88 and 7 → 88 - 7 = 81, not a factor.  \n7 - 88 = -81, not a factor.  \nno.\n\n**attempt 3 (multiplication):**  \n7 * 7 = 49, then 49 + 88 = 137 (no), 88 - 49 = 39 (no), 49 - 88 = -39 (no), 88 / 49 ≈ 1.796 (no).  \n88 * 7 = 616, then 616 / 7 = 88 (no), 616 - 7 = 609 (no).  \nno.\n\n**attempt 4 (addition and adjust):**  \n88 + 7 = 95, then 95 + 7 = 102 (no), 95 - 7 = 88 (no).  \n7 + 7 = 14, then 88 - 14 = 74 (no), 88 / 14 ≈ 6.2857 (no), 14 * something? 14 * 1.714 ≈ 24? 88 / 14 is not 24.  \nno.\n\n**attempt 5:**  \ntry 88 / 7 ≈ 12.5714, then 12.5714 + 7 = 19.5714 (no).  \n7 / 7 = 1, then 88 - 1 = 87 (no).  \nno path found.\n\nresult is far from 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 0,
+      "state": [
+        15,
+        7,
+        11
+      ],
+      "action": "[15, 7, 11]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add 7 and 8 to get 15.",
+        "code": "numbers = [7, 7, 8, 11]\nres = numbers[0] + numbers[2]   # 7 + 8 = 15\nremaining = [numbers[1], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15, 7, 11]"
+      },
+      "path_history": "Add 7 and 8 to get 15.\nResult: [15, 7, 11]",
+      "evaluation": {
+        "state": "[15, 7, 11]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 15
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\n**attempt 1 (division):**  \n- 15 / 7 ≈ 2.1429, times 11 ≈ 23.571 (no)  \n- 7 / 15 ≈ 0.4667, times 11 ≈ 5.133 (no)  \n- 15 / 11 ≈ 1.3636, times 7 ≈ 9.545 (no)  \n- 11 / 15 ≈ 0.7333, times 7 ≈ 5.133 (no)  \n- 11 / 7 ≈ 1.5714, times 15 ≈ 23.571 (no)  \n- 7 / 11 ≈ 0.6364, times 15 ≈ 9.545 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 15 and 11 → 15 - 11 = 4. 4 is a factor of 24. combine with 7: 4 * 7 = 28 (no), 7 / 4 = 1.75 (no), 7 - 4 = 3 (no), 4 - 7 = -3 (no).  \nnext closest: 15 and 7 → 15 - 7 = 8. 8 is a factor. combine with 11: 8 * 11 = 88 (no), 11 / 8 = 1.375 (no), 11 - 8 = 3 (no), 8 - 11 = -3 (no).  \n11 - 7 = 4 (already tried with 15, no).\n\n**attempt 3 (multiplication):**  \n- 15 * 7 = 105, combine with 11: 105 - 11 = 94, 105 / 11 ≈ 9.545, 11 - 105 = -94 (no)  \n- 15 * 11 = 165, combine with 7: 165 - 7 = 158, 165 / 7 ≈ 23.571 (no)  \n- 7 * 11 = 77, combine with 15: 77 - 15 = 62, 77 / 15 ≈ 5.133, 15 - 77 = -62 (no)\n\n**attempt 4 (addition and adjust):**  \n- 15 + 7 = 22, then 22 + 11 = 33 (no), 22 - 11 = 11 (no), 22 * 11 = 242 (no)  \n- 15 + 11 = 26, then 26 - 7 = 19 (no), 26 + 7 = 33 (no)  \n- 7 + 11 = 18, then 18 + 15 = 33 (no), 18 - 15 = 3 (no), 15 - 18 = -3 (no)\n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "⚡ PATTERN HINT: matches failure pattern (hit=2, ops=['unknown'])",
+          "LLM evaluations: ['impossible']",
+          "Votes: sure=0, likely=0, impossible=1",
+          "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\n**attempt 1 (division):**  \n- 15 / 7 ≈ 2.1429, times 11 ≈ 23.571 (no)  \n- 7 / 15 ≈ 0.4667, times 11 ≈ 5.133 (no)  \n- 15 / 11 ≈ 1.3636, times 7 ≈ 9.545 (no)  \n- 11 / 15 ≈ 0.7333, times 7 ≈ 5.133 (no)  \n- 11 / 7 ≈ 1.5714, times 15 ≈ 23.571 (no)  \n- 7 / 11 ≈ 0.6364, times 15 ≈ 9.545 (no)\n\n**attempt 2 (close subtraction):**  \nclosest two: 15 and 11 → 15 - 11 = 4. 4 is a factor of 24. combine with 7: 4 * 7 = 28 (no), 7 / 4 = 1.75 (no), 7 - 4 = 3 (no), 4 - 7 = -3 (no).  \nnext closest: 15 and 7 → 15 - 7 = 8. 8 is a factor. combine with 11: 8 * 11 = 88 (no), 11 / 8 = 1.375 (no), 11 - 8 = 3 (no), 8 - 11 = -3 (no).  \n11 - 7 = 4 (already tried with 15, no).\n\n**attempt 3 (multiplication):**  \n- 15 * 7 = 105, combine with 11: 105 - 11 = 94, 105 / 11 ≈ 9.545, 11 - 105 = -94 (no)  \n- 15 * 11 = 165, combine with 7: 165 - 7 = 158, 165 / 7 ≈ 23.571 (no)  \n- 7 * 11 = 77, combine with 15: 77 - 15 = 62, 77 / 15 ≈ 5.133, 15 - 77 = -62 (no)\n\n**attempt 4 (addition and adjust):**  \n- 15 + 7 = 22, then 22 + 11 = 33 (no), 22 - 11 = 11 (no), 22 * 11 = 242 (no)  \n- 15 + 11 = 26, then 26 - 7 = 19 (no), 26 + 7 = 33 (no)  \n- 7 + 11 = 18, then 18 + 15 = 33 (no), 18 - 15 = 3 (no), 15 - 18 = -3 (no)\n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 1,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": {
+          "sorted_vals": [
+            14,
+            12,
+            8
+          ],
+          "op_sequence": [
+            "unknown"
+          ],
+          "thought": "Raw score: 0.001, Final score: 0.001",
+          "hit_count": 2
+        },
+        "pattern_penalty_applied": true,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 1,
+      "state": [
+        22,
+        11
+      ],
+      "action": "[22, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 14 and 8 to get 22.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[0] + numbers[1]  # 14 + 8 = 22\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[22, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nAdd 14 and 8 to get 22.\nResult: [22, 11]",
+      "evaluation": {
+        "state": "[22, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 22.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 1,
+      "state": [
+        6,
+        11
+      ],
+      "action": "[6, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 8 from 14 to get 6.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[0] - numbers[1]  # 14 - 8 = 6\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[6, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 8 from 14 to get 6.\nResult: [6, 11]",
+      "evaluation": {
+        "state": "[6, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 6.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 1,
+      "state": [
+        -6,
+        11
+      ],
+      "action": "[-6, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 14 from 8 to get -6.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[1] - numbers[0]  # 8 - 14 = -6\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-6, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 14 from 8 to get -6.\nResult: [-6, 11]",
+      "evaluation": {
+        "state": "[-6, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -6.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 1,
+      "state": [
+        112,
+        11
+      ],
+      "action": "[112, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 14 and 8 to get 112.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[0] * numbers[1]  # 14 * 8 = 112\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[112, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nMultiply 14 and 8 to get 112.\nResult: [112, 11]",
+      "evaluation": {
+        "state": "[112, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 112.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 1,
+      "state": [
+        1.75,
+        11
+      ],
+      "action": "[1.75, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 14 by 8 to get 1.75.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[0] / numbers[1]  # 14 / 8 = 1.75\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.75, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nDivide 14 by 8 to get 1.75.\nResult: [1.75, 11]",
+      "evaluation": {
+        "state": "[1.75, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.75,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 1,
+      "state": [
+        0.5714285714285714,
+        11
+      ],
+      "action": "[0.5714285714285714, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 8 by 14 to get approximately 0.5714.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[1] / numbers[0]  # 8 / 14 = 0.5714\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.5714285714285714, 11]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nDivide 8 by 14 to get approximately 0.5714.\nResult: [0.5714285714285714, 11]",
+      "evaluation": {
+        "state": "[0.5714285714285714, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.5714285714285714,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 1,
+      "state": [
+        25,
+        8
+      ],
+      "action": "[25, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 14 and 11 to get 25.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[0] + numbers[2]  # 14 + 11 = 25\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[25, 8]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nAdd 14 and 11 to get 25.\nResult: [25, 8]",
+      "evaluation": {
+        "state": "[25, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 25.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 20,
+      "parent_id": 1,
+      "state": [
+        3,
+        8
+      ],
+      "action": "[3, 8]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract 11 from 14 to get 3.",
+        "code": "numbers = [14, 8, 11]\nres = numbers[0] - numbers[2]  # 14 - 11 = 3\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3, 8]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]",
+      "evaluation": {
+        "state": "[3, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "we have two numbers: 3 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 3 + 8 = 11 (no)  \n- 8 - 3 = 5 (no)  \n- 3 - 8 = -5 (no)  \n- 3 * 8 = 24 (exact!)\n\nresult is exactly 24, which is within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure']",
+          "Votes: sure=1, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '3 * 8=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 3 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 3 + 8 = 11 (no)  \n- 8 - 3 = 5 (no)  \n- 3 - 8 = -5 (no)  \n- 3 * 8 = 24 (exact!)\n\nresult is exactly 24, which is within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 1
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "3 * 8",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "36": {
+          "id": 36,
+          "parent_id": 20,
+          "state": [
+            24.0
+          ],
+          "action": "3 * 8",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [3, 8], 3 * 8 = 24",
+            "code": "numbers = [3, 8]\na, b = 3, 8\nresult = 3 * 8\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nOperation: 3 * 8 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "37": {
+          "id": 37,
+          "parent_id": 20,
+          "state": [
+            24
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [3, 8], LLM chose: a*b",
+            "code": "numbers = [3, 8]\na, b = 3, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nFor 2-number state [3, 8], LLM chose: a*b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: equals 24"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 21,
+      "parent_id": 3,
+      "state": [
+        11,
+        8
+      ],
+      "action": "[11, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 7 to get 11, then we have [11, 8]",
+        "code": "numbers = [4, 7, 8]\nres = numbers[0] + numbers[1]  # 4 + 7 = 11\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[11, 8]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nAdd 4 and 7 to get 11, then we have [11, 8]\nResult: [11, 8]",
+      "evaluation": {
+        "state": "[11, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 11.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 22,
+      "parent_id": 3,
+      "state": [
+        28,
+        8
+      ],
+      "action": "[28, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 4 and 7 to get 28, then we have [28, 8]",
+        "code": "numbers = [4, 7, 8]\nres = numbers[0] * numbers[1]  # 4 * 7 = 28\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[28, 8]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nMultiply 4 and 7 to get 28, then we have [28, 8]\nResult: [28, 8]",
+      "evaluation": {
+        "state": "[28, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 28.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 23,
+      "parent_id": 3,
+      "state": [
+        1.75,
+        8
+      ],
+      "action": "[1.75, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 7 by 4 to get 1.75, then we have [1.75, 8]",
+        "code": "numbers = [4, 7, 8]\nres = numbers[1] / numbers[0]  # 7 / 4 = 1.75\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.75, 8]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nDivide 7 by 4 to get 1.75, then we have [1.75, 8]\nResult: [1.75, 8]",
+      "evaluation": {
+        "state": "[1.75, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.75,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 24,
+      "parent_id": 3,
+      "state": [
+        12,
+        7
+      ],
+      "action": "[12, 7]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 8 to get 12, then we have [12, 7]",
+        "code": "numbers = [4, 7, 8]\nres = numbers[0] + numbers[2]  # 4 + 8 = 12\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[12, 7]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nAdd 4 and 8 to get 12, then we have [12, 7]\nResult: [12, 7]",
+      "evaluation": {
+        "state": "[12, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 12.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 25,
+      "parent_id": 3,
+      "state": [
+        4,
+        7
+      ],
+      "action": "[4, 7]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 8 to get 4, then we have [4, 7] (duplicate but valid)",
+        "code": "numbers = [4, 7, 8]\nres = numbers[2] - numbers[0]  # 8 - 4 = 4\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4, 7]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nSubtract 4 from 8 to get 4, then we have [4, 7] (duplicate but valid)\nResult: [4, 7]",
+      "evaluation": {
+        "state": "[4, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 26,
+      "parent_id": 3,
+      "state": [
+        32,
+        7
+      ],
+      "action": "[32, 7]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 4 and 8 to get 32, then we have [32, 7]",
+        "code": "numbers = [4, 7, 8]\nres = numbers[0] * numbers[2]  # 4 * 8 = 32\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[32, 7]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nMultiply 4 and 8 to get 32, then we have [32, 7]\nResult: [32, 7]",
+      "evaluation": {
+        "state": "[32, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 32.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 27,
+      "parent_id": 3,
+      "state": [
+        2.0,
+        7
+      ],
+      "action": "[2.0, 7]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 8 by 4 to get 2, then we have [2, 7]",
+        "code": "numbers = [4, 7, 8]\nres = numbers[2] / numbers[0]  # 8 / 4 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.0, 7]"
+      },
+      "path_history": "Subtract 7 from 11 to get 4.\nResult: [4, 7, 8]\nDivide 8 by 4 to get 2, then we have [2, 7]\nResult: [2.0, 7]",
+      "evaluation": {
+        "state": "[2.0, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 2.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 28,
+      "parent_id": 2,
+      "state": [
+        63,
+        11
+      ],
+      "action": "[63, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 56 and 7 to get 63.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[0] + numbers[1]   # 56 + 7 = 63\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[63, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nAdd 56 and 7 to get 63.\nResult: [63, 11]",
+      "evaluation": {
+        "state": "[63, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 63.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 29,
+      "parent_id": 2,
+      "state": [
+        392,
+        11
+      ],
+      "action": "[392, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 56 and 7 to get 392.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[0] * numbers[1]   # 56 * 7 = 392\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[392, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nMultiply 56 and 7 to get 392.\nResult: [392, 11]",
+      "evaluation": {
+        "state": "[392, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 392.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 30,
+      "parent_id": 2,
+      "state": [
+        49,
+        11
+      ],
+      "action": "[49, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 7 from 56 to get 49.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[0] - numbers[1]   # 56 - 7 = 49\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[49, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nSubtract 7 from 56 to get 49.\nResult: [49, 11]",
+      "evaluation": {
+        "state": "[49, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 49.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 31,
+      "parent_id": 2,
+      "state": [
+        -49,
+        11
+      ],
+      "action": "[-49, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 56 from 7 to get -49.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[1] - numbers[0]   # 7 - 56 = -49\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-49, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nSubtract 56 from 7 to get -49.\nResult: [-49, 11]",
+      "evaluation": {
+        "state": "[-49, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -49.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 32,
+      "parent_id": 2,
+      "state": [
+        8.0,
+        11
+      ],
+      "action": "[8.0, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 56 by 7 to get 8.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[0] / numbers[1]   # 56 / 7 = 8\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8.0, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nDivide 56 by 7 to get 8.\nResult: [8.0, 11]",
+      "evaluation": {
+        "state": "[8.0, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 33,
+      "parent_id": 2,
+      "state": [
+        0.125,
+        11
+      ],
+      "action": "[0.125, 11]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 7 by 56 to get 0.125.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[1] / numbers[0]   # 7 / 56 = 0.125\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.125, 11]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nDivide 7 by 56 to get 0.125.\nResult: [0.125, 11]",
+      "evaluation": {
+        "state": "[0.125, 11]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.125,11.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 34,
+      "parent_id": 2,
+      "state": [
+        67,
+        7
+      ],
+      "action": "[67, 7]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 56 and 11 to get 67.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[0] + numbers[2]   # 56 + 11 = 67\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[67, 7]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nAdd 56 and 11 to get 67.\nResult: [67, 7]",
+      "evaluation": {
+        "state": "[67, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 67.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 35,
+      "parent_id": 2,
+      "state": [
+        616,
+        7
+      ],
+      "action": "[616, 7]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 56 and 11 to get 616.",
+        "code": "numbers = [56, 7, 11]\nres = numbers[0] * numbers[2]   # 56 * 11 = 616\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[616, 7]"
+      },
+      "path_history": "Multiply 7 and 8 to get 56.\nResult: [56, 7, 11]\nMultiply 56 and 11 to get 616.\nResult: [616, 7]",
+      "evaluation": {
+        "state": "[616, 7]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 616.0,7.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 36,
+      "parent_id": 20,
+      "state": [
+        24.0
+      ],
+      "action": "3 * 8",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [3, 8], 3 * 8 = 24",
+        "code": "numbers = [3, 8]\na, b = 3, 8\nresult = 3 * 8\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nOperation: 3 * 8 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 37,
+      "parent_id": 20,
+      "state": [
+        24
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [3, 8], LLM chose: a*b",
+        "code": "numbers = [3, 8]\na, b = 3, 8\nresult = a*b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "Add 7 and 7 to get 14.\nResult: [14, 8, 11]\nSubtract 11 from 14 to get 3.\nResult: [3, 8]\nFor 2-number state [3, 8], LLM chose: a*b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: equals 24"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    36
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 13,
+      "re_evaluations": 0,
+      "unique_states": 13,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
