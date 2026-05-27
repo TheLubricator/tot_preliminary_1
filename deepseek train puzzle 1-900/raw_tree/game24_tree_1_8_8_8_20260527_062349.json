@@ -1,0 +1,3432 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-27T06:23:49.157478",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 31,
+      "api_calls": 25,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 53,
+      "code_errors": 0,
+      "daily_requests": 25,
+      "session_start": "2026-05-27T06:22:33.796853",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 21,
+      "total_input_tokens": 23413,
+      "total_output_tokens": 15064,
+      "api_saved_two_num_cache": 63,
+      "api_saved_3num_pattern": 1,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": true,
+      "winning_depth1_count": 2,
+      "winning_depth1_proposed": 2,
+      "deadend_memory": {
+        "patterns_stored": 48,
+        "two_num_cache_size": 559,
+        "total_checked": 29,
+        "total_skipped": 21,
+        "skip_rate": "72.4%"
+      },
+      "time_seconds": 75.36
+    },
+    "correct_path_in_proposals": true,
+    "winning_depth1_count": 2,
+    "winning_depth1_proposed": 2,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 48,
+      "total_checked": 29,
+      "total_skipped": 21,
+      "api_calls_saved": 63,
+      "api_saved_two_num_cache": 63,
+      "api_saved_3num_pattern": 1,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        1,
+        8,
+        8,
+        8
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 5,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            8,
+            8,
+            8
+          ],
+          "action": "[8, 8, 8]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**",
+            "code": "numbers = [1, 8, 8, 8]\nres = numbers[0] * numbers[1]   # 1 * 8 = 8\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 8, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]",
+          "evaluation": {
+            "state": "[8, 8, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, other order same result).  \nno other division pairs give anything useful.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64, 64 - 8 = 56 (already tried).  \nno.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nthat works.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64 already used.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nresult is exactly 24.\n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nwe found 24 exactly.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, other order same result).  \nno other division pairs give anything useful.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64, 64 - 8 = 56 (already tried).  \nno.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nthat works.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64 already used.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nresult is exactly 24.\n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nwe found 24 exactly.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 4,
+          "children": {
+            "6": {
+              "id": 6,
+              "parent_id": 1,
+              "state": [
+                16,
+                8
+              ],
+              "action": "[16, 8]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Pair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**",
+                "code": "numbers = [8, 8, 8]\nres = numbers[0] + numbers[1]   # 8 + 8 = 16\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[16, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]",
+              "evaluation": {
+                "state": "[16, 8]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 16
+                },
+                "llm_judgments": [
+                  "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                  "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '16 + 8=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                    "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "16 + 8",
+                "extracted_result": 24.0
+              },
+              "num_children": 2,
+              "children": {
+                "29": {
+                  "id": 29,
+                  "parent_id": 6,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "16 + 8",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [16, 8], 16 + 8 = 24",
+                    "code": "numbers = [16, 8]\na, b = 16, 8\nresult = 16 + 8\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nOperation: 16 + 8 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                },
+                "30": {
+                  "id": 30,
+                  "parent_id": 6,
+                  "state": [
+                    24
+                  ],
+                  "action": "Code executed successfully.",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "For 2-number state [16, 8], LLM chose: a+b",
+                    "code": "numbers = [16, 8]\na, b = 16, 8\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                    "observation": "Code executed successfully."
+                  },
+                  "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nFor 2-number state [16, 8], LLM chose: a+b\nResult: Code executed successfully.",
+                  "evaluation": {
+                    "state": "[24]",
+                    "is_final": true,
+                    "heuristic_checks": {
+                      "is_single_number": true,
+                      "is_solution": true
+                    },
+                    "llm_judgments": [],
+                    "reasoning": [
+                      "✅ SOLUTION: equals 24"
+                    ],
+                    "score_breakdown": {},
+                    "final_value": 1.0,
+                    "pattern_match": null,
+                    "pattern_penalty_applied": false
+                  },
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 1,
+              "state": [
+                64,
+                8
+              ],
+              "action": "[64, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1) — 8 and 8. Multiplication gives 64, too big.**",
+                "code": "numbers = [8, 8, 8]\nres = numbers[0] * numbers[1]   # 8 * 8 = 64\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[64, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Multiplication gives 64, too big.**\nResult: [64, 8]",
+              "evaluation": {
+                "state": "[64, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 64.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 1,
+              "state": [
+                0,
+                8
+              ],
+              "action": "[0, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1) — 8 and 8. Subtraction 8-8=0, leads to dead end (0 and 8).**",
+                "code": "numbers = [8, 8, 8]\nres = numbers[0] - numbers[1]   # 8 - 8 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Subtraction 8-8=0, leads to dead end (0 and 8).**\nResult: [0, 8]",
+              "evaluation": {
+                "state": "[0, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 1,
+              "state": [
+                1.0,
+                8
+              ],
+              "action": "[1.0, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1) — 8 and 8. Division 8/8=1, gives [1,8] — can make 9 or 7, but not 24.**",
+                "code": "numbers = [8, 8, 8]\nres = numbers[0] / numbers[1]   # 8 / 8 = 1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.0, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Division 8/8=1, gives [1,8] — can make 9 or 7, but not 24.**\nResult: [1.0, 8]",
+              "evaluation": {
+                "state": "[1.0, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            16,
+            1,
+            8
+          ],
+          "action": "[16, 1, 8]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**",
+            "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] + numbers[2]   # 8 + 8 = 16\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 1, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]",
+          "evaluation": {
+            "state": "[16, 1, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 16
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a hit.  \n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure",
+              "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a match.  \n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a hit.  \n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure",
+                "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a match.  \n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "10": {
+              "id": 10,
+              "parent_id": 2,
+              "state": [
+                24,
+                1
+              ],
+              "action": "[24, 1]",
+              "value": 0.01,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "16 + 8 = 24, directly reaching the target with 1 remaining.",
+                "code": "numbers = [16, 1, 8]\nres = numbers[0] + numbers[2]   # 16 + 8 = 24\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[24, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 + 8 = 24, directly reaching the target with 1 remaining.\nResult: [24, 1]",
+              "evaluation": {
+                "state": "[24, 1]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "⚠️ DEAD-END: Contains 24 but not final state"
+                ],
+                "score_breakdown": {},
+                "final_value": 0.01,
+                "pattern_match": null,
+                "pattern_penalty_applied": false
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 2,
+              "state": [
+                17,
+                8
+              ],
+              "action": "[17, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "16 + 1 = 17, then 17 + 8 = 25 (close but not exact). Worth trying.",
+                "code": "numbers = [16, 1, 8]\nres = numbers[0] + numbers[1]   # 16 + 1 = 17\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[17, 8]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 + 1 = 17, then 17 + 8 = 25 (close but not exact). Worth trying.\nResult: [17, 8]",
+              "evaluation": {
+                "state": "[17, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 17.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 2,
+              "state": [
+                15,
+                8
+              ],
+              "action": "[15, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "16 - 1 = 15, then 15 + 8 = 23 (close to 24).",
+                "code": "numbers = [16, 1, 8]\nres = numbers[0] - numbers[1]   # 16 - 1 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[15, 8]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 - 1 = 15, then 15 + 8 = 23 (close to 24).\nResult: [15, 8]",
+              "evaluation": {
+                "state": "[15, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "13": {
+              "id": 13,
+              "parent_id": 2,
+              "state": [
+                9,
+                16
+              ],
+              "action": "[9, 16]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "1 + 8 = 9, then 16 + 9 = 25 (close to 24).",
+                "code": "numbers = [16, 1, 8]\nres = numbers[1] + numbers[2]   # 1 + 8 = 9\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[9, 16]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n1 + 8 = 9, then 16 + 9 = 25 (close to 24).\nResult: [9, 16]",
+              "evaluation": {
+                "state": "[9, 16]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 9.0,16.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 2,
+              "state": [
+                2.0,
+                1
+              ],
+              "action": "[2.0, 1]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "16 / 8 = 2, then 2 * 1 = 2 (not promising, but exploring).",
+                "code": "numbers = [16, 1, 8]\nres = numbers[0] / numbers[2]   # 16 / 8 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[2.0, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 / 8 = 2, then 2 * 1 = 2 (not promising, but exploring).\nResult: [2.0, 1]",
+              "evaluation": {
+                "state": "[2.0, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 2.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 2,
+              "state": [
+                7,
+                16
+              ],
+              "action": "[7, 16]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "8 - 1 = 7, then 16 + 7 = 23 (close to 24).",
+                "code": "numbers = [16, 1, 8]\nres = numbers[2] - numbers[1]   # 8 - 1 = 7\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[7, 16]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n8 - 1 = 7, then 16 + 7 = 23 (close to 24).\nResult: [7, 16]",
+              "evaluation": {
+                "state": "[7, 16]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 7.0,16.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 2,
+              "state": [
+                8,
+                1
+              ],
+              "action": "[8, 1]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "16 - 8 = 8, then 8 + 1 = 9 (not promising, but covers pair).",
+                "code": "numbers = [16, 1, 8]\nres = numbers[0] - numbers[2]   # 16 - 8 = 8\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[8, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 - 8 = 8, then 8 + 1 = 9 (not promising, but covers pair).\nResult: [8, 1]",
+              "evaluation": {
+                "state": "[8, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            0,
+            1,
+            8
+          ],
+          "action": "[0, 1, 8]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Pair indices (1,2) — two 8s. Subtraction (8-8=0) leads to [1,0,8] which is useless.\n**",
+            "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] - numbers[2]   # 8 - 8 = 0\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 1, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Subtraction (8-8=0) leads to [1,0,8] which is useless.\n**\nResult: [0, 1, 8]",
+          "evaluation": {
+            "state": "[0, 1, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24, combine with third (8): 1 * 8 = 8 (no).  \n8 - 1 = 7, not a factor of 24.  \n8 - 0 = 8, factor of 24, combine with 1: 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n1 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1,2,3,4,6,8,12).  \ncombine with third: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no), 8 / 1 = 8 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no), 8 / 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no), 9 / 0 undefined.  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1). combine with third: 1 * 8 = 8 (no).  \nalso try 8 - 1 = 7 (not a factor of 24).  \n8 - 0 = 8 (factor of 24), then 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24, combine with third (8): 1 * 8 = 8 (no).  \n8 - 1 = 7, not a factor of 24.  \n8 - 0 = 8, factor of 24, combine with 1: 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n1 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1,2,3,4,6,8,12).  \ncombine with third: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no), 8 / 1 = 8 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no), 8 / 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no), 9 / 0 undefined.  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1). combine with third: 1 * 8 = 8 (no).  \nalso try 8 - 1 = 7 (not a factor of 24).  \n8 - 0 = 8 (factor of 24), then 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            1.0,
+            1,
+            8
+          ],
+          "action": "[1.0, 1, 8]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**",
+            "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] / numbers[2]   # 8 / 8 = 1\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 1, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]",
+          "evaluation": {
+            "state": "[1.0, 1, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 1 = 8 (no).  \n8 / 1.0 = 8, same.  \n1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n1.0 / 8 = 0.125, same.  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two: 1 and 1.0 (difference 0). not useful.  \n1.0 and 8: 8 - 1 = 7 (not a factor of 24).  \n1 and 8: same.\n\n- attempt 3 (multiplication):  \n1 * 1 = 1, then 1 * 8 = 8 (no).  \n1 * 8 = 8, then 8 * 1 = 8 (no).  \n8 * 1 = 8, same.\n\n- attempt 4 (addition):  \n1 + 1 = 2, then 2 * 8 = 16 (no).  \n1 + 8 = 9, then 9 * 1 = 9 (no).  \n8 + 1 = 9, same.  \n1 + 1 + 8 = 10 (no).\n\nno result near 24.\n\nanswer: impossible",
+              "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - (1+1) = 6, 6 * 4? no 4.  \n  no path to 24.\n\nno result near 24.\n\nanswer: impossible",
+              "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - 1 - 1 = 6, then 6 * 4? no fourth number.  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "⚡ PATTERN HINT: matches failure pattern (hit=6, ops=['unknown'])",
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 1 = 8 (no).  \n8 / 1.0 = 8, same.  \n1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n1.0 / 8 = 0.125, same.  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two: 1 and 1.0 (difference 0). not useful.  \n1.0 and 8: 8 - 1 = 7 (not a factor of 24).  \n1 and 8: same.\n\n- attempt 3 (multiplication):  \n1 * 1 = 1, then 1 * 8 = 8 (no).  \n1 * 8 = 8, then 8 * 1 = 8 (no).  \n8 * 1 = 8, same.\n\n- attempt 4 (addition):  \n1 + 1 = 2, then 2 * 8 = 16 (no).  \n1 + 8 = 9, then 9 * 1 = 9 (no).  \n8 + 1 = 9, same.  \n1 + 1 + 8 = 10 (no).\n\nno result near 24.\n\nanswer: impossible",
+                "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - (1+1) = 6, 6 * 4? no 4.  \n  no path to 24.\n\nno result near 24.\n\nanswer: impossible",
+                "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - 1 - 1 = 6, then 6 * 4? no fourth number.  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": {
+              "sorted_vals": [
+                9,
+                1,
+                1
+              ],
+              "op_sequence": [
+                "unknown"
+              ],
+              "thought": "Raw score: 0.001, Final score: 0.001",
+              "hit_count": 6
+            },
+            "pattern_penalty_applied": true,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 6,
+          "children": {
+            "23": {
+              "id": 23,
+              "parent_id": 4,
+              "state": [
+                0.0,
+                8
+              ],
+              "action": "[0.0, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "** 1.0 - 1 = 0, leaves [0, 8] → dead end (can't make 24).\n- **",
+                "code": "numbers = [1.0, 1, 8]\nres = numbers[0] - numbers[1]   # 1.0 - 1 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.0, 8]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 - 1 = 0, leaves [0, 8] → dead end (can't make 24).\n- **\nResult: [0.0, 8]",
+              "evaluation": {
+                "state": "[0.0, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "24": {
+              "id": 24,
+              "parent_id": 4,
+              "state": [
+                1.0,
+                8
+              ],
+              "action": "[1.0, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "** 1.0 / 1 = 1.0, leaves [1.0, 8] → promising (1+8=9, 8-1=7, etc.)\n- **",
+                "code": "numbers = [1.0, 1, 8]\nres = numbers[0] / numbers[1]   # 1.0 / 1 = 1.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.0, 8]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 / 1 = 1.0, leaves [1.0, 8] → promising (1+8=9, 8-1=7, etc.)\n- **\nResult: [1.0, 8]",
+              "evaluation": {
+                "state": "[1.0, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "25": {
+              "id": 25,
+              "parent_id": 4,
+              "state": [
+                9.0,
+                1
+              ],
+              "action": "[9.0, 1]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "** 1.0 + 8 = 9, leaves [1, 9] → promising (9*? 9*? need 2.666... no; 9+? 9+15 no; 9-? 9-? no; 9/?? 9/0.375 no)\n- **",
+                "code": "numbers = [1.0, 1, 8]\nres = numbers[0] + numbers[2]   # 1.0 + 8 = 9\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[9.0, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 + 8 = 9, leaves [1, 9] → promising (9*? 9*? need 2.666... no; 9+? 9+15 no; 9-? 9-? no; 9/?? 9/0.375 no)\n- **\nResult: [9.0, 1]",
+              "evaluation": {
+                "state": "[9.0, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 9.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "26": {
+              "id": 26,
+              "parent_id": 4,
+              "state": [
+                -7.0,
+                1
+              ],
+              "action": "[-7.0, 1]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "** 1.0 - 8 = -7, leaves [1, -7] → unlikely to get 24.\n- **",
+                "code": "numbers = [1.0, 1, 8]\nres = numbers[0] - numbers[2]   # 1.0 - 8 = -7\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-7.0, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 - 8 = -7, leaves [1, -7] → unlikely to get 24.\n- **\nResult: [-7.0, 1]",
+              "evaluation": {
+                "state": "[-7.0, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -7.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "27": {
+              "id": 27,
+              "parent_id": 4,
+              "state": [
+                7.0,
+                1
+              ],
+              "action": "[7.0, 1]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "** 8 - 1.0 = 7, leaves [1, 7] → promising (7*? 7*? need 24/7≈3.428; 7+? 7+17 no; 7-? 7-? no; 7/?? 7/0.2916 no)\n- **",
+                "code": "numbers = [1.0, 1, 8]\nres = numbers[2] - numbers[0]   # 8 - 1.0 = 7\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[7.0, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 8 - 1.0 = 7, leaves [1, 7] → promising (7*? 7*? need 24/7≈3.428; 7+? 7+17 no; 7-? 7-? no; 7/?? 7/0.2916 no)\n- **\nResult: [7.0, 1]",
+              "evaluation": {
+                "state": "[7.0, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 7.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "28": {
+              "id": 28,
+              "parent_id": 4,
+              "state": [
+                0.125,
+                1
+              ],
+              "action": "[0.125, 1]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "** 1.0 / 8 = 0.125, leaves [1, 0.125] → unlikely.\n- **",
+                "code": "numbers = [1.0, 1, 8]\nres = numbers[0] / numbers[2]   # 1.0 / 8 = 0.125\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.125, 1]"
+              },
+              "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 / 8 = 0.125, leaves [1, 0.125] → unlikely.\n- **\nResult: [0.125, 1]",
+              "evaluation": {
+                "state": "[0.125, 1]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.125,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "5": {
+          "id": 5,
+          "parent_id": 0,
+          "state": [
+            7,
+            8,
+            8
+          ],
+          "action": "[7, 8, 8]",
+          "value": 0.6,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**",
+            "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] - numbers[0]   # 8 - 1 = 7\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7, 8, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]",
+          "evaluation": {
+            "state": "[7, 8, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \ncombine with third 8: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, then 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \n8 * 8 = 64, then 64 - 7 = 57 (no).  \n64 / 7 ≈ 9.14 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n7 + 8 = 15, then 15 + 8 = 23 (close but not 24).  \n15 * 8 = 120 (no).  \n8 + 8 = 16, then 16 + 7 = 23 (again).  \n16 * 7 = 112 (no).  \nno.\n\nno result within 0.001 of 24, and no result between 20 and 28 except 23, which is not in the 20–28 inclusive? wait, 23 is between 20 and 28, so it qualifies as \"likely\".\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno division path works.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 8 and 8 → 8 - 8 = 0 (not a factor of 24).  \nnext closest: 8 - 7 = 1 (factor of 24).  \n1 * 8 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n8 + 8 = 16, 16 + 7 = 23 (close but not 24).  \n8 + 7 = 15, 15 + 8 = 23 (again).  \n16 - 7 = 9 (no).  \n15 - 8 = 7 (no).  \nno.\n\n- attempt 5 (other combos):  \n8 * 7 = 56, 56 - 8 = 48 (no).  \n8 * 3? no third number.  \n(8 + 8 + 7) = 23, not 24.  \n(8 * 3) not possible.\n\nno result within 0.001 of 24.  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \n1 * 8 = 8 (no).  \n8 * 1 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, 56 / 8 = 7 (no).  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n8 * 8 = 64, 64 - 7 = 57 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n7 + 8 = 15, 15 + 8 = 23 (close but not 24).  \n8 + 8 = 16, 16 + 7 = 23 (again 23).  \n7 + 8 = 15, 15 * 8 = 120 (no).  \n8 + 8 = 16, 16 * 7 = 112 (no).  \n23 is between 20 and 28.\n\nresult is 23, which is within 20–28.\n\nanswer: likely"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'likely', 'likely']",
+              "Votes: sure=0, likely=3, impossible=0",
+              "Raw score: 0.600, Final score: 0.600"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \ncombine with third 8: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, then 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \n8 * 8 = 64, then 64 - 7 = 57 (no).  \n64 / 7 ≈ 9.14 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n7 + 8 = 15, then 15 + 8 = 23 (close but not 24).  \n15 * 8 = 120 (no).  \n8 + 8 = 16, then 16 + 7 = 23 (again).  \n16 * 7 = 112 (no).  \nno.\n\nno result within 0.001 of 24, and no result between 20 and 28 except 23, which is not in the 20–28 inclusive? wait, 23 is between 20 and 28, so it qualifies as \"likely\".\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno division path works.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 8 and 8 → 8 - 8 = 0 (not a factor of 24).  \nnext closest: 8 - 7 = 1 (factor of 24).  \n1 * 8 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n8 + 8 = 16, 16 + 7 = 23 (close but not 24).  \n8 + 7 = 15, 15 + 8 = 23 (again).  \n16 - 7 = 9 (no).  \n15 - 8 = 7 (no).  \nno.\n\n- attempt 5 (other combos):  \n8 * 7 = 56, 56 - 8 = 48 (no).  \n8 * 3? no third number.  \n(8 + 8 + 7) = 23, not 24.  \n(8 * 3) not possible.\n\nno result within 0.001 of 24.  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \n1 * 8 = 8 (no).  \n8 * 1 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, 56 / 8 = 7 (no).  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n8 * 8 = 64, 64 - 7 = 57 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n7 + 8 = 15, 15 + 8 = 23 (close but not 24).  \n8 + 8 = 16, 16 + 7 = 23 (again 23).  \n7 + 8 = 15, 15 * 8 = 120 (no).  \n8 + 8 = 16, 16 * 7 = 112 (no).  \n23 is between 20 and 28.\n\nresult is 23, which is within 20–28.\n\nanswer: likely"
+              ],
+              "mapped_values": [
+                0.6,
+                0.6,
+                0.6
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 3,
+                "sure": 0
+              }
+            },
+            "final_value": 0.6,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 6,
+          "children": {
+            "17": {
+              "id": 17,
+              "parent_id": 5,
+              "state": [
+                1,
+                8
+              ],
+              "action": "[1, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "8 - 7 = 1, leaving [1, 8]. Then 1 + 8 = 9, not 24, but could try other operations later.",
+                "code": "numbers = [7, 8, 8]\nres = numbers[1] - numbers[0]   # 8 - 7 = 1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n8 - 7 = 1, leaving [1, 8]. Then 1 + 8 = 9, not 24, but could try other operations later.\nResult: [1, 8]",
+              "evaluation": {
+                "state": "[1, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "18": {
+              "id": 18,
+              "parent_id": 5,
+              "state": [
+                -1,
+                8
+              ],
+              "action": "[-1, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "7 - 8 = -1, leaving [-1, 8]. Unlikely to yield 24, but included for completeness.",
+                "code": "numbers = [7, 8, 8]\nres = numbers[0] - numbers[1]   # 7 - 8 = -1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-1, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 - 8 = -1, leaving [-1, 8]. Unlikely to yield 24, but included for completeness.\nResult: [-1, 8]",
+              "evaluation": {
+                "state": "[-1, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -1.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "19": {
+              "id": 19,
+              "parent_id": 5,
+              "state": [
+                15,
+                8
+              ],
+              "action": "[15, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "7 + 8 = 15, leaving [15, 8]. 15 + 8 = 23, 15 * 8 = 120 too large, but 15 - 8 = 7, then 7 * something? Unlikely.",
+                "code": "numbers = [7, 8, 8]\nres = numbers[0] + numbers[1]   # 7 + 8 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[15, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 + 8 = 15, leaving [15, 8]. 15 + 8 = 23, 15 * 8 = 120 too large, but 15 - 8 = 7, then 7 * something? Unlikely.\nResult: [15, 8]",
+              "evaluation": {
+                "state": "[15, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 15.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "20": {
+              "id": 20,
+              "parent_id": 5,
+              "state": [
+                56,
+                8
+              ],
+              "action": "[56, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "7 * 8 = 56, leaving [56, 8]. 56 / 8 = 7, not 24; 56 - 8 = 48; 56 + 8 = 64; too large.",
+                "code": "numbers = [7, 8, 8]\nres = numbers[0] * numbers[1]   # 7 * 8 = 56\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[56, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 * 8 = 56, leaving [56, 8]. 56 / 8 = 7, not 24; 56 - 8 = 48; 56 + 8 = 64; too large.\nResult: [56, 8]",
+              "evaluation": {
+                "state": "[56, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 56.0,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "21": {
+              "id": 21,
+              "parent_id": 5,
+              "state": [
+                0.875,
+                8
+              ],
+              "action": "[0.875, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "7 / 8 = 0.875, leaving [0.875, 8]. Fractional, unlikely to combine to 24.",
+                "code": "numbers = [7, 8, 8]\nres = numbers[0] / numbers[1]   # 7 / 8 = 0.875\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.875, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 / 8 = 0.875, leaving [0.875, 8]. Fractional, unlikely to combine to 24.\nResult: [0.875, 8]",
+              "evaluation": {
+                "state": "[0.875, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.875,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "22": {
+              "id": 22,
+              "parent_id": 5,
+              "state": [
+                1.1428571428571428,
+                8
+              ],
+              "action": "[1.1428571428571428, 8]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "8 / 7 ≈ 1.142857, leaving [1.142857, 8]. Fractional, not promising.",
+                "code": "numbers = [7, 8, 8]\nres = numbers[1] / numbers[0]   # 8 / 7 ≈ 1.142857\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.1428571428571428, 8]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n8 / 7 ≈ 1.142857, leaving [1.142857, 8]. Fractional, not promising.\nResult: [1.1428571428571428, 8]",
+              "evaluation": {
+                "state": "[1.1428571428571428, 8]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.1428571428571428,8.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        8,
+        8,
+        8
+      ],
+      "action": "[8, 8, 8]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**",
+        "code": "numbers = [1, 8, 8, 8]\nres = numbers[0] * numbers[1]   # 1 * 8 = 8\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 8, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]",
+      "evaluation": {
+        "state": "[8, 8, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, other order same result).  \nno other division pairs give anything useful.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64, 64 - 8 = 56 (already tried).  \nno.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nthat works.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64 already used.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nresult is exactly 24.\n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nwe found 24 exactly.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, other order same result).  \nno other division pairs give anything useful.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64, 64 - 8 = 56 (already tried).  \nno.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nthat works.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).  \n8 * 8 = 64 already used.\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nresult is exactly 24.\n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [8, 8, 8]  \ntarget: 24\n\n**attempt 1 (division):**  \n8 / 8 = 1, then 1 * 8 = 8 (no).  \n8 / 8 = 1 (same pair, already tried).  \nother orders: 8 / 8 = 1 again. no new result.\n\n**attempt 2 (close subtraction):**  \n8 - 8 = 0, then 0 * 8 = 0 (no).  \n0 is not a factor of 24.\n\n**attempt 3 (multiplication):**  \n8 * 8 = 64, then 64 / 8 = 8 (no).  \n64 - 8 = 56 (no).  \n64 + 8 = 72 (no).\n\n**attempt 4 (addition and adjust):**  \n8 + 8 = 16, then 16 + 8 = 24 (exact!).\n\nwe found 24 exactly.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 4,
+      "children": {
+        "6": {
+          "id": 6,
+          "parent_id": 1,
+          "state": [
+            16,
+            8
+          ],
+          "action": "[16, 8]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Pair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**",
+            "code": "numbers = [8, 8, 8]\nres = numbers[0] + numbers[1]   # 8 + 8 = 16\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]",
+          "evaluation": {
+            "state": "[16, 8]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 16
+            },
+            "llm_judgments": [
+              "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+              "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '16 + 8=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+                "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "16 + 8",
+            "extracted_result": 24.0
+          },
+          "num_children": 2,
+          "children": {
+            "29": {
+              "id": 29,
+              "parent_id": 6,
+              "state": [
+                24.0
+              ],
+              "action": "16 + 8",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [16, 8], 16 + 8 = 24",
+                "code": "numbers = [16, 8]\na, b = 16, 8\nresult = 16 + 8\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nOperation: 16 + 8 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            },
+            "30": {
+              "id": 30,
+              "parent_id": 6,
+              "state": [
+                24
+              ],
+              "action": "Code executed successfully.",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "For 2-number state [16, 8], LLM chose: a+b",
+                "code": "numbers = [16, 8]\na, b = 16, 8\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+                "observation": "Code executed successfully."
+              },
+              "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nFor 2-number state [16, 8], LLM chose: a+b\nResult: Code executed successfully.",
+              "evaluation": {
+                "state": "[24]",
+                "is_final": true,
+                "heuristic_checks": {
+                  "is_single_number": true,
+                  "is_solution": true
+                },
+                "llm_judgments": [],
+                "reasoning": [
+                  "✅ SOLUTION: equals 24"
+                ],
+                "score_breakdown": {},
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 1,
+          "state": [
+            64,
+            8
+          ],
+          "action": "[64, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1) — 8 and 8. Multiplication gives 64, too big.**",
+            "code": "numbers = [8, 8, 8]\nres = numbers[0] * numbers[1]   # 8 * 8 = 64\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[64, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Multiplication gives 64, too big.**\nResult: [64, 8]",
+          "evaluation": {
+            "state": "[64, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 64.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 1,
+          "state": [
+            0,
+            8
+          ],
+          "action": "[0, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1) — 8 and 8. Subtraction 8-8=0, leads to dead end (0 and 8).**",
+            "code": "numbers = [8, 8, 8]\nres = numbers[0] - numbers[1]   # 8 - 8 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Subtraction 8-8=0, leads to dead end (0 and 8).**\nResult: [0, 8]",
+          "evaluation": {
+            "state": "[0, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 1,
+          "state": [
+            1.0,
+            8
+          ],
+          "action": "[1.0, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1) — 8 and 8. Division 8/8=1, gives [1,8] — can make 9 or 7, but not 24.**",
+            "code": "numbers = [8, 8, 8]\nres = numbers[0] / numbers[1]   # 8 / 8 = 1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Division 8/8=1, gives [1,8] — can make 9 or 7, but not 24.**\nResult: [1.0, 8]",
+          "evaluation": {
+            "state": "[1.0, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        16,
+        1,
+        8
+      ],
+      "action": "[16, 1, 8]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**",
+        "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] + numbers[2]   # 8 + 8 = 16\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 1, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]",
+      "evaluation": {
+        "state": "[16, 1, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 16
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a hit.  \n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure",
+          "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a match.  \n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a hit.  \n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry all pairs both orders:  \n16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s a direct hit.  \n\nanswer: sure",
+            "let’s go step by step.\n\nnumbers: [16, 1, 8]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 16 / 1 = 16, then 16 + 8 = 24 (exact!).  \n\nthat’s already a match.  \n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "10": {
+          "id": 10,
+          "parent_id": 2,
+          "state": [
+            24,
+            1
+          ],
+          "action": "[24, 1]",
+          "value": 0.01,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "16 + 8 = 24, directly reaching the target with 1 remaining.",
+            "code": "numbers = [16, 1, 8]\nres = numbers[0] + numbers[2]   # 16 + 8 = 24\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[24, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 + 8 = 24, directly reaching the target with 1 remaining.\nResult: [24, 1]",
+          "evaluation": {
+            "state": "[24, 1]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "⚠️ DEAD-END: Contains 24 but not final state"
+            ],
+            "score_breakdown": {},
+            "final_value": 0.01,
+            "pattern_match": null,
+            "pattern_penalty_applied": false
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 2,
+          "state": [
+            17,
+            8
+          ],
+          "action": "[17, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "16 + 1 = 17, then 17 + 8 = 25 (close but not exact). Worth trying.",
+            "code": "numbers = [16, 1, 8]\nres = numbers[0] + numbers[1]   # 16 + 1 = 17\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[17, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 + 1 = 17, then 17 + 8 = 25 (close but not exact). Worth trying.\nResult: [17, 8]",
+          "evaluation": {
+            "state": "[17, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 17.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 2,
+          "state": [
+            15,
+            8
+          ],
+          "action": "[15, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "16 - 1 = 15, then 15 + 8 = 23 (close to 24).",
+            "code": "numbers = [16, 1, 8]\nres = numbers[0] - numbers[1]   # 16 - 1 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 - 1 = 15, then 15 + 8 = 23 (close to 24).\nResult: [15, 8]",
+          "evaluation": {
+            "state": "[15, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "13": {
+          "id": 13,
+          "parent_id": 2,
+          "state": [
+            9,
+            16
+          ],
+          "action": "[9, 16]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "1 + 8 = 9, then 16 + 9 = 25 (close to 24).",
+            "code": "numbers = [16, 1, 8]\nres = numbers[1] + numbers[2]   # 1 + 8 = 9\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[9, 16]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n1 + 8 = 9, then 16 + 9 = 25 (close to 24).\nResult: [9, 16]",
+          "evaluation": {
+            "state": "[9, 16]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 9.0,16.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 2,
+          "state": [
+            2.0,
+            1
+          ],
+          "action": "[2.0, 1]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "16 / 8 = 2, then 2 * 1 = 2 (not promising, but exploring).",
+            "code": "numbers = [16, 1, 8]\nres = numbers[0] / numbers[2]   # 16 / 8 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.0, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 / 8 = 2, then 2 * 1 = 2 (not promising, but exploring).\nResult: [2.0, 1]",
+          "evaluation": {
+            "state": "[2.0, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 2.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 2,
+          "state": [
+            7,
+            16
+          ],
+          "action": "[7, 16]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "8 - 1 = 7, then 16 + 7 = 23 (close to 24).",
+            "code": "numbers = [16, 1, 8]\nres = numbers[2] - numbers[1]   # 8 - 1 = 7\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7, 16]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n8 - 1 = 7, then 16 + 7 = 23 (close to 24).\nResult: [7, 16]",
+          "evaluation": {
+            "state": "[7, 16]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 7.0,16.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 2,
+          "state": [
+            8,
+            1
+          ],
+          "action": "[8, 1]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "16 - 8 = 8, then 8 + 1 = 9 (not promising, but covers pair).",
+            "code": "numbers = [16, 1, 8]\nres = numbers[0] - numbers[2]   # 16 - 8 = 8\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 - 8 = 8, then 8 + 1 = 9 (not promising, but covers pair).\nResult: [8, 1]",
+          "evaluation": {
+            "state": "[8, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        0,
+        1,
+        8
+      ],
+      "action": "[0, 1, 8]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Pair indices (1,2) — two 8s. Subtraction (8-8=0) leads to [1,0,8] which is useless.\n**",
+        "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] - numbers[2]   # 8 - 8 = 0\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 1, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Subtraction (8-8=0) leads to [1,0,8] which is useless.\n**\nResult: [0, 1, 8]",
+      "evaluation": {
+        "state": "[0, 1, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24, combine with third (8): 1 * 8 = 8 (no).  \n8 - 1 = 7, not a factor of 24.  \n8 - 0 = 8, factor of 24, combine with 1: 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n1 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1,2,3,4,6,8,12).  \ncombine with third: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no), 8 / 1 = 8 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no), 8 / 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no), 9 / 0 undefined.  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1). combine with third: 1 * 8 = 8 (no).  \nalso try 8 - 1 = 7 (not a factor of 24).  \n8 - 0 = 8 (factor of 24), then 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24, combine with third (8): 1 * 8 = 8 (no).  \n8 - 1 = 7, not a factor of 24.  \n8 - 0 = 8, factor of 24, combine with 1: 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n1 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 1 and 0 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1,2,3,4,6,8,12).  \ncombine with third: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjust):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no), 8 / 1 = 8 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no), 8 / 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no), 9 / 0 undefined.  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: 0, 1, 8  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 0 = 0 (no).  \n1 / 8 = 0.125, then 0.125 * 0 = 0 (no).  \n8 / 0 = undefined (skip).  \n0 / 1 = 0, then 0 * 8 = 0 (no).  \n0 / 8 = 0, then 0 * 1 = 0 (no).  \nno success.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 0 and 1 → 1 - 0 = 1.  \n1 is a factor of 24? yes (1). combine with third: 1 * 8 = 8 (no).  \nalso try 8 - 1 = 7 (not a factor of 24).  \n8 - 0 = 8 (factor of 24), then 8 * 1 = 8 (no).  \nno success.\n\n- attempt 3 (multiplication):  \n0 * 1 = 0, then 0 * 8 = 0 (no).  \n0 * 8 = 0, then 0 * 1 = 0 (no).  \n1 * 8 = 8, then 8 + 0 = 8 (no), 8 - 0 = 8 (no), 8 * 0 = 0 (no), 8 / 0 undefined.  \nno success.\n\n- attempt 4 (addition and adjusting):  \n0 + 1 = 1, then 1 + 8 = 9 (no), 1 * 8 = 8 (no), 8 - 1 = 7 (no).  \n0 + 8 = 8, then 8 + 1 = 9 (no), 8 - 1 = 7 (no), 8 * 1 = 8 (no).  \n1 + 8 = 9, then 9 + 0 = 9 (no), 9 - 0 = 9 (no), 9 * 0 = 0 (no).  \nno success.\n\nno result near 24, not even between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        1.0,
+        1,
+        8
+      ],
+      "action": "[1.0, 1, 8]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**",
+        "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] / numbers[2]   # 8 / 8 = 1\nremaining = [numbers[0], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 1, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]",
+      "evaluation": {
+        "state": "[1.0, 1, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 1 = 8 (no).  \n8 / 1.0 = 8, same.  \n1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n1.0 / 8 = 0.125, same.  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two: 1 and 1.0 (difference 0). not useful.  \n1.0 and 8: 8 - 1 = 7 (not a factor of 24).  \n1 and 8: same.\n\n- attempt 3 (multiplication):  \n1 * 1 = 1, then 1 * 8 = 8 (no).  \n1 * 8 = 8, then 8 * 1 = 8 (no).  \n8 * 1 = 8, same.\n\n- attempt 4 (addition):  \n1 + 1 = 2, then 2 * 8 = 16 (no).  \n1 + 8 = 9, then 9 * 1 = 9 (no).  \n8 + 1 = 9, same.  \n1 + 1 + 8 = 10 (no).\n\nno result near 24.\n\nanswer: impossible",
+          "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - (1+1) = 6, 6 * 4? no 4.  \n  no path to 24.\n\nno result near 24.\n\nanswer: impossible",
+          "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - 1 - 1 = 6, then 6 * 4? no fourth number.  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "⚡ PATTERN HINT: matches failure pattern (hit=6, ops=['unknown'])",
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "🔒 PATTERN PENALTY: LLM confirmed + pattern match → score 0.001 → 0.001",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n8 / 1 = 8, then 8 * 1 = 8 (no).  \n8 / 1.0 = 8, same.  \n1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n1.0 / 8 = 0.125, same.  \nno.\n\n- attempt 2 (close subtraction):  \nclosest two: 1 and 1.0 (difference 0). not useful.  \n1.0 and 8: 8 - 1 = 7 (not a factor of 24).  \n1 and 8: same.\n\n- attempt 3 (multiplication):  \n1 * 1 = 1, then 1 * 8 = 8 (no).  \n1 * 8 = 8, then 8 * 1 = 8 (no).  \n8 * 1 = 8, same.\n\n- attempt 4 (addition):  \n1 + 1 = 2, then 2 * 8 = 16 (no).  \n1 + 8 = 9, then 9 * 1 = 9 (no).  \n8 + 1 = 9, same.  \n1 + 1 + 8 = 10 (no).\n\nno result near 24.\n\nanswer: impossible",
+            "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - (1+1) = 6, 6 * 4? no 4.  \n  no path to 24.\n\nno result near 24.\n\nanswer: impossible",
+            "we have numbers: 1.0, 1, 8. target: 24.\n\n- attempt 1 (division):  \n  8 / 1 = 8, then 8 * 1 = 8 (no).  \n  8 / 1.0 = 8, same.  \n  1 / 8 = 0.125, 0.125 * 1 = 0.125 (no).  \n  1.0 / 8 = 0.125, same.  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 1 and 1.0 (difference 0) → 0, not a factor.  \n  8 - 1 = 7, not a factor of 24.  \n  8 - 1.0 = 7, same.  \n  no.\n\n- attempt 3 (multiplication):  \n  1 * 1 = 1, then 1 * 8 = 8 (no).  \n  1 * 8 = 8, then 8 * 1 = 8 (no).  \n  8 * 1 = 8, same.  \n  no.\n\n- attempt 4 (addition):  \n  1 + 1 = 2, then 2 * 8 = 16 (no).  \n  1 + 8 = 9, then 9 * 1 = 9 (no).  \n  8 + 1 = 9, same.  \n  1 + 1 + 8 = 10 (no).  \n  8 - 1 - 1 = 6, then 6 * 4? no fourth number.  \n  no.\n\nno result near 24.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": {
+          "sorted_vals": [
+            9,
+            1,
+            1
+          ],
+          "op_sequence": [
+            "unknown"
+          ],
+          "thought": "Raw score: 0.001, Final score: 0.001",
+          "hit_count": 6
+        },
+        "pattern_penalty_applied": true,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 6,
+      "children": {
+        "23": {
+          "id": 23,
+          "parent_id": 4,
+          "state": [
+            0.0,
+            8
+          ],
+          "action": "[0.0, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "** 1.0 - 1 = 0, leaves [0, 8] → dead end (can't make 24).\n- **",
+            "code": "numbers = [1.0, 1, 8]\nres = numbers[0] - numbers[1]   # 1.0 - 1 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.0, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 - 1 = 0, leaves [0, 8] → dead end (can't make 24).\n- **\nResult: [0.0, 8]",
+          "evaluation": {
+            "state": "[0.0, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "24": {
+          "id": 24,
+          "parent_id": 4,
+          "state": [
+            1.0,
+            8
+          ],
+          "action": "[1.0, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "** 1.0 / 1 = 1.0, leaves [1.0, 8] → promising (1+8=9, 8-1=7, etc.)\n- **",
+            "code": "numbers = [1.0, 1, 8]\nres = numbers[0] / numbers[1]   # 1.0 / 1 = 1.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 8]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 / 1 = 1.0, leaves [1.0, 8] → promising (1+8=9, 8-1=7, etc.)\n- **\nResult: [1.0, 8]",
+          "evaluation": {
+            "state": "[1.0, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "25": {
+          "id": 25,
+          "parent_id": 4,
+          "state": [
+            9.0,
+            1
+          ],
+          "action": "[9.0, 1]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "** 1.0 + 8 = 9, leaves [1, 9] → promising (9*? 9*? need 2.666... no; 9+? 9+15 no; 9-? 9-? no; 9/?? 9/0.375 no)\n- **",
+            "code": "numbers = [1.0, 1, 8]\nres = numbers[0] + numbers[2]   # 1.0 + 8 = 9\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[9.0, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 + 8 = 9, leaves [1, 9] → promising (9*? 9*? need 2.666... no; 9+? 9+15 no; 9-? 9-? no; 9/?? 9/0.375 no)\n- **\nResult: [9.0, 1]",
+          "evaluation": {
+            "state": "[9.0, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 9.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "26": {
+          "id": 26,
+          "parent_id": 4,
+          "state": [
+            -7.0,
+            1
+          ],
+          "action": "[-7.0, 1]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "** 1.0 - 8 = -7, leaves [1, -7] → unlikely to get 24.\n- **",
+            "code": "numbers = [1.0, 1, 8]\nres = numbers[0] - numbers[2]   # 1.0 - 8 = -7\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-7.0, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 - 8 = -7, leaves [1, -7] → unlikely to get 24.\n- **\nResult: [-7.0, 1]",
+          "evaluation": {
+            "state": "[-7.0, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -7.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "27": {
+          "id": 27,
+          "parent_id": 4,
+          "state": [
+            7.0,
+            1
+          ],
+          "action": "[7.0, 1]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "** 8 - 1.0 = 7, leaves [1, 7] → promising (7*? 7*? need 24/7≈3.428; 7+? 7+17 no; 7-? 7-? no; 7/?? 7/0.2916 no)\n- **",
+            "code": "numbers = [1.0, 1, 8]\nres = numbers[2] - numbers[0]   # 8 - 1.0 = 7\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[7.0, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 8 - 1.0 = 7, leaves [1, 7] → promising (7*? 7*? need 24/7≈3.428; 7+? 7+17 no; 7-? 7-? no; 7/?? 7/0.2916 no)\n- **\nResult: [7.0, 1]",
+          "evaluation": {
+            "state": "[7.0, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 7.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "28": {
+          "id": 28,
+          "parent_id": 4,
+          "state": [
+            0.125,
+            1
+          ],
+          "action": "[0.125, 1]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "** 1.0 / 8 = 0.125, leaves [1, 0.125] → unlikely.\n- **",
+            "code": "numbers = [1.0, 1, 8]\nres = numbers[0] / numbers[2]   # 1.0 / 8 = 0.125\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.125, 1]"
+          },
+          "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 / 8 = 0.125, leaves [1, 0.125] → unlikely.\n- **\nResult: [0.125, 1]",
+          "evaluation": {
+            "state": "[0.125, 1]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.125,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 0,
+      "state": [
+        7,
+        8,
+        8
+      ],
+      "action": "[7, 8, 8]",
+      "value": 0.6,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**",
+        "code": "numbers = [1, 8, 8, 8]\nres = numbers[1] - numbers[0]   # 8 - 1 = 7\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7, 8, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]",
+      "evaluation": {
+        "state": "[7, 8, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \ncombine with third 8: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, then 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \n8 * 8 = 64, then 64 - 7 = 57 (no).  \n64 / 7 ≈ 9.14 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n7 + 8 = 15, then 15 + 8 = 23 (close but not 24).  \n15 * 8 = 120 (no).  \n8 + 8 = 16, then 16 + 7 = 23 (again).  \n16 * 7 = 112 (no).  \nno.\n\nno result within 0.001 of 24, and no result between 20 and 28 except 23, which is not in the 20–28 inclusive? wait, 23 is between 20 and 28, so it qualifies as \"likely\".\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno division path works.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 8 and 8 → 8 - 8 = 0 (not a factor of 24).  \nnext closest: 8 - 7 = 1 (factor of 24).  \n1 * 8 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n8 + 8 = 16, 16 + 7 = 23 (close but not 24).  \n8 + 7 = 15, 15 + 8 = 23 (again).  \n16 - 7 = 9 (no).  \n15 - 8 = 7 (no).  \nno.\n\n- attempt 5 (other combos):  \n8 * 7 = 56, 56 - 8 = 48 (no).  \n8 * 3? no third number.  \n(8 + 8 + 7) = 23, not 24.  \n(8 * 3) not possible.\n\nno result within 0.001 of 24.  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \n1 * 8 = 8 (no).  \n8 * 1 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, 56 / 8 = 7 (no).  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n8 * 8 = 64, 64 - 7 = 57 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n7 + 8 = 15, 15 + 8 = 23 (close but not 24).  \n8 + 8 = 16, 16 + 7 = 23 (again 23).  \n7 + 8 = 15, 15 * 8 = 120 (no).  \n8 + 8 = 16, 16 * 7 = 112 (no).  \n23 is between 20 and 28.\n\nresult is 23, which is within 20–28.\n\nanswer: likely"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'likely', 'likely']",
+          "Votes: sure=0, likely=3, impossible=0",
+          "Raw score: 0.600, Final score: 0.600"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \ncombine with third 8: 1 * 8 = 8 (no).  \n8 / 1 = 8 (no).  \n8 + 1 = 9 (no).  \n8 - 1 = 7 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, then 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \n8 * 8 = 64, then 64 - 7 = 57 (no).  \n64 / 7 ≈ 9.14 (no).  \nno.\n\n- attempt 4 (addition and adjust):  \n7 + 8 = 15, then 15 + 8 = 23 (close but not 24).  \n15 * 8 = 120 (no).  \n8 + 8 = 16, then 16 + 7 = 23 (again).  \n16 * 7 = 112 (no).  \nno.\n\nno result within 0.001 of 24, and no result between 20 and 28 except 23, which is not in the 20–28 inclusive? wait, 23 is between 20 and 28, so it qualifies as \"likely\".\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno division path works.\n\n- attempt 2 (close subtraction):  \nclosest two numbers: 8 and 8 → 8 - 8 = 0 (not a factor of 24).  \nnext closest: 8 - 7 = 1 (factor of 24).  \n1 * 8 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n56 / 8 = 7 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n8 + 8 = 16, 16 + 7 = 23 (close but not 24).  \n8 + 7 = 15, 15 + 8 = 23 (again).  \n16 - 7 = 9 (no).  \n15 - 8 = 7 (no).  \nno.\n\n- attempt 5 (other combos):  \n8 * 7 = 56, 56 - 8 = 48 (no).  \n8 * 3? no third number.  \n(8 + 8 + 7) = 23, not 24.  \n(8 * 3) not possible.\n\nno result within 0.001 of 24.  \nbest result is 23, which is between 20 and 28.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [7, 8, 8]  \ntarget: 24  \n\n- attempt 1 (division):  \n8 / 7 ≈ 1.1429, times 8 ≈ 9.14 (no).  \n7 / 8 = 0.875, times 8 = 7 (no).  \n8 / 8 = 1, times 7 = 7 (no).  \nno.\n\n- attempt 2 (close subtraction):  \n8 - 7 = 1 (factor of 24? 1 is a factor).  \n1 * 8 = 8 (no).  \n8 * 1 = 8 (no).  \nno.\n\n- attempt 3 (multiplication):  \n7 * 8 = 56, 56 / 8 = 7 (no).  \n8 * 8 = 64, 64 / 7 ≈ 9.14 (no).  \n7 * 8 = 56, 56 - 8 = 48 (no).  \n8 * 8 = 64, 64 - 7 = 57 (no).  \nno.\n\n- attempt 4 (addition and adjusting):  \n7 + 8 = 15, 15 + 8 = 23 (close but not 24).  \n8 + 8 = 16, 16 + 7 = 23 (again 23).  \n7 + 8 = 15, 15 * 8 = 120 (no).  \n8 + 8 = 16, 16 * 7 = 112 (no).  \n23 is between 20 and 28.\n\nresult is 23, which is within 20–28.\n\nanswer: likely"
+          ],
+          "mapped_values": [
+            0.6,
+            0.6,
+            0.6
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 3,
+            "sure": 0
+          }
+        },
+        "final_value": 0.6,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 6,
+      "children": {
+        "17": {
+          "id": 17,
+          "parent_id": 5,
+          "state": [
+            1,
+            8
+          ],
+          "action": "[1, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "8 - 7 = 1, leaving [1, 8]. Then 1 + 8 = 9, not 24, but could try other operations later.",
+            "code": "numbers = [7, 8, 8]\nres = numbers[1] - numbers[0]   # 8 - 7 = 1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n8 - 7 = 1, leaving [1, 8]. Then 1 + 8 = 9, not 24, but could try other operations later.\nResult: [1, 8]",
+          "evaluation": {
+            "state": "[1, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "18": {
+          "id": 18,
+          "parent_id": 5,
+          "state": [
+            -1,
+            8
+          ],
+          "action": "[-1, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "7 - 8 = -1, leaving [-1, 8]. Unlikely to yield 24, but included for completeness.",
+            "code": "numbers = [7, 8, 8]\nres = numbers[0] - numbers[1]   # 7 - 8 = -1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-1, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 - 8 = -1, leaving [-1, 8]. Unlikely to yield 24, but included for completeness.\nResult: [-1, 8]",
+          "evaluation": {
+            "state": "[-1, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -1.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "19": {
+          "id": 19,
+          "parent_id": 5,
+          "state": [
+            15,
+            8
+          ],
+          "action": "[15, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "7 + 8 = 15, leaving [15, 8]. 15 + 8 = 23, 15 * 8 = 120 too large, but 15 - 8 = 7, then 7 * something? Unlikely.",
+            "code": "numbers = [7, 8, 8]\nres = numbers[0] + numbers[1]   # 7 + 8 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[15, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 + 8 = 15, leaving [15, 8]. 15 + 8 = 23, 15 * 8 = 120 too large, but 15 - 8 = 7, then 7 * something? Unlikely.\nResult: [15, 8]",
+          "evaluation": {
+            "state": "[15, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 15.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "20": {
+          "id": 20,
+          "parent_id": 5,
+          "state": [
+            56,
+            8
+          ],
+          "action": "[56, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "7 * 8 = 56, leaving [56, 8]. 56 / 8 = 7, not 24; 56 - 8 = 48; 56 + 8 = 64; too large.",
+            "code": "numbers = [7, 8, 8]\nres = numbers[0] * numbers[1]   # 7 * 8 = 56\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[56, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 * 8 = 56, leaving [56, 8]. 56 / 8 = 7, not 24; 56 - 8 = 48; 56 + 8 = 64; too large.\nResult: [56, 8]",
+          "evaluation": {
+            "state": "[56, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 56.0,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "21": {
+          "id": 21,
+          "parent_id": 5,
+          "state": [
+            0.875,
+            8
+          ],
+          "action": "[0.875, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "7 / 8 = 0.875, leaving [0.875, 8]. Fractional, unlikely to combine to 24.",
+            "code": "numbers = [7, 8, 8]\nres = numbers[0] / numbers[1]   # 7 / 8 = 0.875\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.875, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 / 8 = 0.875, leaving [0.875, 8]. Fractional, unlikely to combine to 24.\nResult: [0.875, 8]",
+          "evaluation": {
+            "state": "[0.875, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.875,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "22": {
+          "id": 22,
+          "parent_id": 5,
+          "state": [
+            1.1428571428571428,
+            8
+          ],
+          "action": "[1.1428571428571428, 8]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "8 / 7 ≈ 1.142857, leaving [1.142857, 8]. Fractional, not promising.",
+            "code": "numbers = [7, 8, 8]\nres = numbers[1] / numbers[0]   # 8 / 7 ≈ 1.142857\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.1428571428571428, 8]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n8 / 7 ≈ 1.142857, leaving [1.142857, 8]. Fractional, not promising.\nResult: [1.1428571428571428, 8]",
+          "evaluation": {
+            "state": "[1.1428571428571428, 8]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.1428571428571428,8.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 6,
+      "parent_id": 1,
+      "state": [
+        16,
+        8
+      ],
+      "action": "[16, 8]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Pair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**",
+        "code": "numbers = [8, 8, 8]\nres = numbers[0] + numbers[1]   # 8 + 8 = 16\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]",
+      "evaluation": {
+        "state": "[16, 8]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 16
+        },
+        "llm_judgments": [
+          "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+          "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '16 + 8=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure",
+            "we have two numbers: 16 and 8.  \nsince there are only two numbers, we freely try all operations.\n\n- 16 + 8 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "16 + 8",
+        "extracted_result": 24.0
+      },
+      "num_children": 2,
+      "children": {
+        "29": {
+          "id": 29,
+          "parent_id": 6,
+          "state": [
+            24.0
+          ],
+          "action": "16 + 8",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [16, 8], 16 + 8 = 24",
+            "code": "numbers = [16, 8]\na, b = 16, 8\nresult = 16 + 8\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nOperation: 16 + 8 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        },
+        "30": {
+          "id": 30,
+          "parent_id": 6,
+          "state": [
+            24
+          ],
+          "action": "Code executed successfully.",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "For 2-number state [16, 8], LLM chose: a+b",
+            "code": "numbers = [16, 8]\na, b = 16, 8\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+            "observation": "Code executed successfully."
+          },
+          "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nFor 2-number state [16, 8], LLM chose: a+b\nResult: Code executed successfully.",
+          "evaluation": {
+            "state": "[24]",
+            "is_final": true,
+            "heuristic_checks": {
+              "is_single_number": true,
+              "is_solution": true
+            },
+            "llm_judgments": [],
+            "reasoning": [
+              "✅ SOLUTION: equals 24"
+            ],
+            "score_breakdown": {},
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 7,
+      "parent_id": 1,
+      "state": [
+        64,
+        8
+      ],
+      "action": "[64, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1) — 8 and 8. Multiplication gives 64, too big.**",
+        "code": "numbers = [8, 8, 8]\nres = numbers[0] * numbers[1]   # 8 * 8 = 64\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[64, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Multiplication gives 64, too big.**\nResult: [64, 8]",
+      "evaluation": {
+        "state": "[64, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 64.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 1,
+      "state": [
+        0,
+        8
+      ],
+      "action": "[0, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1) — 8 and 8. Subtraction 8-8=0, leads to dead end (0 and 8).**",
+        "code": "numbers = [8, 8, 8]\nres = numbers[0] - numbers[1]   # 8 - 8 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Subtraction 8-8=0, leads to dead end (0 and 8).**\nResult: [0, 8]",
+      "evaluation": {
+        "state": "[0, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 1,
+      "state": [
+        1.0,
+        8
+      ],
+      "action": "[1.0, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1) — 8 and 8. Division 8/8=1, gives [1,8] — can make 9 or 7, but not 24.**",
+        "code": "numbers = [8, 8, 8]\nres = numbers[0] / numbers[1]   # 8 / 8 = 1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Division 8/8=1, gives [1,8] — can make 9 or 7, but not 24.**\nResult: [1.0, 8]",
+      "evaluation": {
+        "state": "[1.0, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 2,
+      "state": [
+        24,
+        1
+      ],
+      "action": "[24, 1]",
+      "value": 0.01,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "16 + 8 = 24, directly reaching the target with 1 remaining.",
+        "code": "numbers = [16, 1, 8]\nres = numbers[0] + numbers[2]   # 16 + 8 = 24\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[24, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 + 8 = 24, directly reaching the target with 1 remaining.\nResult: [24, 1]",
+      "evaluation": {
+        "state": "[24, 1]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "⚠️ DEAD-END: Contains 24 but not final state"
+        ],
+        "score_breakdown": {},
+        "final_value": 0.01,
+        "pattern_match": null,
+        "pattern_penalty_applied": false
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 2,
+      "state": [
+        17,
+        8
+      ],
+      "action": "[17, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "16 + 1 = 17, then 17 + 8 = 25 (close but not exact). Worth trying.",
+        "code": "numbers = [16, 1, 8]\nres = numbers[0] + numbers[1]   # 16 + 1 = 17\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[17, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 + 1 = 17, then 17 + 8 = 25 (close but not exact). Worth trying.\nResult: [17, 8]",
+      "evaluation": {
+        "state": "[17, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 17.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 2,
+      "state": [
+        15,
+        8
+      ],
+      "action": "[15, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "16 - 1 = 15, then 15 + 8 = 23 (close to 24).",
+        "code": "numbers = [16, 1, 8]\nres = numbers[0] - numbers[1]   # 16 - 1 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 - 1 = 15, then 15 + 8 = 23 (close to 24).\nResult: [15, 8]",
+      "evaluation": {
+        "state": "[15, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 2,
+      "state": [
+        9,
+        16
+      ],
+      "action": "[9, 16]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "1 + 8 = 9, then 16 + 9 = 25 (close to 24).",
+        "code": "numbers = [16, 1, 8]\nres = numbers[1] + numbers[2]   # 1 + 8 = 9\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[9, 16]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n1 + 8 = 9, then 16 + 9 = 25 (close to 24).\nResult: [9, 16]",
+      "evaluation": {
+        "state": "[9, 16]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 9.0,16.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 2,
+      "state": [
+        2.0,
+        1
+      ],
+      "action": "[2.0, 1]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "16 / 8 = 2, then 2 * 1 = 2 (not promising, but exploring).",
+        "code": "numbers = [16, 1, 8]\nres = numbers[0] / numbers[2]   # 16 / 8 = 2\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.0, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 / 8 = 2, then 2 * 1 = 2 (not promising, but exploring).\nResult: [2.0, 1]",
+      "evaluation": {
+        "state": "[2.0, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 2.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 2,
+      "state": [
+        7,
+        16
+      ],
+      "action": "[7, 16]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "8 - 1 = 7, then 16 + 7 = 23 (close to 24).",
+        "code": "numbers = [16, 1, 8]\nres = numbers[2] - numbers[1]   # 8 - 1 = 7\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7, 16]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n8 - 1 = 7, then 16 + 7 = 23 (close to 24).\nResult: [7, 16]",
+      "evaluation": {
+        "state": "[7, 16]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 7.0,16.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 2,
+      "state": [
+        8,
+        1
+      ],
+      "action": "[8, 1]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "16 - 8 = 8, then 8 + 1 = 9 (not promising, but covers pair).",
+        "code": "numbers = [16, 1, 8]\nres = numbers[0] - numbers[2]   # 16 - 8 = 8\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Addition gives 16, which can combine with 1 and 8 to reach 24 (16+8=24).\n**\nResult: [16, 1, 8]\n16 - 8 = 8, then 8 + 1 = 9 (not promising, but covers pair).\nResult: [8, 1]",
+      "evaluation": {
+        "state": "[8, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 5,
+      "state": [
+        1,
+        8
+      ],
+      "action": "[1, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "8 - 7 = 1, leaving [1, 8]. Then 1 + 8 = 9, not 24, but could try other operations later.",
+        "code": "numbers = [7, 8, 8]\nres = numbers[1] - numbers[0]   # 8 - 7 = 1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n8 - 7 = 1, leaving [1, 8]. Then 1 + 8 = 9, not 24, but could try other operations later.\nResult: [1, 8]",
+      "evaluation": {
+        "state": "[1, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 5,
+      "state": [
+        -1,
+        8
+      ],
+      "action": "[-1, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "7 - 8 = -1, leaving [-1, 8]. Unlikely to yield 24, but included for completeness.",
+        "code": "numbers = [7, 8, 8]\nres = numbers[0] - numbers[1]   # 7 - 8 = -1\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-1, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 - 8 = -1, leaving [-1, 8]. Unlikely to yield 24, but included for completeness.\nResult: [-1, 8]",
+      "evaluation": {
+        "state": "[-1, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -1.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 5,
+      "state": [
+        15,
+        8
+      ],
+      "action": "[15, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "7 + 8 = 15, leaving [15, 8]. 15 + 8 = 23, 15 * 8 = 120 too large, but 15 - 8 = 7, then 7 * something? Unlikely.",
+        "code": "numbers = [7, 8, 8]\nres = numbers[0] + numbers[1]   # 7 + 8 = 15\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[15, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 + 8 = 15, leaving [15, 8]. 15 + 8 = 23, 15 * 8 = 120 too large, but 15 - 8 = 7, then 7 * something? Unlikely.\nResult: [15, 8]",
+      "evaluation": {
+        "state": "[15, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 15.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 20,
+      "parent_id": 5,
+      "state": [
+        56,
+        8
+      ],
+      "action": "[56, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "7 * 8 = 56, leaving [56, 8]. 56 / 8 = 7, not 24; 56 - 8 = 48; 56 + 8 = 64; too large.",
+        "code": "numbers = [7, 8, 8]\nres = numbers[0] * numbers[1]   # 7 * 8 = 56\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[56, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 * 8 = 56, leaving [56, 8]. 56 / 8 = 7, not 24; 56 - 8 = 48; 56 + 8 = 64; too large.\nResult: [56, 8]",
+      "evaluation": {
+        "state": "[56, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 56.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 21,
+      "parent_id": 5,
+      "state": [
+        0.875,
+        8
+      ],
+      "action": "[0.875, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "7 / 8 = 0.875, leaving [0.875, 8]. Fractional, unlikely to combine to 24.",
+        "code": "numbers = [7, 8, 8]\nres = numbers[0] / numbers[1]   # 7 / 8 = 0.875\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.875, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n7 / 8 = 0.875, leaving [0.875, 8]. Fractional, unlikely to combine to 24.\nResult: [0.875, 8]",
+      "evaluation": {
+        "state": "[0.875, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.875,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 22,
+      "parent_id": 5,
+      "state": [
+        1.1428571428571428,
+        8
+      ],
+      "action": "[1.1428571428571428, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "8 / 7 ≈ 1.142857, leaving [1.142857, 8]. Fractional, not promising.",
+        "code": "numbers = [7, 8, 8]\nres = numbers[1] / numbers[0]   # 8 / 7 ≈ 1.142857\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.1428571428571428, 8]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and 8. Subtraction (8-1=7) gives [7,8,8] — 7+8+8=23, close but not 24.\n**\nResult: [7, 8, 8]\n8 / 7 ≈ 1.142857, leaving [1.142857, 8]. Fractional, not promising.\nResult: [1.1428571428571428, 8]",
+      "evaluation": {
+        "state": "[1.1428571428571428, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.1428571428571428,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 23,
+      "parent_id": 4,
+      "state": [
+        0.0,
+        8
+      ],
+      "action": "[0.0, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "** 1.0 - 1 = 0, leaves [0, 8] → dead end (can't make 24).\n- **",
+        "code": "numbers = [1.0, 1, 8]\nres = numbers[0] - numbers[1]   # 1.0 - 1 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.0, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 - 1 = 0, leaves [0, 8] → dead end (can't make 24).\n- **\nResult: [0.0, 8]",
+      "evaluation": {
+        "state": "[0.0, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 24,
+      "parent_id": 4,
+      "state": [
+        1.0,
+        8
+      ],
+      "action": "[1.0, 8]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "** 1.0 / 1 = 1.0, leaves [1.0, 8] → promising (1+8=9, 8-1=7, etc.)\n- **",
+        "code": "numbers = [1.0, 1, 8]\nres = numbers[0] / numbers[1]   # 1.0 / 1 = 1.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 8]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 / 1 = 1.0, leaves [1.0, 8] → promising (1+8=9, 8-1=7, etc.)\n- **\nResult: [1.0, 8]",
+      "evaluation": {
+        "state": "[1.0, 8]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,8.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 25,
+      "parent_id": 4,
+      "state": [
+        9.0,
+        1
+      ],
+      "action": "[9.0, 1]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "** 1.0 + 8 = 9, leaves [1, 9] → promising (9*? 9*? need 2.666... no; 9+? 9+15 no; 9-? 9-? no; 9/?? 9/0.375 no)\n- **",
+        "code": "numbers = [1.0, 1, 8]\nres = numbers[0] + numbers[2]   # 1.0 + 8 = 9\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[9.0, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 + 8 = 9, leaves [1, 9] → promising (9*? 9*? need 2.666... no; 9+? 9+15 no; 9-? 9-? no; 9/?? 9/0.375 no)\n- **\nResult: [9.0, 1]",
+      "evaluation": {
+        "state": "[9.0, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 9.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 26,
+      "parent_id": 4,
+      "state": [
+        -7.0,
+        1
+      ],
+      "action": "[-7.0, 1]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "** 1.0 - 8 = -7, leaves [1, -7] → unlikely to get 24.\n- **",
+        "code": "numbers = [1.0, 1, 8]\nres = numbers[0] - numbers[2]   # 1.0 - 8 = -7\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-7.0, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 - 8 = -7, leaves [1, -7] → unlikely to get 24.\n- **\nResult: [-7.0, 1]",
+      "evaluation": {
+        "state": "[-7.0, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -7.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 27,
+      "parent_id": 4,
+      "state": [
+        7.0,
+        1
+      ],
+      "action": "[7.0, 1]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "** 8 - 1.0 = 7, leaves [1, 7] → promising (7*? 7*? need 24/7≈3.428; 7+? 7+17 no; 7-? 7-? no; 7/?? 7/0.2916 no)\n- **",
+        "code": "numbers = [1.0, 1, 8]\nres = numbers[2] - numbers[0]   # 8 - 1.0 = 7\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[7.0, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 8 - 1.0 = 7, leaves [1, 7] → promising (7*? 7*? need 24/7≈3.428; 7+? 7+17 no; 7-? 7-? no; 7/?? 7/0.2916 no)\n- **\nResult: [7.0, 1]",
+      "evaluation": {
+        "state": "[7.0, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 7.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 28,
+      "parent_id": 4,
+      "state": [
+        0.125,
+        1
+      ],
+      "action": "[0.125, 1]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "** 1.0 / 8 = 0.125, leaves [1, 0.125] → unlikely.\n- **",
+        "code": "numbers = [1.0, 1, 8]\nres = numbers[0] / numbers[2]   # 1.0 / 8 = 0.125\nremaining = [numbers[1]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.125, 1]"
+      },
+      "path_history": "** Pair indices (1,2) — two 8s. Division (8/8=1) gives [1,1,8] — could be useful (1+1=2, 2×? No; 8+8+8? No).\n**\nResult: [1.0, 1, 8]\n** 1.0 / 8 = 0.125, leaves [1, 0.125] → unlikely.\n- **\nResult: [0.125, 1]",
+      "evaluation": {
+        "state": "[0.125, 1]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.125,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 29,
+      "parent_id": 6,
+      "state": [
+        24.0
+      ],
+      "action": "16 + 8",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [16, 8], 16 + 8 = 24",
+        "code": "numbers = [16, 8]\na, b = 16, 8\nresult = 16 + 8\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nOperation: 16 + 8 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 30,
+      "parent_id": 6,
+      "state": [
+        24
+      ],
+      "action": "Code executed successfully.",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "For 2-number state [16, 8], LLM chose: a+b",
+        "code": "numbers = [16, 8]\na, b = 16, 8\nresult = a+b\nnew_numbers = [x for x in numbers if x not in [a, b]] + [result]\nnew_numbers.sort()\n",
+        "observation": "Code executed successfully."
+      },
+      "path_history": "** Pair indices (0,1) — smallest (1) and first 8. Multiplication gives 8, which is promising since 8×3=24 or 8+8+8=24.\n**\nResult: [8, 8, 8]\nPair (0,1) — 8 and 8. Addition gives 16, which is close to 24 (need +8). Multiplication gives 64, too large. Subtraction gives 0, which is a dead end normally. Division gives 1, which combined with remaining 8 gives 8 or 9 — not 24.**\nResult: [16, 8]\nFor 2-number state [16, 8], LLM chose: a+b\nResult: Code executed successfully.",
+      "evaluation": {
+        "state": "[24]",
+        "is_final": true,
+        "heuristic_checks": {
+          "is_single_number": true,
+          "is_solution": true
+        },
+        "llm_judgments": [],
+        "reasoning": [
+          "✅ SOLUTION: equals 24"
+        ],
+        "score_breakdown": {},
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false
+      },
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    29
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 6,
+      "re_evaluations": 0,
+      "unique_states": 6,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}
