@@ -2,6 +2,9 @@
 """
 verify_training_data.py - Check arithmetic correctness of training examples.
 Now correctly handles backtracking examples by resetting state on [restart: ...].
+Additionally, validates that any step tagged [dead end] is indeed a dead end:
+    - The step's arithmetic is correct.
+    - From the resulting state, no sequence of operations can yield 24.
 """
 
 import json
@@ -9,6 +12,49 @@ import re
 import sys
 import math
 from typing import List, Tuple, Optional
+from itertools import permutations, product
+
+# ------------------------------------------------------------
+#  Exhaustive 24‑game solver for small states
+# ------------------------------------------------------------
+def can_reach_24(nums: List[float], tol: float = 1e-6) -> bool:
+    """
+    Return True if the list of numbers (length <= 4) can be combined with
+    +, -, *, / to make exactly 24 (within tolerance).
+    """
+    if not nums:
+        return False
+    if len(nums) == 1:
+        return math.isclose(nums[0], 24.0, rel_tol=tol, abs_tol=tol)
+    # Try every pair (i, j) and operation, reduce list, recurse
+    n = len(nums)
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                continue
+            a, b = nums[i], nums[j]
+            # Remaining numbers (all except i and j)
+            rest = [nums[k] for k in range(n) if k != i and k != j]
+            # Try all operations
+            for op in ['+', '-', '*', '/']:
+                try:
+                    if op == '+':
+                        res = a + b
+                    elif op == '-':
+                        res = a - b
+                    elif op == '*':
+                        res = a * b
+                    elif op == '/':
+                        if abs(b) < 1e-12:
+                            continue
+                        res = a / b
+                    else:
+                        continue
+                    if can_reach_24(rest + [res], tol):
+                        return True
+                except:
+                    continue
+    return False
 
 # ------------------------------------------------------------
 #  Parsing helpers
@@ -20,36 +66,10 @@ def parse_puzzle_numbers(prompt: str) -> List[float]:
     return [float(x) for x in match.group(1).split()]
 
 def parse_restart_numbers(line: str) -> Optional[List[float]]:
-    """Extract numbers from '[restart: 1 2 3 4]' or similar."""
     match = re.search(r'\[restart:\s*([\d\.\s]+)\]', line)
     if not match:
         return None
     return [float(x) for x in match.group(1).split()]
-
-def parse_completion_steps(completion: str) -> List[Tuple[str, str, str, float, List[float], bool]]:
-    """
-    Parse all steps from completion, including dead‑end steps (before restart).
-    Each step is (a_str, op, b_str, result, left_numbers, is_after_restart)
-    but we will handle state reset separately.
-    """
-    lines = completion.strip().split('\n')
-    steps = []
-    for line in lines:
-        if line.startswith('Answer:'):
-            continue
-        # Skip [restart: ...] lines themselves; they are handled separately.
-        if '[restart:' in line and not re.search(r'^\s*\d+', line):
-            continue
-        # Match step pattern: 4 * 5 = 20 (left: 20 1 4)
-        match = re.match(r'(-?\d+\.?\d*)\s*([+\-*/])\s*(-?\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)\s*\(left:\s*([^)]+)\)', line)
-        if not match:
-            # Also handle steps without explicit (left: ...) – should not happen in our data
-            continue
-        a_str, op, b_str, res_str, left_str = match.groups()
-        result = float(res_str)
-        left_numbers = [float(x) for x in left_str.split()]
-        steps.append((a_str, op, b_str, result, left_numbers))
-    return steps
 
 def evaluate_operation(a: float, op: str, b: float) -> float:
     if op == '+': return a + b
@@ -62,7 +82,7 @@ def evaluate_operation(a: float, op: str, b: float) -> float:
     raise ValueError(f"Unknown operator {op}")
 
 # ------------------------------------------------------------
-#  Verification with restart handling
+#  Verification with restart handling and dead‑end validation
 # ------------------------------------------------------------
 def verify_example(entry: dict, tol: float = 1e-3) -> Tuple[bool, str]:
     prompt = entry.get('prompt', '')
@@ -76,10 +96,8 @@ def verify_example(entry: dict, tol: float = 1e-3) -> Tuple[bool, str]:
         return False, f"Failed to parse puzzle numbers: {e}"
 
     lines = completion.strip().split('\n')
-    # We'll process lines sequentially, handling restarts.
     current = initial_numbers[:]   # mutable state
     step_num = 0
-    skip_until_restart = False   # not needed; we just reset on restart
 
     for line_num, line in enumerate(lines, 1):
         # Detect restart
@@ -88,12 +106,11 @@ def verify_example(entry: dict, tol: float = 1e-3) -> Tuple[bool, str]:
             if restart_nums is None:
                 return False, f"Invalid restart marker at line {line_num}"
             current = restart_nums[:]
-            continue   # skip this line as a step
+            continue
 
-        # Try to parse a step
+        # Parse step (ignore lines that are not steps)
         step_match = re.match(r'(-?\d+\.?\d*)\s*([+\-*/])\s*(-?\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)\s*\(left:\s*([^)]+)\)', line)
         if not step_match:
-            # Possibly an answer line or empty
             continue
 
         a_str, op, b_str, res_str, left_str = step_match.groups()
@@ -102,8 +119,9 @@ def verify_example(entry: dict, tol: float = 1e-3) -> Tuple[bool, str]:
         expected_res = float(res_str)
         left_after = [float(x) for x in left_str.split()]
         step_num += 1
+        is_dead_end = ' [dead end]' in line  # check if line ends with the tag
 
-        # Check that a_val and b_val exist in current list (allow tolerance)
+        # --- Arithmetic check for the operation ---
         remaining = list(current)
         found_a = found_b = False
         for i, v in enumerate(remaining):
@@ -134,6 +152,14 @@ def verify_example(entry: dict, tol: float = 1e-3) -> Tuple[bool, str]:
         for x, y in zip(new_sorted, left_sorted):
             if not math.isclose(x, y, rel_tol=tol, abs_tol=tol):
                 return False, f"Step {step_num}: left numbers mismatch – expected {left_sorted} but got {new_sorted}"
+
+        # --- Dead‑end validation: from left_after, can we reach 24? ---
+        if is_dead_end:
+            # The state after the step is left_after.
+            # If 24 is reachable from this state, then it's not a true dead end.
+            if can_reach_24(left_after, tol):
+                return False, f"Step {step_num} marked [dead end] but 24 is reachable from {left_after}"
+
         current = new_current
 
     # After all steps, we must have exactly one number and it must be 24
@@ -180,11 +206,11 @@ def main():
     print("\n" + "=" * 50)
     print(f"SUMMARY: {valid} valid / {total} total")
     if valid == total:
-        print("All examples are arithmetically correct.")
+        print("All examples are arithmetically correct and dead‑ends are genuine.")
         sys.exit(0)
     else:
         print(f"\nFailed examples: {len(invalid_summary)}")
-        for ln, err, puz in invalid_summary[:20]:   # show first 20
+        for ln, err, puz in invalid_summary[:20]:
             print(f"  Line {ln}: {puz} -> {err}")
         if len(invalid_summary) > 20:
             print(f"  ... and {len(invalid_summary)-20} more")

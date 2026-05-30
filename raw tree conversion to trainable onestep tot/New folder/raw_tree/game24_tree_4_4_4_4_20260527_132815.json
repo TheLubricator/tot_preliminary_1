@@ -1,0 +1,3742 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-27T13:28:15.123832",
+    "mode": "CodeAct with Dead-End Memory",
+    "parameters": {
+      "temperature": 0.7,
+      "n_evaluate_sample": 3,
+      "n_select_sample": 5,
+      "max_steps": 6,
+      "api_delay": 0.01,
+      "enable_deadend_memory": true
+    },
+    "statistics": {
+      "total_nodes": 35,
+      "api_calls": 21,
+      "cache_hits": 0,
+      "solutions_found": 1,
+      "code_executions": 63,
+      "code_errors": 0,
+      "daily_requests": 21,
+      "session_start": "2026-05-27T13:26:54.844527",
+      "deadend_memory_enabled": true,
+      "deadend_memory_skipped": 28,
+      "total_input_tokens": 20798,
+      "total_output_tokens": 14017,
+      "api_saved_two_num_cache": 84,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0,
+      "correct_path_in_proposals": true,
+      "winning_depth1_count": 2,
+      "winning_depth1_proposed": 2,
+      "deadend_memory": {
+        "patterns_stored": 238,
+        "two_num_cache_size": 2308,
+        "total_checked": 33,
+        "total_skipped": 28,
+        "skip_rate": "84.8%"
+      },
+      "time_seconds": 80.28
+    },
+    "correct_path_in_proposals": true,
+    "winning_depth1_count": 2,
+    "winning_depth1_proposed": 2,
+    "deadend_memory_summary": {
+      "enabled": true,
+      "patterns_stored": 238,
+      "total_checked": 33,
+      "total_skipped": 28,
+      "api_calls_saved": 84,
+      "api_saved_two_num_cache": 84,
+      "api_saved_3num_pattern": 0,
+      "api_saved_value_cache": 0
+    }
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "state": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "action": "",
+      "value": 0.0,
+      "depth": 0,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "",
+        "code": "",
+        "observation": ""
+      },
+      "path_history": "",
+      "evaluation": null,
+      "num_children": 4,
+      "children": {
+        "1": {
+          "id": 1,
+          "parent_id": 0,
+          "state": [
+            8,
+            4,
+            4
+          ],
+          "action": "[8, 4, 4]",
+          "value": 0.7333333333333334,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add the first two 4s — a simple start.",
+            "code": "numbers = [4, 4, 4, 4]\nres = numbers[0] + numbers[1]   # 4 + 4 = 8\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 4, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]",
+          "evaluation": {
+            "state": "[8, 4, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 8
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 4 = 8 (no).  \n  4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n  4 / 4 = 1, then 1 * 8 = 8 (no).  \n  8 / 4 = 2, then 4 / 2 = 2 (no).  \n  no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  8 - 4 = 4 (factor of 24), then 4 * 4 = 16 (no).  \n  8 - 4 = 4, then 4 + 4 = 8 (no).  \n  8 - 4 = 4, then 4 / 4 = 1 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n  that’s 28, which is between 20 and 28.\n\nsince 28 is within the 20–28 range, the decision rule says \"likely\".\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \nno.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \nthat’s 28, which is between 20 and 28 inclusive.\n\nwe stop here because we found a result in the 20–28 range.\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \n- 4 / 4 = 1, then 8 - 1 = 7 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \n8 - 4 = 4 (factor of 24).  \nthen 4 * 4 = 16 (no).  \n8 - 4 = 4, then 4 + 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n- 4 * 4 = 16, then 16 + 8 = 24 (exact!).  \n\nwe found 4 * 4 = 16, then 16 + 8 = 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['likely', 'likely', 'sure']",
+              "Votes: sure=1, likely=2, impossible=0",
+              "Raw score: 0.733, Final score: 0.733"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 4 = 8 (no).  \n  4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n  4 / 4 = 1, then 1 * 8 = 8 (no).  \n  8 / 4 = 2, then 4 / 2 = 2 (no).  \n  no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  8 - 4 = 4 (factor of 24), then 4 * 4 = 16 (no).  \n  8 - 4 = 4, then 4 + 4 = 8 (no).  \n  8 - 4 = 4, then 4 / 4 = 1 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n  that’s 28, which is between 20 and 28.\n\nsince 28 is within the 20–28 range, the decision rule says \"likely\".\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \nno.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \nthat’s 28, which is between 20 and 28 inclusive.\n\nwe stop here because we found a result in the 20–28 range.\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \n- 4 / 4 = 1, then 8 - 1 = 7 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \n8 - 4 = 4 (factor of 24).  \nthen 4 * 4 = 16 (no).  \n8 - 4 = 4, then 4 + 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n- 4 * 4 = 16, then 16 + 8 = 24 (exact!).  \n\nwe found 4 * 4 = 16, then 16 + 8 = 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                0.6,
+                0.6,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 2,
+                "sure": 1
+              }
+            },
+            "final_value": 0.7333333333333334,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "likely",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 6,
+          "children": {
+            "13": {
+              "id": 13,
+              "parent_id": 1,
+              "state": [
+                12,
+                4
+              ],
+              "action": "[12, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1): 8 + 4 = 12 → [12, 4] → could lead to 12*2 or 12+12, but 12,12 is a known dead-end. Avoid this.  \n\nBut we still need to show it for completeness.",
+                "code": "numbers = [8, 4, 4]\nres = numbers[0] + numbers[1]   # 8 + 4 = 12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[12, 4]"
+              },
+              "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 + 4 = 12 → [12, 4] → could lead to 12*2 or 12+12, but 12,12 is a known dead-end. Avoid this.  \n\nBut we still need to show it for completeness.\nResult: [12, 4]",
+              "evaluation": {
+                "state": "[12, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 12.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "14": {
+              "id": 14,
+              "parent_id": 1,
+              "state": [
+                4,
+                4
+              ],
+              "action": "[4, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1): 8 - 4 = 4 → [4, 4] → then 4*6? No 6. But 4*4=16, 4+4=8, 4/4=1, etc. Could try to get 24 via 4*6 or 24*1 — 4*6 not possible. Let's skip this for now.",
+                "code": "numbers = [8, 4, 4]\nres = numbers[0] - numbers[1]   # 8 - 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[4, 4]"
+              },
+              "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 - 4 = 4 → [4, 4] → then 4*6? No 6. But 4*4=16, 4+4=8, 4/4=1, etc. Could try to get 24 via 4*6 or 24*1 — 4*6 not possible. Let's skip this for now.\nResult: [4, 4]",
+              "evaluation": {
+                "state": "[4, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "15": {
+              "id": 15,
+              "parent_id": 1,
+              "state": [
+                -4,
+                4
+              ],
+              "action": "[-4, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1): 4 - 8 = -4 → [-4, 4] → then -4*? = 24? -4*-6=24, not possible. Avoid.",
+                "code": "numbers = [8, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 8 = -4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-4, 4]"
+              },
+              "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 4 - 8 = -4 → [-4, 4] → then -4*? = 24? -4*-6=24, not possible. Avoid.\nResult: [-4, 4]",
+              "evaluation": {
+                "state": "[-4, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -4.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "16": {
+              "id": 16,
+              "parent_id": 1,
+              "state": [
+                32,
+                4
+              ],
+              "action": "[32, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1): 8 * 4 = 32 → [32, 4] → 32 - 8 = 24? No 8 left. 32 - 4 = 28, 32/4 = 8, etc. Not promising.",
+                "code": "numbers = [8, 4, 4]\nres = numbers[0] * numbers[1]   # 8 * 4 = 32\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[32, 4]"
+              },
+              "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 * 4 = 32 → [32, 4] → 32 - 8 = 24? No 8 left. 32 - 4 = 28, 32/4 = 8, etc. Not promising.\nResult: [32, 4]",
+              "evaluation": {
+                "state": "[32, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 32.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "17": {
+              "id": 17,
+              "parent_id": 1,
+              "state": [
+                2.0,
+                4
+              ],
+              "action": "[2.0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1): 8 / 4 = 2 → [2, 4] → then 2*12? No 12. 2*4=8, 2+4=6, 4-2=2, etc. Could try 2*4*3? No 3. Not promising.",
+                "code": "numbers = [8, 4, 4]\nres = numbers[0] / numbers[1]   # 8 / 4 = 2\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[2.0, 4]"
+              },
+              "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 / 4 = 2 → [2, 4] → then 2*12? No 12. 2*4=8, 2+4=6, 4-2=2, etc. Could try 2*4*3? No 3. Not promising.\nResult: [2.0, 4]",
+              "evaluation": {
+                "state": "[2.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 2.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "18": {
+              "id": 18,
+              "parent_id": 1,
+              "state": [
+                0.5,
+                4
+              ],
+              "action": "[0.5, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Pair (0,1): 4 / 8 = 0.5 → [0.5, 4] → 0.5*48? No. Avoid fraction unless necessary.",
+                "code": "numbers = [8, 4, 4]\nres = numbers[1] / numbers[0]   # 4 / 8 = 0.5\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.5, 4]"
+              },
+              "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 4 / 8 = 0.5 → [0.5, 4] → 0.5*48? No. Avoid fraction unless necessary.\nResult: [0.5, 4]",
+              "evaluation": {
+                "state": "[0.5, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.5,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "2": {
+          "id": 2,
+          "parent_id": 0,
+          "state": [
+            16,
+            4,
+            4
+          ],
+          "action": "[16, 4, 4]",
+          "value": 1.0,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Multiply the first two 4s.",
+            "code": "numbers = [4, 4, 4, 4]\nres = numbers[0] * numbers[1]   # 4 * 4 = 16\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 4, 4]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]",
+          "evaluation": {
+            "state": "[16, 4, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 16
+            },
+            "llm_judgments": [
+              "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \n12 / 4 = 3 (no).  \n4 - 12 = -8 (no).  \n4 / 12 = 0.333 (no).  \n\nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nresult is exactly 24, within 0.001.\n\nanswer: sure",
+              "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24.  \nalso try 16 - 4 = 12 (factor of 24). then 12 * 4 = 48 (no). 12 + 4 = 16 (no). 12 - 4 = 8 (no). 12 / 4 = 3 (no).  \n16 - 4 = 12, but using the other 4: 12 * 4 = 48 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 16 * 4 = 64, then 64 / 4 = 16 (no). 64 - 4 = 60 (no). 64 + 4 = 68 (no).  \n- 16 * 4 = 64, using other 4: same results.  \n- 4 * 4 = 16, then 16 + 16 = 32 (no). 16 - 16 = 0 (no). 16 * 16 = 256 (no). 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure",
+              "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 16 + 1 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 / 4 = 3 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \n12 / 4 = 3 (no).  \n4 - 12 = -8 (no).  \n4 / 12 = 0.333 (no).  \n\nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nresult is exactly 24, within 0.001.\n\nanswer: sure",
+                "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24.  \nalso try 16 - 4 = 12 (factor of 24). then 12 * 4 = 48 (no). 12 + 4 = 16 (no). 12 - 4 = 8 (no). 12 / 4 = 3 (no).  \n16 - 4 = 12, but using the other 4: 12 * 4 = 48 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 16 * 4 = 64, then 64 / 4 = 16 (no). 64 - 4 = 60 (no). 64 + 4 = 68 (no).  \n- 16 * 4 = 64, using other 4: same results.  \n- 4 * 4 = 16, then 16 + 16 = 32 (no). 16 - 16 = 0 (no). 16 * 16 = 256 (no). 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure",
+                "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 16 + 1 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 / 4 = 3 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "5": {
+              "id": 5,
+              "parent_id": 2,
+              "state": [
+                8,
+                16
+              ],
+              "action": "[8, 16]",
+              "value": 1.0,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "Add the two equal numbers 4 and 4 to get 8.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[8, 16]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]",
+              "evaluation": {
+                "state": "[8, 16]",
+                "is_final": false,
+                "heuristic_checks": {
+                  "has_premature_24": false,
+                  "max_abs_value": 16
+                },
+                "llm_judgments": [
+                  "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+                  "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+                  "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                ],
+                "reasoning": [
+                  "LLM evaluations: ['sure', 'sure', 'sure']",
+                  "Votes: sure=3, likely=0, impossible=0",
+                  "Raw score: 1.000, Final score: 1.000",
+                  "✅ VERIFIER: '8 + 16=24' confirmed"
+                ],
+                "score_breakdown": {
+                  "raw_responses": [
+                    "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+                    "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+                    "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+                  ],
+                  "mapped_values": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "vote_counts": {
+                    "impossible": 0,
+                    "likely": 0,
+                    "sure": 3
+                  }
+                },
+                "final_value": 1.0,
+                "pattern_match": null,
+                "pattern_penalty_applied": false,
+                "judgment": "sure",
+                "extracted_operation": "8 + 16",
+                "extracted_result": 24.0
+              },
+              "num_children": 1,
+              "children": {
+                "34": {
+                  "id": 34,
+                  "parent_id": 5,
+                  "state": [
+                    24.0
+                  ],
+                  "action": "8 + 16",
+                  "value": 1.0,
+                  "depth": 3,
+                  "is_solution": true,
+                  "is_pruned": false,
+                  "codeact": {
+                    "thought": "From [8, 16], 8 + 16 = 24",
+                    "code": "numbers = [8, 16]\na, b = 8, 16\nresult = 8 + 16\nnew_numbers = [result]",
+                    "observation": "[24]"
+                  },
+                  "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]\nOperation: 8 + 16 = 24",
+                  "evaluation": null,
+                  "num_children": 0,
+                  "children": {}
+                }
+              }
+            },
+            "6": {
+              "id": 6,
+              "parent_id": 2,
+              "state": [
+                0,
+                16
+              ],
+              "action": "[0, 16]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract the two equal numbers (4-4) to get 0.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0, 16]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract the two equal numbers (4-4) to get 0.\nResult: [0, 16]",
+              "evaluation": {
+                "state": "[0, 16]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,16.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "7": {
+              "id": 7,
+              "parent_id": 2,
+              "state": [
+                16,
+                16
+              ],
+              "action": "[16, 16]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply the two equal numbers 4 and 4 to get 16.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[16, 16]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nMultiply the two equal numbers 4 and 4 to get 16.\nResult: [16, 16]",
+              "evaluation": {
+                "state": "[16, 16]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,16.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "8": {
+              "id": 8,
+              "parent_id": 2,
+              "state": [
+                1.0,
+                16
+              ],
+              "action": "[1.0, 16]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide the two equal numbers (4/4) to get 1.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[1] / numbers[2]   # 4 / 4 = 1\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.0, 16]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nDivide the two equal numbers (4/4) to get 1.\nResult: [1.0, 16]",
+              "evaluation": {
+                "state": "[1.0, 16]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,16.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "9": {
+              "id": 9,
+              "parent_id": 2,
+              "state": [
+                12,
+                4
+              ],
+              "action": "[12, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 16 minus 4 to get 12.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[0] - numbers[1]   # 16 - 4 = 12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[12, 4]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract 16 minus 4 to get 12.\nResult: [12, 4]",
+              "evaluation": {
+                "state": "[12, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 12.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "10": {
+              "id": 10,
+              "parent_id": 2,
+              "state": [
+                -12,
+                4
+              ],
+              "action": "[-12, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 minus 16 to get -12.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 16 = -12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-12, 4]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract 4 minus 16 to get -12.\nResult: [-12, 4]",
+              "evaluation": {
+                "state": "[-12, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -12.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "11": {
+              "id": 11,
+              "parent_id": 2,
+              "state": [
+                64,
+                4
+              ],
+              "action": "[64, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 16 and 4 to get 64.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[0] * numbers[1]   # 16 * 4 = 64\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[64, 4]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nMultiply 16 and 4 to get 64.\nResult: [64, 4]",
+              "evaluation": {
+                "state": "[64, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 64.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "12": {
+              "id": 12,
+              "parent_id": 2,
+              "state": [
+                4.0,
+                4
+              ],
+              "action": "[4.0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 16 by 4 to get 4.",
+                "code": "numbers = [16, 4, 4]\nres = numbers[0] / numbers[1]   # 16 / 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[4.0, 4]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nDivide 16 by 4 to get 4.\nResult: [4.0, 4]",
+              "evaluation": {
+                "state": "[4.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "3": {
+          "id": 3,
+          "parent_id": 0,
+          "state": [
+            0,
+            4,
+            4
+          ],
+          "action": "[0, 4, 4]",
+          "value": 0.001,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Subtract first from second (4 - 4 = 0).",
+            "code": "numbers = [4, 4, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 4 = 0\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 4, 4]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]",
+          "evaluation": {
+            "state": "[0, 4, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 4
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 = 16, 16 - 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4.  \n  4 - 4 = 0, then 0 * 0 = 0 (no).  \n  0 is not a factor of 24 (except 0, but can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  0 + 4 + 4 = 8 (no).  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  no path found.\n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 - 0 = 16 (no).  \n  4 * 4 + 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+              "Votes: sure=0, likely=0, impossible=3",
+              "Raw score: 0.001, Final score: 0.001"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 = 16, 16 - 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4.  \n  4 - 4 = 0, then 0 * 0 = 0 (no).  \n  0 is not a factor of 24 (except 0, but can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  0 + 4 + 4 = 8 (no).  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  no path found.\n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 - 0 = 16 (no).  \n  4 * 4 + 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.001,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 3,
+                "likely": 0,
+                "sure": 0
+              }
+            },
+            "final_value": 0.001,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 7,
+          "children": {
+            "27": {
+              "id": 27,
+              "parent_id": 3,
+              "state": [
+                4,
+                4
+              ],
+              "action": "[4, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add the first two numbers (0 + 4 = 4).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[0] + numbers[1]   # 0 + 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[4, 4]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nAdd the first two numbers (0 + 4 = 4).\nResult: [4, 4]",
+              "evaluation": {
+                "state": "[4, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "28": {
+              "id": 28,
+              "parent_id": 3,
+              "state": [
+                0,
+                4
+              ],
+              "action": "[0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply the first two numbers (0 * 4 = 0).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[0] * numbers[1]   # 0 * 4 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0, 4]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nMultiply the first two numbers (0 * 4 = 0).\nResult: [0, 4]",
+              "evaluation": {
+                "state": "[0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "29": {
+              "id": 29,
+              "parent_id": 3,
+              "state": [
+                -4,
+                4
+              ],
+              "action": "[-4, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract second from first (0 - 4 = -4).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[0] - numbers[1]   # 0 - 4 = -4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-4, 4]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nSubtract second from first (0 - 4 = -4).\nResult: [-4, 4]",
+              "evaluation": {
+                "state": "[-4, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -4.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "30": {
+              "id": 30,
+              "parent_id": 3,
+              "state": [
+                8,
+                0
+              ],
+              "action": "[8, 0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add the last two numbers (4 + 4 = 8).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[8, 0]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nAdd the last two numbers (4 + 4 = 8).\nResult: [8, 0]",
+              "evaluation": {
+                "state": "[8, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "31": {
+              "id": 31,
+              "parent_id": 3,
+              "state": [
+                16,
+                0
+              ],
+              "action": "[16, 0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply the last two numbers (4 * 4 = 16).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[16, 0]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nMultiply the last two numbers (4 * 4 = 16).\nResult: [16, 0]",
+              "evaluation": {
+                "state": "[16, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "32": {
+              "id": 32,
+              "parent_id": 3,
+              "state": [
+                1.0,
+                0
+              ],
+              "action": "[1.0, 0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide second by third (4 / 4 = 1).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[1] / numbers[2]   # 4 / 4 = 1\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[1.0, 0]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nDivide second by third (4 / 4 = 1).\nResult: [1.0, 0]",
+              "evaluation": {
+                "state": "[1.0, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 1.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "33": {
+              "id": 33,
+              "parent_id": 3,
+              "state": [
+                0,
+                0
+              ],
+              "action": "[0, 0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract third from second (4 - 4 = 0).",
+                "code": "numbers = [0, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0, 0]"
+              },
+              "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nSubtract third from second (4 - 4 = 0).\nResult: [0, 0]",
+              "evaluation": {
+                "state": "[0, 0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,0.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "4": {
+          "id": 4,
+          "parent_id": 0,
+          "state": [
+            1.0,
+            4,
+            4
+          ],
+          "action": "[1.0, 4, 4]",
+          "value": 0.20066666666666666,
+          "depth": 1,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Divide first by second (4 / 4 = 1).",
+            "code": "numbers = [4, 4, 4, 4]\nres = numbers[0] / numbers[1]   # 4 / 4 = 1\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 4, 4]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]",
+          "evaluation": {
+            "state": "[1.0, 4, 4]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 4
+            },
+            "llm_judgments": [
+              "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno 24.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n1.0 and 4 → 4 - 1.0 = 3 (factor of 24).  \nnow try with remaining 4:  \n- 3 * 4 = 12 (no).  \n- 4 / 3 ≈ 1.333 (no).  \n- 4 + 3 = 7 (no).  \n- 4 - 3 = 1 (no).  \nno 24.\n\n**attempt 3 (multiplication):**  \nmultiply each pair:  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \nno 24.\n\n**attempt 4 (addition):**  \nadd pairs:  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no).  \n- 4 + 1.0 = 5, then 5 + 4 = 9 (no).  \nno 24.\n\nno result near 24.\n\nanswer: impossible",
+              "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24).  \nnow 3 with remaining 4: 3 * 4 = 12 (no), 4 / 3 ≈ 1.33 (no), 4 + 3 = 7 (no), 4 - 3 = 1 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n4 + 1.0 = 5, then 5 * 4 = 20 (within 20–28, but not 24).  \n5 * 4 = 20 (no).  \n20 is between 20 and 28, so this qualifies as “likely”.\n\n**attempt 5:**  \ntry 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \nno new path.\n\nbest result: 20 (within 20–28).\n\nanswer: likely",
+              "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 1.0 already done.  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24). then 3 * 4 = 12 (no), 3 + 4 = 7 (no), 4 - 3 = 1 (no), 4 / 3 ≈ 1.33 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no), 5 + 4 = 9 (no), 5 - 4 = 1 (no), 4 - 5 = -1 (no), 4 / 5 = 0.8 (no).  \nno success.\n\n**attempt 5 (free try with two numbers):**  \nwe have 1.0, 4, 4. try 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 4 = 16, then 16 * 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 16 / 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 1.0 - 16 = -15 (no).  \ntry 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \ntry 4 * 4 * 1.0 = 16 (no).  \ntry 4 * 4 / 1.0 = 16 (no).  \nno result near 24.\n\nno result between 20 and 28 either.\n\nanswer: impossible"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['impossible', 'likely', 'impossible']",
+              "Votes: sure=0, likely=1, impossible=2",
+              "Raw score: 0.201, Final score: 0.201"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno 24.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n1.0 and 4 → 4 - 1.0 = 3 (factor of 24).  \nnow try with remaining 4:  \n- 3 * 4 = 12 (no).  \n- 4 / 3 ≈ 1.333 (no).  \n- 4 + 3 = 7 (no).  \n- 4 - 3 = 1 (no).  \nno 24.\n\n**attempt 3 (multiplication):**  \nmultiply each pair:  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \nno 24.\n\n**attempt 4 (addition):**  \nadd pairs:  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no).  \n- 4 + 1.0 = 5, then 5 + 4 = 9 (no).  \nno 24.\n\nno result near 24.\n\nanswer: impossible",
+                "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24).  \nnow 3 with remaining 4: 3 * 4 = 12 (no), 4 / 3 ≈ 1.33 (no), 4 + 3 = 7 (no), 4 - 3 = 1 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n4 + 1.0 = 5, then 5 * 4 = 20 (within 20–28, but not 24).  \n5 * 4 = 20 (no).  \n20 is between 20 and 28, so this qualifies as “likely”.\n\n**attempt 5:**  \ntry 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \nno new path.\n\nbest result: 20 (within 20–28).\n\nanswer: likely",
+                "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 1.0 already done.  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24). then 3 * 4 = 12 (no), 3 + 4 = 7 (no), 4 - 3 = 1 (no), 4 / 3 ≈ 1.33 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no), 5 + 4 = 9 (no), 5 - 4 = 1 (no), 4 - 5 = -1 (no), 4 / 5 = 0.8 (no).  \nno success.\n\n**attempt 5 (free try with two numbers):**  \nwe have 1.0, 4, 4. try 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 4 = 16, then 16 * 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 16 / 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 1.0 - 16 = -15 (no).  \ntry 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \ntry 4 * 4 * 1.0 = 16 (no).  \ntry 4 * 4 / 1.0 = 16 (no).  \nno result near 24.\n\nno result between 20 and 28 either.\n\nanswer: impossible"
+              ],
+              "mapped_values": [
+                0.001,
+                0.6,
+                0.001
+              ],
+              "vote_counts": {
+                "impossible": 2,
+                "likely": 1,
+                "sure": 0
+              }
+            },
+            "final_value": 0.20066666666666666,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "impossible",
+            "extracted_operation": null,
+            "extracted_result": null
+          },
+          "num_children": 8,
+          "children": {
+            "19": {
+              "id": 19,
+              "parent_id": 4,
+              "state": [
+                5.0,
+                4
+              ],
+              "action": "[5.0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 1.0 and 4 to get 5.",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[0] + numbers[1]   # 1.0 + 4 = 5.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[5.0, 4]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nAdd 1.0 and 4 to get 5.\nResult: [5.0, 4]",
+              "evaluation": {
+                "state": "[5.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 5.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "20": {
+              "id": 20,
+              "parent_id": 4,
+              "state": [
+                8,
+                1.0
+              ],
+              "action": "[8, 1.0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Add 4 and 4 to get 8, then combine with 1.0 later.",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[8, 1.0]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nAdd 4 and 4 to get 8, then combine with 1.0 later.\nResult: [8, 1.0]",
+              "evaluation": {
+                "state": "[8, 1.0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 8.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "21": {
+              "id": 21,
+              "parent_id": 4,
+              "state": [
+                4.0,
+                4
+              ],
+              "action": "[4.0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 1.0 and 4 to get 4.",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[0] * numbers[1]   # 1.0 * 4 = 4.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[4.0, 4]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nMultiply 1.0 and 4 to get 4.\nResult: [4.0, 4]",
+              "evaluation": {
+                "state": "[4.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "22": {
+              "id": 22,
+              "parent_id": 4,
+              "state": [
+                16,
+                1.0
+              ],
+              "action": "[16, 1.0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Multiply 4 and 4 to get 16, then combine with 1.0.",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[16, 1.0]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nMultiply 4 and 4 to get 16, then combine with 1.0.\nResult: [16, 1.0]",
+              "evaluation": {
+                "state": "[16, 1.0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 16.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "23": {
+              "id": 23,
+              "parent_id": 4,
+              "state": [
+                3.0,
+                4
+              ],
+              "action": "[3.0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 1.0 from 4 (first pair, order a-b).",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 1.0 = 3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[3.0, 4]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 1.0 from 4 (first pair, order a-b).\nResult: [3.0, 4]",
+              "evaluation": {
+                "state": "[3.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "24": {
+              "id": 24,
+              "parent_id": 4,
+              "state": [
+                -3.0,
+                4
+              ],
+              "action": "[-3.0, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 1.0 (reverse order).",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[0] - numbers[1]   # 1.0 - 4 = -3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[-3.0, 4]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 4 from 1.0 (reverse order).\nResult: [-3.0, 4]",
+              "evaluation": {
+                "state": "[-3.0, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on -3.0,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "25": {
+              "id": 25,
+              "parent_id": 4,
+              "state": [
+                0,
+                1.0
+              ],
+              "action": "[0, 1.0]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Subtract 4 from 4 (pair 1,2).",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0, 1.0]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 4 from 4 (pair 1,2).\nResult: [0, 1.0]",
+              "evaluation": {
+                "state": "[0, 1.0]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.0,1.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            },
+            "26": {
+              "id": 26,
+              "parent_id": 4,
+              "state": [
+                0.25,
+                4
+              ],
+              "action": "[0.25, 4]",
+              "value": 0.001,
+              "depth": 2,
+              "is_solution": false,
+              "is_pruned": true,
+              "codeact": {
+                "thought": "Divide 1.0 by 4 (reverse order).",
+                "code": "numbers = [1.0, 4, 4]\nres = numbers[0] / numbers[1]   # 1.0 / 4 = 0.25\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+                "observation": "[0.25, 4]"
+              },
+              "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nDivide 1.0 by 4 (reverse order).\nResult: [0.25, 4]",
+              "evaluation": {
+                "state": "[0.25, 4]",
+                "pruned_by": "dead_end_memory_2num_cache",
+                "reason": "no_op_reaches_24: tried all 6 ops on 0.25,4.0",
+                "is_final": false,
+                "final_value": 0.001,
+                "heuristic_checks": {
+                  "pruned": true
+                },
+                "reasoning": [
+                  "Pruned by deterministic 2-number cache."
+                ]
+              },
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "state": [
+        8,
+        4,
+        4
+      ],
+      "action": "[8, 4, 4]",
+      "value": 0.7333333333333334,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add the first two 4s — a simple start.",
+        "code": "numbers = [4, 4, 4, 4]\nres = numbers[0] + numbers[1]   # 4 + 4 = 8\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 4, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]",
+      "evaluation": {
+        "state": "[8, 4, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 8
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 4 = 8 (no).  \n  4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n  4 / 4 = 1, then 1 * 8 = 8 (no).  \n  8 / 4 = 2, then 4 / 2 = 2 (no).  \n  no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  8 - 4 = 4 (factor of 24), then 4 * 4 = 16 (no).  \n  8 - 4 = 4, then 4 + 4 = 8 (no).  \n  8 - 4 = 4, then 4 / 4 = 1 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n  that’s 28, which is between 20 and 28.\n\nsince 28 is within the 20–28 range, the decision rule says \"likely\".\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \nno.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \nthat’s 28, which is between 20 and 28 inclusive.\n\nwe stop here because we found a result in the 20–28 range.\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \n- 4 / 4 = 1, then 8 - 1 = 7 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \n8 - 4 = 4 (factor of 24).  \nthen 4 * 4 = 16 (no).  \n8 - 4 = 4, then 4 + 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n- 4 * 4 = 16, then 16 + 8 = 24 (exact!).  \n\nwe found 4 * 4 = 16, then 16 + 8 = 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['likely', 'likely', 'sure']",
+          "Votes: sure=1, likely=2, impossible=0",
+          "Raw score: 0.733, Final score: 0.733"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  8 / 4 = 2, then 2 * 4 = 8 (no).  \n  4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n  4 / 4 = 1, then 1 * 8 = 8 (no).  \n  8 / 4 = 2, then 4 / 2 = 2 (no).  \n  no success.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n  8 - 4 = 4 (factor of 24), then 4 * 4 = 16 (no).  \n  8 - 4 = 4, then 4 + 4 = 8 (no).  \n  8 - 4 = 4, then 4 / 4 = 1 (no).  \n  no success.\n\n- attempt 3 (multiplication):  \n  8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n  that’s 28, which is between 20 and 28.\n\nsince 28 is within the 20–28 range, the decision rule says \"likely\".\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \nno.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \nthat’s 28, which is between 20 and 28 inclusive.\n\nwe stop here because we found a result in the 20–28 range.\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [8, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \n- 8 / 4 = 2, then 2 * 4 = 8 (no).  \n- 4 / 8 = 0.5, then 0.5 * 4 = 2 (no).  \n- 4 / 4 = 1, then 1 * 8 = 8 (no).  \n- 8 / 4 = 2, then 2 + 4 = 6 (no).  \n- 4 / 4 = 1, then 8 - 1 = 7 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest two numbers: 4 and 4.  \n4 - 4 = 0 (not a factor of 24).  \n8 - 4 = 4 (factor of 24).  \nthen 4 * 4 = 16 (no).  \n8 - 4 = 4, then 4 + 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 8 * 4 = 32, then 32 - 4 = 28 (within 20–28).  \n- 4 * 4 = 16, then 16 + 8 = 24 (exact!).  \n\nwe found 4 * 4 = 16, then 16 + 8 = 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            0.6,
+            0.6,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 2,
+            "sure": 1
+          }
+        },
+        "final_value": 0.7333333333333334,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "likely",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 6,
+      "children": {
+        "13": {
+          "id": 13,
+          "parent_id": 1,
+          "state": [
+            12,
+            4
+          ],
+          "action": "[12, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1): 8 + 4 = 12 → [12, 4] → could lead to 12*2 or 12+12, but 12,12 is a known dead-end. Avoid this.  \n\nBut we still need to show it for completeness.",
+            "code": "numbers = [8, 4, 4]\nres = numbers[0] + numbers[1]   # 8 + 4 = 12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[12, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 + 4 = 12 → [12, 4] → could lead to 12*2 or 12+12, but 12,12 is a known dead-end. Avoid this.  \n\nBut we still need to show it for completeness.\nResult: [12, 4]",
+          "evaluation": {
+            "state": "[12, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 12.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "14": {
+          "id": 14,
+          "parent_id": 1,
+          "state": [
+            4,
+            4
+          ],
+          "action": "[4, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1): 8 - 4 = 4 → [4, 4] → then 4*6? No 6. But 4*4=16, 4+4=8, 4/4=1, etc. Could try to get 24 via 4*6 or 24*1 — 4*6 not possible. Let's skip this for now.",
+            "code": "numbers = [8, 4, 4]\nres = numbers[0] - numbers[1]   # 8 - 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 - 4 = 4 → [4, 4] → then 4*6? No 6. But 4*4=16, 4+4=8, 4/4=1, etc. Could try to get 24 via 4*6 or 24*1 — 4*6 not possible. Let's skip this for now.\nResult: [4, 4]",
+          "evaluation": {
+            "state": "[4, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "15": {
+          "id": 15,
+          "parent_id": 1,
+          "state": [
+            -4,
+            4
+          ],
+          "action": "[-4, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1): 4 - 8 = -4 → [-4, 4] → then -4*? = 24? -4*-6=24, not possible. Avoid.",
+            "code": "numbers = [8, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 8 = -4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-4, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 4 - 8 = -4 → [-4, 4] → then -4*? = 24? -4*-6=24, not possible. Avoid.\nResult: [-4, 4]",
+          "evaluation": {
+            "state": "[-4, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -4.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "16": {
+          "id": 16,
+          "parent_id": 1,
+          "state": [
+            32,
+            4
+          ],
+          "action": "[32, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1): 8 * 4 = 32 → [32, 4] → 32 - 8 = 24? No 8 left. 32 - 4 = 28, 32/4 = 8, etc. Not promising.",
+            "code": "numbers = [8, 4, 4]\nres = numbers[0] * numbers[1]   # 8 * 4 = 32\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[32, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 * 4 = 32 → [32, 4] → 32 - 8 = 24? No 8 left. 32 - 4 = 28, 32/4 = 8, etc. Not promising.\nResult: [32, 4]",
+          "evaluation": {
+            "state": "[32, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 32.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "17": {
+          "id": 17,
+          "parent_id": 1,
+          "state": [
+            2.0,
+            4
+          ],
+          "action": "[2.0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1): 8 / 4 = 2 → [2, 4] → then 2*12? No 12. 2*4=8, 2+4=6, 4-2=2, etc. Could try 2*4*3? No 3. Not promising.",
+            "code": "numbers = [8, 4, 4]\nres = numbers[0] / numbers[1]   # 8 / 4 = 2\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[2.0, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 / 4 = 2 → [2, 4] → then 2*12? No 12. 2*4=8, 2+4=6, 4-2=2, etc. Could try 2*4*3? No 3. Not promising.\nResult: [2.0, 4]",
+          "evaluation": {
+            "state": "[2.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 2.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "18": {
+          "id": 18,
+          "parent_id": 1,
+          "state": [
+            0.5,
+            4
+          ],
+          "action": "[0.5, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Pair (0,1): 4 / 8 = 0.5 → [0.5, 4] → 0.5*48? No. Avoid fraction unless necessary.",
+            "code": "numbers = [8, 4, 4]\nres = numbers[1] / numbers[0]   # 4 / 8 = 0.5\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.5, 4]"
+          },
+          "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 4 / 8 = 0.5 → [0.5, 4] → 0.5*48? No. Avoid fraction unless necessary.\nResult: [0.5, 4]",
+          "evaluation": {
+            "state": "[0.5, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.5,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "state": [
+        16,
+        4,
+        4
+      ],
+      "action": "[16, 4, 4]",
+      "value": 1.0,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Multiply the first two 4s.",
+        "code": "numbers = [4, 4, 4, 4]\nres = numbers[0] * numbers[1]   # 4 * 4 = 16\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 4, 4]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]",
+      "evaluation": {
+        "state": "[16, 4, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 16
+        },
+        "llm_judgments": [
+          "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \n12 / 4 = 3 (no).  \n4 - 12 = -8 (no).  \n4 / 12 = 0.333 (no).  \n\nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nresult is exactly 24, within 0.001.\n\nanswer: sure",
+          "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24.  \nalso try 16 - 4 = 12 (factor of 24). then 12 * 4 = 48 (no). 12 + 4 = 16 (no). 12 - 4 = 8 (no). 12 / 4 = 3 (no).  \n16 - 4 = 12, but using the other 4: 12 * 4 = 48 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 16 * 4 = 64, then 64 / 4 = 16 (no). 64 - 4 = 60 (no). 64 + 4 = 68 (no).  \n- 16 * 4 = 64, using other 4: same results.  \n- 4 * 4 = 16, then 16 + 16 = 32 (no). 16 - 16 = 0 (no). 16 * 16 = 256 (no). 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure",
+          "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 16 + 1 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 / 4 = 3 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \n12 / 4 = 3 (no).  \n4 - 12 = -8 (no).  \n4 / 12 = 0.333 (no).  \n\nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nresult is exactly 24, within 0.001.\n\nanswer: sure",
+            "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 + 4 = 4.25 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 1 + 16 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24.  \nalso try 16 - 4 = 12 (factor of 24). then 12 * 4 = 48 (no). 12 + 4 = 16 (no). 12 - 4 = 8 (no). 12 / 4 = 3 (no).  \n16 - 4 = 12, but using the other 4: 12 * 4 = 48 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 16 * 4 = 64, then 64 / 4 = 16 (no). 64 - 4 = 60 (no). 64 + 4 = 68 (no).  \n- 16 * 4 = 64, using other 4: same results.  \n- 4 * 4 = 16, then 16 + 16 = 32 (no). 16 - 16 = 0 (no). 16 * 16 = 256 (no). 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure",
+            "we have numbers: 16, 4, 4. target: 24.\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 16 / 4 = 4, then 4 * 4 = 16 (no).  \n- 16 / 4 = 4, then 4 + 4 = 8 (no).  \n- 16 / 4 = 4, then 4 - 4 = 0 (no).  \n- 16 / 4 = 4, then 4 / 4 = 1 (no).  \n- 4 / 16 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 * 16 = 16 (no).  \n- 4 / 4 = 1, then 16 + 1 = 17 (no).  \n- 4 / 4 = 1, then 16 - 1 = 15 (no).  \n- 4 / 4 = 1, then 16 / 1 = 16 (no).  \n\nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4.  \n4 - 4 = 0. 0 is not a factor of 24 (skip).  \nnext closest: 16 and 4.  \n16 - 4 = 12. 12 is a factor of 24.  \nnow combine with third number (4):  \n12 * 4 = 48 (no).  \n12 / 4 = 3 (no).  \n12 + 4 = 16 (no).  \n12 - 4 = 8 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \ntry multiplying each pair.  \n- 16 * 4 = 64, then 64 / 4 = 16 (no).  \n- 16 * 4 = 64, then 64 - 4 = 60 (no).  \n- 16 * 4 = 64, then 64 + 4 = 68 (no).  \n- 4 * 4 = 16, then 16 + 16 = 32 (no).  \n- 4 * 4 = 16, then 16 - 16 = 0 (no).  \n- 4 * 4 = 16, then 16 * 16 = 256 (no).  \n- 4 * 4 = 16, then 16 / 16 = 1 (no).  \n\nno success.\n\n**attempt 4 (addition and adjust):**  \ntry adding pairs.  \n- 16 + 4 = 20, then 20 + 4 = 24 (exact!).  \n\nwe found 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "5": {
+          "id": 5,
+          "parent_id": 2,
+          "state": [
+            8,
+            16
+          ],
+          "action": "[8, 16]",
+          "value": 1.0,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "Add the two equal numbers 4 and 4 to get 8.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 16]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]",
+          "evaluation": {
+            "state": "[8, 16]",
+            "is_final": false,
+            "heuristic_checks": {
+              "has_premature_24": false,
+              "max_abs_value": 16
+            },
+            "llm_judgments": [
+              "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+              "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+              "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+            ],
+            "reasoning": [
+              "LLM evaluations: ['sure', 'sure', 'sure']",
+              "Votes: sure=3, likely=0, impossible=0",
+              "Raw score: 1.000, Final score: 1.000",
+              "✅ VERIFIER: '8 + 16=24' confirmed"
+            ],
+            "score_breakdown": {
+              "raw_responses": [
+                "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+                "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+                "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+              ],
+              "mapped_values": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "vote_counts": {
+                "impossible": 0,
+                "likely": 0,
+                "sure": 3
+              }
+            },
+            "final_value": 1.0,
+            "pattern_match": null,
+            "pattern_penalty_applied": false,
+            "judgment": "sure",
+            "extracted_operation": "8 + 16",
+            "extracted_result": 24.0
+          },
+          "num_children": 1,
+          "children": {
+            "34": {
+              "id": 34,
+              "parent_id": 5,
+              "state": [
+                24.0
+              ],
+              "action": "8 + 16",
+              "value": 1.0,
+              "depth": 3,
+              "is_solution": true,
+              "is_pruned": false,
+              "codeact": {
+                "thought": "From [8, 16], 8 + 16 = 24",
+                "code": "numbers = [8, 16]\na, b = 8, 16\nresult = 8 + 16\nnew_numbers = [result]",
+                "observation": "[24]"
+              },
+              "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]\nOperation: 8 + 16 = 24",
+              "evaluation": null,
+              "num_children": 0,
+              "children": {}
+            }
+          }
+        },
+        "6": {
+          "id": 6,
+          "parent_id": 2,
+          "state": [
+            0,
+            16
+          ],
+          "action": "[0, 16]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract the two equal numbers (4-4) to get 0.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 16]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract the two equal numbers (4-4) to get 0.\nResult: [0, 16]",
+          "evaluation": {
+            "state": "[0, 16]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,16.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "7": {
+          "id": 7,
+          "parent_id": 2,
+          "state": [
+            16,
+            16
+          ],
+          "action": "[16, 16]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply the two equal numbers 4 and 4 to get 16.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 16]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nMultiply the two equal numbers 4 and 4 to get 16.\nResult: [16, 16]",
+          "evaluation": {
+            "state": "[16, 16]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,16.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "8": {
+          "id": 8,
+          "parent_id": 2,
+          "state": [
+            1.0,
+            16
+          ],
+          "action": "[1.0, 16]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide the two equal numbers (4/4) to get 1.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[1] / numbers[2]   # 4 / 4 = 1\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 16]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nDivide the two equal numbers (4/4) to get 1.\nResult: [1.0, 16]",
+          "evaluation": {
+            "state": "[1.0, 16]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,16.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "9": {
+          "id": 9,
+          "parent_id": 2,
+          "state": [
+            12,
+            4
+          ],
+          "action": "[12, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 16 minus 4 to get 12.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[0] - numbers[1]   # 16 - 4 = 12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[12, 4]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract 16 minus 4 to get 12.\nResult: [12, 4]",
+          "evaluation": {
+            "state": "[12, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 12.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "10": {
+          "id": 10,
+          "parent_id": 2,
+          "state": [
+            -12,
+            4
+          ],
+          "action": "[-12, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 minus 16 to get -12.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 16 = -12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-12, 4]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract 4 minus 16 to get -12.\nResult: [-12, 4]",
+          "evaluation": {
+            "state": "[-12, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -12.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "11": {
+          "id": 11,
+          "parent_id": 2,
+          "state": [
+            64,
+            4
+          ],
+          "action": "[64, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 16 and 4 to get 64.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[0] * numbers[1]   # 16 * 4 = 64\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[64, 4]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nMultiply 16 and 4 to get 64.\nResult: [64, 4]",
+          "evaluation": {
+            "state": "[64, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 64.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "12": {
+          "id": 12,
+          "parent_id": 2,
+          "state": [
+            4.0,
+            4
+          ],
+          "action": "[4.0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 16 by 4 to get 4.",
+            "code": "numbers = [16, 4, 4]\nres = numbers[0] / numbers[1]   # 16 / 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4.0, 4]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nDivide 16 by 4 to get 4.\nResult: [4.0, 4]",
+          "evaluation": {
+            "state": "[4.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "parent_id": 0,
+      "state": [
+        0,
+        4,
+        4
+      ],
+      "action": "[0, 4, 4]",
+      "value": 0.001,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Subtract first from second (4 - 4 = 0).",
+        "code": "numbers = [4, 4, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 4 = 0\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 4, 4]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]",
+      "evaluation": {
+        "state": "[0, 4, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 4
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 = 16, 16 - 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4.  \n  4 - 4 = 0, then 0 * 0 = 0 (no).  \n  0 is not a factor of 24 (except 0, but can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  0 + 4 + 4 = 8 (no).  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  no path found.\n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 - 0 = 16 (no).  \n  4 * 4 + 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'impossible', 'impossible']",
+          "Votes: sure=0, likely=0, impossible=3",
+          "Raw score: 0.001, Final score: 0.001"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 = 16, 16 - 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest two numbers: 4 and 4.  \n  4 - 4 = 0, then 0 * 0 = 0 (no).  \n  0 is not a factor of 24 (except 0, but can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (any remaining):  \n  0 + 4 + 4 = 8 (no).  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  no path found.\n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [0, 4, 4]  \ntarget: 24  \n\n- attempt 1 (division):  \n  4 / 4 = 1, then 1 * 0 = 0 (no).  \n  4 / 0 = undefined (skip).  \n  0 / 4 = 0, then 0 * 4 = 0 (no).  \n  no.\n\n- attempt 2 (close subtraction):  \n  closest numbers: 4 and 4 → 4 - 4 = 0.  \n  0 is not a factor of 24 (except 0, which can’t multiply to 24).  \n  no.\n\n- attempt 3 (multiplication):  \n  4 * 4 = 16, then 16 + 0 = 16 (no).  \n  16 - 0 = 16 (no).  \n  16 * 0 = 0 (no).  \n  16 / 0 = undefined.  \n  4 * 0 = 0, then 0 + 4 = 4 (no).  \n  no.\n\n- attempt 4 (addition):  \n  4 + 4 = 8, then 8 + 0 = 8 (no).  \n  8 - 0 = 8 (no).  \n  8 * 0 = 0 (no).  \n  8 / 0 = undefined.  \n  4 + 0 = 4, then 4 + 4 = 8 (no).  \n  no.\n\n- attempt 5 (other combos):  \n  4 - 0 = 4, then 4 * 4 = 16 (no).  \n  4 * 4 - 0 = 16 (no).  \n  4 * 4 + 0 = 16 (no).  \n  no path to 24.\n\nno result between 20 and 28.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.001,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 3,
+            "likely": 0,
+            "sure": 0
+          }
+        },
+        "final_value": 0.001,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 7,
+      "children": {
+        "27": {
+          "id": 27,
+          "parent_id": 3,
+          "state": [
+            4,
+            4
+          ],
+          "action": "[4, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add the first two numbers (0 + 4 = 4).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[0] + numbers[1]   # 0 + 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4, 4]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nAdd the first two numbers (0 + 4 = 4).\nResult: [4, 4]",
+          "evaluation": {
+            "state": "[4, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "28": {
+          "id": 28,
+          "parent_id": 3,
+          "state": [
+            0,
+            4
+          ],
+          "action": "[0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply the first two numbers (0 * 4 = 0).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[0] * numbers[1]   # 0 * 4 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 4]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nMultiply the first two numbers (0 * 4 = 0).\nResult: [0, 4]",
+          "evaluation": {
+            "state": "[0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "29": {
+          "id": 29,
+          "parent_id": 3,
+          "state": [
+            -4,
+            4
+          ],
+          "action": "[-4, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract second from first (0 - 4 = -4).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[0] - numbers[1]   # 0 - 4 = -4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-4, 4]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nSubtract second from first (0 - 4 = -4).\nResult: [-4, 4]",
+          "evaluation": {
+            "state": "[-4, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -4.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "30": {
+          "id": 30,
+          "parent_id": 3,
+          "state": [
+            8,
+            0
+          ],
+          "action": "[8, 0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add the last two numbers (4 + 4 = 8).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 0]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nAdd the last two numbers (4 + 4 = 8).\nResult: [8, 0]",
+          "evaluation": {
+            "state": "[8, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "31": {
+          "id": 31,
+          "parent_id": 3,
+          "state": [
+            16,
+            0
+          ],
+          "action": "[16, 0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply the last two numbers (4 * 4 = 16).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 0]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nMultiply the last two numbers (4 * 4 = 16).\nResult: [16, 0]",
+          "evaluation": {
+            "state": "[16, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "32": {
+          "id": 32,
+          "parent_id": 3,
+          "state": [
+            1.0,
+            0
+          ],
+          "action": "[1.0, 0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide second by third (4 / 4 = 1).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[1] / numbers[2]   # 4 / 4 = 1\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[1.0, 0]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nDivide second by third (4 / 4 = 1).\nResult: [1.0, 0]",
+          "evaluation": {
+            "state": "[1.0, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 1.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "33": {
+          "id": 33,
+          "parent_id": 3,
+          "state": [
+            0,
+            0
+          ],
+          "action": "[0, 0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract third from second (4 - 4 = 0).",
+            "code": "numbers = [0, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 0]"
+          },
+          "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nSubtract third from second (4 - 4 = 0).\nResult: [0, 0]",
+          "evaluation": {
+            "state": "[0, 0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,0.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 4,
+      "parent_id": 0,
+      "state": [
+        1.0,
+        4,
+        4
+      ],
+      "action": "[1.0, 4, 4]",
+      "value": 0.20066666666666666,
+      "depth": 1,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Divide first by second (4 / 4 = 1).",
+        "code": "numbers = [4, 4, 4, 4]\nres = numbers[0] / numbers[1]   # 4 / 4 = 1\nremaining = [numbers[2], numbers[3]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 4, 4]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]",
+      "evaluation": {
+        "state": "[1.0, 4, 4]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 4
+        },
+        "llm_judgments": [
+          "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno 24.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n1.0 and 4 → 4 - 1.0 = 3 (factor of 24).  \nnow try with remaining 4:  \n- 3 * 4 = 12 (no).  \n- 4 / 3 ≈ 1.333 (no).  \n- 4 + 3 = 7 (no).  \n- 4 - 3 = 1 (no).  \nno 24.\n\n**attempt 3 (multiplication):**  \nmultiply each pair:  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \nno 24.\n\n**attempt 4 (addition):**  \nadd pairs:  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no).  \n- 4 + 1.0 = 5, then 5 + 4 = 9 (no).  \nno 24.\n\nno result near 24.\n\nanswer: impossible",
+          "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24).  \nnow 3 with remaining 4: 3 * 4 = 12 (no), 4 / 3 ≈ 1.33 (no), 4 + 3 = 7 (no), 4 - 3 = 1 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n4 + 1.0 = 5, then 5 * 4 = 20 (within 20–28, but not 24).  \n5 * 4 = 20 (no).  \n20 is between 20 and 28, so this qualifies as “likely”.\n\n**attempt 5:**  \ntry 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \nno new path.\n\nbest result: 20 (within 20–28).\n\nanswer: likely",
+          "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 1.0 already done.  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24). then 3 * 4 = 12 (no), 3 + 4 = 7 (no), 4 - 3 = 1 (no), 4 / 3 ≈ 1.33 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no), 5 + 4 = 9 (no), 5 - 4 = 1 (no), 4 - 5 = -1 (no), 4 / 5 = 0.8 (no).  \nno success.\n\n**attempt 5 (free try with two numbers):**  \nwe have 1.0, 4, 4. try 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 4 = 16, then 16 * 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 16 / 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 1.0 - 16 = -15 (no).  \ntry 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \ntry 4 * 4 * 1.0 = 16 (no).  \ntry 4 * 4 / 1.0 = 16 (no).  \nno result near 24.\n\nno result between 20 and 28 either.\n\nanswer: impossible"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['impossible', 'likely', 'impossible']",
+          "Votes: sure=0, likely=1, impossible=2",
+          "Raw score: 0.201, Final score: 0.201"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24\n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno 24.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n1.0 and 4 → 4 - 1.0 = 3 (factor of 24).  \nnow try with remaining 4:  \n- 3 * 4 = 12 (no).  \n- 4 / 3 ≈ 1.333 (no).  \n- 4 + 3 = 7 (no).  \n- 4 - 3 = 1 (no).  \nno 24.\n\n**attempt 3 (multiplication):**  \nmultiply each pair:  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \nno 24.\n\n**attempt 4 (addition):**  \nadd pairs:  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no).  \n- 4 + 1.0 = 5, then 5 + 4 = 9 (no).  \nno 24.\n\nno result near 24.\n\nanswer: impossible",
+            "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair in both orders.  \n4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n4 / 4 = 1, then 1 + 1.0 = 2 (no).  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24).  \nnow 3 with remaining 4: 3 * 4 = 12 (no), 4 / 3 ≈ 1.33 (no), 4 + 3 = 7 (no), 4 - 3 = 1 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n4 + 1.0 = 5, then 5 * 4 = 20 (within 20–28, but not 24).  \n5 * 4 = 20 (no).  \n20 is between 20 and 28, so this qualifies as “likely”.\n\n**attempt 5:**  \ntry 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \nno new path.\n\nbest result: 20 (within 20–28).\n\nanswer: likely",
+            "let’s go step by step.\n\nnumbers: [1.0, 4, 4]  \ntarget: 24  \n\n**attempt 1 (division):**  \ntry dividing each pair both orders.  \n- 4 / 1.0 = 4, then 4 * 4 = 16 (no).  \n- 4 / 4 = 1, then 1 * 1.0 = 1 (no).  \n- 1.0 / 4 = 0.25, then 0.25 * 4 = 1 (no).  \n- 4 / 1.0 already done.  \nno success.\n\n**attempt 2 (close subtraction):**  \nclosest numbers: 4 and 4 → 4 - 4 = 0 (not a factor of 24).  \n4 - 1.0 = 3 (factor of 24). then 3 * 4 = 12 (no), 3 + 4 = 7 (no), 4 - 3 = 1 (no), 4 / 3 ≈ 1.33 (no).  \nno success.\n\n**attempt 3 (multiplication):**  \n- 4 * 4 = 16, then 16 + 1.0 = 17 (no), 16 - 1.0 = 15 (no), 16 * 1.0 = 16 (no), 16 / 1.0 = 16 (no).  \n- 4 * 1.0 = 4, then 4 * 4 = 16 (no), 4 + 4 = 8 (no), 4 - 4 = 0 (no), 4 / 4 = 1 (no).  \nno success.\n\n**attempt 4 (addition):**  \n- 4 + 4 = 8, then 8 * 1.0 = 8 (no), 8 + 1.0 = 9 (no), 8 - 1.0 = 7 (no), 8 / 1.0 = 8 (no).  \n- 4 + 1.0 = 5, then 5 * 4 = 20 (no), 5 + 4 = 9 (no), 5 - 4 = 1 (no), 4 - 5 = -1 (no), 4 / 5 = 0.8 (no).  \nno success.\n\n**attempt 5 (free try with two numbers):**  \nwe have 1.0, 4, 4. try 4 * 4 = 16, then 16 + 1.0 = 17 (no).  \ntry 4 * 4 = 16, then 16 * 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 16 / 1.0 = 16 (no).  \ntry 4 * 4 = 16, then 1.0 - 16 = -15 (no).  \ntry 4 * 1.0 = 4, then 4 * 4 = 16 (no).  \ntry 4 * 1.0 = 4, then 4 + 4 = 8 (no).  \ntry 4 + 4 + 1.0 = 9 (no).  \ntry 4 * 4 * 1.0 = 16 (no).  \ntry 4 * 4 / 1.0 = 16 (no).  \nno result near 24.\n\nno result between 20 and 28 either.\n\nanswer: impossible"
+          ],
+          "mapped_values": [
+            0.001,
+            0.6,
+            0.001
+          ],
+          "vote_counts": {
+            "impossible": 2,
+            "likely": 1,
+            "sure": 0
+          }
+        },
+        "final_value": 0.20066666666666666,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "impossible",
+        "extracted_operation": null,
+        "extracted_result": null
+      },
+      "num_children": 8,
+      "children": {
+        "19": {
+          "id": 19,
+          "parent_id": 4,
+          "state": [
+            5.0,
+            4
+          ],
+          "action": "[5.0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 1.0 and 4 to get 5.",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[0] + numbers[1]   # 1.0 + 4 = 5.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[5.0, 4]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nAdd 1.0 and 4 to get 5.\nResult: [5.0, 4]",
+          "evaluation": {
+            "state": "[5.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 5.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "20": {
+          "id": 20,
+          "parent_id": 4,
+          "state": [
+            8,
+            1.0
+          ],
+          "action": "[8, 1.0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Add 4 and 4 to get 8, then combine with 1.0 later.",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[8, 1.0]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nAdd 4 and 4 to get 8, then combine with 1.0 later.\nResult: [8, 1.0]",
+          "evaluation": {
+            "state": "[8, 1.0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 8.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "21": {
+          "id": 21,
+          "parent_id": 4,
+          "state": [
+            4.0,
+            4
+          ],
+          "action": "[4.0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 1.0 and 4 to get 4.",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[0] * numbers[1]   # 1.0 * 4 = 4.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[4.0, 4]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nMultiply 1.0 and 4 to get 4.\nResult: [4.0, 4]",
+          "evaluation": {
+            "state": "[4.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "22": {
+          "id": 22,
+          "parent_id": 4,
+          "state": [
+            16,
+            1.0
+          ],
+          "action": "[16, 1.0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Multiply 4 and 4 to get 16, then combine with 1.0.",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[16, 1.0]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nMultiply 4 and 4 to get 16, then combine with 1.0.\nResult: [16, 1.0]",
+          "evaluation": {
+            "state": "[16, 1.0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 16.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "23": {
+          "id": 23,
+          "parent_id": 4,
+          "state": [
+            3.0,
+            4
+          ],
+          "action": "[3.0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 1.0 from 4 (first pair, order a-b).",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 1.0 = 3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[3.0, 4]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 1.0 from 4 (first pair, order a-b).\nResult: [3.0, 4]",
+          "evaluation": {
+            "state": "[3.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "24": {
+          "id": 24,
+          "parent_id": 4,
+          "state": [
+            -3.0,
+            4
+          ],
+          "action": "[-3.0, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 1.0 (reverse order).",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[0] - numbers[1]   # 1.0 - 4 = -3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[-3.0, 4]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 4 from 1.0 (reverse order).\nResult: [-3.0, 4]",
+          "evaluation": {
+            "state": "[-3.0, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on -3.0,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "25": {
+          "id": 25,
+          "parent_id": 4,
+          "state": [
+            0,
+            1.0
+          ],
+          "action": "[0, 1.0]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Subtract 4 from 4 (pair 1,2).",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0, 1.0]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 4 from 4 (pair 1,2).\nResult: [0, 1.0]",
+          "evaluation": {
+            "state": "[0, 1.0]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.0,1.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        },
+        "26": {
+          "id": 26,
+          "parent_id": 4,
+          "state": [
+            0.25,
+            4
+          ],
+          "action": "[0.25, 4]",
+          "value": 0.001,
+          "depth": 2,
+          "is_solution": false,
+          "is_pruned": true,
+          "codeact": {
+            "thought": "Divide 1.0 by 4 (reverse order).",
+            "code": "numbers = [1.0, 4, 4]\nres = numbers[0] / numbers[1]   # 1.0 / 4 = 0.25\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+            "observation": "[0.25, 4]"
+          },
+          "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nDivide 1.0 by 4 (reverse order).\nResult: [0.25, 4]",
+          "evaluation": {
+            "state": "[0.25, 4]",
+            "pruned_by": "dead_end_memory_2num_cache",
+            "reason": "no_op_reaches_24: tried all 6 ops on 0.25,4.0",
+            "is_final": false,
+            "final_value": 0.001,
+            "heuristic_checks": {
+              "pruned": true
+            },
+            "reasoning": [
+              "Pruned by deterministic 2-number cache."
+            ]
+          },
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 5,
+      "parent_id": 2,
+      "state": [
+        8,
+        16
+      ],
+      "action": "[8, 16]",
+      "value": 1.0,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "Add the two equal numbers 4 and 4 to get 8.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 16]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]",
+      "evaluation": {
+        "state": "[8, 16]",
+        "is_final": false,
+        "heuristic_checks": {
+          "has_premature_24": false,
+          "max_abs_value": 16
+        },
+        "llm_judgments": [
+          "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+          "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+          "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+        ],
+        "reasoning": [
+          "LLM evaluations: ['sure', 'sure', 'sure']",
+          "Votes: sure=3, likely=0, impossible=0",
+          "Raw score: 1.000, Final score: 1.000",
+          "✅ VERIFIER: '8 + 16=24' confirmed"
+        ],
+        "score_breakdown": {
+          "raw_responses": [
+            "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+            "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's already a success.\n\nanswer: sure",
+            "we have two numbers: 8 and 16.  \nwe can freely try all operations.\n\n- 8 + 16 = 24 (exact).  \n\nthat's within 0.001 of 24.\n\nanswer: sure"
+          ],
+          "mapped_values": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "vote_counts": {
+            "impossible": 0,
+            "likely": 0,
+            "sure": 3
+          }
+        },
+        "final_value": 1.0,
+        "pattern_match": null,
+        "pattern_penalty_applied": false,
+        "judgment": "sure",
+        "extracted_operation": "8 + 16",
+        "extracted_result": 24.0
+      },
+      "num_children": 1,
+      "children": {
+        "34": {
+          "id": 34,
+          "parent_id": 5,
+          "state": [
+            24.0
+          ],
+          "action": "8 + 16",
+          "value": 1.0,
+          "depth": 3,
+          "is_solution": true,
+          "is_pruned": false,
+          "codeact": {
+            "thought": "From [8, 16], 8 + 16 = 24",
+            "code": "numbers = [8, 16]\na, b = 8, 16\nresult = 8 + 16\nnew_numbers = [result]",
+            "observation": "[24]"
+          },
+          "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]\nOperation: 8 + 16 = 24",
+          "evaluation": null,
+          "num_children": 0,
+          "children": {}
+        }
+      }
+    },
+    {
+      "id": 6,
+      "parent_id": 2,
+      "state": [
+        0,
+        16
+      ],
+      "action": "[0, 16]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract the two equal numbers (4-4) to get 0.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 16]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract the two equal numbers (4-4) to get 0.\nResult: [0, 16]",
+      "evaluation": {
+        "state": "[0, 16]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,16.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 7,
+      "parent_id": 2,
+      "state": [
+        16,
+        16
+      ],
+      "action": "[16, 16]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply the two equal numbers 4 and 4 to get 16.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 16]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nMultiply the two equal numbers 4 and 4 to get 16.\nResult: [16, 16]",
+      "evaluation": {
+        "state": "[16, 16]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,16.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 8,
+      "parent_id": 2,
+      "state": [
+        1.0,
+        16
+      ],
+      "action": "[1.0, 16]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide the two equal numbers (4/4) to get 1.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[1] / numbers[2]   # 4 / 4 = 1\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 16]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nDivide the two equal numbers (4/4) to get 1.\nResult: [1.0, 16]",
+      "evaluation": {
+        "state": "[1.0, 16]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,16.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 9,
+      "parent_id": 2,
+      "state": [
+        12,
+        4
+      ],
+      "action": "[12, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 16 minus 4 to get 12.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[0] - numbers[1]   # 16 - 4 = 12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[12, 4]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract 16 minus 4 to get 12.\nResult: [12, 4]",
+      "evaluation": {
+        "state": "[12, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 12.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 10,
+      "parent_id": 2,
+      "state": [
+        -12,
+        4
+      ],
+      "action": "[-12, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 minus 16 to get -12.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 16 = -12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-12, 4]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nSubtract 4 minus 16 to get -12.\nResult: [-12, 4]",
+      "evaluation": {
+        "state": "[-12, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -12.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 11,
+      "parent_id": 2,
+      "state": [
+        64,
+        4
+      ],
+      "action": "[64, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 16 and 4 to get 64.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[0] * numbers[1]   # 16 * 4 = 64\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[64, 4]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nMultiply 16 and 4 to get 64.\nResult: [64, 4]",
+      "evaluation": {
+        "state": "[64, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 64.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 12,
+      "parent_id": 2,
+      "state": [
+        4.0,
+        4
+      ],
+      "action": "[4.0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 16 by 4 to get 4.",
+        "code": "numbers = [16, 4, 4]\nres = numbers[0] / numbers[1]   # 16 / 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4.0, 4]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nDivide 16 by 4 to get 4.\nResult: [4.0, 4]",
+      "evaluation": {
+        "state": "[4.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 13,
+      "parent_id": 1,
+      "state": [
+        12,
+        4
+      ],
+      "action": "[12, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1): 8 + 4 = 12 → [12, 4] → could lead to 12*2 or 12+12, but 12,12 is a known dead-end. Avoid this.  \n\nBut we still need to show it for completeness.",
+        "code": "numbers = [8, 4, 4]\nres = numbers[0] + numbers[1]   # 8 + 4 = 12\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[12, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 + 4 = 12 → [12, 4] → could lead to 12*2 or 12+12, but 12,12 is a known dead-end. Avoid this.  \n\nBut we still need to show it for completeness.\nResult: [12, 4]",
+      "evaluation": {
+        "state": "[12, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 12.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 14,
+      "parent_id": 1,
+      "state": [
+        4,
+        4
+      ],
+      "action": "[4, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1): 8 - 4 = 4 → [4, 4] → then 4*6? No 6. But 4*4=16, 4+4=8, 4/4=1, etc. Could try to get 24 via 4*6 or 24*1 — 4*6 not possible. Let's skip this for now.",
+        "code": "numbers = [8, 4, 4]\nres = numbers[0] - numbers[1]   # 8 - 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 - 4 = 4 → [4, 4] → then 4*6? No 6. But 4*4=16, 4+4=8, 4/4=1, etc. Could try to get 24 via 4*6 or 24*1 — 4*6 not possible. Let's skip this for now.\nResult: [4, 4]",
+      "evaluation": {
+        "state": "[4, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 15,
+      "parent_id": 1,
+      "state": [
+        -4,
+        4
+      ],
+      "action": "[-4, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1): 4 - 8 = -4 → [-4, 4] → then -4*? = 24? -4*-6=24, not possible. Avoid.",
+        "code": "numbers = [8, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 8 = -4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-4, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 4 - 8 = -4 → [-4, 4] → then -4*? = 24? -4*-6=24, not possible. Avoid.\nResult: [-4, 4]",
+      "evaluation": {
+        "state": "[-4, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -4.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 16,
+      "parent_id": 1,
+      "state": [
+        32,
+        4
+      ],
+      "action": "[32, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1): 8 * 4 = 32 → [32, 4] → 32 - 8 = 24? No 8 left. 32 - 4 = 28, 32/4 = 8, etc. Not promising.",
+        "code": "numbers = [8, 4, 4]\nres = numbers[0] * numbers[1]   # 8 * 4 = 32\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[32, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 * 4 = 32 → [32, 4] → 32 - 8 = 24? No 8 left. 32 - 4 = 28, 32/4 = 8, etc. Not promising.\nResult: [32, 4]",
+      "evaluation": {
+        "state": "[32, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 32.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 17,
+      "parent_id": 1,
+      "state": [
+        2.0,
+        4
+      ],
+      "action": "[2.0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1): 8 / 4 = 2 → [2, 4] → then 2*12? No 12. 2*4=8, 2+4=6, 4-2=2, etc. Could try 2*4*3? No 3. Not promising.",
+        "code": "numbers = [8, 4, 4]\nres = numbers[0] / numbers[1]   # 8 / 4 = 2\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[2.0, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 8 / 4 = 2 → [2, 4] → then 2*12? No 12. 2*4=8, 2+4=6, 4-2=2, etc. Could try 2*4*3? No 3. Not promising.\nResult: [2.0, 4]",
+      "evaluation": {
+        "state": "[2.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 2.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 18,
+      "parent_id": 1,
+      "state": [
+        0.5,
+        4
+      ],
+      "action": "[0.5, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Pair (0,1): 4 / 8 = 0.5 → [0.5, 4] → 0.5*48? No. Avoid fraction unless necessary.",
+        "code": "numbers = [8, 4, 4]\nres = numbers[1] / numbers[0]   # 4 / 8 = 0.5\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.5, 4]"
+      },
+      "path_history": "Add the first two 4s — a simple start.\nResult: [8, 4, 4]\nPair (0,1): 4 / 8 = 0.5 → [0.5, 4] → 0.5*48? No. Avoid fraction unless necessary.\nResult: [0.5, 4]",
+      "evaluation": {
+        "state": "[0.5, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.5,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 19,
+      "parent_id": 4,
+      "state": [
+        5.0,
+        4
+      ],
+      "action": "[5.0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 1.0 and 4 to get 5.",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[0] + numbers[1]   # 1.0 + 4 = 5.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[5.0, 4]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nAdd 1.0 and 4 to get 5.\nResult: [5.0, 4]",
+      "evaluation": {
+        "state": "[5.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 5.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 20,
+      "parent_id": 4,
+      "state": [
+        8,
+        1.0
+      ],
+      "action": "[8, 1.0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add 4 and 4 to get 8, then combine with 1.0 later.",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 1.0]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nAdd 4 and 4 to get 8, then combine with 1.0 later.\nResult: [8, 1.0]",
+      "evaluation": {
+        "state": "[8, 1.0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 21,
+      "parent_id": 4,
+      "state": [
+        4.0,
+        4
+      ],
+      "action": "[4.0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 1.0 and 4 to get 4.",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[0] * numbers[1]   # 1.0 * 4 = 4.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4.0, 4]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nMultiply 1.0 and 4 to get 4.\nResult: [4.0, 4]",
+      "evaluation": {
+        "state": "[4.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 22,
+      "parent_id": 4,
+      "state": [
+        16,
+        1.0
+      ],
+      "action": "[16, 1.0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply 4 and 4 to get 16, then combine with 1.0.",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 1.0]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nMultiply 4 and 4 to get 16, then combine with 1.0.\nResult: [16, 1.0]",
+      "evaluation": {
+        "state": "[16, 1.0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 23,
+      "parent_id": 4,
+      "state": [
+        3.0,
+        4
+      ],
+      "action": "[3.0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 1.0 from 4 (first pair, order a-b).",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[1] - numbers[0]   # 4 - 1.0 = 3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[3.0, 4]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 1.0 from 4 (first pair, order a-b).\nResult: [3.0, 4]",
+      "evaluation": {
+        "state": "[3.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 3.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 24,
+      "parent_id": 4,
+      "state": [
+        -3.0,
+        4
+      ],
+      "action": "[-3.0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 1.0 (reverse order).",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[0] - numbers[1]   # 1.0 - 4 = -3.0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-3.0, 4]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 4 from 1.0 (reverse order).\nResult: [-3.0, 4]",
+      "evaluation": {
+        "state": "[-3.0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -3.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 25,
+      "parent_id": 4,
+      "state": [
+        0,
+        1.0
+      ],
+      "action": "[0, 1.0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract 4 from 4 (pair 1,2).",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 1.0]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nSubtract 4 from 4 (pair 1,2).\nResult: [0, 1.0]",
+      "evaluation": {
+        "state": "[0, 1.0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,1.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 26,
+      "parent_id": 4,
+      "state": [
+        0.25,
+        4
+      ],
+      "action": "[0.25, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide 1.0 by 4 (reverse order).",
+        "code": "numbers = [1.0, 4, 4]\nres = numbers[0] / numbers[1]   # 1.0 / 4 = 0.25\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0.25, 4]"
+      },
+      "path_history": "Divide first by second (4 / 4 = 1).\nResult: [1.0, 4, 4]\nDivide 1.0 by 4 (reverse order).\nResult: [0.25, 4]",
+      "evaluation": {
+        "state": "[0.25, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.25,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 27,
+      "parent_id": 3,
+      "state": [
+        4,
+        4
+      ],
+      "action": "[4, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add the first two numbers (0 + 4 = 4).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[0] + numbers[1]   # 0 + 4 = 4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[4, 4]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nAdd the first two numbers (0 + 4 = 4).\nResult: [4, 4]",
+      "evaluation": {
+        "state": "[4, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 4.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 28,
+      "parent_id": 3,
+      "state": [
+        0,
+        4
+      ],
+      "action": "[0, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply the first two numbers (0 * 4 = 0).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[0] * numbers[1]   # 0 * 4 = 0\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 4]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nMultiply the first two numbers (0 * 4 = 0).\nResult: [0, 4]",
+      "evaluation": {
+        "state": "[0, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 29,
+      "parent_id": 3,
+      "state": [
+        -4,
+        4
+      ],
+      "action": "[-4, 4]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract second from first (0 - 4 = -4).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[0] - numbers[1]   # 0 - 4 = -4\nremaining = [numbers[2]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[-4, 4]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nSubtract second from first (0 - 4 = -4).\nResult: [-4, 4]",
+      "evaluation": {
+        "state": "[-4, 4]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on -4.0,4.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 30,
+      "parent_id": 3,
+      "state": [
+        8,
+        0
+      ],
+      "action": "[8, 0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Add the last two numbers (4 + 4 = 8).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[1] + numbers[2]   # 4 + 4 = 8\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[8, 0]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nAdd the last two numbers (4 + 4 = 8).\nResult: [8, 0]",
+      "evaluation": {
+        "state": "[8, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 8.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 31,
+      "parent_id": 3,
+      "state": [
+        16,
+        0
+      ],
+      "action": "[16, 0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Multiply the last two numbers (4 * 4 = 16).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[1] * numbers[2]   # 4 * 4 = 16\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[16, 0]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nMultiply the last two numbers (4 * 4 = 16).\nResult: [16, 0]",
+      "evaluation": {
+        "state": "[16, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 16.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 32,
+      "parent_id": 3,
+      "state": [
+        1.0,
+        0
+      ],
+      "action": "[1.0, 0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Divide second by third (4 / 4 = 1).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[1] / numbers[2]   # 4 / 4 = 1\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[1.0, 0]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nDivide second by third (4 / 4 = 1).\nResult: [1.0, 0]",
+      "evaluation": {
+        "state": "[1.0, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 1.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 33,
+      "parent_id": 3,
+      "state": [
+        0,
+        0
+      ],
+      "action": "[0, 0]",
+      "value": 0.001,
+      "depth": 2,
+      "is_solution": false,
+      "is_pruned": true,
+      "codeact": {
+        "thought": "Subtract third from second (4 - 4 = 0).",
+        "code": "numbers = [0, 4, 4]\nres = numbers[1] - numbers[2]   # 4 - 4 = 0\nremaining = [numbers[0]]\nnew_numbers = [res] + remaining\nprint(new_numbers)",
+        "observation": "[0, 0]"
+      },
+      "path_history": "Subtract first from second (4 - 4 = 0).\nResult: [0, 4, 4]\nSubtract third from second (4 - 4 = 0).\nResult: [0, 0]",
+      "evaluation": {
+        "state": "[0, 0]",
+        "pruned_by": "dead_end_memory_2num_cache",
+        "reason": "no_op_reaches_24: tried all 6 ops on 0.0,0.0",
+        "is_final": false,
+        "final_value": 0.001,
+        "heuristic_checks": {
+          "pruned": true
+        },
+        "reasoning": [
+          "Pruned by deterministic 2-number cache."
+        ]
+      },
+      "num_children": 0,
+      "children": {}
+    },
+    {
+      "id": 34,
+      "parent_id": 5,
+      "state": [
+        24.0
+      ],
+      "action": "8 + 16",
+      "value": 1.0,
+      "depth": 3,
+      "is_solution": true,
+      "is_pruned": false,
+      "codeact": {
+        "thought": "From [8, 16], 8 + 16 = 24",
+        "code": "numbers = [8, 16]\na, b = 8, 16\nresult = 8 + 16\nnew_numbers = [result]",
+        "observation": "[24]"
+      },
+      "path_history": "Multiply the first two 4s.\nResult: [16, 4, 4]\nAdd the two equal numbers 4 and 4 to get 8.\nResult: [8, 16]\nOperation: 8 + 16 = 24",
+      "evaluation": null,
+      "num_children": 0,
+      "children": {}
+    }
+  ],
+  "solutions": [
+    34
+  ],
+  "inconsistency_report": {
+    "enabled": true,
+    "statistics": {
+      "total_evaluations": 5,
+      "re_evaluations": 0,
+      "unique_states": 5,
+      "inconsistent_states": 0,
+      "re_evaluation_rate": "0.0%",
+      "inconsistency_rate": "0%"
+    },
+    "inconsistent_states": [],
+    "suspicious_states": []
+  }
+}

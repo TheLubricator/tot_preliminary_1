@@ -212,20 +212,23 @@ def should_include_deadend_context(
     relevant_patterns: list,
 ) -> bool:
     """
-    Selective inclusion gate — both conditions must be true.
+    Always returns False — dead-end context blocks are disabled.
+
+    Rationale: mixing two prompt formats (plain vs. with dead-end hints)
+    in the same training set forces the model to learn two conditional
+    behaviors simultaneously.  At 360M params and ~1 200 examples that
+    splits the signal too thin.  Every prompt is now:
+
+        Numbers: X X X X. Target: 24.
+        Use each number exactly once with +, -, *, / to reach 24.
+        Steps:
+
+    The negative-example signal that the dead-end context was carrying
+    is instead provided implicitly through the backtracking completions
+    (failed paths concatenated before the solution), which use only
+    arithmetic tokens the model already knows from pre-training.
     """
-    stats = tree["metadata"]["statistics"]
-
-    # Condition A: Dead-end memory actually fired during this tree's search
-    skipped = stats.get("deadend_memory_skipped", 0)
-    if skipped == 0:
-        return False  # Dead-end memory was a no-op; including context adds noise
-
-    # Condition B: Enough high-confidence patterns to be worth encoding
-    if len(relevant_patterns) < MIN_PATTERNS:
-        return False
-
-    return True
+    return False
 
 
 def format_deadend_context(relevant_patterns: list) -> str:
@@ -248,44 +251,75 @@ def format_deadend_context(relevant_patterns: list) -> str:
 def build_final_expression(path: list, steps: list) -> str:
     """
     Reconstruct a clean nested arithmetic expression from the solution steps.
-    Handles duplicate intermediate values correctly by using step order.
+
+    Uses a pool (ordered list of (value, expression) pairs) instead of a
+    value-keyed dict.  The dict approach breaks whenever two numbers have the
+    same value — either duplicate originals (e.g. 1 1 2 6) or two operations
+    that produce the same intermediate result (e.g. 13-1=12 and 2+10=12).
+    In both cases the dict silently overwrites the first slot with the second,
+    causing both operands in the next step to expand to the SAME sub-expression
+    and therefore reuse numbers that were already consumed.
+
+    Pool approach: each (value, expression) slot is consumed exactly once via
+    consume(), which removes and returns the FIRST matching slot — preserving
+    order and avoiding any double-expansion of duplicate values.
+
+    Example — puzzle 1 1 2 6, steps: 1+1=2, 2+2=4, 4*6=24
+      Old (buggy):  ((1+1) + (1+1)) * 6  — uses four 1s, zero 2s
+      New (correct): (2 + (1+1)) * 6     — uses 2, 1, 1, 6  ✓
+
+    Example — puzzle 1 2 10 13, steps: 13-1=12, 2+10=12, 12+12=24
+      Old (buggy):  (2+10) + (2+10)       — uses 2 and 10 twice, ignores 1 and 13
+      New (correct): (13-1) + (2+10)      — uses 1, 2, 10, 13  ✓
     """
-    # Parse each step into (a, op, b, result)
-    parsed = []
     step_pat = re.compile(r'(-?\d+\.?\d*)\s*([+\-*/])\s*(-?\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)')
+
+    parsed = []
     for s in steps:
         m = step_pat.search(s)
         if m:
-            parsed.append((m.group(1), m.group(2), m.group(3), m.group(4)))
+            parsed.append((
+                float(m.group(1)), m.group(2),
+                float(m.group(3)), float(m.group(4)),
+            ))
 
     if not parsed:
         leaf = path[-1]
-        return leaf["action"] + " = 24"
+        return leaf.get("action", "?") + " = 24"
 
-    def fmt(x: str) -> str:
-        try:
-            f = float(x)
-            return str(int(f)) if f == int(f) else x
-        except ValueError:
-            return x
+    def fmt(x: float) -> str:
+        return str(int(x)) if x == int(x) else f"{x:.4g}"
 
-    # Map result value -> most recent expression (replace if same value appears again)
-    expr_map = {}
-    expr = ""
-    for a_s, op, b_s, res_s in parsed:
-        # Replace a and b with their expressions if known (use the latest mapping)
-        a_expr = expr_map.get(fmt(a_s), fmt(a_s))
-        b_expr = expr_map.get(fmt(b_s), fmt(b_s))
+    def consume(pool: list, val: float, tol: float = 1e-6) -> str:
+        """
+        Remove and return the expression string for the first pool slot whose
+        value matches val.  Falls back to fmt(val) if no slot matches (should
+        not happen on valid input, but prevents a hard crash on edge cases).
+        """
+        for i, (v, expr) in enumerate(pool):
+            if abs(v - val) < tol:
+                pool.pop(i)
+                return expr
+        return fmt(val)   # fallback — keeps generation alive on unexpected input
 
+    # Initialise pool from the original numbers (root node state).
+    # Order matches the root state list so consume() is deterministic.
+    root_state = [float(x) for x in path[0]["state"]]
+    pool: list = [(v, fmt(v)) for v in root_state]
+
+    final_expr = fmt(24.0)   # safety fallback
+    for a_val, op, b_val, res_val in parsed:
+        a_expr = consume(pool, a_val)
+        b_expr = consume(pool, b_val)
+
+        # Parenthesise compound sub-expressions (contain a space → have an operator)
         a_expr_p = f"({a_expr})" if " " in a_expr else a_expr
         b_expr_p = f"({b_expr})" if " " in b_expr else b_expr
 
-        expr = f"{a_expr_p} {op} {b_expr_p}"
-        # Overwrite previous mapping for the same result – this is correct
-        # because later steps consume the most recent version of that value.
-        expr_map[fmt(res_s)] = expr
+        final_expr = f"{a_expr_p} {op} {b_expr_p}"
+        pool.append((res_val, final_expr))   # push result back; consumed by later steps
 
-    return f"{expr} = 24"
+    return f"{final_expr} = 24"
 
 
 # ─────────────────────────────────────────────
