@@ -89,7 +89,7 @@ IN_CONTEXT_HEADER = (
     "4 + 9 = 13 (left: 10 13 13)\n"
     "13 - 10 = 3 (left: 3 13)\n"
     "13 + 3 = 16 (left: 16)\n"
-    "Backtrack.\n"
+    "Backtrack. (to: 4 9 10 13).\n"
     "13 - 10 = 3 (left: 3 4 9)\n"
     "9 - 3 = 6 (left: 4 6)\n"
     "4 * 6 = 24 (left: 24)\n"
@@ -498,7 +498,7 @@ def extract_backtracking_example(
     completion_lines = list(dead_end_lines)
     if extra_steps:
         completion_lines.extend(extra_steps)
-    completion_lines.append("Backtrack.")    # ← explicit restart marker
+    completion_lines.append(f"Backtrack. (to: {puzzle_str})")    # ← explicit restart marker
     completion_lines.extend(solution_steps)
     completion_lines.append(f"Answer: {final_expr}")
 
