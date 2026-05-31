@@ -39,7 +39,7 @@ from transformers import EarlyStoppingCallback
 
 JSONL_PATH  = "training_data_augmented_v2.jsonl"
 MODEL_NAME  = "Qwen/Qwen2.5-0.5B-Instruct"
-SAVE_PATH   = "./qwen05_finetuned_try2"
+SAVE_PATH   = "./qwen05_finetuned"
 SEED        = 42
 MAX_LENGTH  = 1024
 
@@ -58,8 +58,6 @@ WARMUP_RATIO = 0.06
 SYSTEM_PROMPT = (
     "Use numbers and basic arithmetic operations (+, -, *, /) to obtain 24. "
     "Each step, you are only allowed to choose two of the remaining numbers to obtain a new number.\n"
-    "You may backtrack AT MOST THRICE if a path fails. "
-    "Once you reach (left: 24), immediately write the Answer line and stop.\n"
     "Step 1: Start by considering possible operations for each pair of numbers.\n"
     "Step 2: Try a path (a pair of two numbers), see if the remaining numbers can possibly reach the goal 24. If not, backtrack and attempt another.\n"
     "Step 3: Branch out to try different orders of operations and combinations, evaluating each outcome.\n"
