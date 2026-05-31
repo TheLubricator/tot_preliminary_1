@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 with open(args.csv) as f:
     rows = list(csv.DictReader(f))
-test_puzzles = [r["Puzzles"].strip() for r in rows if 6 <= int(r["Rank"]) <= 1000]
+test_puzzles = [r["Puzzles"].strip() for r in rows if 901 <= int(r["Rank"]) <= 1000]
 
 print(f"Loading {args.model} ...")
 tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=False)

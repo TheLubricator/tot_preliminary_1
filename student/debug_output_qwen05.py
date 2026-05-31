@@ -171,8 +171,20 @@ try:
             # ── Backtrack ────────────────────────────────────────────────────────
             if lt.startswith('Backtrack.'):
                 bm = re.search(r'\(to:\s*(.*?)\)', lt)
-                available = ([Fraction(x) for x in bm.group(1).strip().split()]
-                             if bm else list(puzzle_nums))
+                if bm:
+                    # Extract only valid number tokens — skip operator chars.
+                    # Guards against malformed targets like "(to: 12 - 21)"
+                    # where the model generated an expression instead of a pool.
+                    raw_tokens = bm.group(1).strip().split()
+                    parsed = []
+                    for tok in raw_tokens:
+                        try:
+                            parsed.append(Fraction(tok))
+                        except (ValueError, ZeroDivisionError):
+                            pass  # skip operators like '-', '+', malformed tokens
+                    available = parsed if parsed else list(puzzle_nums)
+                else:
+                    available = list(puzzle_nums)
                 continue
 
             # ── Answer line ───────────────────────────────────────────────────────
