@@ -34,10 +34,10 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
-
+from transformers import EarlyStoppingCallback
 # ── Config ────────────────────────────────────────────────────────────────────
 
-JSONL_PATH  = "training_data_augmented.jsonl"
+JSONL_PATH  = "training_data_augmented_v2.jsonl"
 MODEL_NAME  = "Qwen/Qwen2.5-0.5B-Instruct"
 SAVE_PATH   = "./qwen05_finetuned"
 SEED        = 42
@@ -45,12 +45,12 @@ MAX_LENGTH  = 1024
 
 # Conservative hyperparams for an instruct model
 # Qwen is already instruction-tuned — we want to add a skill, not overwrite
-LR           = 1e-5
+LR           = 1.5e-5
 WEIGHT_DECAY = 0.01
 BATCH_SIZE   = 4
 GRAD_ACCUM   = 4          # eff_batch = 16
 SCHEDULER    = "cosine"   # cosine works better than constant_with_warmup for instruct models
-NUM_EPOCHS   = 8
+NUM_EPOCHS   = 5
 WARMUP_RATIO = 0.06
 
 # ── System prompt (identical to SmolLM run for fair comparison) ───────────────
@@ -288,6 +288,7 @@ trainer = Trainer(
     args=training_args,
     train_dataset=tok_train,
     eval_dataset=tok_val,
+    callbacks=[EarlyStoppingCallback(early_stopping_patience=2)]
 )
 
 # ── Train ─────────────────────────────────────────────────────────────────────
